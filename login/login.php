@@ -12,12 +12,12 @@
 <body>
     <div class="login-container">
         <h1>Login</h1>
-        <form  onsubmit="return validation();">
-        Username : <input type="text" id="username" placeholder="Username" required>
+        <form  onsubmit="return validation();" method="post" action="validation.php">
+            Username : <input type="text" id="username" placeholder="Username" name="username" required>
             <br>
             <label id="usernameinvalid" style="color: red;visibility: hidden;">Invalid Username</label>
             <br>
-            Password : <input type="password" id="password" placeholder="Password" required>
+            Password : <input type="password" id="password" placeholder="Password" name="password" required>
             <br>
             <label id="passwordinvalid" style="color: red;visibility: hidden;"></label>
             <br>
