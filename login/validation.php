@@ -1,6 +1,6 @@
 <?php
-// login.php (inside the login folder)
-include '../connection/connection.php';
+
+include '../common/connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Verify the password
             if (password_verify($password,$row['Admin_password'])) {
-                echo "Password is correct.";
+                header("location:../Admin/first.php");
             } else {
                 header("location:login.php?wrongpassword=true");
             }
@@ -28,13 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Verify the password
             if (password_verify($password,$row['Emp_password'])) {
-                echo "Password is correct.";
+                header("location:../Employee/first.php");
             } else {
                 header("location:login.php?wrongpassword=true");
             }
             
         }
-    } else {
-        echo "Username and/or password missing.";
-    }
+    } 
 }

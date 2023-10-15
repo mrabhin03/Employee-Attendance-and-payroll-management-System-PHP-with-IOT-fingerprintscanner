@@ -6,6 +6,6 @@ $db="miniproject";
 $con=mysqli_connect($hostname,$username,$password,$db);
 
 if(!$con){
-    echo "Not connected";
+    header("location:Error.php");
 }
 ?>
