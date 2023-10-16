@@ -1,0 +1,753 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  background-image: url(wallpaper/violet.png);
+  background-size: cover ;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+
+}
+body::before {
+  content: "";
+  background-image: inherit;
+  filter: blur(50px); 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.top-bar {
+  background-color: rgb(8, 46, 128);;
+  color: #fff;
+  padding: 10px;
+  height: 5%;
+  border-bottom: 2px solid rgb(180, 180, 180) ;
+
+}
+.top-bar >img
+{
+  vertical-align: middle;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.side-menu {
+  width: 18%;
+  background-color: #3951a7c4;
+  color: #fff;
+  height: 100%;
+  overflow-y: auto;
+  float: left;
+  margin-right: 0;
+}
+
+
+
+.main-content {
+  padding: 10px;
+  float: left;
+  padding-top: 0;
+  height: 100%;
+  width: 100%;
+  
+}
+.main-body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.side-menu li {
+  margin-left: 8px;
+  margin-bottom: 0px;
+}
+
+.side-menu > ul 
+{
+  height: 50%;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0px;
+  letter-spacing: 1px;
+}
+.side-menu > ul > .head
+{
+  color: #ffffff;
+  background: #203683;
+  height: 10%;
+  width: 100%;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+.side-menu > ul > .option
+{
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+
+.side-menu > ul > li >a
+{
+  text-decoration: none;
+  color: #ffffff;
+  padding-left: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
+.Bashboard,.Attendance,.Employees
+{
+  height: 91%;
+  width: 100%;
+  float: left;
+  overflow-y: auto;
+}
+
+.Bashboard::-webkit-scrollbar,.Attendance::-webkit-scrollbar,.Employees::-webkit-scrollbar
+{
+  display: none;
+}
+
+.Bashboard
+{
+  background-color: white;
+}
+
+
+.Bashboard > .head, .Employees > .head
+{
+  height: 60px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.852);
+  border-bottom: 2px solid black ;
+  display: flex;
+  align-items: center;
+}
+
+.Employees > .head > a> button
+{
+  background-color: #3c8dbc;
+  margin-left: 20px;
+  width: 50px;
+  height: 30px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  border-color: #367fa9;
+}
+
+.Bashboard > .data1, .Employees > .data2
+{
+  width: 100%;
+  height: 100%;
+
+}
+.Bashboard > .data1 >.sample_data
+{
+  width: 18%;
+  height: 100%;
+  margin-left: 7px;
+  float: left;
+}
+
+.Bashboard > .data1 >.sample_data > .box
+{
+  width: 100%;
+  height: 18%;
+  background-color: slategrey;
+  margin-top: 20px;
+}
+
+.Bashboard > .data1 >.sample_data > .box > .bodypart
+{
+  color: white;
+  font-size: 14px;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.Bashboard > .data1 >.sample_data > .box > .bodypart > h3
+{
+  font-size: 30px;
+  margin: 0;
+}
+.Bashboard > .data1 >.sample_data > .box > .footerpart
+{
+  background-color: rgba(0,0,0,0.1);
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Bashboard > .data1 >.sample_data > .box > .footerpart > a{
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Bashboard > .data1 > .employee_att
+{
+  width: 80%;
+  padding-right: 0;
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 7px;
+}
+.Bashboard > .data1 > .employee_att > .att_header
+{
+  height: 7%;
+  margin-top: 60px;
+  width: 100%;
+  border-bottom: 3px solid rgba(73, 76, 86, 0.462) ;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+}
+.Bashboard > .data1 > .employee_att > .att_header >h3
+{
+  box-sizing: border-box;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.586);
+  font-family: 'Source Sans Pro',sans-serif;
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 13px;
+  margin-left: 10px;
+  line-height: 1;
+
+}
+.Bashboard > .data1 > .employee_att > .att_sub_div1
+{
+  height: 100%;
+  width: 100%;
+  margin-left: 5px;
+
+}
+.Bashboard > .data1 > .employee_att > .att_sub_div1 > table ,
+.Employees > .data2 > .employee_detail > table
+{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  text-align: center;
+}
+.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > thead,
+.Employees > .data2 > .employee_detail > table >thead
+{
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #333;
+  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-weight: 400;
+  border-spacing: 0;
+}
+
+.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody,
+.Employees > .data2 > .employee_detail > table >tbody
+{
+  
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+  border-spacing: 0;
+  box-sizing: border-box;
+
+}
+.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
+.Employees > .data2 > .employee_detail > table >tbody >tr
+{
+  background-color: white;
+  height: 60px;
+}
+.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
+.Employees > .data2 > .employee_detail > table >tbody >tr:nth-child(odd)
+{
+  background-color: rgb(222, 222, 222);
+}
+
+.Employees > .data2 > .employee_detail
+{
+  height: 100%;
+  width: 100%;
+}
+
+.addempin
+{
+  background-color: rgb(255, 255, 255);
+  width: 30%;
+  height: 72%;
+  position: absolute;
+  top: 18%;
+  left: 40%;
+  text-align: center;
+  border-radius: 20px;
+  transition: all .3s ease-in;
+  overflow: hidden;
+}
+.addempin.active
+{
+  background-color: rgb(255, 255, 255);
+  width: 30%;
+  height: 42%;
+  position: absolute;
+  top: 35%;
+  left: 40%;
+  text-align: center;
+  border-radius: 20px;
+}
+.main_form 
+{
+   height: 100%;
+   width: 100%;
+}
+
+.addempin.active .designation_add
+{
+  transform: translateX(0px);
+}
+.addempin.active .emp_details
+{
+  transform: translate(-500px,-110px);
+}
+
+.addempin .designation_add
+{
+  height: 100%;
+  width: 100%;
+  float: left;
+  transform: translate(500px,110px);
+  position: absolute;
+  transition: all .3s ease-in;
+}
+
+.addempin .emp_details
+{
+  height: 100%;
+  width: 100%;
+  float: left;
+  position: absolute;
+  transform: translateX(0px);
+  transition: all .3s ease-in;
+}
+.main_form > .emp_details > .form_div,
+.main_form >.designation_add >.form_div
+{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.main_form > .emp_details > .form_div > label,
+.main_form > .designation_add >.form_div> label
+{
+  color: rgb(0, 0, 0);
+  margin-left: 70px;
+  width: 100px;
+  float: left;
+  text-align: start;
+}
+.main_form > .emp_details > .form_div > input,
+.main_form > .emp_details > .form_div > select,
+.main_form > .designation_add >.form_div> select,
+.main_form > .designation_add >.form_div> input
+{
+  box-sizing: border-box;
+  font: inherit;
+  font-family: inherit;
+  display: block;
+  width: 50%;
+  float: left;
+  height: 25px;
+  font-size: 14px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: none;
+  color: #333;
+  border-color: #d2d6de;
+  text-align: center;
+
+}
+.main_form > .emp_details > .add_footer,
+.main_form > .designation_add > .add_footer
+{
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+}
+
+.main_form > .emp_details > .add_footer > button,
+.main_form > .emp_details > .add_footer>a>button,
+.main_form > .designation_add > .add_footer > button
+{
+  height: 30px;
+  width: 70px;
+  border-radius: 10px;
+  background-color: #3c8dbc;
+  border: none;
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+
+
+
+.update_empin
+{
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 20px;
+  transition: all .3s ease-in;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update_empin > .update_form
+{
+  height: 98%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.update_empin > .update_form > .emp_details_view
+{
+  height: 90%;
+  width: 90%;
+  margin-top: -80px;
+  background-color: rgba(0, 0, 0, 0.43);
+  border-radius: 20px;
+}
+.update_empin > .update_form > .emp_details_view > .profile
+{
+  height: 530px;
+  border-radius: 20px;
+  background-color: white;
+  width: 230px;
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+}
+.update_empin > .update_form > .emp_details_view > .profile > h2
+{
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: rgb(0, 0, 0);
+}
+.update_empin > .update_form > .emp_details_view > .profile > img
+{
+  height: 170px;
+  width: 170px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+.update_empin > .update_form > .emp_details_view > .profile > .id_show
+{
+  background-color: #89CCFC;
+  width: 120px;
+  color: white;
+  height: 30px;
+  margin-top: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 3px 3px 5px #000000;
+
+}
+.update_empin > .update_form > .emp_details_view > .profile > .Desc_show
+{
+  background-color: #EDD0D0;
+  width: 200px;
+  color: rgb(0, 0, 0);
+  height: 40px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: 3px 3px 5px #000000;
+}
+.update_empin > .update_form > .emp_details_view > .profile > .Desc_show > h4
+{
+font-size: 9px;
+margin-bottom: 0;
+margin-top: 0;
+}
+.emp_details_view>.header_view 
+{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.emp_details_view>.header_view > h1
+{
+  color: white;
+  background-color: gray;
+  height: 40px;
+  width: 400px;
+  border-radius: 20px;
+}
+.update_empin > .update_form > .emp_details_view > .data_edit
+{
+  height: 560px;
+  border-radius: 20px;
+  width: 700px;
+  margin-left: 30px;
+  float: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+.update_empin > .update_form > .emp_details_view > .data_edit > .data_1,
+.update_empin > .update_form > .emp_details_view > .data_edit > .data_2
+{
+  width: 650px;
+  margin-top: 0;
+  height: 220px;
+  background-color: rgba(130, 130, 130, 0.696);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.update_empin > .update_form > .emp_details_view > .data_edit > .data_2
+{
+  height: 280px;
+}
+.emp_details_view > a
+{
+  text-decoration: none;
+  font-size: 30px;
+  height: 50px;
+  margin-top: 20px;
+  width: 50px;
+  left: 380px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  position: absolute;
+}
+.update_empin > .update_form > .emp_details_view > .data_edit > .data_1 > h3,
+.update_empin > .update_form > .emp_details_view > .data_edit > .data_2 > h3
+{
+  margin-left: 10px;
+  margin-top: 6px;
+  color: white;
+}
+.Buttons_bar
+{
+  height: 30px;
+  width: 650px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
+}
+.Buttons_bar >a> button 
+{
+  height: 30px;
+  width: 100px;
+  margin-top: -5;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: all .1s ease-in-out;
+}
+
+.Buttons_bar >a> button:hover
+{
+  transform: translateY(-2px);
+}
+.Buttons_bar >a> button:active
+{
+  transform: translateY(2px);
+}
+
+.data_edit > .data_1 > .bar_le,
+.data_edit > .data_2 > .bar_le,
+.data_edit > .data_1 > .sub_div
+{
+  float: left;
+  box-shadow: 3px 3px 5px #000000;
+  background-color: white;
+  height: 50px;
+  width: 600px;
+  margin-bottom: 30px;
+  margin-left: 25px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.data_edit > .data_1 > .sub_div
+{
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  box-shadow: none;
+}
+.data_edit > .data_1 > .bar_le > label,
+.data_edit > .data_2 > .bar_le > label,
+.data_edit > .data_1  > .sub_div > .DOB > label,
+.data_edit > .data_1  > .sub_div > .Gender > label
+{
+  float: left;
+  margin-left: 20px;
+  margin-top: 4px;
+  font-size: 14px;
+}
+.data_edit > .data_1 > .bar_le > h6,
+.data_edit > .data_2 > .bar_le > h6,
+.data_edit > .data_1  > .sub_div > .DOB > h6,
+.data_edit > .data_1  > .sub_div > .Gender > h6
+{
+  height: 100%;
+  width: 100%;
+  text-align: start;
+  font-size: 25px;
+  margin-top: -3px;
+  margin-left: 40px;
+}
+
+
+
+
+.data_edit > .data_1 > .sub_div > .DOB,
+.data_edit > .data_1 > .sub_div > .Gender
+{
+  box-shadow: 3px 3px 5px #000000;
+  background-color: white;
+  height: 50px;
+  width: 280px;
+  float: left;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.edit_div
+{
+  width: 100%;
+  height: 97%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit_div > .data{
+  height: 500px;
+  width: 330px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
+}
+.edit_div > .data > form > h2
+{
+  text-align: center;
+}
+.edit_table
+{
+  height: 80%;
+  width: 100%;
+  border-collapse: collapse ;
+  text-align: center;
+}
+
+.edit_table input, .edit_table select
+{
+  box-sizing: border-box;
+  font: inherit;
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  float: left;
+  height: 25px;
+  font-size: 14px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: none;
+  color: #333;
+  border-color: #d2d6de;
+  text-align: center;
+
+}
+.edit_table tr td
+{
+  width: 50%;
+}
+
+.Edit_footer
+{
+  width: 50%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Edit_footer button
+{
+  height: 30px;
+  width: 90px;
+}
+.footer_tr
+{
+  height: 40px;
+
+}
