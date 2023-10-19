@@ -402,6 +402,12 @@ body::before {
   text-align: center;
 
 }
+
+.main_form > .emp_details > .form_div > input[type="radio"] {
+
+  margin-left: 36%; 
+}
+
 .main_form > .emp_details > .add_footer,
 .main_form > .designation_add > .add_footer
 {

@@ -6,7 +6,7 @@ body {
 }
 
 .top-bar {
-  background-color: rgb(8, 46, 128);
+  background-color: rgb(8, 46, 128);
 
   color: #fff;
   padding: 10px;
@@ -73,7 +73,7 @@ body {
 }
 .side-menu > ul > li
 {
-  background-color: #4a4a4a;
+  background-color: #0b8ed4;
   color: white;
   border-radius: 5px;
   text-decoration: none;
