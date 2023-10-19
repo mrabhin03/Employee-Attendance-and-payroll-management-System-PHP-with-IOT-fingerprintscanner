@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Verify the password
             if (password_verify($password,$row['Admin_password'])) {
-                header("location:../Admin/first.php");
+                header("location:../Admin/index.php");
             } else {
                 header("location:login.php?wrongpassword=true");
             }
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Verify the password
             if (password_verify($password,$row['Emp_password'])) {
-                header("location:../Employee/first.php");
+                header("location:../Employee/index.php");
             } else {
                 header("location:login.php?wrongpassword=true");
             }
