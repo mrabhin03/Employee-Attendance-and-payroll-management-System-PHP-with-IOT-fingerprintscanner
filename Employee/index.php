@@ -6,7 +6,7 @@
 
 <body>
     <div class="top-bar">
-        <img src="DPs.png" alt="Logo">
+        <img src="../images/logo.png" alt="Logo">
     </div>
     <div class="main-body">
         <div class="side-menu">

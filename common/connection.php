@@ -1,11 +1,16 @@
 <?php
-$hostname="localhost";
-$username="root";
-$password="";
-$db="miniproject";
-$con=mysqli_connect($hostname,$username,$password,$db);
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$db = "miniprojects";
 
-if(!$con){
-    header("location:Error.php");
+try {
+    $con = new mysqli($hostname, $username, $password, $db);
+    if ($con->connect_error) {
+        throw new Exception("Connection failed: " . $con->connect_error);
+    }
+} catch (Exception $e) {
+    header("Location: ../common/Error.php");
+    exit;
 }
 ?>
