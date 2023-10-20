@@ -4,16 +4,36 @@
     include '../common/connection.php';
 
 
-    $letters = '';
-    $numbers = '';
-    foreach (range('A', 'Z') as $char) {
-        $letters .= $char;
-    }
-    for ($i = 0; $i < 10; $i++) {
-        $numbers .= $i;
-    }
-    $password = substr(str_shuffle($letters), 0, 3) . substr(str_shuffle($numbers), 0, 9);
-    $empid =   substr(str_shuffle($numbers), 0, 5);
+$letters1 = '';
+$letters2 = '';
+$special = [ '@', '#', '$', '%',  '&', '*'];
+$numbers = '';
+
+foreach (range('A', 'Z') as $char) {
+    $letters1 .= $char;
+}
+foreach (range('a', 'z') as $char) {
+    $letters2 .= $char;
+}
+for ($i = 0; $i < 10; $i++) {
+    $numbers .= $i;
+}
+
+// Ensure at least 1 character from each set
+$password = $letters1[rand(0, 25)] . $letters2[rand(0, 25)] . $special[rand(0, count($special) - 1)] . $numbers[rand(0, 9)];
+
+// Add the remaining characters randomly
+$remainingCharacters = $letters1 . $letters2 . implode('', $special) . $numbers;
+$password .= substr(str_shuffle($remainingCharacters), 0, 6);
+
+// Shuffle the password
+
+$passwordtmp = str_shuffle($password);
+$password = password_hash($passwordtmp, PASSWORD_DEFAULT);
+
+
+
+    $empid = 'E'.substr(str_shuffle($numbers), 0, 5);
     $test = "SELECT * FROM employee_details WHERE Emp_id='$empid'";
     $data = $con->query($test);
     while ($data->num_rows != 0) {
@@ -29,12 +49,7 @@
                 <h1 style="text-align:center;">Employee Details</h1>
                 <div class="form_div">
                     <label for="username">Username</label>
-                    <input type="text" id="user" value="<?php echo $empid ?>" name="Username" required>
-                </div>
-                <div class="form_div">
-                    <label for="password">Password</label>
-                    <input type="text" id="pass" value="<?php echo $password ?>" name="Password" required>
-
+                    <input type="text" id="user" value="<?php echo $empid ?>" name="Username" readonly required>
                 </div>
                 <div class="form_div">
                     <label for="fullname">Full name</label>
@@ -110,9 +125,6 @@
             <?php
             include 'addempp.php';
             ?>
-
-
         </div>
-
     </form>
 </div>

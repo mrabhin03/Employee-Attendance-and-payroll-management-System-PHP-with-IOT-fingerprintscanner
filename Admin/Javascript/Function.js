@@ -1,7 +1,6 @@
 
 function checkvalid()
 {
-    
     a=[]
     b=[]
     value1=document.getElementById('user');
