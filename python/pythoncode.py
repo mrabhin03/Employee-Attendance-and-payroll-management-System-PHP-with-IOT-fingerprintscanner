@@ -20,7 +20,7 @@ while True:
         print(data)
         raop= data.split(",")
         
-        sql = "INSERT INTO emp_logs (Rf_id , Log_status) VALUES ('%s', '%s')" % (str (raop[0]),str (raop[1]))
+        sql = "INSERT INTO emp_logs (Rf_id,Log_status) VALUES ('%s', '%s')" % (str (raop[0]),str (raop[1]))
         cur.execute(sql)
         mysq.commit()
         data = ""
