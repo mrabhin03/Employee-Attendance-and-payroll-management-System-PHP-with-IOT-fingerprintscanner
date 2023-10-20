@@ -4,6 +4,7 @@
 <div class="Employees">
     <div class="head">
         <a href="?page=addemp"><button>ADD</button></a>
+        <h2>Employees Details</h2>
     </div>
     <div class="data2">
         <div class="employee_detail">

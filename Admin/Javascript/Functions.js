@@ -4,15 +4,14 @@ function checkvalid()
     a=[]
     b=[]
     value1=document.getElementById('user');
-    value2=document.getElementById('pass');
     value3=document.getElementById('name');
     value4=document.getElementById('email');
     value5=document.getElementById('address');
     value6=document.getElementById('dob');
     value7=document.getElementById('mobile');
     value8=document.getElementById('gender');
-    b.push(value1,value2,value3,value4,value5,value6,value7,value8,)
-    a.push(value1.value,value2.value,value3.value,value4.value,value5.value,value6.value,value7.value,value8.value)
+    b.push(value1,value3,value4,value5,value6,value7,value8,)
+    a.push(value1.value,value3.value,value4.value,value5.value,value6.value,value7.value,value8.value)
     co=0
     for(i=0;i<7;i++)
     {

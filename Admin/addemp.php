@@ -2,37 +2,10 @@
     <?php
 
     include '../common/connection.php';
-
-
-$letters1 = '';
-$letters2 = '';
-$special = [ '@', '#', '$', '%',  '&', '*'];
-$numbers = '';
-
-foreach (range('A', 'Z') as $char) {
-    $letters1 .= $char;
-}
-foreach (range('a', 'z') as $char) {
-    $letters2 .= $char;
-}
-for ($i = 0; $i < 10; $i++) {
-    $numbers .= $i;
-}
-
-// Ensure at least 1 character from each set
-$password = $letters1[rand(0, 25)] . $letters2[rand(0, 25)] . $special[rand(0, count($special) - 1)] . $numbers[rand(0, 9)];
-
-// Add the remaining characters randomly
-$remainingCharacters = $letters1 . $letters2 . implode('', $special) . $numbers;
-$password .= substr(str_shuffle($remainingCharacters), 0, 6);
-
-// Shuffle the password
-
-$passwordtmp = str_shuffle($password);
-$password = password_hash($passwordtmp, PASSWORD_DEFAULT);
-
-
-
+    $numbers = '';
+    for($i = 0; $i < 10; $i++){
+        $numbers .= $i;
+    }
     $empid = 'E'.substr(str_shuffle($numbers), 0, 5);
     $test = "SELECT * FROM employee_details WHERE Emp_id='$empid'";
     $data = $con->query($test);
@@ -83,7 +56,7 @@ $password = password_hash($passwordtmp, PASSWORD_DEFAULT);
                 <div class="add_footer">
                     <a href="?page=Employees"><button type="button" class="cancel_insert">Close</button></a>
                     <button onclick="checkvalid()" type="button" class="next"> Next</button>
-                    <script src="javascript/Function.js"></script>
+                    <script src="javascript/Functions.js"></script>
                 </div>
             </div>
 
@@ -99,7 +72,7 @@ $password = password_hash($passwordtmp, PASSWORD_DEFAULT);
                     <select name="desc_name" required>
                         <option value="" selected>- Select -</option>
                         <?php
-                        $sql = "SELECT * FROM employee_designation";
+                        $sql = "SELECT * FROM employee_designation WHERE Desc_status=1";
                         $query = $con->query($sql);
                         while ($prow = $query->fetch_assoc()) {
                             echo "
