@@ -31,7 +31,7 @@
                         <tr>
                           <td><?php echo $i; $i++; ?></td>
                           <td><?php echo $row['Emp_id']; ?></td>
-                          <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? 'images/'.$row['Emp_Photo']:'images/profile.jpg'; ?>" width="30px" height="30px"> </td>
+                          <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
                           <td><?php echo "$".$row['Desc_basic']; ?></td>

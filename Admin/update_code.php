@@ -10,7 +10,7 @@ if(isset($_POST['update'])){
     $filename = $_FILES['photo']['name'];
     $des_id = $_POST['desc_name'];
     if(!empty($filename)){
-        move_uploaded_file($_FILES['photo']['tmp_name'], 'images/'.$filename);
+        move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);
         $sql = "UPDATE employee_details SET Emp_name='$fullname',Desc_id='$des_id',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email',Emp_Photo='$filename' WHERE Emp_id=$empid";	
     }
     else

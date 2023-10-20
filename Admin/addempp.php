@@ -15,7 +15,7 @@
                     $desfrom = $_POST['Des_from'];
                     $desto = $_POST['Des_to'];
                     if(!empty($filename)){
-                        move_uploaded_file($_FILES['photo']['tmp_name'], 'images/'.$filename);	
+                        move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
                     }
                     for($i = 0; $i < 10; $i++){
                         $numbers .= $i;

@@ -1,1 +1,0 @@
-INSERT INTO daily_attendance (Att_id, Att_date, Emp_id) SELECT COALESCE((SELECT MAX(Att_id) FROM daily_attendance), 0) + ROW_NUMBER() OVER (ORDER BY Emp_id) AS Att_id, '2023-01-01' AS Att_date, Emp_id FROM employee_details WHERE Emp_status!=2;

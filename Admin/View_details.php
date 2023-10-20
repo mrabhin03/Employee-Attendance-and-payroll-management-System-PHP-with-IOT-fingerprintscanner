@@ -16,7 +16,7 @@
                     <h1> Details of the Employee</h1>
                 </div>
                 <div class="profile">
-                <img style=" object-fit: cover; " src="<?php echo (!empty($EMP['Emp_Photo']))? 'images/'.$EMP['Emp_Photo']:'images/profile.jpg'; ?>" > 
+                <img style=" object-fit: cover; " src="<?php echo (!empty($EMP['Emp_Photo']))? '../images/'.$EMP['Emp_Photo']:'../images/profile.jpg'; ?>" > 
                 <h2><?php echo $EMP['Emp_name'];?></h2>
                 <div class="id_show">ID: <?php echo $EMP['Emp_id'];?></div>
                 <div class="Desc_show"><h4>DESIGNATION ID</h4><?php echo $EMP['Desc_id'];?></div>

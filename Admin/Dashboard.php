@@ -99,7 +99,7 @@
                         <tr>
                           <td><?php echo $row['Att_id'];?></td>
                           <td><?php echo $row['Emp_id']; ?></td>
-                          <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? 'images/'.$row['Emp_Photo']:'images/profile.jpg'; ?>" width="30px" height="30px"> </td>
+                          <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
                           <td><?php echo $row['Att_date']; ?></td>
                           <td><?php echo ($row['Att_status']==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?></td>
