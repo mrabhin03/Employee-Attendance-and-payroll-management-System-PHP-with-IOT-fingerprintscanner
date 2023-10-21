@@ -25,7 +25,7 @@
             <br>
             <?php
             if (isset($_GET["wrongpassword"]) && $_GET["wrongpassword"] === "true") {
-                echo '<div id="wrongpassword" style="color:red;">Wrong Password. Please try again.</div>';
+                echo '<div id="wrongpassword" style="color:red;">Wrong Password or Username. Please try again.</div>';
             }
             ?>
         </form>

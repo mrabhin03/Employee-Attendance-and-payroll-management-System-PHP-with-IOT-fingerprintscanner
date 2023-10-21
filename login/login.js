@@ -9,7 +9,7 @@ function validation(){
     return isPasswordValid&&isUsernameValid;
   }
   function validateuser(){
-    var uname = /^[AE]\d*$/;
+    var uname = /^[A-Za-z0-9]*$/;
     var username = document.getElementById("username");
   
     if (!username.value.trim().match(uname)) {
