@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet"  href="style.css">
+    <title>Biometric attendance system</title>
 </head>
 
 <body>
