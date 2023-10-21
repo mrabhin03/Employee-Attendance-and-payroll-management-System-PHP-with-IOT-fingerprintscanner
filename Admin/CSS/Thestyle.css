@@ -114,7 +114,11 @@ body::before {
 
 }
 
-.Bashboard,.Attendance,.Employees,.Designation
+.Bashboard,
+.Attendance,
+.Employees,
+.Designation,
+.calendar
 {
   height: 91%;
   width: 100%;
@@ -122,7 +126,11 @@ body::before {
   overflow-y: auto;
 }
 
-.Bashboard::-webkit-scrollbar,.Attendance::-webkit-scrollbar,.Employees::-webkit-scrollbar, .Designation::-webkit-scrollbar
+.Bashboard::-webkit-scrollbar,
+.Attendance::-webkit-scrollbar,
+.Employees::-webkit-scrollbar,
+.Designation::-webkit-scrollbar,
+.calendar::-webkit-scrollbar
 {
   display: none;
 }
@@ -133,7 +141,10 @@ body::before {
 }
 
 
-.Bashboard > .head, .Employees > .head,.Designation > .head
+.Bashboard > .head, 
+.Employees > .head,
+.Designation > .head,
+.calendar > .head
 {
   height: 60px;
   width: 100%;
@@ -143,12 +154,17 @@ body::before {
   align-items: center;
 }
 
-.Bashboard > .head > h2, .Employees > .head> h2,.Designation > .head> h2
+.Bashboard > .head > h2, 
+.Employees > .head> h2,
+.Designation > .head> h2,
+.calendar > .head> h2
 {
   margin-left: 30%;
 }
 
-.Employees > .head > a> button,.Designation > .head > a> button
+.Employees > .head > a> button,
+.Designation > .head > a> button,
+.calendar > .head > a> button
 {
   background-color: #3c8dbc;
   margin-left: 20px;
@@ -160,7 +176,10 @@ body::before {
   border-color: #367fa9;
 }
 
-.Bashboard > .data1, .Employees > .data2, .Designation > .des_data
+.Bashboard > .data1, 
+.Employees > .data2, 
+.Designation > .des_data,
+.calendar > .cal_data
 {
   width: 100%;
   height: 100%;
@@ -233,7 +252,7 @@ body::before {
 .Bashboard > .data1 > .employee_att > .att_header
 {
   height: 7%;
-  margin-top: 60px;
+  margin-top: 20px;
   width: 100%;
   border-bottom: 3px solid rgba(73, 76, 86, 0.462) ;
   display: flex;
@@ -249,7 +268,7 @@ body::before {
   font-family: 'Source Sans Pro',sans-serif;
   display: inline-block;
   font-size: 18px;
-  margin-top: 13px;
+  margin-top: 0px;
   margin-left: 10px;
   line-height: 1;
 
@@ -263,7 +282,8 @@ body::before {
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table ,
 .Employees > .data2 > .employee_detail > table,
-.Designation > .des_data > .des_detail > table
+.Designation > .des_data > .des_detail > table,
+.calendar > .cal_data > .cal_detail > table
 {
   width: 100%;
   height: auto;
@@ -273,6 +293,7 @@ body::before {
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > thead,
 .Employees > .data2 > .employee_detail > table >thead,
 .Designation > .des_data > .des_detail > table > thead
+.calendar > .cal_data > .cal_detail > table >thead
 {
   font-size: 16px;
   line-height: 1.42857143;
@@ -284,7 +305,8 @@ body::before {
 
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody,
 .Employees > .data2 > .employee_detail > table >tbody,
-.Designation > .des_data > .des_detail > table > tbody
+.Designation > .des_data > .des_detail > table > tbody,
+.calendar > .cal_data > .cal_detail > table > tbody
 {
   
   font-size: 14px;
@@ -297,19 +319,22 @@ body::before {
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
 .Employees > .data2 > .employee_detail > table >tbody >tr,
-.Designation > .des_data > .des_detail > table > tbody > tr
+.Designation > .des_data > .des_detail > table > tbody > tr,
+.calendar > .cal_data > .cal_detail > table > tbody > tr
 {
   background-color: white;
   height: 60px;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
 .Employees > .data2 > .employee_detail > table >tbody >tr:nth-child(odd),
-.Designation > .des_data > .des_detail > table > tbody > tr:nth-child(odd)
+.Designation > .des_data > .des_detail > table > tbody > tr:nth-child(odd),
+.calendar > .cal_data > .cal_detail > table > tbody > tr:nth-child(odd)
 {
   background-color: rgb(222, 222, 222);
 }
 
-.Employees > .data2 > .employee_detail
+.Employees > .data2 > .employee_detail,
+.calendar > .cal_data > .cal_detail
 {
   height: 100%;
   width: 100%;
@@ -322,6 +347,19 @@ body::before {
   height: 72%;
   position: absolute;
   top: 18%;
+  left: 40%;
+  text-align: center;
+  border-radius: 20px;
+  transition: all .3s ease-in;
+  overflow: hidden;
+}
+.addcal
+{
+  background-color: rgb(255, 255, 255);
+  width: 30%;
+  height: 35%;
+  position: absolute;
+  top: 30%;
   left: 40%;
   text-align: center;
   border-radius: 20px;
@@ -345,7 +383,7 @@ body::before {
    width: 100%;
 }
 
-.addempin.active .designation_add,.adddesc .desc_details
+.addempin.active .designation_add
 {
   transform: translateX(0px);
 }
@@ -364,7 +402,8 @@ body::before {
   transition: all .3s ease-in;
 }
 
-.addempin .emp_details
+.addempin .emp_details,
+.addcal .cal_details
 {
   height: 100%;
   width: 100%;
@@ -372,18 +411,20 @@ body::before {
   position: absolute;
   transform: translateX(0px);
   transition: all .3s ease-in;
+  background-color: #333;
 }
 .main_form > .emp_details > .form_div,
 .main_form >.designation_add >.form_div,
-.main_form >.desc_details >.form_div
+.main_form >.desc_details >.form_div,
+.main_form >.cal_details >.form_div
 {
   margin-top: 20px;
   display: flex;
-  flex-direction: row;
 }
 .main_form > .emp_details > .form_div > label,
 .main_form > .designation_add >.form_div> label,
-.main_form >.desc_details >.form_div > label
+.main_form >.desc_details >.form_div > label,
+.main_form >.cal_details >.form_div,label
 {
   color: rgb(0, 0, 0);
   margin-left: 70px;
@@ -395,7 +436,9 @@ body::before {
 .main_form > .emp_details > .form_div > select,
 .main_form > .designation_add >.form_div> select,
 .main_form > .designation_add >.form_div> input,
-.main_form >.desc_details >.form_div > input
+.main_form >.desc_details >.form_div > input,
+.main_form >.cal_details >.form_div > select,
+.main_form >.cal_details >.form_div > input
 {
   box-sizing: border-box;
   font: inherit;
@@ -423,7 +466,8 @@ body::before {
 
 .main_form > .emp_details > .add_footer,
 .main_form > .designation_add > .add_footer,
-.main_form >.desc_details >.add_footer
+.main_form >.desc_details >.add_footer,
+.main_form >.cal_details >.add_footer
 {
   height: 10%;
   display: flex;
@@ -438,7 +482,9 @@ body::before {
 .main_form > .emp_details > .add_footer>a>button,
 .main_form > .designation_add > .add_footer > button,
 .main_form >.desc_details >.add_footer > button,
-.main_form >.desc_details >.add_footer >a> button
+.main_form >.desc_details >.add_footer >a> button,
+.main_form >.cal_details >.add_footer > a > button,
+.main_form >.cal_details >.add_footer > button
 {
   height: 30px;
   width: 70px;

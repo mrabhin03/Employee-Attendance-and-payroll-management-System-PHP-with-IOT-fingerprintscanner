@@ -2,13 +2,13 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/Thestylesheet.css">
+    <link rel="stylesheet"  href="CSS/Thestyle.css">
 </head>
 
 <body>
 
     <div class="top-bar">
-        <img src="images/DPsq.png" alt="Logo">
+        <img src="../images/DPsq.png" alt="Logo">
     </div>
     <div class="main-body">
         <div class="side-menu">
@@ -18,6 +18,7 @@
                 <li class="option"><a href="?page=Attendance">Attendance</a></li>
                 <li class="option"><a href="?page=Employees">Employees</a></li>
                 <li class="option"><a href="?page=Designations">Designations</a></li>
+                <li class="option"><a href="?page=Calendar">Calendar</a></li>
             </ul>
         </div>
         <div class="main-content">
