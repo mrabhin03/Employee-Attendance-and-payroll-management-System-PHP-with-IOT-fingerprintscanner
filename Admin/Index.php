@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/Thestyle.css">
+    <link rel="stylesheet"  href="CSS/style.css">
 </head>
 
 <body>
@@ -27,10 +27,29 @@
                 $page = $_GET['page'] . '.php';
                 if (file_exists($page)) {
                     include($page);
-                } else {
-                    echo "Page not found!";
+                } 
+                else 
+                {
+                    if(file_exists("Edit_page/$page"))
+                    {
+                        include("Edit_page/$page");
+                    }
+                    else
+                    {
+                        if(file_exists("Edit_code/$page"))
+                        {
+                            include("Edit_code/$page");
+                        }
+                        else
+                        {
+                            echo "Page not found!";
+                        }
+                        
+                    }
                 }
-            } else {
+            } 
+            else 
+            {
                 include('Dashboard.php'); 
             }
             ?>

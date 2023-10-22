@@ -94,5 +94,5 @@
     </div>
 </div>
 <?php
-    include 'update_code.php';
+    include 'Edit_code/update_code.php';
 ?>

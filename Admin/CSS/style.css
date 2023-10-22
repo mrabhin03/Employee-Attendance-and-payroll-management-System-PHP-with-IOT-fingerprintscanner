@@ -163,6 +163,7 @@ body::before {
 }
 
 .Employees > .head > a> button,
+.Bashboard > .head > a> button,
 .Designation > .head > a> button,
 .calendar > .head > a> button
 {
@@ -174,6 +175,10 @@ body::before {
   font-size: 12px;
   cursor: pointer;
   border-color: #367fa9;
+}
+.Bashboard > .head > a> button
+{
+  width: 70px;
 }
 
 .Bashboard > .data1, 
@@ -411,7 +416,7 @@ body::before {
   position: absolute;
   transform: translateX(0px);
   transition: all .3s ease-in;
-  background-color: #333;
+  background-color: #ffffff;
 }
 .main_form > .emp_details > .form_div,
 .main_form >.designation_add >.form_div,

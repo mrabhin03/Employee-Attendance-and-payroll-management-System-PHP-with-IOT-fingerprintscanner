@@ -2,14 +2,16 @@
     <div class="head">
   <?php
   include '../common/connection.php';
+  $currentdate=date("Y-m-d");
   ?>
+        <a href="?page=dailyadd"><button>REFRESH</button></a>
     </div>
     <div class="data1">
         <div class="sample_data">
             <div class="box">
                 <div class="bodypart">
                 <?php
-                $sql = "SELECT * FROM employee_details WHERE Emp_status!=2";
+                $sql = "SELECT * FROM daily_attendance WHERE Att_date='$currentdate'";
                 $query = $con->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -24,11 +26,9 @@
             <div class="box">
                 <div class="bodypart">
                 <?php
-                $sql = "SELECT * FROM employee_details WHERE Emp_status!=2";
-                $query = $con->query($sql);
                 $total = $query->num_rows;
                 
-                $sql = "SELECT * FROM daily_attendance WHERE att_status = 1";
+                $sql = "SELECT * FROM daily_attendance WHERE att_status = 1 AND Att_date='$currentdate'";
                 $query = $con->query($sql);
                 $present = $query->num_rows;
                 $absent=$total-$present;
@@ -46,7 +46,6 @@
             <div class="box">
                 <div class="bodypart">
                 <?php
-                $sql = "SELECT * FROM daily_attendance WHERE att_status = 1";
                 $query = $con->query($sql);
                 echo "<h3>".$query->num_rows."</h3>"
               ?>
@@ -94,10 +93,11 @@
                     $query = $con->query($sql);
                     if($query->num_rows>0)
                     {
+                      $i=1;
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
-                          <td><?php echo $row['Att_id'];?></td>
+                          <td><?php echo $i; $i++;?></td>
                           <td><?php echo $row['Emp_id']; ?></td>
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
