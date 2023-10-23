@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/Thestyle.css">
+    <link rel="stylesheet"  href="CSS/THEstyle.css">
 </head>
 
 <body>

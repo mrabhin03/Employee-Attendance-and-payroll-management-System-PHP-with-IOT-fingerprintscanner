@@ -2,20 +2,11 @@
     <?php
 
     include '../common/connection.php';
-    $numbers='';
-    for($i = 0; $i < 10; $i++){
-        $numbers .= $i;
-    }
-    $descid = substr(str_shuffle($numbers), 0, 5);
 
-    $test = "SELECT * FROM employee_designation WHERE Desc_id='$descid'";
-    $data = $con->query($test);
-    while ($data->num_rows != 0) {
-        $descid =   substr(str_shuffle($numbers), 0, 5);
-        $test = "SELECT * FROM employee_designation WHERE Desc_id='$descid'";
-        $data = $con->query($test);
-    }
-
+    $desig_max_sql = "SELECT MAX(Desc_id) AS max FROM employee_designation;";
+    $desig_max = $con->query($desig_max_sql);
+    $maxdata = $desig_max->fetch_assoc();
+    $descid = $maxdata["max"]+1;
     ?>
     <form method="POST">
         <div class="main_form">

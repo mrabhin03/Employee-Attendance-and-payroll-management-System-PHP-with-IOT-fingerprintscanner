@@ -392,7 +392,7 @@ body::before {
   transition: all .3s ease-in;
   overflow: hidden;
 }
-.addcal, .addmonth_att
+.addcal, .addmonth_att,.addpayroll
 {
   background-color: rgb(255, 255, 255);
   width: 30%;
@@ -405,7 +405,7 @@ body::before {
   transition: all .3s ease-in;
   overflow: hidden;
 }
-.addmonth_att
+.addmonth_att,.addpayroll
 {
   height: 30%; 
 }
@@ -476,7 +476,8 @@ body::before {
   text-align: start;
 }
 .Attendance_M > .head > form,
-.Attendance > .head > form
+.Attendance > .head > form,
+.Payrolls > .head > form
 {
   position: absolute;
   right: 20px;
@@ -490,7 +491,8 @@ body::before {
 .main_form >.cal_details >.form_div > select,
 .main_form >.cal_details >.form_div > input,
 .Attendance_M > .head > form > input,
-.Attendance > .head > form > input
+.Attendance > .head > form > input,
+.Payrolls > .head > form > input
 {
   box-sizing: border-box;
   font: inherit;
@@ -511,7 +513,8 @@ body::before {
 
 }
 .Attendance_M > .head > form > input,
-.Attendance > .head > form > input
+.Attendance > .head > form > input,
+.Payrolls > .head > form > input
 {
   width: 200px;
   height: 30px;
@@ -545,7 +548,8 @@ body::before {
 .main_form >.cal_details >.add_footer > a > button,
 .main_form >.cal_details >.add_footer > button,
 .Attendance_M > .head > form > button,
-.Attendance > .head > form > button
+.Attendance > .head > form > button,
+.Payrolls > .head > form > button
 {
   height: 30px;
   width: 70px;

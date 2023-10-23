@@ -66,8 +66,16 @@
                 <div class="Buttons_bar">
                 <?php $data=$EMP['Emp_id']; echo "<a href='?page=Edit&id=$data'><button style='background-color: lightblue; color:black;'>EDIT</button></a>" ?>
                 <?php $data=$EMP['Emp_id']; echo "<a href='Edit_code/status.php?id=$data&st=2'><button style='background-color: yellow; color:black;'>DELETE</button></a>" ?>
-                <?php $data=$EMP['Emp_id']; echo "<a href='Edit_code/status.php?id=$data&st=0'><button style='background-color: red; color:white;'>SUSPEND</button></a>" ?>
-                <?php $data=$EMP['Emp_id']; echo "<a href='Edit_code/status.php?id=$data&st=1'><button style='background-color: green; color:white;'>ACTIVE</button></a>" ?>
+                <?php $data=$EMP['Emp_id']; 
+                if($EMP['Emp_status']==1)
+                {
+                    echo "<a href='Edit_code/status.php?id=$data&st=0'><button style='background-color: red; color:white;'>SUSPEND</button></a>";
+                }
+                else
+                {
+                    echo "<a href='Edit_code/status.php?id=$data&st=1'><button style='background-color: green; color:white;'>ACTIVE</button></a>" ;
+                }
+                 ?>
             </div>
             </div>
             

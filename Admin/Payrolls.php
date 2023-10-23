@@ -1,10 +1,25 @@
 <?php
   include '../common/connection.php';
+  $Year = date('Y');
+  $month = date('m');
   ?>
 <div class="Payrolls">
     <div class="head">
-        <a href="?page=generate_salary"><button>Generate</button></a>
+        <a href="?page=generate_salary_page"><button>Generate</button></a>
         <h2>Employees Details</h2>
+        <form method="post">
+            <input value="<?php
+            if(isset($_POST['search_month']))
+            {
+                $date=$_POST['month_date'];
+                list($Year,$month) = explode('-', $date);
+            }
+            $m_id=$Year.$month;
+            echo $Year."-".$month;
+        ?>" 
+        type="month" name="month_date" required>
+            <button name="search_month" type="submit">Search</button>
+        </form>
     </div>
     <div class="payrolls_details">
         <div class="payrolls_details_sub">
@@ -23,7 +38,7 @@
                 </thead>
                 <tbody >
                   <?php
-                    $sql = "SELECT employee_details.*, salary_paid.*, employee_designation.* FROM employee_details INNER JOIN  salary_paid ON  employee_details.Emp_id = salary_paid.Emp_id INNER JOIN  employee_designation ON  employee_details.Desc_id = employee_designation.Desc_id WHERE  employee_details.Emp_status = 1;";
+                    $sql = "SELECT employee_details.*, salary_paid.*, employee_designation.* FROM employee_details INNER JOIN  salary_paid ON  employee_details.Emp_id = salary_paid.Emp_id INNER JOIN  employee_designation ON  employee_details.Desc_id = employee_designation.Desc_id WHERE  employee_details.Emp_status = 1 AND Month_id='$m_id';";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {
@@ -51,7 +66,7 @@
                   {
                     ?>
                     <tr>
-                      <td colspan="8">
+                      <td colspan="10">
                         NO DATA
                       </td>
                     </tr>
