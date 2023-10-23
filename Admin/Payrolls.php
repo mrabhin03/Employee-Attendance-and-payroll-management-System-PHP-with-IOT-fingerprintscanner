@@ -1,13 +1,13 @@
 <?php
   include '../common/connection.php';
   ?>
-<div class="Employees">
+<div class="Payrolls">
     <div class="head">
-        <a href="?page=addemp"><button>ADD</button></a>
+        <a href="?page=generate_salary"><button>Generate</button></a>
         <h2>Employees Details</h2>
     </div>
-    <div class="data2">
-        <div class="employee_detail">
+    <div class="payrolls_details">
+        <div class="payrolls_details_sub">
             <table >
                 <thead>
                   <th>SI</th>
@@ -15,14 +15,15 @@
                   <th>Photo</th>
                   <th>Name</th>
                   <th>Designation</th>
-                  <th>Salary</th>
-                  <th>Mobile No</th>
+                  <th>Basic Salary</th>
+                  <th>Worked hrs</th>
+                  <th>Total Salary</th>
                   <th>Status</th>
                   <th>Tools</th>
                 </thead>
                 <tbody >
                   <?php
-                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2 order by Emp_id ASC ;";
+                    $sql = "SELECT employee_details.*, salary_paid.*, employee_designation.* FROM employee_details INNER JOIN  salary_paid ON  employee_details.Emp_id = salary_paid.Emp_id INNER JOIN  employee_designation ON  employee_details.Desc_id = employee_designation.Desc_id WHERE  employee_details.Emp_status = 1;";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {
@@ -35,9 +36,10 @@
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
-                          <td><?php echo "₹".$row['Desc_basic']; ?></td>
-                          <td><?php echo $row['Emp_mobileno']; ?></td>
-                          <td><?php echo ($row['Emp_status']==1)? "<p style='color: green;'>ACTIVE</p>":"<p style='color: red; font-weigth:none;'>INACTIVE</p>"; ?></td>
+                          <td><?php echo "₹".$row['Salary_basic']; ?></td>
+                          <td><?php echo $row['Working_hour']."hrs"; ?></td>
+                          <td><?php echo "₹".$row['Total_salary']; ?></td>
+                          <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                           <td>
                           <?php $data=$row['Emp_id']; echo "<a href='?page=View_details&id=$data'><button class='view-emp' >View Details</button></a>" ?>                            
                           </td>

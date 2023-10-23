@@ -119,7 +119,8 @@ body::before {
 .Employees,
 .Designation,
 .calendar,
-.Attendance_M
+.Attendance_M,
+.Payrolls
 {
   height: 91%;
   width: 100%;
@@ -132,7 +133,8 @@ body::before {
 .Employees::-webkit-scrollbar,
 .Designation::-webkit-scrollbar,
 .calendar::-webkit-scrollbar,
-.Attendance_M::-webkit-scrollbar
+.Attendance_M::-webkit-scrollbar,
+.Payrolls::-webkit-scrollbar
 {
   display: none;
 }
@@ -148,7 +150,8 @@ body::before {
 .Designation > .head,
 .calendar > .head,
 .Attendance > .head,
-.Attendance_M > .head
+.Attendance_M > .head,
+.Payrolls > .head
 {
   height: 60px;
   width: 100%;
@@ -163,7 +166,8 @@ body::before {
 .Designation > .head> h2,
 .calendar > .head> h2
 .Attendance > .head > h2,
-.Attendance_M > .head > h2
+.Attendance_M > .head > h2,
+.Payrolls > .head > h2
 {
   margin-left: 30%;
 }
@@ -172,7 +176,8 @@ body::before {
 .Bashboard > .head > a> button,
 .Designation > .head > a> button,
 .calendar > .head > a> button,
-.Attendance_M > .head > a >button
+.Attendance_M > .head > a >button,
+.Payrolls > .head > a > button
 {
   background-color: #3c8dbc;
   margin-left: 20px;
@@ -184,7 +189,8 @@ body::before {
   border-color: #367fa9;
 }
 .Bashboard > .head > a> button,
-.Attendance_M > .head > a >button
+.Attendance_M > .head > a >button,
+.Payrolls > .head > a > button
 {
   width: 70px;
 }
@@ -194,7 +200,8 @@ body::before {
 .Designation > .des_data,
 .calendar > .cal_data,
 .Attendance > .Daily_att,
-.Attendance_M > .Monthly_att
+.Attendance_M > .Monthly_att,
+.Payrolls > .payrolls_details
 {
   width: 100%;
   height: 100%;
@@ -290,7 +297,8 @@ body::before {
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1,
 .Attendance > .Daily_att > .Daily_att_sub,
-.Attendance_M > .Monthly_att > .Monthly_att_sub
+.Attendance_M > .Monthly_att > .Monthly_att_sub,
+.Payrolls > .payrolls_details > .payrolls_details_sub
 {
   height: 100%;
   width: 100%;
@@ -302,7 +310,8 @@ body::before {
 .Designation > .des_data > .des_detail > table,
 .calendar > .cal_data > .cal_detail > table,
 .Attendance > .Daily_att > .Daily_att_sub > table,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table
+.Attendance_M > .Monthly_att > .Monthly_att_sub > table,
+.Payrolls > .payrolls_details > .payrolls_details_sub > table
 {
   width: 100%;
   height: auto;
@@ -314,7 +323,8 @@ body::before {
 .Designation > .des_data > .des_detail > table > thead
 .calendar > .cal_data > .cal_detail > table >thead,
 .Attendance > .Daily_att > .Daily_att_sub > table > thead,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >thead
+.Attendance_M > .Monthly_att > .Monthly_att_sub > table >thead,
+.Payrolls > .payrolls_details > .payrolls_details_sub > table >thead
 {
   font-size: 16px;
   line-height: 1.42857143;
@@ -329,7 +339,8 @@ body::before {
 .Designation > .des_data > .des_detail > table > tbody,
 .calendar > .cal_data > .cal_detail > table > tbody,
 .Attendance > .Daily_att > .Daily_att_sub > table > tbody,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody
+.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody,
+.Payrolls > .payrolls_details > .payrolls_details_sub > table > body
 {
   
   font-size: 14px;
@@ -338,14 +349,14 @@ body::before {
   font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
   border-spacing: 0;
   box-sizing: border-box;
-
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
 .Employees > .data2 > .employee_detail > table >tbody >tr,
 .Designation > .des_data > .des_detail > table > tbody > tr,
 .calendar > .cal_data > .cal_detail > table > tbody > tr,
 .Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody >tr
+.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody >tr,
+.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr
 {
   background-color: white;
   height: 60px;
@@ -355,7 +366,8 @@ body::before {
 .Designation > .des_data > .des_detail > table > tbody > tr:nth-child(odd),
 .calendar > .cal_data > .cal_detail > table > tbody > tr:nth-child(odd),
 .Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr:nth-child(odd),
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody>tr:nth-child(odd)
+.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody>tr:nth-child(odd),
+.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd)
 {
   background-color: rgb(222, 222, 222);
 }

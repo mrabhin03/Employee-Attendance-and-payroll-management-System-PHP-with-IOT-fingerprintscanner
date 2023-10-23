@@ -18,7 +18,7 @@
             <label id="usernameinvalid" style="color: red;visibility: hidden;">Invalid Username</label>
             <br>
             Password : <input type="password" id="password" placeholder="Password" name="password" required>
-            <input type="checkbox" name="" id="">
+            <input type="checkbox" name="" id="" >
             <br>
             <label id="passwordinvalid" style="color: red;visibility: hidden;"></label>
             <br>

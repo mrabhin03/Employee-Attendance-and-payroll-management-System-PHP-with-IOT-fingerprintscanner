@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/Thestylesheet.css">
+    <link rel="stylesheet"  href="CSS/Thestyle.css">
 </head>
 
 <body>
@@ -20,6 +20,7 @@
                 <li class="option"><a href="?page=Employees">Employees</a></li>
                 <li class="option"><a href="?page=Designations">Designations</a></li>
                 <li class="option"><a href="?page=Calendar">Calendar</a></li>
+                <li class="option"><a href="?page=Payrolls">Payroll</a></li>
             </ul>
         </div>
         <div class="main-content">

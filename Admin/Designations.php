@@ -34,8 +34,8 @@
                           <td><?php echo $i; $i++; ?></td>
                           <td><?php echo $row['Desc_id']; ?></td>
                           <td><?php echo $row['Desc_name']?></td>
-                          <td><?php echo "$".$row['Desc_basic']; ?></td>
-                          <td><?php echo "$".$row['Desc_overtimesalary']; ?></td>
+                          <td><?php echo "₹".$row['Desc_basic']; ?></td>
+                          <td><?php echo "₹".$row['Desc_overtimesalary']; ?></td>
                           <td><?php echo $row['Desc_da']; ?></td>
                           <td><?php echo $row['Desc_ma']; ?></td>
                           <td><?php echo $row['Desc_pf']; ?></td>

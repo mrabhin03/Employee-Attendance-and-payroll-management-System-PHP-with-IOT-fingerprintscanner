@@ -55,8 +55,8 @@
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
                           <td><?php echo $monthar[$no]." ".$Year; ?></td> 
-                          <td><?php echo $row['Normal_work_hr']; ?></td> 
-                          <td><?php echo $calender['Working_day']*8; ?></td> 
+                          <td><?php echo $row['Normal_work_hr']."hrs"; ?></td> 
+                          <td><?php echo $calender['Working_day']*8;echo"hrs" ?></td> 
                         </tr>
                       <?php
                     }

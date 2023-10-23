@@ -46,3 +46,9 @@ button {
 button:hover {
     background-color: #2980b9;
 }
+input[type="checkbox"]
+{
+    position: relative;
+    top: -45px;
+    left: 140px;
+} 
