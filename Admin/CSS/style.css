@@ -69,6 +69,10 @@ body::before {
   margin-left: 8px;
   margin-bottom: 0px;
 }
+.side-menu   .sub_tree > li {
+  margin-left: 8px;
+  margin-top: 20px;
+}
 
 .side-menu > ul 
 {
@@ -95,13 +99,49 @@ body::before {
 {
   cursor: pointer;
   width: 100%;
-  height: 50px;
-  margin-left: 0;
+  height: auto;
+  margin-left: 0px;
+  font-size: 18;
   display: flex;
-  align-items: center;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  flex-direction: column;
+}
+.option > span
+{
+  margin-left: 20px;
+  cursor: pointer;
+}
+.icon.active .down
+{
+  transform: translateY(-3px);
+  rotate: -180deg;
+}
+.icon .down
+{
+  rotate: -90deg;
+  transform: translateX(-3px);
+  transition: all .2s ease-in-out;
 }
 
 
+.sub_tree > li > a
+{
+  text-decoration: none;
+  color: #ffffff;
+}
+.sub_tree.active
+{
+  display: flex;
+  opacity: 1;
+  flex-direction: column;
+}
+.sub_tree
+{
+  opacity: 0;
+  display: none;
+  transition: all .3s ease-in-out;
+}
 .side-menu > ul > li >a
 {
   text-decoration: none;
@@ -159,18 +199,9 @@ body::before {
   border-bottom: 2px solid black ;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.Bashboard > .head > h2, 
-.Employees > .head> h2,
-.Designation > .head> h2,
-.calendar > .head> h2
-.Attendance > .head > h2,
-.Attendance_M > .head > h2,
-.Payrolls > .head > h2
-{
-  margin-left: 30%;
-}
 
 .Employees > .head > a> button,
 .Bashboard > .head > a> button,
@@ -479,9 +510,12 @@ body::before {
 .Attendance > .head > form,
 .Payrolls > .head > form
 {
-  position: absolute;
-  right: 20px;
-  top: 75px;
+  height: 100%;
+  margin: 0;
+  margin-right: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 .main_form > .emp_details > .form_div > input,
 .main_form > .emp_details > .form_div > select,
