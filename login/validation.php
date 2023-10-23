@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "select Admin_password from admin where Admin_id='$username'";
             $result = mysqli_query($con, $sql);
             $row = mysqli_fetch_assoc($result);
-            
+
             // Verify the password
-            if (password_verify($password,$row['Admin_password'])) {
+            if (password_verify($password, $row['Admin_password'])) {
                 header("location:../Admin/index.php");
             } else {
                 header("location:login.php?wrongpassword=true");
@@ -25,17 +25,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "select Emp_password from employee_details where Emp_id='$username'";
             $result = mysqli_query($con, $sql);
             $row = mysqli_fetch_assoc($result);
-            
+
             // Verify the password
-            if (password_verify($password,$row['Emp_password'])) {
+            if (password_verify($password, $row['Emp_password'])) {
+                session_start();
+                $_SESSION['Emp_id'] =  $username;
                 header("location:../Employee/index.php");
             } else {
                 header("location:login.php?wrongpassword=true");
             }
-            
-        }
-        else{
+        } else {
             header("location:login.php?wrongpassword=true");
         }
-    } 
+    }
 }

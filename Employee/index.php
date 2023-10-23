@@ -1,13 +1,25 @@
 <html>
 
 <head>
-    <link rel="stylesheet"  href="style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Biometric attendance system</title>
+
+
 </head>
 
 <body>
+    <?php
+    include 'session_check.php';
+
+    ?>
     <div class="top-bar">
         <img src="../images/logo.png" alt="Logo">
+        <button onclick="logout()">Logout</button>
+        <script>
+            function logout() {
+                window.location.href = 'logout.php';
+            }
+        </script>
     </div>
     <div class="main-body">
         <div class="side-menu">
@@ -27,7 +39,7 @@
                     echo "Page not found!";
                 }
             } else {
-                include('page1.php'); 
+                include('page1.php');
             }
             ?>
         </div>
