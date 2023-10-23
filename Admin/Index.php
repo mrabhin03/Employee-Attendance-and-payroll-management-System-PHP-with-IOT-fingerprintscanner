@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/style.css">
+    <link rel="stylesheet"  href="CSS/Thestylesheet.css">
 </head>
 
 <body>
@@ -15,7 +15,8 @@
             <ul>
                 <li class="head">PAGES</li>
                 <li class="option"><a href="?page=Dashboard">Dashboard</a></li>
-                <li class="option"><a href="?page=Attendance">Attendance</a></li>
+                <li class="option"><a href="?page=dailyadd">Daily Attendance</a></li>
+                <li class="option"><a href="?page=Monthly_attendance">Monthy Attendance</a></li>
                 <li class="option"><a href="?page=Employees">Employees</a></li>
                 <li class="option"><a href="?page=Designations">Designations</a></li>
                 <li class="option"><a href="?page=Calendar">Calendar</a></li>

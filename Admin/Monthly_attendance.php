@@ -1,30 +1,30 @@
 <?php
   include '../common/connection.php';
+  $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
   $Year = date('Y');
   $month = date('m');
-  $day= date('d');
   ?>
-<div class="Attendance">
+<div class="Attendance_M">
     <div class="head">
-        <h2>Daily Attendance</h2>
+        <a href="?page=monthlycreate"><button>Generate</button></a>
+        <h2>Monthly Attendance</h2>
         <form method="post">
             <input value="<?php
-            if(isset($_POST['search_daily']))
+            if(isset($_POST['search_month']))
             {
-                $daily_date=$_POST['daily_date'];
-                echo $daily_date;
+                $date=$_POST['month_date'];
+                list($Year,$month) = explode('-', $date);
             }
-            else
-            {
-                $daily_date=$Year."-".$month."-".$day;
-                echo $daily_date;
-            }
-        ?>" type="date" name="daily_date" required>
-            <button name="search_daily" type="submit">Search</button>
+            $m_id=$Year.$month;
+            echo $Year."-".$month;
+        ?>" 
+        type="month" name="month_date" required>
+            <button name="search_month" type="submit">Search</button>
         </form>
+        
     </div>
-    <div class="Daily_att">
-            <div class="Daily_att_sub">
+    <div class="Monthly_att">
+            <div class="Monthly_att_sub">
                 <table >
                 <thead>
                   <th>SI</th>
@@ -32,18 +32,21 @@
                   <th>Photo</th>
                   <th>Name</th>
                   <th>DATE</th>
-                  <th>STATUS</th>
-                  <th>WORKING HOURS</th>
+                  <th>Worked hr</th>
+                  <th>Total working hr</th>
                 </thead>
                 <tbody >
                   <?php
 
-                    $sql = "SELECT employee_details.*,daily_attendance.* FROM employee_details INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id WHERE Emp_status=1 AND Att_date='$daily_date'";
-                  
+                    $sql = "SELECT employee_details.*,mothly_attendance.* FROM employee_details INNER JOIN mothly_attendance ON employee_details.Emp_id = mothly_attendance.Emp_id WHERE Emp_status=1 AND Month_id='$m_id'";
+                    $cale="SELECT * FROM company_calender WHERE Month_id='$m_id'";
                     $query = $con->query($sql);
+                    $query2 = $con->query($cale);
+                    $calender=$query2->fetch_assoc();
                     if($query->num_rows>0)
                     {
                       $i=1;
+                      $no = intval($month);
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
@@ -51,11 +54,10 @@
                           <td><?php echo $row['Emp_id']; ?></td>
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
-                          <td><?php echo $row['Att_date']; ?></td>
-                          <td><?php echo ($row['Att_status']==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?></td>
-                          <td><?php echo $row['Working_hour']."hrs"; ?></td>
+                          <td><?php echo $monthar[$no]." ".$Year; ?></td> 
+                          <td><?php echo $row['Normal_work_hr']; ?></td> 
+                          <td><?php echo $calender['Working_day']*8; ?></td> 
                         </tr>
-                        
                       <?php
                     }
                   }

@@ -36,6 +36,10 @@
                     <input type="text" id="salary" name="salary" value="<?php echo $row['Desc_basic']; ?>" required>
                 </div>
                 <div class="form_div">
+                    <label for="Overtimesalary">Overtime salary</label>
+                    <input type="text" id="over_salary" name="over_salary" value="<?php echo $row['Desc_overtimesalary']; ?>" required>
+                </div>
+                <div class="form_div">
                     <label for="da">Dearness allowance</label>
                     <input type="text" id="da" name="da" value="<?php echo $row['Desc_da']; ?>" required>
                 </div>
@@ -61,13 +65,14 @@
                     $desc_id = $_POST['Descid'];
                     $descname = $_POST['descname'];
                     $salary = $_POST['salary'];
+                    $OVsalary = $_POST['over_salary'];
                     $da = $_POST['da'];
                     $ma = $_POST['ma'];
                     $pf = $_POST['pf'];
                     $inc = $_POST['inc'];
                     $sql_update="UPDATE employee_designation SET Desc_id='$descid',Desc_status=0 WHERE Desc_id='$desc_id'";
                     $con->query($sql_update);
-                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic, Desc_da, Desc_ma, Desc_pf, Desc_inc, Desc_status) VALUES ('$desc_id','$descname','$salary','$da','$ma','$pf','$inc',1)";
+                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic,Desc_overtimesalary, Desc_da, Desc_ma, Desc_pf, Desc_inc, Desc_status) VALUES ('$desc_id','$descname','$salary',$OVsalary,'$da','$ma','$pf','$inc',1)";
                     $con->query($sql);
                     echo "<script>window.location.href = '?page=Designations';</script>";
                 }

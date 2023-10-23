@@ -34,6 +34,10 @@
                     <input type="text" id="salary" name="salary" required>
                 </div>
                 <div class="form_div">
+                    <label for="Overtimesalary">Overtime salary</label>
+                    <input type="text" id="over_salary" name="over_salary" required>
+                </div>
+                <div class="form_div">
                     <label for="da">Dearness allowance</label>
                     <input type="text" id="da" name="da" required>
                 </div>

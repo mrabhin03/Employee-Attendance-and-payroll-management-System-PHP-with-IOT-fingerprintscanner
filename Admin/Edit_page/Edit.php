@@ -85,7 +85,7 @@
                     <td colspan="2">
                         <div class="Edit_footer">
                             <?php echo "<a href='?page=View_details&id=$data_id'><button  type='button' class='cancel_edit' >Close</button></a>" ?>
-        	                <button type="submit" class="save_edit" name="update" > Update</button>
+        	                <button type="submit" class="save_edit" name="update" >Update</button>
                         </div>
                     </td>
                 </tr>
@@ -94,5 +94,26 @@
     </div>
 </div>
 <?php
-    include 'Edit_code/update_code.php';
+    include '../Edit_code/update_code.php';
+    if(isset($_POST['update'])){
+        $empid = $_POST['Username'];
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
+        $mobile = $_POST['mobile'];
+        $filename = $_FILES['photo']['name'];
+        $des_id = $_POST['desc_name'];
+        
+        if(!empty($filename)){
+            move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);
+            $sqldata = "UPDATE employee_details SET Emp_name='$fullname',Desc_id='$des_id',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email', Emp_Photo='$filename' WHERE Emp_id='$empid'";
+        }
+        else
+        {
+            $sqldata = "UPDATE employee_details SET Emp_name='$fullname',Desc_id='$des_id',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email' WHERE Emp_id='$empid'";
+        }
+        
+        $con->query($sqldata);
+        echo "<script>window.location.href = '?page=View_details&id=$empid';</script>";
+    }
 ?>
