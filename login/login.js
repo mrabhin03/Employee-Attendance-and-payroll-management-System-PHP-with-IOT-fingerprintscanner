@@ -51,6 +51,7 @@ function validation(){
     document.getElementById("password").style.border = "1px solid #ccc";
     document.getElementById("passwordinvalid").style.visibility = "hidden";
     document.getElementById("usernameinvalid").style.visibility = "hidden";
+    document.getElementById("wrongpassword").style.visibility = "hidden";
 
   }
   

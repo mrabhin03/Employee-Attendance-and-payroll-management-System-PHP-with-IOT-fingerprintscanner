@@ -53,4 +53,6 @@ function defaultView() {
     document.getElementById("con-password").style.border = "1px solid #ccc";
     document.getElementById("con-passwordinvalid").style.visibility = "hidden";
     document.getElementById("same-password").style.visibility = "hidden";
+    document.getElementById("wrongpassword").style.visibility = "hidden";
+    document.getElementById("passwordchanged").style.visibility = "hidden";
 }
