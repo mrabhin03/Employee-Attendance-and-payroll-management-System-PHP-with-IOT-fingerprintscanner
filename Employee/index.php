@@ -25,8 +25,11 @@
         <div class="side-menu">
             <ul>
                 <li class="head">MENU</li>
-                <li class="option"><a href="?page=page1">Page 1</a></li>
-                <li class="option"><a href="?page=page2">Page 2</a></li>
+                <li class="option"><a href="?page=home">HOME</a></li>
+                <li class="option"><a href="?page=attendace">ATTENDACE</a></li>
+                <li class="option"><a href="?page=profile">PROFILE</a></li>
+                <li class="option"><a href="?page=payroll">PAYROLL</a></li>
+                <li class="option"><a href="?page=changepassword">CHANGE PASSWORD</a></li>
             </ul>
         </div>
         <div class="main-content">
@@ -39,7 +42,7 @@
                     echo "Page not found!";
                 }
             } else {
-                include('page1.php');
+                include('home.php');
             }
             ?>
         </div>
