@@ -22,7 +22,7 @@
                 </thead>
                 <tbody >
                   <?php
-                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2 order by Emp_name ASC ;";
+                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2 order by Emp_id ASC ;";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {

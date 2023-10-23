@@ -14,6 +14,7 @@
                   <th>Designation ID</th>
                   <th>Designation Name</th>
                   <th>Basic salary</th>
+                  <th>Overtime Salary</th>
                   <th>Dearness allowance</th>
                   <th>Medical allowance</th>
                   <th>Provident fund</th>
@@ -34,6 +35,7 @@
                           <td><?php echo $row['Desc_id']; ?></td>
                           <td><?php echo $row['Desc_name']?></td>
                           <td><?php echo "$".$row['Desc_basic']; ?></td>
+                          <td><?php echo "$".$row['Desc_overtimesalary']; ?></td>
                           <td><?php echo $row['Desc_da']; ?></td>
                           <td><?php echo $row['Desc_ma']; ?></td>
                           <td><?php echo $row['Desc_pf']; ?></td>

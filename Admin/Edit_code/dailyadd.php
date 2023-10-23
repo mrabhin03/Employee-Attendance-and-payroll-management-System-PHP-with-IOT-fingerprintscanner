@@ -1,7 +1,7 @@
 <?php
 include '../common/connection.php';
 $currentdate=date("Y-m-d");
-$emp="SELECT * FROM employee_details WHERE Emp_status!=2";
+$emp="SELECT * FROM employee_details WHERE Emp_status=1";
 $emp_details=$con->query($emp);
 while($data=$emp_details->fetch_assoc())
 {
@@ -24,7 +24,7 @@ while($data=$emp_details->fetch_assoc())
             $datetime2 = new DateTime($OUTrow['Time_date']);
             // Calculate the difference
             $interval = $datetime1->diff($datetime2);
-            // Extract the difference in hours, minutes, and seconds
+            // Extract the difference in hours
             $hours = $interval->format('%h');
 
             if(mysqli_num_rows($checkquery)>0)
@@ -64,6 +64,6 @@ while($data=$emp_details->fetch_assoc())
           
     }
     $con->query($insert);
-    echo "<script>window.location.href = '?page=Dashboard';</script>";
+    echo "<script>window.location.href = '?page=Attendance';</script>";
 }
 ?>

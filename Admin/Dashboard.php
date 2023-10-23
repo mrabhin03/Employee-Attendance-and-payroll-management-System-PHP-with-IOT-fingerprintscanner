@@ -11,7 +11,7 @@
             <div class="box">
                 <div class="bodypart">
                 <?php
-                $sql = "SELECT * FROM daily_attendance WHERE Att_date='$currentdate'";
+                $sql = "SELECT * FROM Employee_details WHERE Emp_status=1";
                 $query = $con->query($sql);
 
                 echo "<h3>".$query->num_rows."</h3>";
@@ -76,19 +76,18 @@
             <div class="att_sub_div1">
                 <table >
                 <thead>
-                  <th>ID</th>
+                  <th>SI</th>
                   <th>Employee ID</th>
                   <th>Photo</th>
                   <th>Name</th>
-                  <th>DATE</th>
-                  <th>STATUS</th>
-                  <th>WORKING HOURS</th>
-                  <th>Tools</th>
+                  <th>Log in Time</th>
+                  <th>Log out Time</th>
+                  <th>Status</th>
                 </thead>
                 <tbody >
                   <?php
 
-                    $sql = "SELECT employee_details.*,daily_attendance.* FROM employee_details INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id WHERE Emp_status!=2;";
+                    $sql = "SELECT * FROM employee_details WHERE Emp_status=1;";
                   
                     $query = $con->query($sql);
                     if($query->num_rows>0)
@@ -100,14 +99,38 @@
                           <td><?php echo $i; $i++;?></td>
                           <td><?php echo $row['Emp_id']; ?></td>
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
-                          <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
-                          <td><?php echo $row['Att_date']; ?></td>
-                          <td><?php echo ($row['Att_status']==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?></td>
-                          <td><?php echo $row['Working_hour']."hrs"; ?></td>
-                          <td>
-                            <button class="edit-emp" > Edit</button>
-                            <button class="delete-emp" >Delete</button>
-                          </td>
+                          <td><?php echo $row['Emp_name']; ?></td>
+                          <?php
+                            $rf=$row['Rf_id'];
+                            $select1="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='IN'";
+                            $IN = $con->query($select1);
+                            if($IN->num_rows> 0)
+                            {
+                              $att=1;
+                              $INrow = $IN->fetch_assoc();
+                              $INdata = date('H:i:s', strtotime($INrow['Time_date']));
+                              $select2="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='OUT'";
+                              $OUT = $con->query($select2);
+                              if($OUT->num_rows> 0)
+                              {
+                                $OUTrow = $OUT->fetch_assoc();
+                                $OUTdata = date('H:i:s', strtotime($OUTrow['Time_date']));
+                              }
+                              else
+                              {
+                                $OUTdata="---";
+                              }
+                            }
+                            else
+                            {
+                              $att=0;
+                              $INdata="---";
+                              $OUTdata="---";
+                            }
+                          ?>
+                          <td><?php echo $INdata; ?></td>
+                          <td><?php echo $OUTdata; ?></td>
+                          <td><?php echo ($att==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?></td>
                         </tr>
                         
                       <?php

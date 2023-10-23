@@ -27,7 +27,7 @@
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
-                          <td><?php echo $i; $i=$i+1;?></td>
+                          <td><?php echo $row['Month_id'];?></td>
                           <td><?php echo $row['Year']; ?></td>
                           <td><?php echo $month[$row['Month']]; ?></td>
                           <td><?php echo $row['Working_day']; ?></td>

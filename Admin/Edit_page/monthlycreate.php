@@ -1,4 +1,4 @@
-<div class="addcal">
+<div class="addmonth_att">
     <?php
 
     include '../common/connection.php';
@@ -7,7 +7,7 @@
     <form method="POST">
         <div class="main_form">
         <div class="emp_details">
-                <h1 style="text-align:center;">Calendar Details</h1>
+                <h1 style="text-align:center;">Generate attendance</h1>
                 <div class="form_div">
                     <label for="year">Year</label>
                     <select name="year" id="year" required>
@@ -32,17 +32,13 @@
                         ?>
                     </select>
                 </div>
-                <div class="form_div">
-                    <label for="day">Day</label>
-                    <input type="text" name="day" required>
-                </div>
                 <div class="add_footer">
-                    <a href="?page=Calendar"><button type="button" class="cancel_insert">Close</button></a>
-                    <button type="submit" name="save_cal" class="save"> Add</button>
+                    <a href="?page=Monthly_attendance"><button type="button" class="cancel_insert">Close</button></a>
+                    <button type="submit" name="gen_att" class="save"> Add</button>
                 </div>
             </div>
             <?php
-            include 'Edit_code/save_cal.php';
+            include 'Edit_code/generate_month_att.php';
             ?>
         </div>
     </form>

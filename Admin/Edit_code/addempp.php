@@ -20,7 +20,6 @@
                     for($i = 0; $i < 10; $i++){
                         $numbers .= $i;
                     }
-                    $rfid = substr(str_shuffle($numbers), 0, 3);
                     
                     $letters1 = '';
                     $letters2 = '';
@@ -43,7 +42,7 @@
                     // Shuffle the password
                     $passwordtmp = str_shuffle($password);
                     $password = password_hash($passwordtmp, PASSWORD_DEFAULT);
-                    $sql = "INSERT INTO employee_details(Emp_id, Emp_password, Emp_name, Gender, Desc_id, Emp_address, Emp_DOB, Emp_DOJ, Emp_mobileno, Emp_email, Rf_id, Emp_photo, Emp_status) VALUES ('$empid','$password','$fullname','$gender','$des_id','$address ','$dob','$doj','$mobile','$email','$rfid','$filename',1)";
+                    $sql = "INSERT INTO employee_details(Emp_id, Emp_password, Emp_name, Gender, Desc_id, Emp_address, Emp_DOB, Emp_DOJ, Emp_mobileno, Emp_email, Emp_photo, Emp_status) VALUES ('$empid','$password','$fullname','$gender','$des_id','$address ','$dob','$doj','$mobile','$email','$filename',1)";
                     $sql1="INSERT INTO designation_for_employee(Emp_id, Desc_id, Desc_from_date, Desc_to_date, Desc_status) VALUES ('$empid','$des_id','$desfrom','$desto',1)";
                     $con->query($sql);
                     $con->query($sql1);

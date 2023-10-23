@@ -2,19 +2,10 @@
     <?php
 
     include '../common/connection.php';
-    $numbers = '';
-    for($i = 0; $i < 10; $i++){
-        $numbers .= $i;
-    }
-    $empid = 'E'.substr(str_shuffle($numbers), 0, 5);
-    $test = "SELECT * FROM employee_details WHERE Emp_id='$empid'";
-    $data = $con->query($test);
-    while ($data->num_rows != 0) {
-        $empid =   substr(str_shuffle($numbers), 0, 5);
-        $test = "SELECT * FROM employee_details WHERE Emp_id='$empid'";
-        $data = $con->query($test);
-    }
-
+    $check="SELECT COUNT(*) as row_count FROM employee_details";
+    $data=$con->query($check);
+    $count=$data->fetch_assoc();
+    $empid="E".$count['row_count']+1;
     ?>
     <form method="POST" enctype="multipart/form-data">
         <div class="main_form">
