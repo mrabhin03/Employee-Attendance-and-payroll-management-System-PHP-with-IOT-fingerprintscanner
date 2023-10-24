@@ -208,7 +208,8 @@ body::before {
 .Designation > .head > a> button,
 .calendar > .head > a> button,
 .Attendance_M > .head > a >button,
-.Payrolls > .head > a > button
+.Payrolls > .head > a > button,
+.Attendance > .head > a >button
 {
   background-color: #3c8dbc;
   margin-left: 20px;
@@ -221,7 +222,8 @@ body::before {
 }
 .Bashboard > .head > a> button,
 .Attendance_M > .head > a >button,
-.Payrolls > .head > a > button
+.Payrolls > .head > a > button,
+.Attendance > .head > a >button
 {
   width: 70px;
 }

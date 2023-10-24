@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/style.css">
+    <link rel="stylesheet"  href="CSS/stylesheet.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>

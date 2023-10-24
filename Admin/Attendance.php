@@ -6,6 +6,7 @@
   ?>
 <div class="Attendance">
     <div class="head">
+    <a href="?page=dailyadd"><button>REFRESH</button></a>
         <h2>Daily Attendance</h2>
         <form method="post">
             <input value="<?php

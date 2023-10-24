@@ -52,7 +52,7 @@
                   {
                     ?>
                     <tr>
-                      <td colspan="8">
+                      <td colspan="10">
                         NO DATA
                       </td>
                     </tr>

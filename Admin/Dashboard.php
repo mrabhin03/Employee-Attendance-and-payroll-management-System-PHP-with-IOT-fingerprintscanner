@@ -1,10 +1,11 @@
 <div class="Bashboard">
-    <div class="head">
+    <div style="display: flex; justify-content: center;" class="head">
+    <h3>Daily Attendance report</h3>
   <?php
   include '../common/connection.php';
   $currentdate=date("Y-m-d");
   ?>
-        <a href="?page=dailyadd"><button>REFRESH</button></a>
+        
     </div>
     <div class="data1">
         <div class="sample_data">
@@ -28,7 +29,7 @@
                 <?php
                 $total = $query->num_rows;
                 
-                $sql = "SELECT * FROM daily_attendance WHERE att_status = 1 AND Att_date='$currentdate'";
+                $sql = "SELECT * FROM emp_logs WHERE Log_status = 'IN' AND DATE(Time_date)='$currentdate'";
                 $query = $con->query($sql);
                 $present = $query->num_rows;
                 $absent=$total-$present;
@@ -69,10 +70,6 @@
 
         </div>
         <div class="employee_att">
-            <div class="att_header">
-                <h3>Daily Attendance report</h3>
-                
-            </div>
             <div class="att_sub_div1">
                 <table >
                 <thead>
@@ -93,6 +90,7 @@
                     if($query->num_rows>0)
                     {
                       $i=1;
+                      $p=0;
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
@@ -130,7 +128,15 @@
                           ?>
                           <td><?php echo $INdata; ?></td>
                           <td><?php echo $OUTdata; ?></td>
-                          <td><?php echo ($att==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?></td>
+                          <td><?php  if($att==1)
+                          {
+                            echo "<p style='color: green;'>PRESENT</p>";
+                            $p++;
+                          } 
+                          else
+                          {
+                            echo "<p style='color: red; font-weigth:none;'>ABSENT</p>";
+                          } ?></td>
                         </tr>
                         
                       <?php
