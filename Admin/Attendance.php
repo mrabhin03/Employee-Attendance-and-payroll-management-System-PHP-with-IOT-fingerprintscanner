@@ -4,13 +4,19 @@
   $month = date('m');
   $day= date('d');
   ?>
+    <script>
+      const liview = document.querySelector('.icon'); 
+      const liviewicon = document.querySelector('.sub_tree');
+      liview.classList.add('active');
+      liviewicon.classList.add('active');
+  </script>
 <div class="Attendance">
     <div class="head">
-    <a href="?page=dailyadd"><button>REFRESH</button></a>
+    <a href="?page=dailyadd"><button>Generate</button></a>
         <h2>Daily Attendance</h2>
         <form method="post">
-            <input value="<?php
-            if(isset($_POST['search_daily']))
+            <input onchange="this.form.submit()" value="<?php
+            if(isset($_POST['daily_date']))
             {
                 $daily_date=$_POST['daily_date'];
                 echo $daily_date;
@@ -21,7 +27,6 @@
                 echo $daily_date;
             }
         ?>" type="date" name="daily_date" required>
-            <button name="search_daily" type="submit">Search</button>
         </form>
     </div>
     <div class="Daily_att">
@@ -39,7 +44,11 @@
                 <tbody >
                   <?php
 
-                    $sql = "SELECT employee_details.*,daily_attendance.* FROM employee_details INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id WHERE Emp_status=1 AND Att_date='$daily_date'";
+                    $sql = "SELECT employee_details.*, daily_attendance.*
+                    FROM employee_details
+                    INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id
+                    WHERE Emp_status = 1 AND Att_date = '$daily_date'
+                    ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED);";
                   
                     $query = $con->query($sql);
                     if($query->num_rows>0)

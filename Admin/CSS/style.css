@@ -344,7 +344,8 @@ body::before {
 .calendar > .cal_data > .cal_detail > table,
 .Attendance > .Daily_att > .Daily_att_sub > table,
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table
+.Payrolls > .payrolls_details > .payrolls_details_sub > table,
+.per_att_table > table
 {
   width: 100%;
   height: auto;
@@ -357,7 +358,8 @@ body::before {
 .calendar > .cal_data > .cal_detail > table >thead,
 .Attendance > .Daily_att > .Daily_att_sub > table > thead,
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >thead,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table >thead
+.Payrolls > .payrolls_details > .payrolls_details_sub > table >thead,
+.per_att_table > table > thead
 {
   font-size: 16px;
   line-height: 1.42857143;
@@ -365,6 +367,10 @@ body::before {
   font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight: 400;
   border-spacing: 0;
+}
+.per_att_table > table > thead
+{
+  height: 40px;
 }
 
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody,
@@ -404,7 +410,40 @@ body::before {
 {
   background-color: rgb(222, 222, 222);
 }
-
+.emp_details_view > .per_att
+{
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 20px;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.per_att_table > table
+{
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: transparent;
+  border-collapse: collapse;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.175);
+}
+.per_att_table > table > thead
+{
+  color: white;
+}
+.per_att_table > table > tbody >tr
+{
+  height: 60px;
+}
+.per_att_table > table > tbody >tr:nth-child(odd)
+{
+  height: 60px;
+  border-radius: 20px;
+  background-color: #0000006a;
+}
 .Employees > .data2 > .employee_detail,
 .calendar > .cal_data > .cal_detail
 {
@@ -627,17 +666,20 @@ body::before {
   width: 90%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .update_empin > .update_form > .emp_details_view
 {
-  height: 90%;
+  height: 200%;
   width: 90%;
-  margin-top: -80px;
+  margin-top: 0px;
   background-color: rgba(0, 0, 0, 0.43);
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
 }
-.update_empin > .update_form > .emp_details_view > .profile
+
+
+ .profile
 {
   height: 530px;
   border-radius: 20px;
@@ -648,14 +690,15 @@ body::before {
   flex-direction: column;
   align-items: center;
   float: left;
+  border-bottom: 5px solid black;
 }
-.update_empin > .update_form > .emp_details_view > .profile > h2
+.profile > h2
 {
   margin-top: 20px;
   margin-bottom: 30px;
   color: rgb(0, 0, 0);
 }
-.update_empin > .update_form > .emp_details_view > .profile > img
+.profile > img
 {
   height: 170px;
   width: 170px;
@@ -663,7 +706,7 @@ body::before {
   border-radius: 10px;
   border: 3px solid black;
 }
-.update_empin > .update_form > .emp_details_view > .profile > .id_show
+.profile > .id_show
 {
   background-color: #89CCFC;
   width: 120px;
@@ -677,7 +720,7 @@ body::before {
   box-shadow: 3px 3px 5px #000000;
 
 }
-.update_empin > .update_form > .emp_details_view > .profile > .Desc_show
+.profile > .Desc_show
 {
   background-color: #EDD0D0;
   width: 200px;
@@ -691,7 +734,7 @@ body::before {
   border-radius: 20px;
   box-shadow: 3px 3px 5px #000000;
 }
-.update_empin > .update_form > .emp_details_view > .profile > .Desc_show > h4
+.profile > .Desc_show > h4
 {
 font-size: 9px;
 margin-bottom: 0;
@@ -701,7 +744,7 @@ margin-top: 0;
 {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .emp_details_view>.header_view > h1
@@ -712,7 +755,7 @@ margin-top: 0;
   width: 400px;
   border-radius: 20px;
 }
-.update_empin > .update_form > .emp_details_view > .data_edit
+ .data_edit
 {
   height: 560px;
   border-radius: 20px;
@@ -724,8 +767,8 @@ margin-top: 0;
   align-items: center;
   flex-direction: column;
 }
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_1,
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_2
+.data_edit > .data_1,
+.data_edit > .data_2
 {
   width: 650px;
   margin-top: 0;
@@ -737,24 +780,21 @@ margin-top: 0;
   align-items: start;
 }
 
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_2
+.data_edit > .data_2
 {
   height: 280px;
 }
-.emp_details_view > a
+.emp_details_view > .header_view > a
 {
   text-decoration: none;
   font-size: 30px;
   height: 50px;
-  margin-top: 20px;
   width: 50px;
-  left: 380px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
-  position: absolute;
 }
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_1 > h3,
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_2 > h3
+ .data_edit > .data_1 > h3,
+.data_edit > .data_2 > h3
 {
   margin-left: 10px;
   margin-top: 6px;

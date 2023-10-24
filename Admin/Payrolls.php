@@ -9,7 +9,7 @@
         <h2>Employees Details</h2>
         <form method="post">
             <input value="<?php
-            if(isset($_POST['search_month']))
+            if(isset($_POST['month_date']))
             {
                 $date=$_POST['month_date'];
                 list($Year,$month) = explode('-', $date);
@@ -17,15 +17,13 @@
             $m_id=$Year.$month;
             echo $Year."-".$month;
         ?>" 
-        type="month" name="month_date" required>
-            <button name="search_month" type="submit">Search</button>
+        type="month" onchange="this.form.submit()" name="month_date" required>
         </form>
     </div>
     <div class="payrolls_details">
         <div class="payrolls_details_sub">
             <table >
                 <thead>
-                  <th>SI</th>
                   <th>Employee ID</th>
                   <th>Photo</th>
                   <th>Name</th>
@@ -43,8 +41,7 @@
                     INNER JOIN salary_paid ON employee_details.Emp_id = salary_paid.Emp_id
                     INNER JOIN employee_designation ON salary_paid.Desc_id = employee_designation.Desc_id
                     WHERE employee_details.Emp_status = 1 AND salary_paid.Month_id = '$m_id'
-                    ORDER BY employee_details.Emp_id;
-                    ";
+                    ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED)";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {
@@ -52,7 +49,6 @@
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
-                          <td><?php echo $i; $i++; ?></td>
                           <td><?php echo $row['Emp_id']; ?></td>
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>

@@ -84,7 +84,7 @@
                 <tbody >
                   <?php
 
-                    $sql = "SELECT * FROM employee_details WHERE Emp_status=1;";
+                    $sql = "SELECT * FROM employee_details WHERE Emp_status=1 ORDER BY CAST(SUBSTRING(`Emp_id`, 2) AS SIGNED);";
                   
                     $query = $con->query($sql);
                     if($query->num_rows>0)

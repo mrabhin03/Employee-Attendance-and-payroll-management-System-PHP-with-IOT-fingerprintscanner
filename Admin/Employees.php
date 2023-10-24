@@ -45,7 +45,7 @@
                 <tbody id="tabledata">
                   <?php
                   
-                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2  order by Emp_id ASC ;";
+                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2  ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS SIGNED) ;";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {

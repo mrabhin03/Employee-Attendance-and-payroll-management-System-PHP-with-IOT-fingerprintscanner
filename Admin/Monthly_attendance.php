@@ -4,13 +4,19 @@
   $Year = date('Y');
   $month = date('m');
   ?>
+  <script>
+    const liview = document.querySelector('.icon'); 
+    const liviewicon = document.querySelector('.sub_tree');
+    liview.classList.add('active');
+    liviewicon.classList.add('active');
+  </script>
 <div class="Attendance_M">
     <div class="head">
         <a href="?page=monthlycreate"><button>Generate</button></a>
         <h2>Monthly Attendance</h2>
         <form method="post">
             <input value="<?php
-            if(isset($_POST['search_month']))
+            if(isset($_POST['month_date']))
             {
                 $date=$_POST['month_date'];
                 list($Year,$month) = explode('-', $date);
@@ -18,8 +24,7 @@
             $m_id=$Year.$month;
             echo $Year."-".$month;
         ?>" 
-        type="month" name="month_date" required>
-            <button name="search_month" type="submit">Search</button>
+        type="month" onchange="this.form.submit()" name="month_date" required>
         </form>
         
     </div>
@@ -38,7 +43,7 @@
                 <tbody >
                   <?php
 
-                    $sql = "SELECT employee_details.*,mothly_attendance.* FROM employee_details INNER JOIN mothly_attendance ON employee_details.Emp_id = mothly_attendance.Emp_id WHERE Emp_status=1 AND Month_id='$m_id'";
+                    $sql = "SELECT employee_details.*,mothly_attendance.* FROM employee_details INNER JOIN mothly_attendance ON employee_details.Emp_id = mothly_attendance.Emp_id WHERE Emp_status=1 AND Month_id='$m_id' ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED)";
                     $cale="SELECT * FROM company_calender WHERE Month_id='$m_id'";
                     $query = $con->query($sql);
                     $query2 = $con->query($cale);
