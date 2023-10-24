@@ -38,11 +38,13 @@
                 </thead>
                 <tbody >
                   <?php
-                    $sql = "SELECT employee_details.*, salary_paid.*, employee_designation.*
+                    $sql = "SELECT employee_details.Emp_id,employee_details.Emp_Photo, employee_details.Emp_name, salary_paid.*, employee_designation.*
                     FROM employee_details
                     INNER JOIN salary_paid ON employee_details.Emp_id = salary_paid.Emp_id
-                    INNER JOIN employee_designation ON employee_details.Desc_id = employee_designation.Desc_id
-                    WHERE employee_details.Emp_status = 1 AND Month_id='$m_id' ORDER BY employee_details.Emp_id;";
+                    INNER JOIN employee_designation ON salary_paid.Desc_id = employee_designation.Desc_id
+                    WHERE employee_details.Emp_status = 1 AND salary_paid.Month_id = '$m_id'
+                    ORDER BY employee_details.Emp_id;
+                    ";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {

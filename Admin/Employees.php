@@ -5,6 +5,28 @@
     <div class="head">
         <a href="?page=addemp"><button>ADD</button></a>
         <h2>Employees Details</h2>
+        <form method="post">
+            <input id="search" type="text" placeholder="Search" name="sevalue">
+        </form>
+        <script type="text/javascript">
+          $(document).ready(function()
+          {
+            $('#search').keyup(function()
+            {
+              
+              var input =$(this).val();
+                $.ajax({
+                  url:"Edit_code/emp_sea.php",
+                  method: "POST",
+                  data:{input:input},
+                  success:function(data)
+                  {
+                    $("#tabledata").html(data);
+                  }
+                })
+            })
+          })
+        </script>
     </div>
     <div class="data2">
         <div class="employee_detail">
@@ -20,9 +42,10 @@
                   <th>Status</th>
                   <th>Tools</th>
                 </thead>
-                <tbody >
+                <tbody id="tabledata">
                   <?php
-                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2 order by Emp_id ASC ;";
+                  
+                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2  order by Emp_id ASC ;";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {
@@ -33,7 +56,7 @@
                           <td><?php echo $i; $i++; ?></td>
                           <td><?php echo $row['Emp_id']; ?></td>
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
-                          <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
+                          <td><?php echo $row['Emp_name']?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
                           <td><?php echo "₹".$row['Desc_basic']; ?></td>
                           <td><?php echo $row['Emp_mobileno']; ?></td>

@@ -510,7 +510,8 @@ body::before {
 }
 .Attendance_M > .head > form,
 .Attendance > .head > form,
-.Payrolls > .head > form
+.Payrolls > .head > form,
+.Employees > .head > form
 {
   height: 100%;
   margin: 0;
@@ -528,7 +529,8 @@ body::before {
 .main_form >.cal_details >.form_div > input,
 .Attendance_M > .head > form > input,
 .Attendance > .head > form > input,
-.Payrolls > .head > form > input
+.Payrolls > .head > form > input,
+.Employees > .head > form > input
 {
   box-sizing: border-box;
   font: inherit;
@@ -550,11 +552,16 @@ body::before {
 }
 .Attendance_M > .head > form > input,
 .Attendance > .head > form > input,
-.Payrolls > .head > form > input
+.Payrolls > .head > form > input,
+.Employees > .head > form > input
 {
   width: 200px;
   height: 30px;
   margin-right: 5px;
+}
+.Employees > .head > form > input
+{
+  border-radius: 10px;
 }
 
 .main_form > .emp_details > .form_div > input[type="radio"] {
