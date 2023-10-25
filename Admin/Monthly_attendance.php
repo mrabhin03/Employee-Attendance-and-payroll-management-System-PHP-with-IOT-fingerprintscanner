@@ -1,8 +1,14 @@
 <?php
   include '../common/connection.php';
   $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
-  $Year = date('Y');
-  $month = date('m');
+  if(isset($_GET['date']))
+  {
+    list($Year,$month) = explode('-', $_GET['date']);
+  }
+  else{
+    $Year = date('Y');
+    $month = date('m');
+  }
   ?>
   <script>
     const liview = document.querySelector('.icon'); 

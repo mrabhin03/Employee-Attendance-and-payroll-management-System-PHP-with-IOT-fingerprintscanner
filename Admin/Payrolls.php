@@ -47,7 +47,6 @@
                     $sql = "SELECT DISTINCT employee_details.Emp_id, employee_details.Emp_Photo, employee_details.Emp_name, salary_paid.*, overtime_details.*, employee_designation.*
                     FROM employee_details
                     INNER JOIN salary_paid ON employee_details.Emp_id = salary_paid.Emp_id
-                    AND employee_details.Desc_id = salary_paid.Desc_id
                     INNER JOIN employee_designation ON salary_paid.Desc_id = employee_designation.Desc_id
                     INNER JOIN overtime_details ON employee_details.Emp_id = overtime_details.Emp_id
                     AND salary_paid.Month_id = overtime_details.Month_id
@@ -55,7 +54,7 @@
                     WHERE employee_details.Emp_status = 1 AND salary_paid.Month_id = '$m_id'
                     ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED);";
                     $query = $con->query($sql);
-                    if($query->num_rows)
+                    if($query->num_rows > 0)
                     {
                       $i=1;
                     while($row = $query->fetch_assoc()){
@@ -66,8 +65,8 @@
                           <td><?php echo $row['Emp_name']?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
                           <td><?php echo "₹".$row['Salary_basic']; ?></td>
-                          <td><?php echo $row['Working_hour']."hrs"; ?></td>
-                          <td><?php echo $row['Overtime_hrs']."hrs"; ?></td>
+                          <td><?php echo ($row['Salary_basic']!=0)? $row['Working_hour']:0 ?>hr</td>
+                          <td><?php echo ($row['Salary_basic']!=0)? $row['Overtime_hrs']:0 ?>hr</td>
                           <td><?php echo "₹".$row['Total_salary']; ?></td>
                           <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                           <td>

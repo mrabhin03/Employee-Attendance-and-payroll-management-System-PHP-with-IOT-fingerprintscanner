@@ -424,7 +424,7 @@ body::before {
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody >tr,
 .Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr
 {
-  background-color: white;
+  background-color: rgb(252, 252, 252);
   height: 60px;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
@@ -463,6 +463,11 @@ body::before {
   color: white;
   background-color: rgba(0, 0, 0, 0.2);
 }
+.per_att_table > table > tbody >tr
+{
+  border-bottom: 3px solid white;
+  border-top: 3px solid white;
+}
 .per_att_table > table > thead
 {
   color: white;
@@ -477,6 +482,7 @@ body::before {
   border-radius: 20px;
   background-color: #0000006a;
 }
+
 .Employees > .data2 > .employee_detail,
 .calendar > .cal_data > .cal_detail
 {
@@ -584,7 +590,8 @@ body::before {
 .Attendance > .head > form,
 .Payrolls > .head > form,
 .Employees > .head > form,
-.Designation > .head > form
+.Designation > .head > form,
+.calendar > .head > form
 {
   height: 100%;
   margin: 0;
@@ -604,7 +611,8 @@ body::before {
 .Attendance > .head > form > input,
 .Payrolls > .head > form > input,
 .Employees > .head > form > input,
-.Designation > .head > form > input
+.Designation > .head > form > input,
+.calendar > .head > form > select
 {
   box-sizing: border-box;
   font: inherit;
@@ -628,7 +636,8 @@ body::before {
 .Attendance > .head > form > input,
 .Payrolls > .head > form > input,
 .Employees > .head > form > input,
-.Designation > .head > form > input
+.Designation > .head > form > input,
+.calendar > .head > form > select
 {
   width: 200px;
   height: 30px;

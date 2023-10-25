@@ -37,7 +37,7 @@
         ?>" type="date" name="daily_date" required>
         </form>
         <h2>Daily Attendance</h2>
-        <?php echo "<a href='?page=dailyadd&date=$tday'><button>Generate</button></a>"; ?>
+        <?php  echo "<a href='?page=dailyadd&date=$tday'><button>Generate</button></a>"; ?>
     </div>
     <div class="Daily_att">
             <div class="Daily_att_sub">

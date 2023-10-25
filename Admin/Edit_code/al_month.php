@@ -1,12 +1,14 @@
 <?php
-    if(isset($_POST["gen_att"]))
-    {
-        $year=$_POST['year'];
-        $month=$_POST['month']+1;
-        $month = str_pad($month, 2, "0", STR_PAD_LEFT);
-        $date=$year."-".$month;
-        $monthid=$year.$month;
-        $empdata="SELECT * FROM employee_details";
+  include '../common/connection.php';
+        $total_mont_sql="SELECT DISTINCT Att_date as Dates FROM daily_attendance;";
+        $total_mont_query=$con-> query($total_mont_sql);
+        if($total_mont_query->num_rows > 0)
+        {
+            while($montdata = $total_mont_query->fetch_assoc())
+            {
+                $date = date("Y-m", strtotime($montdata['Dates']));
+                $monthid = date("Ym", strtotime($montdata['Dates']));
+                $empdata="SELECT * FROM employee_details";
         $empdbdata=$con->query($empdata);
         while($emp=$empdbdata->fetch_array())
         {
@@ -70,7 +72,8 @@
             $con->query($insert_ov);
 
         }
-        echo "<script>window.location.href = '?page=Monthly_attendance&date=$date';</script>";
+            }
+        }
+        echo "<script>window.location.href = '?page=al_payroll';</script>";
         
-    }
 ?>

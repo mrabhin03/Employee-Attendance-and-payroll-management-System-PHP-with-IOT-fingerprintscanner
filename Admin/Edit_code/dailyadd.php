@@ -2,6 +2,7 @@
 include '../common/connection.php';
 if(isset($_GET['date'])){
     $date = $_GET['date'];
+    $currentdate=$date;
     $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
 }else{
     $log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
@@ -78,6 +79,9 @@ while($logdate=$log_query->fetch_assoc())
     }
 }
 
-
-echo "<script>window.location.href = '?page=Attendance&date=$currentdate';</script>";
+if(isset($_GET['date'])){
+    echo "<script>window.location.href = '?page=Attendance&date=$currentdate';</script>";
+}else{
+    include 'al_month.php';
+}
 ?>
