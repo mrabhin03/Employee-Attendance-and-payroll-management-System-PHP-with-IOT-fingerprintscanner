@@ -13,7 +13,7 @@
 <div class="Payrolls">
     <div class="head">
         <a href="?page=generate_salary_page"><button>Generate</button></a>
-        <h2>Employees Details</h2>
+        <h2>Payrolls Details</h2>
         <form method="post">
             <input value="<?php
             if(isset($_POST['month_date']))
@@ -37,18 +37,23 @@
                   <th>Designation</th>
                   <th>Basic Salary</th>
                   <th>Worked hrs</th>
+                  <th>Overtime Worked</th>
                   <th>Total Salary</th>
                   <th>Status</th>
                   <th>Tools</th>
                 </thead>
                 <tbody >
                   <?php
-                    $sql = "SELECT employee_details.Emp_id,employee_details.Emp_Photo, employee_details.Emp_name, salary_paid.*, employee_designation.*
+                    $sql = "SELECT DISTINCT employee_details.Emp_id, employee_details.Emp_Photo, employee_details.Emp_name, salary_paid.*, overtime_details.*, employee_designation.*
                     FROM employee_details
                     INNER JOIN salary_paid ON employee_details.Emp_id = salary_paid.Emp_id
+                    AND employee_details.Desc_id = salary_paid.Desc_id
                     INNER JOIN employee_designation ON salary_paid.Desc_id = employee_designation.Desc_id
+                    INNER JOIN overtime_details ON employee_details.Emp_id = overtime_details.Emp_id
+                    AND salary_paid.Month_id = overtime_details.Month_id
+                    AND salary_paid.Emp_id = overtime_details.Emp_id
                     WHERE employee_details.Emp_status = 1 AND salary_paid.Month_id = '$m_id'
-                    ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED)";
+                    ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED);";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {
@@ -58,10 +63,11 @@
                         <tr>
                           <td><?php echo $row['Emp_id']; ?></td>
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
-                          <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
+                          <td><?php echo $row['Emp_name']?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
                           <td><?php echo "₹".$row['Salary_basic']; ?></td>
                           <td><?php echo $row['Working_hour']."hrs"; ?></td>
+                          <td><?php echo $row['Overtime_hrs']."hrs"; ?></td>
                           <td><?php echo "₹".$row['Total_salary']; ?></td>
                           <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                           <td>

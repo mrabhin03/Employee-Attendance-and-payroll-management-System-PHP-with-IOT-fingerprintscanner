@@ -1,6 +1,26 @@
+<div class="loading">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+  <h2>Please wait till <br>all data are fetched <br>(This will take a while)</h2>
+</div>
+
 <div class="Bashboard">
-    <div style="display: flex; justify-content: center;" class="head">
+    <div style="display: flex; justify-content: space-between;" class="head">
+    <?php echo "<a onclick='loadthebar()' href='?page=dailyadd'><button style='width:140px; height: 36px; font-size: 17px;'>Refresh all data</button></a>"; ?>
     <h3>Daily Attendance report</h3>
+    <div></div>
+    <script>
+       function loadthebar()
+            {
+                const loading = document.querySelector('.loading'); 
+                if (loading.classList.contains('active')) {
+                  loading.classList.remove('active');
+                } else {
+                  loading.classList.add('active');
+                }
+            }
+    </script>
   <?php
   include '../common/connection.php';
   $currentdate=date("Y-m-d");
