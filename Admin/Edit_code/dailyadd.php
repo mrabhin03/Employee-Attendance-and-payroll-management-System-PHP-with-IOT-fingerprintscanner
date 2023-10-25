@@ -1,6 +1,12 @@
 <?php
 include '../common/connection.php';
-$log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
+if(isset($_GET['date'])){
+    $date = $_GET['date'];
+    $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
+}else{
+    $log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
+}
+
 $log_query=$con->query($log_sql);
 while($logdate=$log_query->fetch_assoc())
 {
@@ -73,5 +79,5 @@ while($logdate=$log_query->fetch_assoc())
 }
 
 
-echo "<script>window.location.href = '?page=Attendance';</script>";
+echo "<script>window.location.href = '?page=Attendance&date=$currentdate';</script>";
 ?>

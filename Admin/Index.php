@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/style.css">
+    <link rel="stylesheet"  href="CSS/thestylesheet123.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -25,7 +25,7 @@
                         <li class="option"><a href="?page=Monthly_attendance">Monthy Attendance</a></li>
                     </ul>
                 </li>
-                <li class="option"><a href="?page=Employees">Employees</a></li>
+                <li class="option"><a href="?page=Employees">Employees </a></li>
                 <li class="option"><a href="?page=Designations">Designations</a></li>
                 <li class="option"><a href="?page=Calendar">Calendar</a></li>
                 <li class="option"><a href="?page=Payrolls">Payroll</a></li>

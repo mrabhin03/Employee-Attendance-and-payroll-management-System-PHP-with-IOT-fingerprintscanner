@@ -1,6 +1,7 @@
 
     <div class="update_empin"> 
-        <?php include '../common/connection.php';?>
+        <?php include '../common/connection.php';
+        $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");?>
         <div class="update_form">
             <?php 
             $id=$_GET['id'];
@@ -18,7 +19,7 @@
                     <div class="profile">
                         <img style=" object-fit: cover; " src="<?php echo (!empty($EMP['Emp_Photo']))? '../images/'.$EMP['Emp_Photo']:'../images/profile.jpg'; ?>" > 
                         <h2><?php echo $EMP['Emp_name'];?></h2>
-                        <div class="id_show">ID: <?php echo $EMP['Emp_id'];?></div>
+                        <div class="id_show">ID: <?php echo $EMP['Emp_id']; ?></div>
                         <div class="Desc_show"><h4>DESIGNATION ID</h4><?php echo $EMP['Desc_id'];?></div>
                         <div class="Desc_show"><h4>RF ID</h4><?php echo $EMP['Rf_id']; $rf=$EMP['Rf_id'];?></div>
                         <div class="Desc_show"><h4>DATE OF JOIN</h4><?php echo $EMP['Emp_DOJ'];?></div>
@@ -77,7 +78,18 @@
                 </div>
                 <div class="per_att">
                     <div style="height:90%; width:98%;" class="per_att_table">
-                    <h2 style="width:100%; color: white; ">Attendance of last 6 days</h2>
+                    <?php $line_check_query=$con->query("SELECT COUNT(*) as no_of_data FROM daily_attendance WHERE Emp_id='$data'");
+                        $no=$line_check_query->fetch_assoc();
+                        if($no["no_of_data"]>=5)
+                        {
+                            $num=5;
+                        }
+                        else
+                        {
+                            $num=$no["no_of_data"];
+                        }
+                        ?>
+                    <h2 style="width:100%; color: white; ">Attendance of last <?php echo $num;?> days</h2>
                         <table >
                             <thead>
                                 <th>Date</th>
@@ -88,7 +100,7 @@
                             </thead>
                             <tbody id="tabledata">
                                 <?php
-                                        $sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs LIMIT 6;";
+                                        $sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs ORDER BY DATE(Time_date) DESC  LIMIT 5;";
                                         $query = $con->query($sql);
                                     if($query->num_rows)
                                     {
@@ -143,6 +155,70 @@
                                 ?>
                             </tbody>
                         </table>
+                        <?php echo "<a href='?page=per_att_view&id=$data'><button class='Moreview'>More Details</button></a>" ?>
+                    </div>
+                </div>
+                <div class="per_att">
+                    <div style="height:90%; width:98%;" class="per_att_table">
+                    <?php $line_check_query=$con->query("SELECT COUNT(*) as no_of_data FROM salary_paid WHERE Emp_id='$data'");
+                        $no=$line_check_query->fetch_assoc();
+                        if($no["no_of_data"]>=5)
+                        {
+                            $num=5;
+                        }
+                        else
+                        {
+                            $num=$no["no_of_data"];
+                        }
+                        ?>
+                    <h2 style="width:100%; color: white; ">Payroll of last <?php echo $num;?> Months</h2>
+                        <table >
+                            <thead>
+                                <th>Date</th>
+                                <th>Worked Hours</th>
+                                <th>Overtime Hours</th>
+                                <th>Total salary</th>
+                                <th>Status</th>
+                            </thead>
+                            <tbody id="tabledata">
+                                <?php
+                                        $sql="SELECT *
+                                        FROM salary_paid
+                                        INNER JOIN overtime_details ON salary_paid.Month_id = overtime_details.Month_id AND salary_paid.Emp_id = overtime_details.Emp_id WHERE salary_paid.Emp_id='$data' ORDER BY salary_paid.Month_id DESC LIMIT 5;";
+                                        $query = $con->query($sql);
+                                    if($query->num_rows)
+                                    {
+                                        $i=1;
+                                        while($row = $query->fetch_assoc())
+                                        {
+                                            $monthdata = substr($row['Month_id'], 4, 2);
+                                            $yeardata = substr($row['Month_id'], 0, 4);
+                                            $monthdata = intval($monthdata);
+                                ?>
+                                <tr >
+                                    <td><?php echo $monthar[$monthdata]." ".$yeardata; ?></td>
+                                    <td><?php echo $row['Working_hour']." hrs"; ?></td>
+                                    <td><?php echo $row['Overtime_hrs']." hrs"; ?></td>
+                                    <td><?php echo "₹ ".$row['Total_salary']; ?></td>
+                                    <td><?php echo ($row['Salary_status']==1)? "<p style='color: rgb(13, 255, 0);'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                     else
+                                    {
+                                ?>
+                                <tr>
+                                    <td colspan="9">
+                                        NO DATA
+                                    </td>
+                                </tr>
+                                <?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <?php echo "<a href='?page=per_pay_view&id=$data'><button class='Moreview'>More Details</button></a>" ?>
                     </div>
                 </div>
             </div>           

@@ -1,7 +1,14 @@
 <?php
   include '../common/connection.php';
-  $Year = date('Y');
-  $month = date('m');
+  if(isset($_GET['date'])){
+    $date = $_GET['date'];
+    $month = substr($date, 4, 2);
+    $Year = substr($date, 0, 4);
+  }else{
+    $Year = date('Y');
+    $month = date('m');
+  }
+  
   ?>
 <div class="Payrolls">
     <div class="head">
@@ -63,6 +70,11 @@
                         </tr>
                       <?php
                     }
+                    ?><tr>
+                      <td colspan="10">
+                        <?php echo "<a href='?page=paythebill&id=$m_id'><button class='pay'>Pay the Bill</button></a>" ?>
+                      </td>
+                    </tr><?php
                   }
                   else
                   {

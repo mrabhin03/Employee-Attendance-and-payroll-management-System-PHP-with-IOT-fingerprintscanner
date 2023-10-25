@@ -71,6 +71,6 @@
                 }
             }
         }
-        echo "<script>window.location.href = '?page=Payrolls';</script>";
+        echo "<script>window.location.href = '?page=Payrolls&date=$monthid';</script>";
     }
 ?>

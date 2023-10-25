@@ -29,7 +29,10 @@
                 <?php
                 $total = $query->num_rows;
                 
-                $sql = "SELECT * FROM emp_logs WHERE Log_status = 'IN' AND DATE(Time_date)='$currentdate'";
+                $sql = "SELECT emp_logs.*, employee_details.Emp_status
+                FROM emp_logs
+                INNER JOIN employee_details ON emp_logs.Rf_id = employee_details.Rf_id
+                WHERE emp_logs.Log_status = 'IN' AND DATE(emp_logs.Time_date) = '$currentdate' AND employee_details.Emp_status = 1;";
                 $query = $con->query($sql);
                 $present = $query->num_rows;
                 $absent=$total-$present;

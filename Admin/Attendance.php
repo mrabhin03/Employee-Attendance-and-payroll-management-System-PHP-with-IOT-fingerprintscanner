@@ -3,6 +3,14 @@
   $Year = date('Y');
   $month = date('m');
   $day= date('d');
+  if(isset($_GET['date']))
+  {
+    $value=$_GET['date'];
+  }
+  else
+  {
+    $value=$Year."-".$month."-".$day;
+  }
   ?>
     <script>
       const liview = document.querySelector('.icon'); 
@@ -12,22 +20,24 @@
   </script>
 <div class="Attendance">
     <div class="head">
-    <a href="?page=dailyadd"><button>Generate</button></a>
-        <h2>Daily Attendance</h2>
-        <form method="post">
+    <form method="post">
             <input onchange="this.form.submit()" value="<?php
             if(isset($_POST['daily_date']))
             {
                 $daily_date=$_POST['daily_date'];
+                $tday=$daily_date;
                 echo $daily_date;
             }
             else
             {
-                $daily_date=$Year."-".$month."-".$day;
+                $daily_date=$value;
+                $tday=$daily_date;
                 echo $daily_date;
             }
         ?>" type="date" name="daily_date" required>
         </form>
+        <h2>Daily Attendance</h2>
+        <?php echo "<a href='?page=dailyadd&date=$tday'><button>Generate</button></a>"; ?>
     </div>
     <div class="Daily_att">
             <div class="Daily_att_sub">

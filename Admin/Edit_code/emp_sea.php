@@ -1,6 +1,6 @@
 <?php include '../../common/connection.php';
 $search = $_POST['input'];
-                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2 AND Emp_name LIKE '$search%' OR Emp_id LIKE '$search%' OR Desc_name LIKE '$search%' order by Emp_id ASC ;";
+                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2 AND (Emp_name LIKE '$search%' OR Emp_id LIKE '$search%' OR Desc_name LIKE '$search%') ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS SIGNED)  ;";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {
