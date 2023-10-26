@@ -10,9 +10,17 @@
 </head>
 
 <body>
+<?php
+    include 'session_check.php';
 
+    ?>
     <div class="top-bar">
-        <img src="../images/DPsq.png" alt="Logo">
+        <button onclick="logout()"  Style='float:right;'>Logout</button>
+        <script>
+            function logout() {
+                window.location.href = 'logout.php';
+            }
+        </script>
     </div>
     <div class="main-body">
         <div class="side-menu">

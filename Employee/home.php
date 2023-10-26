@@ -1,17 +1,33 @@
-<div class="EMP_HOME">
-    <div style="display: flex; justify-content: space-between;" class="head">
-    <h3>Daily Attendance report </h3>
-    <div></div>
-  <?php
+<?php
   include '../common/connection.php';
   $currentmonth=date("Y-m");
   $monthid=date("Ym");
+  $Year=date("Y");
+  $month=date("m");
   $monthvalue=date("n");
   $id=$_SESSION['Emp_id'];
   $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
   $monthdays = array(0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
   ?>
-        
+  <div class="EMP_HOME">
+    <div style="display: flex; justify-content: space-between;" class="head">
+    <div></div>  
+    <h3>Daily Attendance report </h3>
+    <form method="post">
+            <input value="<?php
+            if(isset($_POST['month_date']))
+            {
+                $date=$_POST['month_date'];
+                list($Year,$month) = explode('-', $date);
+                $monthvalue=intval($month);
+            }
+            $monthid=$Year.$month;
+            $currentmonth=$Year.'-'.$month;
+            echo $Year."-".$month;
+        ?>" 
+        type="month" onchange="this.form.submit()" name="month_date" required>
+        </form>
+   
     </div>
     <div class="data1">
         <div class="sample_data">
@@ -37,11 +53,10 @@
                 $empquery = $con->query($EMPsql);
                 $row = $empquery->fetch_assoc();
                 $rf=$row["Rf_id"];
-                $att_sql="SELECT * FROM emp_logs WHERE Rf_id='$rf' AND DATE(Time_date) LIKE '$currentmonth%' AND Log_status='IN'";
-                $att_data = $con->query($att_sql);
-                $present=$att_data->num_rows;
-                $percentage = ($present/$calender_data['Working_day'])*100;
-                $absent=$calender_data['Working_day']-$present;
+                $att_sql="SELECT COUNT(*) as Present FROM daily_attendance WHERE Att_date LIKE '$currentmonth%' AND Emp_id='$id' AND Att_status=1";
+                $present = $con->query($att_sql)->fetch_assoc();
+                $percentage = ($present['Present']/$calender_data['Working_day'])*100;
+                $absent=$calender_data['Working_day']-$present['Present'];
                 echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
               ?>
           
@@ -54,7 +69,7 @@
             <div class="box">
                 <div class="bodypart">
                 <?php
-                echo "<h3>".$present."</h3>"
+                echo "<h3>".$present['Present']."</h3>"
               ?>
               <p>Today's Present</p>
                 </div>
@@ -65,7 +80,9 @@
             <div class="box">
                 <div class="bodypart">
                 <?php
-                echo "<h3>".$absent."</h3>"
+                $attab_sql="SELECT COUNT(*) as Absents FROM daily_attendance WHERE Att_date LIKE '$currentmonth%' AND Emp_id='$id' AND Att_status=0";
+                $absent = $con->query($attab_sql)->fetch_assoc();
+                echo "<h3>".$absent['Absents']."</h3>"
               ?>
               <p>Today's Absents</p>
                 </div>
@@ -77,7 +94,7 @@
         </div>
         <div class="employee_att">
             <div class="att_sub_div1">
-                <table >
+                <table style=' border-collapse: collapse;' >
                 <thead>
                   <th>SI</th>
                   <th>Date</th>
@@ -104,7 +121,9 @@
                         {
                             $currentdate=$currentmonth."-".$day;
                         }
-                      
+                            $monthhliid = str_replace("-", "", $currentmonth);
+                            $holidayquet="SELECT * FROM holidays WHERE Month_id='$monthhliid' AND day='$day'";
+                            $holiday=$con->query($holidayquet)->num_rows;
                             $select1="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='IN'";
                             $IN = $con->query($select1);
                             if($IN->num_rows> 0)
@@ -132,6 +151,8 @@
                               $INdata="---";
                               $OUTdata="---";
                             }
+                             if($holiday==0)
+                            { 
                           ?>
                         <tr>
                           <td><?php echo $i; $i++;?></td>
@@ -150,6 +171,16 @@
                         </tr>
                         
                       <?php
+                        }
+                        else
+                        {
+                            echo"<tr style='background-color: rgb(192, 19, 19); color:white; '>
+                                    <td>$i</td>
+                                    <td>$currentdate</td>
+                                    <td colspan='6' ><p style=' font-size:20px; '>Public Holiday</p></td>
+                                </tr>";
+                            $i++;
+                        }
                     }
                   }
                   else

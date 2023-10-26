@@ -180,10 +180,19 @@ body::before {
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table
 {
+  border-collapse: collapse;
   width: 100%;
   height: auto;
   background-color: white;
   text-align: center;
+}
+.per_att_table > table
+{
+  background-color: transparent;
+}
+.per_att_table > table > thead
+{
+  color: white !important;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > thead,
 .Employees > .data2 > .employee_detail > table >thead,
@@ -257,7 +266,9 @@ body::before {
 .Payrolls > .head > form,
 .Employees > .head > form,
 .Designation > .head > form,
-.calendar > .head > form
+.calendar > .head > form,
+.EMP_HOME > .head > form,
+.perAttendance_M > .head > form
 {
   height: 100%;
   margin: 0;
@@ -278,7 +289,9 @@ body::before {
 .Payrolls > .head > form > input,
 .Employees > .head > form > input,
 .Designation > .head > form > input,
-.calendar > .head > form > select
+.calendar > .head > form > select,
+.EMP_HOME > .head > form > input,
+.perAttendance_M > .head > form > select
 {
   box-sizing: border-box;
   font: inherit;
@@ -304,7 +317,9 @@ body::before {
 .Employees > .head > form > input,
 .Designation > .head > form > input,
 .calendar > .head > form > select,
-.perAttendance_M > .head > select
+.perAttendance_M > .head > select,
+.EMP_HOME > .head > form > input,
+.perAttendance_M > .head > form > select
 {
   width: 200px;
   height: 30px;

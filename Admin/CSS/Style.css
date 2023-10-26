@@ -25,6 +25,7 @@
 .Bashboard
 {
   background-color: white;
+  
 }
 
 
@@ -63,10 +64,12 @@
 
 .Bashboard > .data1 >.sample_data
 {
-  width: 18%;
+  width: 15%;
   height: 100%;
   margin-left: 7px;
   float: left;
+  position: fixed;
+  margin-top: -10px;
 }
 
 .Bashboard > .data1 >.sample_data > .box
@@ -123,7 +126,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-left: 7px;
+  margin-left: 19%;
 }
 .Bashboard > .data1 > .employee_att > .att_header
 {
