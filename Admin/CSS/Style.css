@@ -679,7 +679,9 @@ body::before {
 .Attendance > .head > form > button,
 .Payrolls > .head > form > button,
 .emp_details_view > .per_att .Moreview,
-.pay
+.pay,
+.thefulldiv  .footer > button,
+.thefulldiv  .footer > a> button
 {
   height: 30px;
   width: 70px;
@@ -1133,4 +1135,55 @@ margin-top: 0;
     100%{
         transform: rotate(360deg);
     }
+}
+.thefulldiv
+{
+  display: none;
+}
+
+.thefulldiv.active
+{
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  backdrop-filter: blur(5px);
+}
+.thefulldiv  .sureq > h4
+{
+  margin: -10;
+}
+.thefulldiv  .sureq > h4:nth-child(3)
+{
+  margin-top: -25px;
+  font-size: 15px;
+}
+.thefulldiv  .sureq
+{
+  height: 110px;
+  width: 320px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 30px;
+}
+.thefulldiv  .sureq.deactive
+{
+  display: none;
+}
+.thefulldiv  .footer
+{
+  width: 250px;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }

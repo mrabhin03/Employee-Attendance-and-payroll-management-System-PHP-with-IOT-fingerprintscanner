@@ -1,5 +1,6 @@
 <?php
   include '../common/connection.php';
+  set_time_limit(300);
         $total_mont_sql="SELECT DISTINCT Att_date as Dates FROM daily_attendance;";
         $total_mont_query=$con-> query($total_mont_sql);
         if($total_mont_query->num_rows > 0)

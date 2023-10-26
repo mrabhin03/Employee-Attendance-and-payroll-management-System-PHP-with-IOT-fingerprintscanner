@@ -1,13 +1,24 @@
 <?php
 include '../common/connection.php';
+set_time_limit(300);
 if(isset($_GET['date'])){
     $date = $_GET['date'];
     $currentdate=$date;
     $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
 }else{
     $log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
+    $reset_queries = [
+        "DELETE FROM salary_paid WHERE 1",
+        "DELETE FROM daily_attendance WHERE 1",
+        "DELETE FROM mothly_attendance WHERE 1",
+        "DELETE FROM overtime_details WHERE 1",
+        "DELETE FROM salary_paid WHERE 1"
+    ];
+    
+    foreach ($reset_queries as $query) {
+        $con->query($query);
+    }
 }
-
 $log_query=$con->query($log_sql);
 while($logdate=$log_query->fetch_assoc())
 {

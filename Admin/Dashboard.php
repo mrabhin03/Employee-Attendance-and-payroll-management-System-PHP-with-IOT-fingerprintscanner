@@ -1,23 +1,45 @@
-<div class="loading">
-  <div class="bar1"></div>
-  <div class="bar2"></div>
-  <div class="bar3"></div>
-  <h2>Please wait till <br>all data are fetched <br>(This will take a while)</h2>
-</div>
 
+<div class="thefulldiv">
+  <div class="loading">
+    <div align='center' class="sureq">
+      <h4>Are you sure? </h4><br>
+      <h4>You want to delete all data</h4>
+      <div class="footer">
+        <button onclick='areyousure()'>Cancel</button>
+        <?php echo "<a onclick='loadthebar()' href='?page=dailyadd'><button>Yes</button></a>"; ?>
+      </div>
+    </div>
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <h2>Please wait till <br>all data are fetched <br>(This will take a while)</h2>
+  </div>
+</div>
 <div class="Bashboard">
     <div style="display: flex; justify-content: space-between;" class="head">
-    <?php echo "<a onclick='loadthebar()' href='?page=dailyadd'><button style='width:140px; height: 36px; font-size: 17px;'>Refresh all data</button></a>"; ?>
-    <h3>Daily Attendance report</h3>
+    <?php echo "<a onclick='areyousure()'><button style='width:140px; height: 36px; font-size: 17px;'>Refresh all data</button></a>"; ?>
+    <h3>Daily Attendance report </h3>
     <div></div>
     <script>
+      const loading = document.querySelector('.loading');
+      const areq = document.querySelector('.sureq'); 
+      const areyou = document.querySelector('.thefulldiv'); 
        function loadthebar()
             {
-                const loading = document.querySelector('.loading'); 
+                
                 if (loading.classList.contains('active')) {
                   loading.classList.remove('active');
                 } else {
                   loading.classList.add('active');
+                  areq.classList.add('deactive');
+                }
+            }
+            function areyousure()
+            {
+              if (areyou.classList.contains('active')) {
+                areyou.classList.remove('active');
+                } else {
+                  areyou.classList.add('active');
                 }
             }
     </script>
