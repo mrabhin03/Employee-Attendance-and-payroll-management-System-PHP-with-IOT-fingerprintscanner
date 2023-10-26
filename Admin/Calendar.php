@@ -13,6 +13,7 @@
               if(isset($_POST["date"]))
               {
                 $year=$_POST["date"];
+              }
                 for($j= 2020;$j<2040;$j++)
                 {
                   if($year==$j)
@@ -25,22 +26,6 @@
                   }
                   
                 }
-              }
-              else
-              {
-                for($j= 2020;$j<2040;$j++)
-                {
-                  if($year==$j)
-                  {
-                    echo "<option selected value='$j'>$j</option>";
-                  }
-                  else
-                  {
-                    echo "<option value='$j'>$j</option>";
-                  }
-                  
-                }
-              }
               ?>
             </select>
         </form>

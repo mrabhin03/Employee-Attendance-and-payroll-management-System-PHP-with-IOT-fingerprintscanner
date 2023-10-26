@@ -11,6 +11,8 @@
   {
     $value=$Year."-".$month."-".$day;
   }
+  $thmonth = str_replace("-", "", $value);
+  $themonth_id = substr($thmonth, 0, 6);
   ?>
     <script>
       const liview = document.querySelector('.icon'); 
@@ -34,6 +36,7 @@
                 $tday=$daily_date;
                 echo $daily_date;
             }
+
         ?>" type="date" name="daily_date" required>
         </form>
         <h2>Daily Attendance</h2>
@@ -53,7 +56,10 @@
                 </thead>
                 <tbody >
                   <?php
-
+                    $thmonth = str_replace("-", "", $daily_date);
+                    $themonth_id = substr($thmonth, 0, 6);
+                    $day=substr($thmonth, 6, 2);
+                    $day = intval($day);
                     $sql = "SELECT employee_details.*, daily_attendance.*
                     FROM employee_details
                     INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id
@@ -81,11 +87,16 @@
                   }
                   else
                   {
-                    ?>
-                    <tr>
-                      <td colspan="8">NO Data</td>
-                    </tr>
-                    <?php
+                      $holidayquery="SELECT * FROM holidays WHERE Month_id='$themonth_id' AND day='$day'";
+                      $holi=$con->query($holidayquery)->num_rows;
+                      if($holi> 0)
+                      {
+                        echo "<tr><td colspan='8' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
+                      }
+                      else
+                      {
+                        echo "<tr><td colspan='8'>No Data</td></tr>";
+                      }
                   }
                   ?>
                 </tbody>

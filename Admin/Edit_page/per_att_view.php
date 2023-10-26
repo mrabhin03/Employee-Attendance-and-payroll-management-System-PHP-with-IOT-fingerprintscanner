@@ -1,6 +1,7 @@
 
 <div class="update_empin"> 
         <?php include '../common/connection.php';
+        $year_month=date('Y-m');
         $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");?>
         <div class="update_form">
             <?php 
@@ -15,8 +16,18 @@
                     <h1 style="width: 60%">Attendance of the Employee</h1>
                     <div></div>
                 </div>
-                <div  style="border: none; margin-top:0px" class="per_att">
-                    <div style="height:90%; width:98%;" class="per_att_table">
+                <div  style="border: none; margin-top:0px;" class="per_att">
+                    <div style="height:90%; width:98%; display:flex; flex-direction: column; align-items: center;" class="per_att_table">
+                    <form style="width:100%; height: 20px; " method="POST">
+                    <input type="month" onchange="this.form.submit()" style="margin-right:40px;float:right; height: 30px;color: #333; width: 130px; border-radius:10px; text-align: center;" 
+                    value="<?php
+                        if(isset($_POST["year_select"])){
+                            $year_month=$_POST["year_select"];
+                        }
+                        echo $year_month;
+                        ?>"
+                    name="year_select">
+                    </form>
                         <table >
                             <thead>
                                 <th>Date</th>
@@ -27,7 +38,7 @@
                             </thead>
                             <tbody id="tabledata">
                                 <?php
-                                        $sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs ORDER BY DATE(Time_date) DESC";
+                                        $sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs WHERE Time_date LIKE '$year_month%' ORDER BY DATE(Time_date) DESC";
                                         $query = $con->query($sql);
                                     if($query->num_rows)
                                     {

@@ -1,6 +1,7 @@
 
 <div class="update_empin"> 
         <?php include '../common/connection.php';
+        $year=date('Y');
         $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");?>
         <div class="update_form">
             <?php 
@@ -17,6 +18,26 @@
                 </div>
                 <div  style="border: none; margin-top:0px" class="per_att">
                     <div style="height:90%; width:98%;" class="per_att_table">
+                    <form style="width:100%; height: 20px; " method="POST">
+                    <select onchange="this.form.submit()" style="float:right; height: 30px;color: #333; width: 130px; border-radius:10px; text-align: center;" name="year_select" id="">
+                        <?php
+                        if(isset($_POST["year_select"])){
+                            $year=$_POST["year_select"];
+                        }
+                        for($i= 2020;$i<=2030;$i++)
+                        {
+                            if($year==$i)
+                            {
+                              echo "<option selected value='$i'>$i</option>";
+                            }
+                            else
+                            {
+                              echo "<option value='$i'>$i</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                    </form>
                     <table >
                             <thead>
                                 <th>Date</th>
@@ -29,7 +50,7 @@
                                 <?php
                                         $sql="SELECT *
                                         FROM salary_paid
-                                        INNER JOIN overtime_details ON salary_paid.Month_id = overtime_details.Month_id AND salary_paid.Emp_id = overtime_details.Emp_id WHERE salary_paid.Emp_id='$data' ORDER BY salary_paid.Month_id DESC;";
+                                        INNER JOIN overtime_details ON salary_paid.Month_id = overtime_details.Month_id AND salary_paid.Emp_id = overtime_details.Emp_id WHERE salary_paid.Month_id LIKE '$year%' AND salary_paid.Emp_id='$data' ORDER BY salary_paid.Month_id DESC;";
                                         $query = $con->query($sql);
                                     if($query->num_rows)
                                     {

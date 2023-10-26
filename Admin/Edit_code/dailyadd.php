@@ -1,6 +1,6 @@
 <?php
 include '../common/connection.php';
-set_time_limit(300);
+set_time_limit(5000);
 if(isset($_GET['date'])){
     $date = $_GET['date'];
     $currentdate=$date;
