@@ -1,173 +1,10 @@
-body
-{
-  margin: 0;
-  padding: 0;
-  background-image: url(wallpaper/violet.png);
-  background-size: cover ;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
 
-}
-body::before {
-  content: "";
-  background-image: inherit;
-  filter: blur(50px); 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-.top-bar {
-  background-color: rgb(8, 46, 128);;
-  color: #fff;
-  padding: 10px;
-  height: 5%;
-  border-bottom: 2px solid rgb(180, 180, 180) ;
-
-}
-.top-bar >img
-{
-  vertical-align: middle;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-}
-.side-menu {
-  width: 18%;
-  background-color: #3951a7c4;
-  color: #fff;
-  height: 100%;
-  overflow-y: auto;
-  float: left;
-  margin-right: 0;
-}
-
-
-
-.main-content {
-  padding: 10px;
-  float: left;
-  padding-top: 0;
-  height: 100%;
-  width: 100%;
-  
-}
-.main-body {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-.side-menu li {
-  margin-left: 8px;
-  margin-bottom: 0px;
-}
-.side-menu   .sub_tree > li {
-  margin-left: 8px;
-  margin-top: 20px;
-}
-
-.side-menu > ul 
-{
-  height: 50%;
-  width: 100%;
-  list-style: none;
-  padding: 0;
-  margin: 0px;
-  letter-spacing: 1px;
-}
-.side-menu > ul > .head
-{
-  color: #ffffff;
-  background: #203683;
-  height: 10%;
-  width: 100%;
-  margin-left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-}
-.side-menu > ul > .option
-{
-  cursor: pointer;
-  width: 100%;
-  height: auto;
-  margin-left: 10px;
-  font-size: 18;
-  display: flex;
-  background-color: #ffffff;
-  margin-top: 20px;
-  flex-direction: column;
-  justify-content: center;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  color: black;
-}
 .side-menu > ul > .option:nth-child(3)
 {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.option > span
-{
-  margin-left: 20px;
-  cursor: pointer;
-}
-.option  a
-{
-  color: black !important;
-  height: 65px !important;
-}
 
-.icon.active .down
-{
-  transform: translateY(-3px);
-  rotate: -180deg;
-}
-.icon .down
-{
-  rotate: -90deg;
-  transform: translateX(-3px);
-  transition: all .2s ease-in-out;
-}
-
-
-.sub_tree > li > a
-{
-  text-decoration: none;
-  color: #ffffff;
-}
-.sub_tree.active
-{
-  display: flex;
-  opacity: 1;
-  flex-direction: column;
-}
-.sub_tree
-{
-  opacity: 0;
-  display: none;
-  transition: all .3s ease-in-out;
-}
-.side-menu > ul > li >a
-{
-  text-decoration: none;
-  color: #ffffff;
-  padding-left: 20px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-
-}
 
 .Bashboard,
 .Attendance,
@@ -183,16 +20,7 @@ body::before {
   overflow-y: auto;
 }
 
-.Bashboard::-webkit-scrollbar,
-.Attendance::-webkit-scrollbar,
-.Employees::-webkit-scrollbar,
-.Designation::-webkit-scrollbar,
-.calendar::-webkit-scrollbar,
-.Attendance_M::-webkit-scrollbar,
-.Payrolls::-webkit-scrollbar
-{
-  display: none;
-}
+
 
 .Bashboard
 {
@@ -200,42 +28,6 @@ body::before {
 }
 
 
-.Bashboard > .head, 
-.Employees > .head,
-.Designation > .head,
-.calendar > .head,
-.Attendance > .head,
-.Attendance_M > .head,
-.Payrolls > .head
-{
-  height: 60px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.852);
-  border-bottom: 2px solid black ;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.Employees > .head > a> button,
-.Bashboard > .head > a> button,
-.Designation > .head > a> button,
-.calendar > .head > a> button,
-.Attendance_M > .head > a >button,
-.Payrolls > .head > a > button,
-.Attendance > .head > a >button
-{
-  background-color: #3c8dbc;
-  margin-left: 20px;
-  width: 50px;
-  height: 30px;
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-  border-color: #367fa9;
-}
 .Bashboard > .head > a> button,
 .Attendance_M > .head > a >button,
 .Payrolls > .head > a > button,
@@ -263,10 +55,12 @@ body::before {
 .Attendance_M > .Monthly_att,
 .Payrolls > .payrolls_details
 {
+  margin-top: 64px;
   width: 100%;
   height: 100%;
 
 }
+
 .Bashboard > .data1 >.sample_data
 {
   width: 18%;
@@ -364,78 +158,6 @@ body::before {
   width: 100%;
   margin-left: 5px;
 
-}
-.Bashboard > .data1 > .employee_att > .att_sub_div1 > table ,
-.Employees > .data2 > .employee_detail > table,
-.Designation > .des_data > .des_detail > table,
-.calendar > .cal_data > .cal_detail > table,
-.Attendance > .Daily_att > .Daily_att_sub > table,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table,
-.per_att_table > table
-{
-  width: 100%;
-  height: auto;
-  background-color: white;
-  text-align: center;
-}
-.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > thead,
-.Employees > .data2 > .employee_detail > table >thead,
-.Designation > .des_data > .des_detail > table > thead
-.calendar > .cal_data > .cal_detail > table >thead,
-.Attendance > .Daily_att > .Daily_att_sub > table > thead,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >thead,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table >thead,
-.per_att_table > table > thead
-{
-  font-size: 16px;
-  line-height: 1.42857143;
-  color: #333;
-  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
-  font-weight: 400;
-  border-spacing: 0;
-}
-.per_att_table > table > thead
-{
-  height: 40px;
-}
-
-.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody,
-.Employees > .data2 > .employee_detail > table >tbody,
-.Designation > .des_data > .des_detail > table > tbody,
-.calendar > .cal_data > .cal_detail > table > tbody,
-.Attendance > .Daily_att > .Daily_att_sub > table > tbody,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table > body
-{
-  
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333;
-  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
-  border-spacing: 0;
-  box-sizing: border-box;
-}
-.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
-.Employees > .data2 > .employee_detail > table >tbody >tr,
-.Designation > .des_data > .des_detail > table > tbody > tr,
-.calendar > .cal_data > .cal_detail > table > tbody > tr,
-.Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr,
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody >tr,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr
-{
-  background-color: rgb(252, 252, 252);
-  height: 60px;
-}
-.Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
-.Employees > .data2 > .employee_detail > table >tbody >tr:nth-child(odd),
-.Designation > .des_data > .des_detail > table > tbody > tr:nth-child(odd),
-.calendar > .cal_data > .cal_detail > table > tbody > tr:nth-child(odd),
-.Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr:nth-child(odd),
-.Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody>tr:nth-child(odd),
-.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd)
-{
-  background-color: rgb(222, 222, 222);
 }
 .emp_details_view > .per_att
 {
@@ -585,63 +307,6 @@ body::before {
   width: 100px;
   float: left;
   text-align: start;
-}
-.Attendance_M > .head > form,
-.Attendance > .head > form,
-.Payrolls > .head > form,
-.Employees > .head > form,
-.Designation > .head > form,
-.calendar > .head > form
-{
-  height: 100%;
-  margin: 0;
-  margin-right: 20px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-.main_form > .emp_details > .form_div > input,
-.main_form > .emp_details > .form_div > select,
-.main_form > .designation_add >.form_div> select,
-.main_form > .designation_add >.form_div> input,
-.main_form >.desc_details >.form_div > input,
-.main_form >.cal_details >.form_div > select,
-.main_form >.cal_details >.form_div > input,
-.Attendance_M > .head > form > input,
-.Attendance > .head > form > input,
-.Payrolls > .head > form > input,
-.Employees > .head > form > input,
-.Designation > .head > form > input,
-.calendar > .head > form > select
-{
-  box-sizing: border-box;
-  font: inherit;
-  font-family: inherit;
-  display: block;
-  width: 50%;
-  float: left;
-  height: 25px;
-  font-size: 14px;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 0;
-  box-shadow: none;
-  color: #333;
-  border-color: #d2d6de;
-  text-align: center;
-
-}
-.Attendance_M > .head > form > input,
-.Attendance > .head > form > input,
-.Payrolls > .head > form > input,
-.Employees > .head > form > input,
-.Designation > .head > form > input,
-.calendar > .head > form > select
-{
-  width: 200px;
-  height: 30px;
-  margin-right: 5px;
 }
 .Employees > .head > form > input,
 .Designation > .head > form > input

@@ -1,7 +1,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="thevalutiondata.css">
+    <link rel="stylesheet"  href="../common/thestylevalu.css">
     <title>Biometric attendance system</title>
 
 
@@ -26,7 +27,7 @@
             <ul>
                 <li class="head">MENU</li>
                 <li class="option"><a href="?page=home">HOME</a></li>
-                <li class="option"><a href="?page=attendace">ATTENDACE</a></li>
+                <li class="option"><a href="?page=attendace">ATTENDAnCE</a></li>
                 <li class="option"><a href="?page=profile">PROFILE</a></li>
                 <li class="option"><a href="?page=payroll">PAYROLL</a></li>
                 <li class="option"><a href="?page=changepassword">CHANGE PASSWORD</a></li>

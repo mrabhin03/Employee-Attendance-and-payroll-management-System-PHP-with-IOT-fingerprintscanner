@@ -1,0 +1,232 @@
+
+.top-bar {
+  background-color: rgb(8, 46, 128);
+
+  color: #fff;
+  padding: 10px;
+  height: 6%;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+
+}
+.top-bar >img
+{
+  vertical-align: middle;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.top-bar > button
+{
+  vertical-align: middle;
+  width: 60px;
+  height: 30px;
+  border-radius: 40px;
+}
+.top-bar > button:hover {
+  background-color: #45a0a0; 
+  cursor: pointer;
+}
+.side-menu {
+  width: 15%;
+  background-color: #3951a7c4;
+ 
+  color: #fff;
+  padding: 10px;
+  height: 94%;
+  overflow-y: auto;
+  float: left;
+  margin-right: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-menu li {
+  margin-left: 8px;
+  margin-bottom: 10px;
+}
+
+.main-content {
+  padding: 10px;
+  float: left;
+  height: 100%;
+  width: 82%;
+}
+.main-body {
+  height: 100%;
+  width: 100%;
+}
+
+
+.side-menu > ul 
+{
+  height: 50%;
+  width: 100%;
+  margin-left: 0;
+}
+.side-menu > ul > .head
+{
+  background-color:#203683;
+  border-radius: 5px;
+  height: 10%;
+  width: 100%;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.side-menu > ul > li
+{
+  background-color: #0b8ed4;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  
+  width: 100%;
+  height: 50px;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.side-menu > ul > li >a
+{
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+
+}
+
+.home,.attendace,.profile,.payroll,.changepassword
+{
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  float: left;
+}
+
+.EMP_HOME,
+.perAttendance_M
+{
+  background-color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 92%;
+}
+
+
+.EMP_HOME > .data1
+{
+  width: 100%;
+  height: 100%;
+  margin-top: 64px;
+
+}
+.EMP_HOME > .data1 >.sample_data
+{
+  position: fixed;
+  width: 14%;
+  height: 100%;
+  margin-left: 7px;
+  float: left;
+}
+
+.EMP_HOME > .data1 >.sample_data > .box
+{
+  width: 100%;
+  height: 18%;
+  background-color: slategrey;
+  margin-top: 20px;
+}
+
+.EMP_HOME > .data1 >.sample_data > .box > .bodypart
+{
+  color: white;
+  font-size: 14px;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.EMP_HOME > .data1 >.sample_data > .box > .bodypart > h3
+{
+  font-size: 30px;
+  margin: 0;
+}
+.EMP_HOME > .data1 >.sample_data > .box > .footerpart
+{
+  background-color: rgba(0,0,0,0.1);
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EMP_HOME > .data1 >.sample_data > .box > .footerpart > a{
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EMP_HOME > .data1 > .employee_att,
+.perAttendance_M > .Monthly_att
+{
+  width: 80%;
+  padding-right: 0;
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 18%;
+}
+.perAttendance_M > .Monthly_att
+{
+  margin-left: 0px;
+  width: 100%;
+  margin-top: 64px;
+}
+.EMP_HOME > .data1 > .employee_att > .att_header
+{
+  height: 7%;
+  margin-top: 20px;
+  width: 100%;
+  border-bottom: 3px solid rgba(73, 76, 86, 0.462) ;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+}
+.EMP_HOME > .data1 > .employee_att > .att_header >h3
+{
+  box-sizing: border-box;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.586);
+  font-family: 'Source Sans Pro',sans-serif;
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 0px;
+  margin-left: 10px;
+  line-height: 1;
+
+}
+.EMP_HOME > .data1 > .employee_att > .att_sub_div1,
+.perAttendance_M > .Monthly_att >.Monthly_att_sub
+{
+  height: 100%;
+  width: 100%;
+  margin-left: 5px;
+
+}
