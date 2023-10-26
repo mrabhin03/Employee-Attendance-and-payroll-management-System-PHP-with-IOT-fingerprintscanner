@@ -1,8 +1,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="thevalutiondata.css">
-    <link rel="stylesheet"  href="../common/thestylevalu.css">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet"  href="../common/Common_style.css">
     <title>Biometric attendance system</title>
 
 
