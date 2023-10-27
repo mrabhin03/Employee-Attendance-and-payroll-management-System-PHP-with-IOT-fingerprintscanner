@@ -6,7 +6,7 @@
     background-color: rgba(0, 0, 0, 0.43);
     border-radius: 20px;
     color: white;
-    height: 250px;
+    height: fit-content;
 }
 input {
     width: 50%;
