@@ -199,7 +199,7 @@
                                     <td><?php echo $monthar[$monthdata]." ".$yeardata; ?></td>
                                     <td><?php echo $row['Working_hour']." hrs"; ?></td>
                                     <td><?php echo $row['Overtime_hrs']." hrs"; ?></td>
-                                    <td><?php echo "₹ ".$row['Total_salary']; ?></td>
+                                    <td><?php echo "₹ ".number_format($row['Total_salary']); ?></td>
                                     <td><?php echo ($row['Salary_status']==1)? "<p style='color: rgb(13, 255, 0);'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                                 </tr>
                                 <?php

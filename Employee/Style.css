@@ -1,122 +1,24 @@
 
-.top-bar {
-  background-color: rgb(8, 46, 128);
-
-  color: #fff;
-  padding: 10px;
-  height: 6%;
-  display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-
-}
-.top-bar >img
-{
-  vertical-align: middle;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-}
-.top-bar > button
-{
-  vertical-align: middle;
-  width: 60px;
-  height: 30px;
-  border-radius: 40px;
-}
-.top-bar > button:hover {
-  background-color: #45a0a0; 
-  cursor: pointer;
-}
-.side-menu {
-  width: 15%;
-  background-color: #3951a7c4;
- 
-  color: #fff;
-  padding: 10px;
-  height: 94%;
-  overflow-y: auto;
-  float: left;
-  margin-right: 0;
-}
-
-.side-menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-.side-menu li {
-  margin-left: 8px;
-  margin-bottom: 10px;
-}
-
-.main-content {
-  padding: 10px;
-  float: left;
-  height: 100%;
-  width: 82%;
-}
-.main-body {
-  height: 100%;
-  width: 100%;
-}
-
-
-.side-menu > ul 
-{
-  height: 50%;
-  width: 100%;
-  margin-left: 0;
-}
-.side-menu > ul > .head
-{
-  background-color:#203683;
-  border-radius: 5px;
-  height: 10%;
-  width: 100%;
-  margin-left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.side-menu > ul > li
-{
-  background-color: #0b8ed4;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  
-  width: 100%;
-  height: 50px;
-  margin-left: 0;
-  display: flex;
-  align-items: center;
-}
-
-.side-menu > ul > li >a
-{
-  text-decoration: none;
-  color: white;
-  margin-left: 20px;
-
-}
-
-.home,.attendace,.profile,.payroll,.changepassword
-{
-  height: 100%;
-  width: 100%;
-  background-color: red;
-  float: left;
-}
 
 .EMP_HOME,
-.perAttendance_M
+.perAttendance_M,
+.per_profile_details,
+.per_Payrolls
 {
   background-color: white;
   overflow-y: auto;
   overflow-x: hidden;
   height: 92%;
 }
+.per_profile_details
+{
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 .EMP_HOME > .data1
@@ -230,3 +132,42 @@
   margin-left: 5px;
 
 }
+
+.per_profile_details > .update_form
+{
+  height: 98%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+.per_profile_details > .update_form > .emp_details_view
+{
+  height: fit-content;
+  width: 90%;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.43);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.emp_details_view>.header_view 
+{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.emp_details_view>.header_view > h1
+{
+  color: white;
+  background-color: rgba(0, 0, 0, 0.327);
+  height: 40px;
+  width: 400px;
+  text-align: center;
+  border-radius: 20px;
+}
+.payrolls_details_sub > table
+{
+  margin-top: 64px;
+}
+

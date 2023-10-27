@@ -12,7 +12,7 @@
   ?>
 <div class="Payrolls">
     <div class="head">
-        <a href="?page=generate_salary_page"><button>Generate</button></a>
+        <a href="?page=generate_salary_page"><button style='width:70px;'>Generate</button></a>
         <h2>Payrolls Details</h2>
         <form method="post">
             <input value="<?php
@@ -64,10 +64,10 @@
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
-                          <td><?php echo "₹".$row['Salary_basic']; ?></td>
+                          <td><?php echo "₹".number_format($row['Salary_basic']); ?></td>
                           <td><?php echo ($row['Salary_basic']!=0)? $row['Working_hour']:0 ?>hr</td>
                           <td><?php echo ($row['Salary_basic']!=0)? $row['Overtime_hrs']:0 ?>hr</td>
-                          <td><?php echo "₹".$row['Total_salary']; ?></td>
+                          <td><?php echo "₹".number_format($row['Total_salary']); ?></td>
                           <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                           <td>
                           <?php $data=$row['Emp_id']; echo "<a href='?page=View_details&id=$data'><button class='view-emp' >View Details</button></a>" ?>                            

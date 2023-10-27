@@ -33,7 +33,7 @@
                     </select>
                 </div>
                 <div class="form_div">
-                    <label for="day">Day</label>
+                    <label for="day">Days</label>
                     <input type="text" name="day" required>
                 </div>
                 <div class="add_footer">

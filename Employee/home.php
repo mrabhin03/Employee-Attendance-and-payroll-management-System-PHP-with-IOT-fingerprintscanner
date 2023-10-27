@@ -24,6 +24,9 @@
             $monthid=$Year.$month;
             $currentmonth=$Year.'-'.$month;
             echo $Year."-".$month;
+            if (($Year % 4 == 0 && $Year % 100 != 0) || $Year % 400 == 0) {
+              $monthdays[2]=29;
+          }
         ?>" 
         type="month" onchange="this.form.submit()" name="month_date" required>
         </form>
@@ -154,7 +157,7 @@
                              if($holiday==0)
                             { 
                           ?>
-                        <tr>
+                        <tr style='font-size:17px;'>
                           <td><?php echo $i; $i++;?></td>
                           <td><?php echo $currentdate;?></td>
                           <td><?php echo $INdata; ?></td>
@@ -174,7 +177,7 @@
                         }
                         else
                         {
-                            echo"<tr style='background-color: rgb(192, 19, 19); color:white; '>
+                            echo"<tr style='background-color: rgb(192, 19, 19); color:white; border: 2px solid white;'>
                                     <td>$i</td>
                                     <td>$currentdate</td>
                                     <td colspan='6' ><p style=' font-size:20px; '>Public Holiday</p></td>

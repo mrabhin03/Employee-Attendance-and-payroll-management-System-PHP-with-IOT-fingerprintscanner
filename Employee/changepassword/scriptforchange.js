@@ -56,3 +56,12 @@ function defaultView() {
     document.getElementById("wrongpassword").style.visibility = "hidden";
     document.getElementById("passwordchanged").style.visibility = "hidden";
 }
+function typechange(data)
+{
+    const Inputbox = document.getElementById(data);
+    if (Inputbox.type === "text") {
+        Inputbox.type="password";
+      } else {
+        Inputbox.type="text";
+      }
+}

@@ -18,7 +18,7 @@
   </script>
 <div class="Attendance_M">
     <div class="head">
-        <a href="?page=monthlycreate"><button>Generate</button></a>
+        <a href="?page=monthlycreate"><button style='width:70px;'>Generate</button></a>
         <h2>Monthly Attendance</h2>
         <form method="post">
             <input value="<?php

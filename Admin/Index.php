@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/Style.css">
-    <link rel="stylesheet"  href="../common/Common_style.css">
+    <link rel="stylesheet"  href="CSS/Style.css?v=<?php echo time()?>">
+    <link rel="stylesheet"  href="../common/Common_style.css?v=<?php echo time()?>">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

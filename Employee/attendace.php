@@ -20,6 +20,7 @@
               if(isset($_POST["date"]))
               {
                 $year=$_POST["date"];
+              }
                 for($j= 2020;$j<2040;$j++)
                 {
                   if($year==$j)
@@ -32,22 +33,6 @@
                   }
                   
                 }
-              }
-              else
-              {
-                for($j= 2020;$j<2040;$j++)
-                {
-                  if($year==$j)
-                  {
-                    echo "<option selected value='$j'>$j</option>";
-                  }
-                  else
-                  {
-                    echo "<option value='$j'>$j</option>";
-                  }
-                  
-                }
-              }
               ?>
             </select>
         </form>
@@ -78,7 +63,7 @@
                         $monthdata = substr($row['Month_id'], 4, 2);
                         $monthdata = intval($monthdata);
                       ?>
-                        <tr>
+                        <tr style='font-size:17px;'>
                           <td><?php echo $i; $i++;?></td>
                           <td><?php echo $year." ".$monthar[$monthdata]; ?></td> 
                           <td><?php echo $row['Normal_work_hr']."hrs"; ?></td> 
