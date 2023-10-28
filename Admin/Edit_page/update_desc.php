@@ -2,20 +2,12 @@
     <?php
     $id=$_GET['id'];
     include '../common/connection.php';
-    $numbers='';
-    for($i = 0; $i < 10; $i++){
-        $numbers .= $i;
-    }
-    $descid = substr(str_shuffle($numbers), 0, 5);
     $desc_details = "SELECT * FROM employee_designation WHERE Desc_id='$id'";
     $datavalue= $con->query($desc_details);
-    $test = "SELECT * FROM employee_designation WHERE Desc_id='$descid'";
-    $data= $con->query($test);
-    while ($data->num_rows != 0) {
-        $descid =   substr(str_shuffle($numbers), 0, 5);
-        $test = "SELECT * FROM employee_designation WHERE Desc_id='$descid'";
-        $data = $con->query($test);
-    }
+    $desig_max_sql = "SELECT MAX(Desc_id) AS max FROM employee_designation;";
+    $desig_max = $con->query($desig_max_sql);
+    $maxdata = $desig_max->fetch_assoc();
+    $descid = $maxdata["max"]+1;
     $row= $datavalue->fetch_assoc();
 
     ?>
@@ -70,9 +62,9 @@
                     $ma = $_POST['ma'];
                     $pf = $_POST['pf'];
                     $inc = $_POST['inc'];
-                    $sql_update="UPDATE employee_designation SET Desc_id='$descid',Desc_status=0 WHERE Desc_id='$desc_id'";
+                    $sql_update="UPDATE employee_designation SET Desc_status=0 WHERE Desc_id='$desc_id'";
                     $con->query($sql_update);
-                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic,Desc_overtimesalary, Desc_da, Desc_ma, Desc_pf, Desc_inc, Desc_status) VALUES ('$desc_id','$descname','$salary',$OVsalary,'$da','$ma','$pf','$inc',1)";
+                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic,Desc_overtimesalary, Desc_da, Desc_ma, Desc_pf, Desc_inc, Desc_status) VALUES ('$descid','$descname','$salary',$OVsalary,'$da','$ma','$pf','$inc',1)";
                     $con->query($sql);
                     echo "<script>window.location.href = '?page=Designations';</script>";
                 }

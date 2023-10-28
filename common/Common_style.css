@@ -11,6 +11,10 @@ body
   font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
 
 }
+*::-webkit-scrollbar
+{
+  display: none;
+}
 body::before {
   content: "";
   background-image: inherit;
@@ -100,18 +104,28 @@ body::before {
   cursor: pointer;
   width: 100%;
   height: auto;
-  margin-left: 0px;
+  margin-left: 10px;
   font-size: 18;
   display: flex;
-  padding-bottom: 20px;
+  background-color: #ffffff;
   margin-top: 20px;
   flex-direction: column;
+  justify-content: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: black;
 }
 .option > span
 {
   margin-left: 20px;
   cursor: pointer;
 }
+.option  a
+{
+  color: black !important;
+  height: 65px !important;
+}
+
 .icon.active .down
 {
   transform: translateY(-3px);
@@ -154,202 +168,32 @@ body::before {
 
 }
 
-.Bashboard,
-.Attendance,
-.Employees,
-.Designation,
-.calendar,
-.Attendance_M,
-.Payrolls
-{
-  height: 91%;
-  width: 100%;
-  float: left;
-  overflow-y: auto;
-}
 
-.Bashboard::-webkit-scrollbar,
-.Attendance::-webkit-scrollbar,
-.Employees::-webkit-scrollbar,
-.Designation::-webkit-scrollbar,
-.calendar::-webkit-scrollbar,
-.Attendance_M::-webkit-scrollbar,
-.Payrolls::-webkit-scrollbar
-{
-  display: none;
-}
-
-.Bashboard
-{
-  background-color: white;
-}
-
-
-.Bashboard > .head, 
-.Employees > .head,
-.Designation > .head,
-.calendar > .head,
-.Attendance > .head,
-.Attendance_M > .head,
-.Payrolls > .head
-{
-  height: 60px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.852);
-  border-bottom: 2px solid black ;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.Employees > .head > a> button,
-.Bashboard > .head > a> button,
-.Designation > .head > a> button,
-.calendar > .head > a> button,
-.Attendance_M > .head > a >button,
-.Payrolls > .head > a > button,
-.Attendance > .head > a >button
-{
-  background-color: #3c8dbc;
-  margin-left: 20px;
-  width: 50px;
-  height: 30px;
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-  border-color: #367fa9;
-}
-.Bashboard > .head > a> button,
-.Attendance_M > .head > a >button,
-.Payrolls > .head > a > button,
-.Attendance > .head > a >button
-{
-  width: 70px;
-}
-
-.Bashboard > .data1, 
-.Employees > .data2, 
-.Designation > .des_data,
-.calendar > .cal_data,
-.Attendance > .Daily_att,
-.Attendance_M > .Monthly_att,
-.Payrolls > .payrolls_details
-{
-  width: 100%;
-  height: 100%;
-
-}
-.Bashboard > .data1 >.sample_data
-{
-  width: 18%;
-  height: 100%;
-  margin-left: 7px;
-  float: left;
-}
-
-.Bashboard > .data1 >.sample_data > .box
-{
-  width: 100%;
-  height: 18%;
-  background-color: slategrey;
-  margin-top: 20px;
-}
-
-.Bashboard > .data1 >.sample_data > .box > .bodypart
-{
-  color: white;
-  font-size: 14px;
-  height: 80%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.Bashboard > .data1 >.sample_data > .box > .bodypart > h3
-{
-  font-size: 30px;
-  margin: 0;
-}
-.Bashboard > .data1 >.sample_data > .box > .footerpart
-{
-  background-color: rgba(0,0,0,0.1);
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Bashboard > .data1 >.sample_data > .box > .footerpart > a{
-  color: white;
-  text-decoration: none;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Bashboard > .data1 > .employee_att
-{
-  width: 80%;
-  padding-right: 0;
-  height: 100%;
-  float: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-left: 7px;
-}
-.Bashboard > .data1 > .employee_att > .att_header
-{
-  height: 7%;
-  margin-top: 20px;
-  width: 100%;
-  border-bottom: 3px solid rgba(73, 76, 86, 0.462) ;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  margin-bottom: 18px;
-}
-.Bashboard > .data1 > .employee_att > .att_header >h3
-{
-  box-sizing: border-box;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.586);
-  font-family: 'Source Sans Pro',sans-serif;
-  display: inline-block;
-  font-size: 18px;
-  margin-top: 0px;
-  margin-left: 10px;
-  line-height: 1;
-
-}
-.Bashboard > .data1 > .employee_att > .att_sub_div1,
-.Attendance > .Daily_att > .Daily_att_sub,
-.Attendance_M > .Monthly_att > .Monthly_att_sub,
-.Payrolls > .payrolls_details > .payrolls_details_sub
-{
-  height: 100%;
-  width: 100%;
-  margin-left: 5px;
-
-}
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table ,
 .Employees > .data2 > .employee_detail > table,
 .Designation > .des_data > .des_detail > table,
 .calendar > .cal_data > .cal_detail > table,
 .Attendance > .Daily_att > .Daily_att_sub > table,
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table
+.Payrolls > .payrolls_details > .payrolls_details_sub > table,
+.per_att_table > table,
+.EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table,
+.perAttendance_M > .Monthly_att >.Monthly_att_sub > table,
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table
 {
+  border-collapse: collapse;
   width: 100%;
   height: auto;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   text-align: center;
+}
+.per_att_table > table
+{
+  background-color: transparent;
+}
+.per_att_table > table > thead
+{
+  color: white !important;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > thead,
 .Employees > .data2 > .employee_detail > table >thead,
@@ -357,7 +201,11 @@ body::before {
 .calendar > .cal_data > .cal_detail > table >thead,
 .Attendance > .Daily_att > .Daily_att_sub > table > thead,
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >thead,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table >thead
+.Payrolls > .payrolls_details > .payrolls_details_sub > table >thead,
+.per_att_table > table > thead,
+.EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > thead,
+.perAttendance_M > .Monthly_att >.Monthly_att_sub > table > thead,
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > thead
 {
   font-size: 16px;
   line-height: 1.42857143;
@@ -366,6 +214,10 @@ body::before {
   font-weight: 400;
   border-spacing: 0;
 }
+.per_att_table > table > thead
+{
+  height: 40px;
+}
 
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody,
 .Employees > .data2 > .employee_detail > table >tbody,
@@ -373,7 +225,10 @@ body::before {
 .calendar > .cal_data > .cal_detail > table > tbody,
 .Attendance > .Daily_att > .Daily_att_sub > table > tbody,
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table > body
+.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody,
+.EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody,
+.perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody,
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody
 {
   
   font-size: 14px;
@@ -389,9 +244,12 @@ body::before {
 .calendar > .cal_data > .cal_detail > table > tbody > tr,
 .Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr,
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody >tr,
-.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr
+.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr,
+.EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
+.perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody > tr,
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr
 {
-  background-color: white;
+  background-color: rgb(252, 252, 252);
   height: 60px;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
@@ -400,117 +258,23 @@ body::before {
 .calendar > .cal_data > .cal_detail > table > tbody > tr:nth-child(odd),
 .Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr:nth-child(odd),
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody>tr:nth-child(odd),
-.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd)
+.Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd),
+.EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
+.perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody > tr:nth-child(odd),
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd)
 {
   background-color: rgb(222, 222, 222);
 }
 
-.Employees > .data2 > .employee_detail,
-.calendar > .cal_data > .cal_detail
-{
-  height: 100%;
-  width: 100%;
-}
-
-.addempin,.adddesc
-{
-  background-color: rgb(255, 255, 255);
-  width: 30%;
-  height: 74%;
-  position: absolute;
-  top: 18%;
-  left: 40%;
-  text-align: center;
-  border-radius: 20px;
-  transition: all .3s ease-in;
-  overflow: hidden;
-}
-.addcal, .addmonth_att,.addpayroll
-{
-  background-color: rgb(255, 255, 255);
-  width: 30%;
-  height: 35%;
-  position: absolute;
-  top: 30%;
-  left: 40%;
-  text-align: center;
-  border-radius: 20px;
-  transition: all .3s ease-in;
-  overflow: hidden;
-}
-.addmonth_att,.addpayroll
-{
-  height: 30%; 
-}
-.addempin.active
-{
-  background-color: rgb(255, 255, 255);
-  width: 30%;
-  height: 42%;
-  position: absolute;
-  top: 35%;
-  left: 40%;
-  text-align: center;
-  border-radius: 20px;
-}
-.main_form 
-{
-   height: 100%;
-   width: 100%;
-}
-
-.addempin.active .designation_add
-{
-  transform: translateX(0px);
-}
-.addempin.active .emp_details
-{
-  transform: translate(-500px,-110px);
-}
-
-.addempin .designation_add
-{
-  height: 100%;
-  width: 100%;
-  float: left;
-  transform: translate(500px,110px);
-  position: absolute;
-  transition: all .3s ease-in;
-}
-
-.addempin .emp_details,
-.addcal .cal_details
-{
-  height: 100%;
-  width: 100%;
-  float: left;
-  position: absolute;
-  transform: translateX(0px);
-  transition: all .3s ease-in;
-  background-color: #ffffff;
-}
-.main_form > .emp_details > .form_div,
-.main_form >.designation_add >.form_div,
-.main_form >.desc_details >.form_div,
-.main_form >.cal_details >.form_div
-{
-  margin-top: 20px;
-  display: flex;
-}
-.main_form > .emp_details > .form_div > label,
-.main_form > .designation_add >.form_div> label,
-.main_form >.desc_details >.form_div > label,
-.main_form >.cal_details >.form_div,label
-{
-  color: rgb(0, 0, 0);
-  margin-left: 70px;
-  width: 100px;
-  float: left;
-  text-align: start;
-}
 .Attendance_M > .head > form,
 .Attendance > .head > form,
-.Payrolls > .head > form
+.Payrolls > .head > form,
+.Employees > .head > form,
+.Designation > .head > form,
+.calendar > .head > form,
+.EMP_HOME > .head > form,
+.perAttendance_M > .head > form,
+.per_Payrolls > .head > form
 {
   height: 100%;
   margin: 0;
@@ -528,7 +292,13 @@ body::before {
 .main_form >.cal_details >.form_div > input,
 .Attendance_M > .head > form > input,
 .Attendance > .head > form > input,
-.Payrolls > .head > form > input
+.Payrolls > .head > form > input,
+.Employees > .head > form > input,
+.Designation > .head > form > input,
+.calendar > .head > form > select,
+.EMP_HOME > .head > form > input,
+.perAttendance_M > .head > form > select,
+.per_Payrolls > .head > form > select
 {
   box-sizing: border-box;
   font: inherit;
@@ -550,61 +320,72 @@ body::before {
 }
 .Attendance_M > .head > form > input,
 .Attendance > .head > form > input,
-.Payrolls > .head > form > input
+.Payrolls > .head > form > input,
+.Employees > .head > form > input,
+.Designation > .head > form > input,
+.calendar > .head > form > select,
+.perAttendance_M > .head > select,
+.EMP_HOME > .head > form > input,
+.perAttendance_M > .head > form > select,
+.per_Payrolls > .head > form > select
 {
   width: 200px;
   height: 30px;
   margin-right: 5px;
 }
 
-.main_form > .emp_details > .form_div > input[type="radio"] {
 
-  margin-left: 36%; 
-}
-
-.main_form > .emp_details > .add_footer,
-.main_form > .designation_add > .add_footer,
-.main_form >.desc_details >.add_footer,
-.main_form >.cal_details >.add_footer
+.Bashboard > .head, 
+.Employees > .head,
+.Designation > .head,
+.calendar > .head,
+.Attendance > .head,
+.Attendance_M > .head,
+.Payrolls > .head,
+.EMP_HOME > .head,
+.perAttendance_M > .head,
+.per_Payrolls > .head
 {
-  height: 10%;
+  height: 60px;
+  width: 84%;
+  background-color: rgba(255, 255, 255, 0.852);
+  border-bottom: 2px solid black ;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 10px;
+  justify-content: space-between;
+  position: fixed;
 }
-
-.main_form > .emp_details > .add_footer > button,
-.main_form > .emp_details > .add_footer>a>button,
-.main_form > .designation_add > .add_footer > button,
-.main_form >.desc_details >.add_footer > button,
-.main_form >.desc_details >.add_footer >a> button,
-.main_form >.cal_details >.add_footer > a > button,
-.main_form >.cal_details >.add_footer > button,
-.Attendance_M > .head > form > button,
-.Attendance > .head > form > button,
-.Payrolls > .head > form > button
+.EMP_HOME > .head,
+.perAttendance_M > .head,
+.per_Payrolls > .head
 {
-  height: 30px;
-  width: 70px;
-  border-radius: 10px;
-  background-color: #3c8dbc;
-  border: none;
-  color: white;
-  letter-spacing: 1px;
-  cursor: pointer;
+  width: 82.5%;
 }
 
-
-
+.Employees > .head > a> button,
+.Bashboard > .head > a> button,
+.Designation > .head > a> button,
+.calendar > .head > a> button,
+.Attendance_M > .head > a >button,
+.Payrolls > .head > a > button,
+.Attendance > .head > a >button
+{
+  background-color: #3c8dbc;
+  margin-left: 20px;
+  width: 50px;
+  height: 30px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  border-color: #367fa9;
+}
 
 .update_empin
 {
   background-color: transparent;
   width: 100%;
-  height: 100%;
+  height: 92%;
   text-align: center;
   border-radius: 20px;
   transition: all .3s ease-in;
@@ -620,17 +401,20 @@ body::before {
   width: 90%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .update_empin > .update_form > .emp_details_view
 {
-  height: 90%;
+  height: fit-content;
   width: 90%;
-  margin-top: -80px;
+  margin-top: 0px;
   background-color: rgba(0, 0, 0, 0.43);
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
 }
-.update_empin > .update_form > .emp_details_view > .profile
+
+
+ .profile
 {
   height: 530px;
   border-radius: 20px;
@@ -641,14 +425,15 @@ body::before {
   flex-direction: column;
   align-items: center;
   float: left;
+  border-bottom: 5px solid black;
 }
-.update_empin > .update_form > .emp_details_view > .profile > h2
+.profile > h2
 {
   margin-top: 20px;
   margin-bottom: 30px;
   color: rgb(0, 0, 0);
 }
-.update_empin > .update_form > .emp_details_view > .profile > img
+.profile > img
 {
   height: 170px;
   width: 170px;
@@ -656,7 +441,7 @@ body::before {
   border-radius: 10px;
   border: 3px solid black;
 }
-.update_empin > .update_form > .emp_details_view > .profile > .id_show
+.profile > .id_show
 {
   background-color: #89CCFC;
   width: 120px;
@@ -670,7 +455,7 @@ body::before {
   box-shadow: 3px 3px 5px #000000;
 
 }
-.update_empin > .update_form > .emp_details_view > .profile > .Desc_show
+.profile > .Desc_show
 {
   background-color: #EDD0D0;
   width: 200px;
@@ -684,7 +469,7 @@ body::before {
   border-radius: 20px;
   box-shadow: 3px 3px 5px #000000;
 }
-.update_empin > .update_form > .emp_details_view > .profile > .Desc_show > h4
+.profile > .Desc_show > h4
 {
 font-size: 9px;
 margin-bottom: 0;
@@ -694,18 +479,18 @@ margin-top: 0;
 {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .emp_details_view>.header_view > h1
 {
   color: white;
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.327);
   height: 40px;
   width: 400px;
   border-radius: 20px;
 }
-.update_empin > .update_form > .emp_details_view > .data_edit
+ .data_edit
 {
   height: 560px;
   border-radius: 20px;
@@ -717,8 +502,8 @@ margin-top: 0;
   align-items: center;
   flex-direction: column;
 }
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_1,
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_2
+.data_edit > .data_1,
+.data_edit > .data_2
 {
   width: 650px;
   margin-top: 0;
@@ -730,24 +515,21 @@ margin-top: 0;
   align-items: start;
 }
 
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_2
+.data_edit > .data_2
 {
   height: 280px;
 }
-.emp_details_view > a
+.emp_details_view > .header_view > a
 {
   text-decoration: none;
   font-size: 30px;
   height: 50px;
-  margin-top: 20px;
   width: 50px;
-  left: 380px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
-  position: absolute;
 }
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_1 > h3,
-.update_empin > .update_form > .emp_details_view > .data_edit > .data_2 > h3
+ .data_edit > .data_1 > h3,
+.data_edit > .data_2 > h3
 {
   margin-left: 10px;
   margin-top: 6px;
@@ -845,88 +627,4 @@ margin-top: 0;
   display: flex;
   flex-direction: column;
   align-items: start;
-}
-
-.edit_div
-{
-  width: 100%;
-  height: 97%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.edit_div > .data{
-  height: 500px;
-  width: 30%;
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  border-radius: 20px;
-  justify-content: center;
-}
-.edit_div > .data > form > h2
-{
-  text-align: center;
-}
-.edit_table
-{
-  height: 80%;
-  width: 100%;
-  border-collapse: collapse ;
-
-}
-.edit_table label
-{
-  margin-left: 0;
-}
-
-.edit_table input, .edit_table select
-{
-  box-sizing: border-box;
-  font: inherit;
-  font-family: inherit;
-  display: block;
-  width: 100%;
-  float: left;
-  height: 25px;
-  font-size: 14px;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 0;
-  box-shadow: none;
-  color: #333;
-  border-color: #d2d6de;
-  text-align: center;
-
-}
-.edit_table tr td
-{
-  width: 50%;
-}
-
-.Edit_footer
-{
-  width: 50%;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.Edit_footer button
-{
-  height: 30px;
-  width: 90px;
-  border-radius: 10px;
-  background-color: #3c8dbc;
-  border: none;
-  color: white;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-.footer_tr
-{
-  height: 40px;
 }

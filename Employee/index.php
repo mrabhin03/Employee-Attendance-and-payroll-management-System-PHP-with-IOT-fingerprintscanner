@@ -1,7 +1,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Style.css?v=<?php echo time()?>">
+    <link rel="stylesheet"  href="../common/Common_style.css?v=<?php echo time()?>">
     <title>Biometric attendance system</title>
 
 
@@ -25,8 +26,8 @@
         <div class="side-menu">
             <ul>
                 <li class="head">MENU</li>
-                <li class="option"><a href="?page=home">HOME</a></li>
-                <li class="option"><a href="?page=attendace">ATTENDACE</a></li>
+                <li class="option"><a href="?page=home">DASHBOARD</a></li>
+                <li class="option"><a href="?page=attendace">ATTENDANCE</a></li>
                 <li class="option"><a href="?page=profile">PROFILE</a></li>
                 <li class="option"><a href="?page=payroll">PAYROLL</a></li>
                 <li class="option"><a href="?page=changepassword">CHANGE PASSWORD</a></li>

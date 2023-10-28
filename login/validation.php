@@ -6,15 +6,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
-
         // Check if the username starts with "A"
         if (strpos($username, "A") === 0) {
             $sql = "select Admin_password from admin where Admin_id='$username'";
             $result = mysqli_query($con, $sql);
             $row = mysqli_fetch_assoc($result);
-
+            echo "<script> alert('$result->num_rows');</script>";
             // Verify the password
             if (password_verify($password, $row['Admin_password'])) {
+                session_start();
+                $_SESSION['Admin_id'] =  $username;
                 header("location:../Admin/index.php");
             } else {
                 header("location:login.php?wrongpassword=true");

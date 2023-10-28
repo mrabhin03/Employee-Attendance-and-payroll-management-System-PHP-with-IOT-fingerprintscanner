@@ -3,26 +3,44 @@
   $Year = date('Y');
   $month = date('m');
   $day= date('d');
+  if(isset($_GET['date']))
+  {
+    $value=$_GET['date'];
+  }
+  else
+  {
+    $value=$Year."-".$month."-".$day;
+  }
+  $thmonth = str_replace("-", "", $value);
+  $themonth_id = substr($thmonth, 0, 6);
   ?>
+    <script>
+      const liview = document.querySelector('.icon'); 
+      const liviewicon = document.querySelector('.sub_tree');
+      liview.classList.add('active');
+      liviewicon.classList.add('active');
+  </script>
 <div class="Attendance">
     <div class="head">
-    <a href="?page=dailyadd"><button>REFRESH</button></a>
-        <h2>Daily Attendance</h2>
-        <form method="post">
-            <input value="<?php
-            if(isset($_POST['search_daily']))
+    <form method="post">
+            <input onchange="this.form.submit()" value="<?php
+            if(isset($_POST['daily_date']))
             {
                 $daily_date=$_POST['daily_date'];
+                $tday=$daily_date;
                 echo $daily_date;
             }
             else
             {
-                $daily_date=$Year."-".$month."-".$day;
+                $daily_date=$value;
+                $tday=$daily_date;
                 echo $daily_date;
             }
+
         ?>" type="date" name="daily_date" required>
-            <button name="search_daily" type="submit">Search</button>
         </form>
+        <h2>Daily Attendance</h2>
+        <?php  echo "<a href='?page=dailyadd&date=$tday'><button style='width:70px;'>Generate</button></a>"; ?>
     </div>
     <div class="Daily_att">
             <div class="Daily_att_sub">
@@ -38,8 +56,15 @@
                 </thead>
                 <tbody >
                   <?php
-
-                    $sql = "SELECT employee_details.*,daily_attendance.* FROM employee_details INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id WHERE Emp_status=1 AND Att_date='$daily_date'";
+                    $thmonth = str_replace("-", "", $daily_date);
+                    $themonth_id = substr($thmonth, 0, 6);
+                    $day=substr($thmonth, 6, 2);
+                    $day = intval($day);
+                    $sql = "SELECT employee_details.*, daily_attendance.*
+                    FROM employee_details
+                    INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id
+                    WHERE Emp_status = 1 AND Att_date = '$daily_date'
+                    ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED);";
                   
                     $query = $con->query($sql);
                     if($query->num_rows>0)
@@ -62,11 +87,16 @@
                   }
                   else
                   {
-                    ?>
-                    <tr>
-                      <td colspan="8">NO Data</td>
-                    </tr>
-                    <?php
+                      $holidayquery="SELECT * FROM holidays WHERE Month_id='$themonth_id' AND day='$day'";
+                      $holi=$con->query($holidayquery)->num_rows;
+                      if($holi> 0)
+                      {
+                        echo "<tr><td colspan='8' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
+                      }
+                      else
+                      {
+                        echo "<tr><td colspan='8'>No Data</td></tr>";
+                      }
                   }
                   ?>
                 </tbody>

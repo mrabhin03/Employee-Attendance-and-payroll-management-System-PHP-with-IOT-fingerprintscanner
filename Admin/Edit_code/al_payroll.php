@@ -1,10 +1,15 @@
 <?php
-    if(isset($_POST["gen_payroll"]))
+set_time_limit(5000);
+  include '../common/connection.php';
+$month_idsql="SELECT DISTINCT Month_id AS id
+FROM mothly_attendance
+ORDER BY id ASC ;";
+$month_id_query=$con-> query($month_idsql);
+if($month_id_query->num_rows > 0)
+{
+    while($month_id_data = $month_id_query->fetch_assoc())
     {
-        $year=$_POST['year'];
-        $month=$_POST['month']+1;
-        $month = str_pad($month, 2, "0", STR_PAD_LEFT);
-        $monthid=$year.$month;
+        $monthid=$month_id_data["id"];
         $empdata="SELECT * FROM employee_details WHERE Emp_status!=2 ";
         $empdbdata=$con->query($empdata);
         $calender_sql="SELECT * FROM company_calender WHERE Month_id='$monthid'";
@@ -92,6 +97,8 @@
             }
             $con->query($salary_insert);
         }
-        echo "<script>window.location.href = '?page=Payrolls&date=$monthid';</script>";
     }
+}
+
+echo "<script>window.location.href = '?page=Dashboard';</script>";
 ?>

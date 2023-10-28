@@ -2,15 +2,25 @@
 <html>
 <head>
     <title>The Admin Panel</title>
-    <link rel="stylesheet"  href="CSS/stylesheet.css">
+    <link rel="stylesheet"  href="CSS/Style.css?v=<?php echo time()?>">
+    <link rel="stylesheet"  href="../common/Common_style.css?v=<?php echo time()?>">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
+<?php
+    include 'session_check.php';
 
+    ?>
     <div class="top-bar">
-        <img src="../images/DPsq.png" alt="Logo">
+        <button onclick="logout()"  Style='float:right;'>Logout</button>
+        <script>
+            function logout() {
+                window.location.href = 'logout.php';
+            }
+        </script>
     </div>
     <div class="main-body">
         <div class="side-menu">
@@ -20,11 +30,11 @@
                 <li class="option">
                     <span onclick="opendata()">Attendance <span class="icon"><ion-icon class="down" name="caret-down-outline"></span></span>
                     <ul class="sub_tree">
-                        <li class="option"><a href="?page=dailyadd">Daily Attendance</a></li>
+                        <li class="option"><a href="?page=Attendance">Daily Attendance</a></li>
                         <li class="option"><a href="?page=Monthly_attendance">Monthy Attendance</a></li>
                     </ul>
                 </li>
-                <li class="option"><a href="?page=Employees">Employees</a></li>
+                <li class="option"><a href="?page=Employees">Employees </a></li>
                 <li class="option"><a href="?page=Designations">Designations</a></li>
                 <li class="option"><a href="?page=Calendar">Calendar</a></li>
                 <li class="option"><a href="?page=Payrolls">Payroll</a></li>

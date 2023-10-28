@@ -1,0 +1,173 @@
+
+
+.EMP_HOME,
+.perAttendance_M,
+.per_profile_details,
+.per_Payrolls
+{
+  background-color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 92%;
+}
+.per_profile_details
+{
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.EMP_HOME > .data1
+{
+  width: 100%;
+  height: 100%;
+  margin-top: 64px;
+
+}
+.EMP_HOME > .data1 >.sample_data
+{
+  position: fixed;
+  width: 14%;
+  height: 100%;
+  margin-left: 7px;
+  float: left;
+}
+
+.EMP_HOME > .data1 >.sample_data > .box
+{
+  width: 100%;
+  height: 18%;
+  background-color: slategrey;
+  margin-top: 20px;
+}
+
+.EMP_HOME > .data1 >.sample_data > .box > .bodypart
+{
+  color: white;
+  font-size: 14px;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.EMP_HOME > .data1 >.sample_data > .box > .bodypart > h3
+{
+  font-size: 30px;
+  margin: 0;
+}
+.EMP_HOME > .data1 >.sample_data > .box > .footerpart
+{
+  background-color: rgba(0,0,0,0.1);
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EMP_HOME > .data1 >.sample_data > .box > .footerpart > a{
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EMP_HOME > .data1 > .employee_att,
+.perAttendance_M > .Monthly_att
+{
+  width: 80%;
+  padding-right: 0;
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 18%;
+}
+.perAttendance_M > .Monthly_att
+{
+  margin-left: 0px;
+  width: 100%;
+  margin-top: 64px;
+}
+.EMP_HOME > .data1 > .employee_att > .att_header
+{
+  height: 7%;
+  margin-top: 20px;
+  width: 100%;
+  border-bottom: 3px solid rgba(73, 76, 86, 0.462) ;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+}
+.EMP_HOME > .data1 > .employee_att > .att_header >h3
+{
+  box-sizing: border-box;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.586);
+  font-family: 'Source Sans Pro',sans-serif;
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 0px;
+  margin-left: 10px;
+  line-height: 1;
+
+}
+.EMP_HOME > .data1 > .employee_att > .att_sub_div1,
+.perAttendance_M > .Monthly_att >.Monthly_att_sub
+{
+  height: 100%;
+  width: 100%;
+  margin-left: 5px;
+
+}
+
+.per_profile_details > .update_form
+{
+  height: 98%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+.per_profile_details > .update_form > .emp_details_view
+{
+  height: fit-content;
+  width: 90%;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.43);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.emp_details_view>.header_view 
+{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.emp_details_view>.header_view > h1
+{
+  color: white;
+  background-color: rgba(0, 0, 0, 0.327);
+  height: 40px;
+  width: 400px;
+  text-align: center;
+  border-radius: 20px;
+}
+.payrolls_details_sub > table
+{
+  margin-top: 64px;
+}
+

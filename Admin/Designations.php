@@ -5,6 +5,28 @@
     <div class="head">
         <a href="?page=adddesc"><button>ADD</button></a>
         <h2>Designation Details</h2>
+        <form method="post">
+            <input id="search" type="text" placeholder="Search" name="sevalue">
+        </form>
+        <script type="text/javascript">
+          $(document).ready(function()
+          {
+            $('#search').keyup(function()
+            {
+              
+              var input =$(this).val();
+                $.ajax({
+                  url:"Edit_code/desc_sea.php",
+                  method: "POST",
+                  data:{input:input},
+                  success:function(data)
+                  {
+                    $("#desctabledata").html(data);
+                  }
+                })
+            })
+          })
+        </script>
     </div>
     <div class="des_data">
         <div class="des_detail">
@@ -21,7 +43,7 @@
                   <th>Increment</th>
                   <th>Tools</th>
                 </thead>
-                <tbody >
+                <tbody id="desctabledata">
                   <?php
                     $sql = "SELECT * FROM employee_designation WHERE Desc_status=1";
                     $query = $con->query($sql);
