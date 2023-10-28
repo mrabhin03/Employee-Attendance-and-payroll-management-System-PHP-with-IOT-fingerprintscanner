@@ -1,11 +1,25 @@
 <div class="addempin">
+<div  class="thefulldiv">
+  <div class="loading">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <h2>Please wait till <br> The Account is created</h2>
+  </div>
+</div>
     <?php
-
+    if(isset($_POST["add"]) )
+    {
+        echo " <script>const loading = document.querySelector('.loading');
+        const areyou = document.querySelector('.thefulldiv'); 
+        areyou.classList.add('active');
+        loading.classList.add('active');</script>";
+    }
     include '../common/connection.php';
-    $check="SELECT COUNT(*) as row_count FROM employee_details";
+    $check="SELECT MAX(CAST(SUBSTRING(Emp_id, 2) AS SIGNED)) AS MAX_VALUE FROM employee_details;";
     $data=$con->query($check);
     $count=$data->fetch_assoc();
-    $empid="E".$count['row_count']+1;
+    $empid="E".$count['MAX_VALUE']+1;
     ?>
     <form method="POST" enctype="multipart/form-data">
         <div class="main_form">
