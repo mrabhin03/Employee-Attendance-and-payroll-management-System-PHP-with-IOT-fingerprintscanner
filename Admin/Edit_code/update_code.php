@@ -18,7 +18,7 @@ if(isset($_POST['update'])){
         $sql = "UPDATE employee_details SET Emp_name='$fullname',Desc_id='$des_id',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email' WHERE Emp_id=$empid";
     }
     $con->query($sql);
-    /*echo "<script>window.location.href = '?page=View_details&id=$empid';</script>";*/
+    echo "<script>window.location.href = '?page=View_details&id=$empid';</script>";
 }
 
 ?>

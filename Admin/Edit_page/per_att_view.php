@@ -2,7 +2,9 @@
 <div class="update_empin"> 
         <?php include '../common/connection.php';
         $year_month=date('Y-m');
-        $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");?>
+        $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
+        $monthdays = array(0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+        ?>
         <div class="update_form">
             <?php 
             $data=$_GET['id'];
@@ -27,6 +29,12 @@
                         echo $year_month;
                         ?>"
                     name="year_select">
+                    <?php          
+                        $month_id = str_replace("-", "", $year_month);
+                        list($Year, $monthdata) = explode('-', $year_month);
+                        if (($Year % 4 == 0 && $Year % 100 != 0) || $Year % 400 == 0) {
+                            $monthdays[2]=29;
+                        }?>
                     </form>
                         <table >
                             <thead>
@@ -43,9 +51,10 @@
                                     if($query->num_rows)
                                     {
                                         $i=1;
-                                        while($row = $query->fetch_assoc())
+                                        for($day=$monthdays[intval($monthdata)];$day>0;$day--)
                                         {
-                                            $date=$row['thedate'];
+                                            
+                                            $date=$Year."-".$monthdata."-".sprintf("%02d", $day);
                                             $invalue_sql="SELECT * FROM emp_logs WHERE Rf_id='$rf' AND DATE(Time_date)='$date'  AND Log_status='IN'";
                                             $inquery = $con->query($invalue_sql);
                                             if($inquery->num_rows)
@@ -69,13 +78,26 @@
                                                 $status=0;
                                                 $hours=0;
                                             }
+                                            $dayvalue = date("j", strtotime($date));
+                                            $holidayor="SELECT * FROM holidays WHERE Month_id='$month_id' AND day='$dayvalue'";
+                                            $true=$con->query($holidayor)->num_rows;
                                 ?>
                                 <tr >
+                                    <?php if($true==0)
+                                    { ?>
                                     <td><?php echo $date; ?></td>
                                     <td><?php echo $timein ?></td>
                                     <td><?php echo $timeout ?></td>
                                     <td><?php echo $hours."hrs"; ?></td>
                                     <td><?php echo ($status==1)? "<p style='color: rgb(13, 255, 0);'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?></td>
+                                    <?php }
+                                    else
+                                    {
+                                     echo "<td>$date</td>
+                                     <td>$timein</td>
+                                     <td>$timeout</td>
+                                     <td style='font-size:20px; color:red;' colspan='4'>Holiday</td>";   
+                                    }?>
                                 </tr>
                                 <?php
                                         }
