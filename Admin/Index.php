@@ -39,6 +39,7 @@
                 <li class="option"><a href="?page=Calendar">Calendar</a></li>
                 <li class="option"><a href="?page=Holidays">Holidays</a></li>
                 <li class="option"><a href="?page=Payrolls">Payroll</a></li>
+                <li class="option"><a href="?page=changepassword">Changepassword</a></li>
             </ul>
         </div>
         <script>
