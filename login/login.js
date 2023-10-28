@@ -55,3 +55,12 @@ function validation(){
 
   }
   
+  function typechange(data)
+{
+    const Inputbox = document.getElementById(data);
+    if (Inputbox.type === "text") {
+        Inputbox.type="password";
+      } else {
+        Inputbox.type="text";
+      }
+}

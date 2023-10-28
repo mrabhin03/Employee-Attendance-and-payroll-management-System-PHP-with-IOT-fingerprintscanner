@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biometric attendance system</title>
     <link rel="stylesheet" type="text/css" href="login.css">
-    <script src="login.js"></script>
+    
 </head>
 
 <body>
@@ -18,7 +18,7 @@
             <label id="usernameinvalid" style="color: red;visibility: hidden;">Invalid Username</label>
             <br>
             Password : <input type="password" id="password" placeholder="Password" name="password" required>
-            <input type="checkbox" name="" id="" >
+            <input type="checkbox" name="" id="" onclick="typechange('password');">
             <br>
             <label id="passwordinvalid" style="color: red;visibility: hidden;"></label>
             <br>
@@ -31,6 +31,7 @@
             ?>
         </form>
     </div>
+    <script src="login.js"></script>
 </body>
 
 </html>
