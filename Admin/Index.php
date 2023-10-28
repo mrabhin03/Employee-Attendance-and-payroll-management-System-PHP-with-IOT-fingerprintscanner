@@ -37,6 +37,7 @@
                 <li class="option"><a href="?page=Employees">Employees </a></li>
                 <li class="option"><a href="?page=Designations">Designations</a></li>
                 <li class="option"><a href="?page=Calendar">Calendar</a></li>
+                <li class="option"><a href="?page=Holidays">Holidays</a></li>
                 <li class="option"><a href="?page=Payrolls">Payroll</a></li>
             </ul>
         </div>

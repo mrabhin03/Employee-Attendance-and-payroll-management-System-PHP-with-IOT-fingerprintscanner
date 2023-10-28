@@ -12,7 +12,8 @@
 .Designation,
 .calendar,
 .Attendance_M,
-.Payrolls
+.Payrolls,
+.holidays
 {
   height: 91%;
   width: 100%;
@@ -47,7 +48,8 @@
 .calendar > .cal_data,
 .Attendance > .Daily_att,
 .Attendance_M > .Monthly_att,
-.Payrolls > .payrolls_details
+.Payrolls > .payrolls_details,
+.holidays > .holi_data
 {
   margin-top: 64px;
   width: 100%;
@@ -202,7 +204,8 @@
 }
 
 .Employees > .data2 > .employee_detail,
-.calendar > .cal_data > .cal_detail
+.calendar > .cal_data > .cal_detail,
+.holidays > .holi_data > .holi_detail
 {
   height: 100%;
   width: 100%;
@@ -563,7 +566,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   backdrop-filter: blur(5px);
 }
 .thefulldiv  .sureq > h4

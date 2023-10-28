@@ -179,7 +179,8 @@ body::before {
 .per_att_table > table,
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table,
-.per_Payrolls > .payrolls_details > .payrolls_details_sub > table
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table,
+.holidays > .holi_data > .holi_detail > table
 {
   border-collapse: collapse;
   width: 100%;
@@ -205,7 +206,8 @@ body::before {
 .per_att_table > table > thead,
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > thead,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > thead,
-.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > thead
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > thead,
+.holidays > .holi_data > .holi_detail > table > thead
 {
   font-size: 16px;
   line-height: 1.42857143;
@@ -228,7 +230,8 @@ body::before {
 .Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody,
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody,
-.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody,
+.holidays > .holi_data > .holi_detail > table > tbody
 {
   
   font-size: 14px;
@@ -247,7 +250,8 @@ body::before {
 .Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr,
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody > tr,
-.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr,
+.holidays > .holi_data > .holi_detail > table > tbody > tr
 {
   background-color: rgb(252, 252, 252);
   height: 60px;
@@ -261,7 +265,8 @@ body::before {
 .Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd),
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody > tr:nth-child(odd),
-.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd)
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd),
+.holidays > .holi_data > .holi_detail > table > tbody > tr:nth-child(odd)
 {
   background-color: rgb(222, 222, 222);
 }
@@ -274,7 +279,8 @@ body::before {
 .calendar > .head > form,
 .EMP_HOME > .head > form,
 .perAttendance_M > .head > form,
-.per_Payrolls > .head > form
+.per_Payrolls > .head > form,
+.holidays > .head > form
 {
   height: 100%;
   margin: 0;
@@ -298,7 +304,8 @@ body::before {
 .calendar > .head > form > select,
 .EMP_HOME > .head > form > input,
 .perAttendance_M > .head > form > select,
-.per_Payrolls > .head > form > select
+.per_Payrolls > .head > form > select,
+.holidays > .head > form > input
 {
   box-sizing: border-box;
   font: inherit;
@@ -327,7 +334,8 @@ body::before {
 .perAttendance_M > .head > select,
 .EMP_HOME > .head > form > input,
 .perAttendance_M > .head > form > select,
-.per_Payrolls > .head > form > select
+.per_Payrolls > .head > form > select,
+.holidays > .head > form > input
 {
   width: 200px;
   height: 30px;
@@ -344,7 +352,8 @@ body::before {
 .Payrolls > .head,
 .EMP_HOME > .head,
 .perAttendance_M > .head,
-.per_Payrolls > .head
+.per_Payrolls > .head,
+.holidays > .head
 {
   height: 60px;
   width: 84%;
@@ -369,7 +378,8 @@ body::before {
 .calendar > .head > a> button,
 .Attendance_M > .head > a >button,
 .Payrolls > .head > a > button,
-.Attendance > .head > a >button
+.Attendance > .head > a >button,
+.holidays > .head > a> button
 {
   background-color: #3c8dbc;
   margin-left: 20px;
