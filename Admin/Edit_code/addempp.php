@@ -46,8 +46,11 @@
                     $sql1="INSERT INTO designation_for_employee(Emp_id, Desc_id, Desc_from_date, Desc_to_date, Desc_status) VALUES ('$empid','$des_id','$desfrom','$desto',1)";
                     $con->query($sql);
                     $con->query($sql1);
-                    echo "<script>window.location.href = '?page=Employees';</script>";
+                    
+                    session_start(); // Start the session
+                    $_SESSION['email'] = $email;
+                    $_SESSION['passwordtmp'] = $passwordtmp;
+                    $_SESSION['fullname'] =$fullname;
+                    $_SESSION['empid'] = $empid;
+                    header('location:../../phpmailer/index.php');
                 }
-
-            ?>
-            
