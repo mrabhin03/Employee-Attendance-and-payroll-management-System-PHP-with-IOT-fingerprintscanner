@@ -115,9 +115,6 @@ body::before {
   border-bottom-left-radius: 20px;
   color: black;
 }
-.side-menu > ul > .option:last-child
-{
-}
 .option > span
 {
   margin-left: 20px;
@@ -283,7 +280,8 @@ body::before {
 .EMP_HOME > .head > form,
 .perAttendance_M > .head > form,
 .per_Payrolls > .head > form,
-.holidays > .head > form
+.holidays > .head > form,
+.pay_details_sub > .payroll_head >div>form
 {
   height: 100%;
   margin: 0;
@@ -308,7 +306,8 @@ body::before {
 .EMP_HOME > .head > form > input,
 .perAttendance_M > .head > form > select,
 .per_Payrolls > .head > form > select,
-.holidays > .head > form > input
+.holidays > .head > form > input,
+.pay_details_sub > .payroll_head >div>form >input
 {
   box-sizing: border-box;
   font: inherit;
@@ -338,7 +337,8 @@ body::before {
 .EMP_HOME > .head > form > input,
 .perAttendance_M > .head > form > select,
 .per_Payrolls > .head > form > select,
-.holidays > .head > form > input
+.holidays > .head > form > input,
+.pay_details_sub > .payroll_head >div>form >input
 {
   width: 200px;
   height: 30px;
@@ -532,7 +532,16 @@ margin-top: 0;
 {
   height: 280px;
 }
-.emp_details_view > .header_view > a
+.pay_details > .pay_details_sub > .main_pay
+{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.emp_details_view > .header_view > a,
+.pay_details > .pay_details_sub > .main_pay > a
 {
   text-decoration: none;
   font-size: 30px;
@@ -540,6 +549,9 @@ margin-top: 0;
   width: 50px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
  .data_edit > .data_1 > h3,
 .data_edit > .data_2 > h3
@@ -640,4 +652,135 @@ margin-top: 0;
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+.pay_details
+{
+  height: 90%;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pay_details > .pay_details_sub
+{
+  background-color: #0000004d;
+  color: white;
+  height: 90%;
+  width: 90%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 5px solid white;
+}
+.pay_details_sub > .payroll_head
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 70px;
+  width: 100%;
+  border-bottom: 4px solid white;
+  border-top: 4px solid white;
+  color: white;
+  margin-top: -15px;
+  margin-bottom: 5px;
+}
+.pay_details_sub > .payroll_head >div
+{
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.pay_details_sub > .payroll_scale01
+{
+  height: 120px;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.915);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.pay_details_sub > .payroll_scale01 > h1,
+.pay_details_sub > .payroll_salarydet > h1
+{
+  color: #000000;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.pay_details_sub > .payroll_scale01 > table,
+.pay_details_sub > .payroll_salarydet > table
+{
+  width: 98%;
+  text-align: center;
+  margin-bottom: 30px;
+  border-collapse: collapse;
+  font-size: 20px;
+  font-weight: 300;
+}
+.pay_details_sub > .payroll_scale02
+{
+  height: 120px;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.915);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.pay_details_sub > .payroll_scale02 > div
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
+}
+.pay_details_sub > .payroll_scale02 > div:first-child
+{
+  border-right: 5px solid black;
+}
+.pay_details_sub > .payroll_scale02 > div > table
+{
+  margin-left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: large;
+  font-weight: 600;
+  border-collapse: collapse;
+}
+.pay_details_sub > .payroll_scale02 > div > table tr
+{
+  margin-top: 50px;
+}
+.pay_details_sub > .payroll_scale02 > div > table tr p
+{
+  margin-left: 40px;
+}
+.pay_details_sub > .payroll_scale02 > div > table tr:nth-child(even)
+{
+  background-color: #dadada;
+}
+
+.pay_details_sub > .payroll_salarydet
+{
+  height: 120px;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.915);
+  margin-bottom: 50px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
 }

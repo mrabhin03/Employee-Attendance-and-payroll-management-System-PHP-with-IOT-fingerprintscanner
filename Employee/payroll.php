@@ -77,7 +77,7 @@
                             <td><?php echo "₹".number_format($row['Total_salary']); ?></td>
                             <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                             <td>
-                          <?php $data=$row['Emp_id']; echo "<a href='?page=View_details&id=$data'><button class='view-emp' >View Details</button></a>" ?>                            
+                          <?php $month=$row['Month_id'];  echo "<a href='?page=per_payroll&check=$month'><button class='view-emp' >View Details</button></a>" ?>                            
                           </td>
                         </tr>
                       <?php

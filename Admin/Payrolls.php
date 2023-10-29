@@ -57,6 +57,7 @@
                     if($query->num_rows > 0)
                     {
                       $i=1;
+                      $_SESSION['month_id']=$m_id;
                     while($row = $query->fetch_assoc()){
                       ?>
                         <tr>
@@ -70,7 +71,7 @@
                           <td><?php echo "₹".number_format($row['Total_salary']); ?></td>
                           <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                           <td>
-                          <?php $data=$row['Emp_id']; echo "<a href='?page=View_details&id=$data'><button class='view-emp' >View Details</button></a>" ?>                            
+                          <?php $data=$row['Emp_id']; echo "<a href='?page=payroll_details&id=$data'><button class='view-emp' >View Details</button></a>" ?>                            
                           </td>
                         </tr>
                       <?php
