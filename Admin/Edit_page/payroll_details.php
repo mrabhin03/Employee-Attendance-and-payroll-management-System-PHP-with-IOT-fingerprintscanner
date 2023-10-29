@@ -96,7 +96,7 @@
                         <tr>
                             <td><P>Total</p></td>
                             <td>:</td>
-                            <td><P><?php echo "₹".number_format($row['Overtime_salary']);?></p></td>
+                            <td><P><?php echo ($row['Overtime_hrs']>4)? "₹".number_format($row['Overtime_salary']*4):  "₹".number_format($row['Overtime_salary']*$row['Overtime_hrs'])?></p></td>
                         </tr>
                 </table>
             </div>
@@ -119,7 +119,7 @@
                         <td><?php echo "₹".number_format($row['Salary_da']);?></td>
                         <td><?php echo "₹".number_format($row['Salary_ma']);?></td>
                         <td><?php echo "₹".number_format($row['Salary_pf']);?></td>
-                        <td><?php echo "₹".number_format($row['Overtime_salary']);?></td>
+                        <td><?php echo ($row['Overtime_hrs']>4)? "₹".number_format($row['Overtime_salary']*4):  "₹".number_format($row['Overtime_salary']*$row['Overtime_hrs'])?></td>
                         <td><?php echo "₹".number_format($row['Total_salary']);?></td>
                         <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                     </tr>

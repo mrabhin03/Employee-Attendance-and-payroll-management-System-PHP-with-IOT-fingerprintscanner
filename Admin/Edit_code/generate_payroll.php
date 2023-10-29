@@ -5,7 +5,7 @@
         $month=$_POST['month']+1;
         $month = str_pad($month, 2, "0", STR_PAD_LEFT);
         $monthid=$year.$month;
-        $empdata="SELECT * FROM employee_details WHERE Emp_status!=2 ";
+        $empdata="SELECT * FROM employee_details WHERE Emp_status!=2 AND DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
         $empdbdata=$con->query($empdata);
         $calender_sql="SELECT * FROM company_calender WHERE Month_id='$monthid'";
         $cal_query=$con->query($calender_sql);
@@ -20,8 +20,8 @@
                 $ir=0;
                 while($for_dec_data=$descforempquery->fetch_assoc())
                 {
-                    $desc_from_date = date("Ym", strtotime($for_dec_data["Desc_from_date"]));
-                    $desc_to_date = date("Ym", strtotime($for_dec_data["Desc_to_date"]));
+                    $desc_from_date =$for_dec_data["Desc_from_date"];
+                    $desc_to_date = $for_dec_data["Desc_to_date"];
                     if($desc_from_date<=$monthid && $desc_to_date>=$monthid)
                     {
                         $descid=$for_dec_data["Desc_id"];

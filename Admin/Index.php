@@ -36,9 +36,9 @@
                 </li>
                 <li class="option"><a href="?page=Employees">Employees </a></li>
                 <li class="option"><a href="?page=Designations">Designations</a></li>
+                <li class="option"><a href="?page=Payrolls">Payroll</a></li>
                 <li class="option"><a href="?page=Calendar">Calendar</a></li>
                 <li class="option"><a href="?page=Holidays">Holidays</a></li>
-                <li class="option"><a href="?page=Payrolls">Payroll</a></li>
                 <li class="option"><a href="?page=changepassword">Changepassword</a></li>
             </ul>
         </div>
@@ -94,6 +94,6 @@
     </div>
 
 </body>
-<script src="javascript/Functions.js"></script>
+<script src="javascript/Functions.js?v=<?php echo time()?>"></script>
 
 </html>

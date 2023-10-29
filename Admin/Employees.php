@@ -37,6 +37,7 @@
                   <th>Photo</th>
                   <th>Name</th>
                   <th>Designation</th>
+                  <th>Date of Join</th>
                   <th>Salary</th>
                   <th>Mobile No</th>
                   <th>Status</th>
@@ -58,6 +59,7 @@
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
                           <td><?php echo $row['Emp_name']?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
+                          <td><?php echo $row['Emp_DOJ']; ?></td>
                           <td><?php echo "₹".$row['Desc_basic']; ?></td>
                           <td><?php echo $row['Emp_mobileno']; ?></td>
                           <td><?php echo ($row['Emp_status']==1)? "<p style='color: green;'>ACTIVE</p>":"<p style='color: red; font-weigth:none;'>INACTIVE</p>"; ?></td>

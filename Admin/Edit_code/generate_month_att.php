@@ -6,7 +6,7 @@
         $month = str_pad($month, 2, "0", STR_PAD_LEFT);
         $date=$year."-".$month;
         $monthid=$year.$month;
-        $empdata="SELECT * FROM employee_details";
+        $empdata="SELECT * FROM employee_details WHERE DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
         $empdbdata=$con->query($empdata);
         while($emp=$empdbdata->fetch_array())
         {
@@ -14,11 +14,33 @@
             $datecheck="SELECT * FROM daily_attendance WHERE Att_date LIKE '$date%' AND Emp_id='$empid' AND Att_status=1";
             $data=$con->query($datecheck);
             $dec_id=$emp['Desc_id'];
+            $descforempquery=$con->query("SELECT * FROM designation_for_employee WHERE Emp_id='$empid'");
+            if($descforempquery->num_rows> 0)
+            {
+                $ir=0;
+                while($for_dec_data=$descforempquery->fetch_assoc())
+                {
+                    $desc_from_date = $for_dec_data["Desc_from_date"];
+                    $desc_to_date = $for_dec_data["Desc_to_date"];
+                    if($desc_from_date<=$monthid && $desc_to_date>=$monthid)
+                    {
+                        $dec_id=$for_dec_data["Desc_id"];
+                        $ir=1;
+                    }
+                }
+                if($ir!=1)
+                {
+                    $dec_id= 0;
+                }
+            } 
+            else
+            {
+                $dec_id= 0;
+            }
             $dec="SELECT Desc_overtimesalary FROM employee_designation WHERE Desc_id='$dec_id'";
             $desdata=$con->query($dec);
             $des_os=$desdata->fetch_array();
             $Oversalary=$des_os["Desc_overtimesalary"];
-
             $monthlydata="SELECT * FROM mothly_attendance WHERE Emp_id='$empid' AND Month_id='$monthid'";
             $monthcheck=$con->query($monthlydata);
 
@@ -45,7 +67,7 @@
                 if($monthcheck->num_rows>0)
                 {
                     $insert_mo="UPDATE mothly_attendance SET Normal_work_hr='$normalhours' WHERE Emp_id='$empid' AND  Month_id='$monthid'";
-                    $insert_ov="UPDATE overtime_details SET Overtime_hrs='$overhours'  WHERE Emp_id='$empid' AND  Month_id='$monthid'";
+                    $insert_ov="UPDATE overtime_details SET Overtime_hrs='$overhours' , Overtime_salary='$Oversalary' WHERE Emp_id='$empid' AND  Month_id='$monthid'";
                 }
                 else
                 {
@@ -58,7 +80,7 @@
                 if($monthcheck->num_rows>0)
                 {
                     $insert_mo="UPDATE mothly_attendance SET Normal_work_hr=0 WHERE Emp_id='$empid' AND  Month_id='$monthid'";
-                    $insert_ov="UPDATE overtime_details SET Overtime_hrs=0  WHERE Emp_id='$empid' AND  Month_id='$monthid'";
+                    $insert_ov="UPDATE overtime_details SET Overtime_hrs=0, Overtime_salary=0  WHERE Emp_id='$empid' AND  Month_id='$monthid'";
                 }
                 else
                 {

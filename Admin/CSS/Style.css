@@ -235,7 +235,7 @@
   text-align: center;
   border-radius: 20px;
   transition: all .3s ease-in;
-  overflow: hidden;
+  overflow: none;
 }
 .addmonth_att,.addpayroll
 {

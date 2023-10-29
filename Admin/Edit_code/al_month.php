@@ -9,7 +9,7 @@
             {
                 $date = date("Y-m", strtotime($montdata['Dates']));
                 $monthid = date("Ym", strtotime($montdata['Dates']));
-                $empdata="SELECT * FROM employee_details";
+                $empdata="SELECT * FROM employee_details WHERE DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
         $empdbdata=$con->query($empdata);
         while($emp=$empdbdata->fetch_array())
         {
@@ -17,6 +17,29 @@
             $datecheck="SELECT * FROM daily_attendance WHERE Att_date LIKE '$date%' AND Emp_id='$empid' AND Att_status=1";
             $data=$con->query($datecheck);
             $dec_id=$emp['Desc_id'];
+            $descforempquery=$con->query("SELECT * FROM designation_for_employee WHERE Emp_id='$empid'");
+            if($descforempquery->num_rows> 0)
+            {
+                $ir=0;
+                while($for_dec_data=$descforempquery->fetch_assoc())
+                {
+                    $desc_from_date = $for_dec_data["Desc_from_date"];
+                    $desc_to_date = $for_dec_data["Desc_to_date"];
+                    if($desc_from_date<=$monthid && $desc_to_date>=$monthid)
+                    {
+                        $dec_id=$for_dec_data["Desc_id"];
+                        $ir=1;
+                    }
+                }
+                if($ir!=1)
+                {
+                    $dec_id= 0;
+                }
+            } 
+            else
+            {
+                $dec_id= 0;
+            }
             $dec="SELECT Desc_overtimesalary FROM employee_designation WHERE Desc_id='$dec_id'";
             $desdata=$con->query($dec);
             $des_os=$desdata->fetch_array();

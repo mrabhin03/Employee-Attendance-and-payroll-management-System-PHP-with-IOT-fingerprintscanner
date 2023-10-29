@@ -13,7 +13,7 @@
                     <select name="year" id="year" required>
                     <option value="">-Select-</option>
                         <?php
-                        for($i=2022;$i<=2040;$i++)
+                        for($i=2020;$i<=2040;$i++)
                         {
                             echo "<option value=".$i.">".$i."</option>";
                         } 

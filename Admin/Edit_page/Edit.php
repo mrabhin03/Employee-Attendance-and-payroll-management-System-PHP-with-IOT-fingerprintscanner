@@ -58,29 +58,6 @@
                         <input value="<?php echo $EMP['Emp_Photo'];?>" style="width:200px" type="file" name="photo" id="photo">
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <label for="desig" >Designation</label>
-                    </td>
-                    <td>
-                    <select  name="desc_name"required>
-                        <?php 
-                        $ds=$EMP['Desc_id'];
-                          $sql = "SELECT * FROM employee_designation WHERE  Desc_id != '$ds'";
-                          $sql1 = "SELECT * FROM employee_designation WHERE  Desc_id = '$ds'";
-                          $query = $con->query($sql);
-                          $query1 = $con->query($sql1);
-                          $data=$query1->fetch_assoc();
-                          echo "<option value='$ds' selected>".$data['Desc_name']."</option>";
-                          while($prow = $query->fetch_assoc()){
-                            echo "
-                              <option value='".$prow['Desc_id']."'>".$prow['Desc_name']."</option>
-                            ";
-                          }
-                        ?>
-                  </select>
-                    </td>
-                </tr>
                 <tr class="footer_tr">
                     <td colspan="2">
                         <div class="Edit_footer">
@@ -102,15 +79,14 @@
         $address = $_POST['address'];
         $mobile = $_POST['mobile'];
         $filename = $_FILES['photo']['name'];
-        $des_id = $_POST['desc_name'];
         
         if(!empty($filename)){
             move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);
-            $sqldata = "UPDATE employee_details SET Emp_name='$fullname',Desc_id='$des_id',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email', Emp_Photo='$filename' WHERE Emp_id='$empid'";
+            $sqldata = "UPDATE employee_details SET Emp_name='$fullname',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email', Emp_Photo='$filename' WHERE Emp_id='$empid'";
         }
         else
         {
-            $sqldata = "UPDATE employee_details SET Emp_name='$fullname',Desc_id='$des_id',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email' WHERE Emp_id='$empid'";
+            $sqldata = "UPDATE employee_details SET Emp_name='$fullname',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email' WHERE Emp_id='$empid'";
         }
         
         $con->query($sqldata);

@@ -23,7 +23,8 @@ $log_query=$con->query($log_sql);
 while($logdate=$log_query->fetch_assoc())
 {
     $currentdate=$logdate['thedate'];
-    $emp="SELECT * FROM employee_details WHERE Emp_status=1 ORDER BY CAST(SUBSTRING('Emp_id', 2) AS SIGNED)";
+    $monthid = date('Ym', strtotime($currentdate));
+    $emp="SELECT * FROM employee_details WHERE Emp_status=1 AND DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid' ORDER BY CAST(SUBSTRING('Emp_id', 2) AS SIGNED) ";
     $emp_details=$con->query($emp);
     while($data=$emp_details->fetch_assoc())
     {
