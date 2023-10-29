@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
 include '../common/connection.php';
 set_time_limit(5000);
 if(isset($_GET['date'])){

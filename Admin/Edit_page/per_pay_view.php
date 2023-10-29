@@ -1,6 +1,7 @@
 
 <div class="update_empin"> 
-        <?php include '../common/connection.php';
+        <?php include 'session_check.php';
+        include '../common/connection.php';
         $year=date('Y');
         $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");?>
         <div class="update_form">

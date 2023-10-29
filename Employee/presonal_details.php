@@ -1,5 +1,6 @@
 <div class="profile"> 
-        <?php include '../common/connection.php';?>
+        <?php   include 'session_check.php';
+        include '../common/connection.php';?>
         <div class="update_form">
             <div class="emp_details_view">
             <div class="header_view">

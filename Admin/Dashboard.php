@@ -1,4 +1,4 @@
-
+<?php include 'session_check.php';?>
 <div class="thefulldiv">
   <div class="loading">
     <div align='center' class="sureq">

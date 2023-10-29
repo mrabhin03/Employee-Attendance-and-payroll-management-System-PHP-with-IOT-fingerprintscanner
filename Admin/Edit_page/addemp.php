@@ -8,6 +8,7 @@
   </div>
 </div>
     <?php
+    include 'session_check.php';
     if(isset($_POST["add"]) )
     {
         echo " <script>const loading = document.querySelector('.loading');

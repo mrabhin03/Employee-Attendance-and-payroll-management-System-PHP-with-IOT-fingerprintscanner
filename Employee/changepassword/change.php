@@ -1,4 +1,5 @@
 <?php
+  include 'session_check.php';
 include '../../common/connection.php';
 session_start();
 if(isset($_SESSION['Emp_id'])) {

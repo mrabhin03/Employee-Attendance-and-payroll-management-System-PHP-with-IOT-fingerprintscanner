@@ -1,5 +1,6 @@
 <div class="addempin">
     <?php
+    include 'session_check.php';
     $id=$_GET['id'];
     include '../common/connection.php';
     $desc_details = "SELECT * FROM employee_designation WHERE Desc_id='$id'";

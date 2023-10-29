@@ -1,5 +1,6 @@
 <div class="per_profile_details"> 
-        <?php include '../common/connection.php';?>
+        <?php   include 'session_check.php';
+        include '../common/connection.php';?>
         <div class="update_form">
         <?php 
             $id=$_SESSION['Emp_id'];

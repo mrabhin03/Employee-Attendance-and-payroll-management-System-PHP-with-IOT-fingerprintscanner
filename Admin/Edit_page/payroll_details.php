@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
   include '../common/connection.php';
     $id=$_GET['id'];
     $date=$_SESSION['month_id'];

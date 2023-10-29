@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
 include '../common/connection.php';
 if(isset($_POST['update'])){
     $empid = $_POST['Username'];

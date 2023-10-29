@@ -1,6 +1,7 @@
 
 <div class="update_empin"> 
-        <?php include '../common/connection.php';
+        <?php include 'session_check.php';
+        include '../common/connection.php';
         $year_month=date('Y-m');
         $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
         $monthdays = array(0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);

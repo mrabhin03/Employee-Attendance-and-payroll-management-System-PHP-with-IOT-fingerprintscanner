@@ -1,4 +1,5 @@
 <?php
+  include 'session_check.php';
   include '../common/connection.php';
     $id=$_SESSION['Emp_id'];
     $date=$_GET['check'];

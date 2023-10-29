@@ -1,4 +1,5 @@
 <?php
+  include 'session_check.php';
   include '../common/connection.php';
   $currentmonth=date("Y-m");
   $monthid=date("Ym");

@@ -1,5 +1,6 @@
 <?php
 set_time_limit(5000);
+include 'session_check.php';
   include '../common/connection.php';
 $month_idsql="SELECT DISTINCT Month_id AS id
 FROM mothly_attendance

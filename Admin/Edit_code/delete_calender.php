@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
 include '../common/connection.php';
     $data=$_GET['id'];
     $update="DELETE FROM company_calender WHERE Month_id='$data'";

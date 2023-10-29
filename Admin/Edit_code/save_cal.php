@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
 if(isset($_POST['save_cal'])){
     $year = $_POST['year'];
     $month = $_POST['month'];

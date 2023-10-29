@@ -1,6 +1,6 @@
 <div class="addempin">
     <?php
-
+include 'session_check.php';
     include '../common/connection.php';
 
     $desig_max_sql = "SELECT MAX(Desc_id) AS max FROM employee_designation;";

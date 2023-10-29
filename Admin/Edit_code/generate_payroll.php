@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
     if(isset($_POST["gen_payroll"]))
     {
         $year=$_POST['year'];

@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
 include '../common/connection.php';
     $month_id=$_GET['id'];
     $payquery="UPDATE salary_paid SET Salary_status='1' WHERE Month_id='$month_id'";

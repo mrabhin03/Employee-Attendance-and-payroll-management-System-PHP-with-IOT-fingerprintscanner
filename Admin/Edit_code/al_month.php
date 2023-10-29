@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
   include '../common/connection.php';
   set_time_limit(5000);
         $total_mont_sql="SELECT DISTINCT Att_date as Dates FROM daily_attendance;";

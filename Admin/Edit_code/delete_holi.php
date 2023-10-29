@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
 include '../common/connection.php';
     $day=$_GET['day'];
     $mid=$_GET['mid'];

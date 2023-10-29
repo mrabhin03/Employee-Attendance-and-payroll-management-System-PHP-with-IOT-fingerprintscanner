@@ -1,4 +1,5 @@
-
+<?php include 'session_check.php';
+?>
 <div class="changepassword">
 <script src="changepassword/scriptforchange.js?v=<?php echo time()?>"></script>
     <div class="change-container" >

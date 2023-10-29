@@ -1,6 +1,7 @@
 
 
 <?php
+include 'session_check.php';
 include '../common/connection.php';
     $data=$_GET['id'];
     $delete="DELETE FROM employee_details WHERE Emp_id='$data'";

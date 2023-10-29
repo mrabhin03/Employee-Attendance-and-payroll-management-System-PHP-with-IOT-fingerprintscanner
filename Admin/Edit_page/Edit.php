@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
     include '../common/connection.php';
     $data_id=$_GET['id'];
     $query="SELECT * FROM employee_details WHERE Emp_id='$data_id'";
