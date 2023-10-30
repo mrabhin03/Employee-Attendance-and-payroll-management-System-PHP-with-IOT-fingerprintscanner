@@ -38,6 +38,9 @@
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email" required>
                 </div>
+                <div class="form_div"  style="margin:0;margin-bottom:0px;">
+                    <label style=" color:red; margin-left:167px; margin-top:2px; margin-bottom:-20px; color: red; width:51%; text-align:center;" id="notemail"></label>
+                </div>
                 <div class="form_div">
                     <label for="address">Address</label>
                     <input type="text" id="address" name="address">
@@ -50,10 +53,13 @@
                     <label for="gender">Mobile no</label>
                     <input type="text" id="mobile" name="mobile">
                 </div>
+                <div>
+                    <label style=" margin-left:167px; margin-top:5px; color: red; width:51%; text-align:center;" id="notnumber"></label>
+                </div>
                 <div class="form_div" style="width: 25%; align-items:center;">
                     <label for="gender" id="gender">Gender</label>
-                    <input type="radio" value="Male" name="gender">Male
-                    <input type="radio" value="Female" name="gender">Female
+                    <input id="radiodata" type="radio" value="Male" name="gender">Male
+                    <input id="radiodata" type="radio" value="Female" name="gender" >Female
                 </div>
                 <div class="form_div">
                     <label for="photo">Photo</label>
@@ -61,7 +67,7 @@
                 </div>
                 <div class="add_footer">
                     <a href="?page=Employees"><button type="button" class="cancel_insert">Close</button></a>
-                    <button onclick="checkvalid()" type="button" class="next"> Next</button>
+                    <button onclick="checkdataEMAIL()" type="button" class="next"> Next</button>
                     <script src="javascript/Functions.js"></script>
                 </div>
             </div>

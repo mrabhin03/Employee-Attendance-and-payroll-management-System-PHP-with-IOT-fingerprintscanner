@@ -44923,20 +44923,20 @@ INSERT INTO `holidays` (`Month_id`, `day`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mothly_attendance`
+-- Table structure for table `monthly_attendance`
 --
 
-CREATE TABLE `mothly_attendance` (
+CREATE TABLE `monthly_attendance` (
   `Emp_id` varchar(30) NOT NULL,
   `Month_id` int(11) NOT NULL,
   `Normal_work_hr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `mothly_attendance`
+-- Dumping data for table `monthly_attendance`
 --
 
-INSERT INTO `mothly_attendance` (`Emp_id`, `Month_id`, `Normal_work_hr`) VALUES
+INSERT INTO `monthly_attendance` (`Emp_id`, `Month_id`, `Normal_work_hr`) VALUES
 ('E1', 202001, 151),
 ('E10', 202001, 125),
 ('E11', 202001, 103),

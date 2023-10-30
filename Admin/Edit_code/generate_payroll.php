@@ -39,7 +39,7 @@ include 'session_check.php';
                 $descid= 0;
             }
             $monthly_att_sql="SELECT ma.*, od.*
-            FROM mothly_attendance AS ma
+            FROM monthly_attendance AS ma
             LEFT JOIN overtime_details AS od
             ON ma.Emp_id = od.Emp_id AND ma.Month_id = od.Month_id
             WHERE ma.Emp_id = '$empid' AND ma.Month_id = '$monthid';";

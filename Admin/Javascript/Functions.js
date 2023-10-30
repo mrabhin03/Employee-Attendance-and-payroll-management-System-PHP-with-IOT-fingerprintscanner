@@ -89,3 +89,111 @@ function thesubmitfun()
         return true;
     }
 }
+function checkdataEMAIL() {
+    var numberlebal = document.getElementById('notnumber');
+    mobnumberbox = document.getElementById('mobile');
+    emailbox = document.getElementById('email');
+    var mobnumber = mobnumberbox.value;
+    var email =emailbox.value;
+    var emaillebal = document.getElementById('notemail');
+    numberlebal.textContent="";
+    emaillebal.textContent="";
+    i=0;
+    j=0;
+    var data = new FormData();
+    if(mobnumber!='')
+    {
+        if(!isNaN(mobnumber) && !isNaN(parseFloat(mobnumber)))
+        {
+            if(mobnumber.length === 10)
+            {
+                data.append('Mobile', mobnumber);
+                mobnumberbox.style.borderColor='#d2d6de';
+            }
+            else
+            {
+                mobnumberbox.style.borderColor='red';
+                numberlebal.textContent="Mobile number must be 10 digits";
+            }
+        }
+        else
+        {
+            mobnumberbox.style.borderColor='red';
+            numberlebal.textContent="Enter a valid Mobile number ";
+        }
+    }
+    else
+    {
+        mobnumberbox.style.borderColor='red';
+        numberlebal.textContent="Mobile number can't be empty";
+    }
+    if(email!='')
+    {
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(emailPattern.test(email))
+        {
+            data.append('Email', email);
+            emailbox.style.borderColor='#d2d6de';
+        }
+        else
+        {
+            emailbox.style.borderColor='red';
+            emaillebal.textContent="Enter a valid Email";
+        }
+    }
+    else
+    {
+        emailbox.style.borderColor='red';
+        emaillebal.textContent="Email can't be empty";
+    }
+    var xhr = new XMLHttpRequest();
+    var url = "Edit_code/email_phone_check.php";
+
+    xhr.open("POST", url, true);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Check the response from PHP
+            var response = xhr.responseText.split(',');
+            var emaildata = parseInt(response[0]);
+            var mobiledata = parseInt(response[1]);
+
+            if (emaildata != 404) {
+                if(emaildata==0)
+                {
+                    emailbox.style.borderColor='green';
+                    i=1;
+                }
+                else
+                {
+                    emaillebal.textContent="Email already exists";
+                }
+            } else {
+                return 0;
+            }
+
+            if (mobiledata != 404) {
+                if(mobiledata==0)
+                {
+                    mobnumberbox.style.borderColor='green';
+                    j=1;
+                }
+                else
+                {
+                    numberlebal.textContent="Mobile number already exists";
+                }
+            } else {
+                return 0;
+            }
+            if(i==1&&j==1)
+            {
+                checkvalid();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    };
+    xhr.send(data);
+}

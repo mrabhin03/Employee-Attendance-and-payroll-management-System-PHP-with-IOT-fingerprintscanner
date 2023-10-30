@@ -50,7 +50,7 @@ include 'session_check.php';
                 <tbody >
                   <?php
 
-                    $sql = "SELECT employee_details.*,mothly_attendance.* FROM employee_details INNER JOIN mothly_attendance ON employee_details.Emp_id = mothly_attendance.Emp_id WHERE Emp_status=1 AND Month_id='$m_id' ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED)";
+                    $sql = "SELECT employee_details.*,monthly_attendance.* FROM employee_details INNER JOIN monthly_attendance ON employee_details.Emp_id = monthly_attendance.Emp_id WHERE Emp_status=1 AND Month_id='$m_id' ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED)";
                     $cale="SELECT * FROM company_calender WHERE Month_id='$m_id'";
                     $query = $con->query($sql);
                     $query2 = $con->query($cale);

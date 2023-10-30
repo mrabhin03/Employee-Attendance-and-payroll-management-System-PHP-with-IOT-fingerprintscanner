@@ -3,7 +3,7 @@ set_time_limit(5000);
 include 'session_check.php';
   include '../common/connection.php';
 $month_idsql="SELECT DISTINCT Month_id AS id
-FROM mothly_attendance
+FROM monthly_attendance
 ORDER BY id ASC ;";
 $month_id_query=$con-> query($month_idsql);
 if($month_id_query->num_rows > 0)
@@ -44,7 +44,7 @@ if($month_id_query->num_rows > 0)
                 $descid= 0;
             }
             $monthly_att_sql="SELECT ma.*, od.*
-            FROM mothly_attendance AS ma
+            FROM monthly_attendance AS ma
             LEFT JOIN overtime_details AS od
             ON ma.Emp_id = od.Emp_id AND ma.Month_id = od.Month_id
             WHERE ma.Emp_id = '$empid' AND ma.Month_id = '$monthid';";

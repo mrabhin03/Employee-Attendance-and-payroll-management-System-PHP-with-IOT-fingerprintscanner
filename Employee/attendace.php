@@ -53,9 +53,9 @@
                 <tbody >
                   <?php
 
-                    $sql = "SELECT employee_details.Emp_id,mothly_attendance.*,overtime_details.*,company_calender.* FROM employee_details INNER JOIN mothly_attendance ON employee_details.Emp_id = mothly_attendance.Emp_id INNER JOIN overtime_details ON employee_details.Emp_id = overtime_details.Emp_id AND
-                    mothly_attendance.Month_id = overtime_details.Month_id INNER JOIN company_calender ON mothly_attendance.Month_id = company_calender.Month_id
-                    WHERE Emp_status=1 AND mothly_attendance.Month_id LIKE '$year%' AND employee_details.Emp_id='$id'";
+                    $sql = "SELECT employee_details.Emp_id,monthly_attendance.*,overtime_details.*,company_calender.* FROM employee_details INNER JOIN monthly_attendance ON employee_details.Emp_id = monthly_attendance.Emp_id INNER JOIN overtime_details ON employee_details.Emp_id = overtime_details.Emp_id AND
+                    monthly_attendance.Month_id = overtime_details.Month_id INNER JOIN company_calender ON monthly_attendance.Month_id = company_calender.Month_id
+                    WHERE Emp_status=1 AND monthly_attendance.Month_id LIKE '$year%' AND employee_details.Emp_id='$id'";
                     $query = $con->query($sql);
                     if($query->num_rows>0)
                     {
