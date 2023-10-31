@@ -47,7 +47,12 @@ include 'session_check.php';
                 <tbody id="tabledata">
                   <?php
                   
-                    $sql = "SELECT *, employee_details.Emp_id AS empid FROM employee_details LEFT JOIN employee_designation ON employee_designation.desc_id=employee_details.desc_id WHERE Emp_status!=2  ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS SIGNED) ;";
+                    $sql = "SELECT employee_details.*, designation_for_employee.*, employee_designation.*
+                    FROM employee_details
+                    INNER JOIN designation_for_employee ON employee_details.Emp_id = designation_for_employee.Emp_id
+                    INNER JOIN employee_designation ON designation_for_employee.Desc_id = employee_designation.Desc_id
+                    WHERE employee_details.Emp_status != 2 AND designation_for_employee.Desc_status='1'
+                    ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS SIGNED);";
                     $query = $con->query($sql);
                     if($query->num_rows)
                     {
@@ -75,7 +80,7 @@ include 'session_check.php';
                   {
                     ?>
                     <tr>
-                      <td colspan="9">
+                      <td colspan="10">
                         NO DATA
                       </td>
                     </tr>

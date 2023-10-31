@@ -5,10 +5,12 @@ include 'session_check.php';
     $query="SELECT * FROM designation_for_employee WHERE Emp_id='$data_id' AND Desc_status='1'";
     $data=$con->query($query);
     $EMP = $data->fetch_assoc();
+    $yearfrom=substr($EMP['Desc_from_date'], 0, 4);
+    $monthfrom=substr($EMP['Desc_from_date'], 4);
     $year=substr($EMP['Desc_to_date'], 0, 4);
     $month=substr($EMP['Desc_to_date'], 4);
     $date =  $year. '-' . $month;
-    if($month>12)
+    if($month>=12)
     {
         $month=1;
         $month=sprintf("%02d", $month);
@@ -32,6 +34,14 @@ include 'session_check.php';
                     </td>
                     <td>
                         <input type="text" id="name" name="Username" value="<?php echo $EMP['Emp_id'];?>" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="des_from">Old Designation from</label>
+                    </td>
+                    <td>
+                        <input type="month" id="oldfrom" name="olddes_from" value="<?php echo $yearfrom."-".$monthfrom;?>" readonly>
                     </td>
                 </tr>
                 <tr>
@@ -69,7 +79,7 @@ include 'session_check.php';
                     <select   name="desc_id" required>
                         <?php 
                         $ds=$EMP['Desc_id'];
-                          $sql = "SELECT * FROM employee_designation WHERE  Desc_id != '$ds0'  AND Desc_status!='0'";
+                          $sql = "SELECT * FROM employee_designation WHERE  Desc_id != '$ds'  AND Desc_status!='0'";
                           $sql1 = "SELECT * FROM employee_designation WHERE  Desc_id = '$ds'";
                           $query = $con->query($sql);
                           $query1 = $con->query($sql1);
@@ -104,6 +114,7 @@ include 'session_check.php';
         $date_from=$_POST['des_from'];
         $date_to=$_POST['des_to'];
         $desc_id=$_POST['desc_id'];
+        $olddate = substr($olddate_to, 0, 4) . substr($olddate_to, 5);
         $date_to = substr($date_to, 0, 4) . substr($date_to, 5);
         $date_from = substr($date_from, 0, 4) . substr($date_from, 5);
         $update="UPDATE designation_for_employee SET Desc_to_date='$olddate', Desc_status='0' WHERE Emp_id='$id' AND Desc_status='1'";

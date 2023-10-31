@@ -5,18 +5,15 @@ include 'session_check.php';
                     $empid = $_POST['Username'];
                     $fullname = $_POST['fullname'];
                     $email = $_POST['email'];
-                    $address = $_POST['address'];
-                    $dob = $_POST['DOB'];
+                    $address = "";
+                    $dob = "0000-00-00";
                     $mobile = $_POST['mobile'];
-                    $gender = $_POST['gender'];
-                    $filename = $_FILES['photo']['name'];
+                    $gender = "";
+                    $filename ="";
                     $doj = $_POST['DOJ'];
                     $des_id = $_POST['desc_name'];
-                    $desfrom = $_POST['Des_from'];
-                    $desto = $_POST['Des_to'];
-                    if(!empty($filename)){
-                        move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
-                    }
+                    $desfrom =  date('Ym', strtotime($_POST['Des_from']));
+                    $desto =  date('Ym', strtotime($_POST['Des_to']));
                     $numbers = '';
                     for($i = 0; $i < 10; $i++){
                         $numbers .= $i;

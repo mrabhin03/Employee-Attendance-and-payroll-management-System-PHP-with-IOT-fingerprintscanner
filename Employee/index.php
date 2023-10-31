@@ -11,6 +11,15 @@
 <body>
     <?php
     include 'session_check.php';
+    include '../common/connection.php';
+    $id=$_SESSION['Emp_id'];
+    $EMPsql = "SELECT * FROM employee_details WHERE Emp_status=1 AND Emp_id='$id';";
+    $empquery = $con->query($EMPsql);
+    $row = $empquery->fetch_assoc();
+    if($row["Emp_mobileno"] == 0)
+    {
+      echo "<script>window.location.href = 'Edit_detail.php';</script>";
+    }
 
     ?>
     <div class="top-bar">

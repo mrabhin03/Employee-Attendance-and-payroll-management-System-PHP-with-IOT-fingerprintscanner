@@ -1,4 +1,4 @@
-<div class="addempin">
+<div class="addempin" style="height: 300px;">
 <div  class="thefulldiv">
   <div class="loading">
     <div class="bar1"></div>
@@ -39,31 +39,7 @@
                     <input type="text" id="email" name="email" required>
                 </div>
                 <div class="form_div"  style="margin:0;margin-bottom:0px;">
-                    <label style=" color:red; margin-left:167px; margin-top:2px; margin-bottom:-20px; color: red; width:51%; text-align:center;" id="notemail"></label>
-                </div>
-                <div class="form_div">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address">
-                </div>
-                <div class="form_div">
-                    <label for="DOB">Date of Birth</label>
-                    <input type="date" id="dob" name="DOB">
-                </div>
-                <div class="form_div">
-                    <label for="gender">Mobile no</label>
-                    <input type="text" id="mobile" name="mobile">
-                </div>
-                <div>
-                    <label style=" margin-left:167px; margin-top:5px; color: red; width:51%; text-align:center;" id="notnumber"></label>
-                </div>
-                <div class="form_div" style="width: 25%; align-items:center;">
-                    <label for="gender" id="gender">Gender</label>
-                    <input id="radiodata" type="radio" value="Male" name="gender">Male
-                    <input id="radiodata" type="radio" value="Female" name="gender" >Female
-                </div>
-                <div class="form_div">
-                    <label for="photo">Photo</label>
-                    <input type="file" name="photo" id="photo">
+                    <label style=" color:red; margin-left:167px; margin-top:2px; margin-bottom:0px; color: red; width:51%; text-align:center;" id="notemail"></label>
                 </div>
                 <div class="add_footer">
                     <a href="?page=Employees"><button type="button" class="cancel_insert">Close</button></a>
@@ -96,11 +72,11 @@
                 </div>
                 <div class="form_div">
                     <label for="Desig_from">Designation From</label>
-                    <input type="date" name="Des_from" required>
+                    <input type="month" name="Des_from" required>
                 </div>
                 <div class="form_div">
                     <label for="Desig_to">Designation To</label>
-                    <input type="date" name="Des_to" required>
+                    <input type="month" name="Des_to" required>
                 </div>
                 <div class="add_footer">
                     <button onclick="add_new_page()" type="button" class="back">Back</button>

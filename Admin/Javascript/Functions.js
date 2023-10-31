@@ -6,14 +6,10 @@ function checkvalid()
     value1=document.getElementById('user');
     value3=document.getElementById('name');
     value4=document.getElementById('email');
-    value5=document.getElementById('address');
-    value6=document.getElementById('dob');
-    value7=document.getElementById('mobile');
-    value8=document.getElementById('gender');
-    b.push(value1,value3,value4,value5,value6,value7,value8,)
-    a.push(value1.value,value3.value,value4.value,value5.value,value6.value,value7.value,value8.value)
+    b.push(value1,value3,value4)
+    a.push(value1.value,value3.value,value4.value)
     co=0
-    for(i=0;i<7;i++)
+    for(i=0;i<3;i++)
     {
         if(a[i]=='')
         {
@@ -90,43 +86,12 @@ function thesubmitfun()
     }
 }
 function checkdataEMAIL() {
-    var numberlebal = document.getElementById('notnumber');
-    mobnumberbox = document.getElementById('mobile');
     emailbox = document.getElementById('email');
-    var mobnumber = mobnumberbox.value;
     var email =emailbox.value;
     var emaillebal = document.getElementById('notemail');
-    numberlebal.textContent="";
     emaillebal.textContent="";
     i=0;
-    j=0;
     var data = new FormData();
-    if(mobnumber!='')
-    {
-        if(!isNaN(mobnumber) && !isNaN(parseFloat(mobnumber)))
-        {
-            if(mobnumber.length === 10)
-            {
-                data.append('Mobile', mobnumber);
-                mobnumberbox.style.borderColor='#d2d6de';
-            }
-            else
-            {
-                mobnumberbox.style.borderColor='red';
-                numberlebal.textContent="Mobile number must be 10 digits";
-            }
-        }
-        else
-        {
-            mobnumberbox.style.borderColor='red';
-            numberlebal.textContent="Enter a valid Mobile number ";
-        }
-    }
-    else
-    {
-        mobnumberbox.style.borderColor='red';
-        numberlebal.textContent="Mobile number can't be empty";
-    }
     if(email!='')
     {
         var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -156,7 +121,6 @@ function checkdataEMAIL() {
             // Check the response from PHP
             var response = xhr.responseText.split(',');
             var emaildata = parseInt(response[0]);
-            var mobiledata = parseInt(response[1]);
 
             if (emaildata != 404) {
                 if(emaildata==0)
@@ -171,21 +135,7 @@ function checkdataEMAIL() {
             } else {
                 return 0;
             }
-
-            if (mobiledata != 404) {
-                if(mobiledata==0)
-                {
-                    mobnumberbox.style.borderColor='green';
-                    j=1;
-                }
-                else
-                {
-                    numberlebal.textContent="Mobile number already exists";
-                }
-            } else {
-                return 0;
-            }
-            if(i==1&&j==1)
+            if(i==1)
             {
                 checkvalid();
             }

@@ -7,7 +7,11 @@
         <div class="update_form">
             <?php 
             $id=$_GET['id'];
-            $query="SELECT * FROM employee_details WHERE Emp_id='$id'";
+            $query="SELECT employee_details.*, employee_designation.Desc_name, designation_for_employee.Desc_id
+            FROM employee_details
+            INNER JOIN designation_for_employee ON employee_details.Emp_id = designation_for_employee.Emp_id
+            INNER JOIN employee_designation ON designation_for_employee.Desc_id = employee_designation.Desc_id
+            WHERE employee_details.Emp_id = '$id' AND designation_for_employee.Desc_status = '1';";
             $data=$con->query($query);
             $EMP = $data->fetch_assoc(); ?>
          
@@ -22,7 +26,7 @@
                         <img style=" object-fit: cover; " src="<?php echo (!empty($EMP['Emp_Photo']))? '../images/'.$EMP['Emp_Photo']:'../images/profile.jpg'; ?>" > 
                         <h2><?php echo $EMP['Emp_name'];?></h2>
                         <div class="id_show">ID: <?php echo $EMP['Emp_id']; ?></div>
-                        <div class="Desc_show"><h4>DESIGNATION ID</h4><?php echo $EMP['Desc_id'];?></div>
+                        <div class="Desc_show"><h4>DESIGNATION</h4><?php echo $EMP['Desc_name'];?></div>
                         <div class="Desc_show"><h4>RF ID</h4><?php echo $EMP['Rf_id']; $rf=$EMP['Rf_id'];?></div>
                         <div class="Desc_show"><h4>DATE OF JOIN</h4><?php echo $EMP['Emp_DOJ'];?></div>
                         <div class="Desc_show"><h4>STATUS</h4><?php echo ($EMP['Emp_status']==0)? "<span style='color:red;'>INACTIVE</span>":"<span style='color:green;'>ACTIVE</span>";?></div>
