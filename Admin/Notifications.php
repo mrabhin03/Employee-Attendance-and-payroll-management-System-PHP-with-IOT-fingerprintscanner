@@ -34,18 +34,21 @@ $no=101;
                         <td style="font-size:200%;"><?php echo $i; $i++; ?></td>
                         <td style="font-size:200%;"><?php echo $result; ?></td>
                         <td>
-                            <table style="text-align:left; width: 100%; border-collapse: collapse;">
+                            
+                            <table style="text-align:left; width: 100%; height:100%; border-collapse: collapse;">
                                 <?php
                                 $sqlt2 = "SELECT * FROM employee_details WHERE Emp_id='$result'";
                                 $queryt2 = $con->query($sqlt2);
                                 if($queryt2->num_rows)
                                 {
                                     $row2=$queryt2->fetch_assoc();
-                                    
+                                    $theoption = substr($row['Emp_id'], 0, 1);
+                                    if($theoption == 'R')
+                                    {
                                         if($row2['Emp_name']!=$row['Emp_name'])
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>NAME</td>";
+                                            echo "<td>Name</td>";
                                             if($row2['Emp_name']=='')
                                             {
                                                 echo "<td>NONE</td>";
@@ -146,6 +149,67 @@ $no=101;
                                             }
                                             echo "</tr>";
                                         }
+                                    }
+                                    else
+                                    {
+                                        if($row2['Emp_name']!=$row['Emp_name'] && $row['Emp_name']!='')
+                                        {
+                                            echo "<tr class='newtable'>";
+                                            echo "<td>Name</td>";
+                                            if($row2['Emp_name']=='')
+                                            {
+                                                echo "<td>NONE</td>";
+                                            }
+                                            else
+                                            {
+                                                echo "<td>".$row2['Emp_name']."</td>";
+                                            }
+                                            echo "<td>-></td>";
+                                            echo "<td>".$row["Emp_name"]."</td>";
+                                            echo "</tr>";
+                                        }
+                                        if($row2['Emp_Address']!=$row['Emp_Address'] && $row['Emp_Address']!='0')
+                                        {
+                                            
+                                            echo "<tr class='newtable'>";
+                                            echo "<td>Address</td>";
+                                            if($row2['Emp_Address']=='0')
+                                            {
+                                                echo "<td>NONE</td>";
+                                            }
+                                            else
+                                            {
+                                                echo "<td>".$row2['Emp_Address']."</td>";
+                                            }
+                                            echo "<td>-></td>";
+                                            echo "<td>".$row["Emp_Address"]."</td>";
+                                            echo "</tr>";
+                                        }
+                                        if($row2['Emp_Photo']!=$row['Emp_Photo'])
+                                        {
+                                            echo "<tr class='newtable'>";
+                                            echo "<td>Photo</td>";
+                                            if($row2['Emp_Photo']=='')
+                                            {
+                                                echo "<td>NONE</td>";
+                                            }
+                                            else
+                                            {
+                                                echo "<td>".$row2['Emp_Photo']."</td>";
+                                            }
+                                            echo "<td>-></td>";
+                                            if($row['Emp_Photo']=='')
+                                            {
+                                                echo "<td>NONE</td>";
+                                            }
+                                            else
+                                            {
+                                                echo "<td>".$row['Emp_Photo']."</td>";
+                                            }
+                                            echo "</tr>";
+                                        }
+                                    }
+                                        
                                         
                                 }
                             ?>

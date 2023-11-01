@@ -73,6 +73,9 @@
                         </div>
                     </div>
                     <div class="Buttons_bar">
+                        <div></div>
+                        <?php echo "<a href='?page=Edit_per_details'><button style='background-color: lightblue;width:200px; color:black;'>EDIT DETAILS</button></a>" ?>
+                        <div></div>
                     </div>
                 </div>
             </div>
