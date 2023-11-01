@@ -132,20 +132,36 @@ $no=101;
                                             echo "<td>Photo</td>";
                                             if($row2['Emp_Photo']=='')
                                             {
-                                                echo "<td>NONE</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/profile.jpg" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             else
                                             {
-                                                echo "<td>".$row2['Emp_Photo']."</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/<?php echo $row2['Emp_Photo'] ?>" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             echo "<td>-></td>";
                                             if($row['Emp_Photo']=='')
                                             {
-                                                echo "<td>NONE</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/profile.jpg" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             else
                                             {
-                                                echo "<td>".$row['Emp_Photo']."</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/<?php echo $row['Emp_Photo'] ?>" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             echo "</tr>";
                                         }
@@ -191,20 +207,36 @@ $no=101;
                                             echo "<td>Photo</td>";
                                             if($row2['Emp_Photo']=='')
                                             {
-                                                echo "<td>NONE</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/profile.jpg" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             else
                                             {
-                                                echo "<td>".$row2['Emp_Photo']."</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/<?php echo $row2['Emp_Photo'] ?>" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             echo "<td>-></td>";
                                             if($row['Emp_Photo']=='')
                                             {
-                                                echo "<td>NONE</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/profile.jpg" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             else
                                             {
-                                                echo "<td>".$row['Emp_Photo']."</td>";
+                                                ?>
+                                                <td>
+                                                    <img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="../images/<?php echo $row['Emp_Photo'] ?>" width="30px" height="30px"> 
+                                                </td>
+                                                <?php
                                             }
                                             echo "</tr>";
                                         }
