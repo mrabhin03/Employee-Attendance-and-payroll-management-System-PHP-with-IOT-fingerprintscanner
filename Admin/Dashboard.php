@@ -63,7 +63,7 @@
                     <p>Total Employees</p>
                 </div>
                 <div class="footerpart">
-                    <a href="">More info</a>
+                    <a href="?page=Employees">More info</a>
                 </div>
             </div>
             <div class="box">
@@ -85,7 +85,7 @@
                     <p>Present Percentage</p>
                 </div>
                 <div class="footerpart">
-                    <a href="">More info</a>
+                    <a href="?page=Monthly_attendance">More info</a>
                 </div>
             </div>
             <div class="box">
@@ -97,7 +97,7 @@
                     <p>Today's Present</p>
                 </div>
                 <div class="footerpart">
-                    <a href="">More info</a>
+                    <a href="?page=Attendance">More info</a>
                 </div>
             </div>
             <div class="box">
@@ -108,7 +108,7 @@
                     <p>Today's Absents</p>
                 </div>
                 <div class="footerpart">
-                    <a href="">More info</a>
+                    <a href="?page=Attendance">More info</a>
                 </div>
             </div>
 

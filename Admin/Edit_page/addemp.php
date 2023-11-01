@@ -1,4 +1,4 @@
-<div class="addempin" style="height: 300px;">
+<div class="addempin" >
 <div  class="thefulldiv">
   <div class="loading">
     <div class="bar1"></div>

@@ -48,6 +48,7 @@ body::before {
   color: #fff;
   height: 90%;
   overflow-y: auto;
+  overflow-x: hidden;
   float: left;
   margin-right: 0;
 }
@@ -80,6 +81,8 @@ body::before {
 
 .side-menu > ul 
 {
+  display: flex;
+  flex-direction: column;
   height: 50%;
   width: 100%;
   list-style: none;
@@ -180,7 +183,8 @@ body::before {
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table,
 .per_Payrolls > .payrolls_details > .payrolls_details_sub > table,
-.holidays > .holi_data > .holi_detail > table
+.holidays > .holi_data > .holi_detail > table,
+.noti_body >table
 {
   border-collapse: collapse;
   width: 100%;
@@ -191,6 +195,11 @@ body::before {
 .per_att_table > table
 {
   background-color: transparent;
+}
+.noti_body >table
+{
+  background-color: transparent;
+  margin-top: 20px;
 }
 .per_att_table > table > thead
 {
@@ -207,7 +216,8 @@ body::before {
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > thead,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > thead,
 .per_Payrolls > .payrolls_details > .payrolls_details_sub > table > thead,
-.holidays > .holi_data > .holi_detail > table > thead
+.holidays > .holi_data > .holi_detail > table > thead,
+.noti_body >table > thead
 {
   font-size: 16px;
   line-height: 1.42857143;
@@ -231,7 +241,8 @@ body::before {
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody,
 .per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody,
-.holidays > .holi_data > .holi_detail > table > tbody
+.holidays > .holi_data > .holi_detail > table > tbody,
+.noti_body >table > tbody
 {
   
   font-size: 14px;
@@ -251,10 +262,15 @@ body::before {
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody > tr,
 .per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr,
-.holidays > .holi_data > .holi_detail > table > tbody > tr
+.holidays > .holi_data > .holi_detail > table > tbody > tr,
+.noti_body >table > tbody > tr
 {
   background-color: rgb(252, 252, 252);
   height: 60px;
+}
+.noti_body >table > tbody > tr
+{
+  height: fit-content;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
 .Employees > .data2 > .employee_detail > table >tbody >tr:nth-child(odd),
@@ -266,11 +282,20 @@ body::before {
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > tbody > tr:nth-child(odd),
 .per_Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd),
-.holidays > .holi_data > .holi_detail > table > tbody > tr:nth-child(odd)
+.holidays > .holi_data > .holi_detail > table > tbody > tr:nth-child(odd),
+.noti_body >table > tbody > tr:nth-child(odd)
 {
   background-color: rgb(222, 222, 222);
 }
-
+.newtable:nth-child(odd)
+{
+  background-color: rgb(198, 198, 198);
+}
+.newtable
+{
+  background-color: #ffffff;
+  height: 30px;
+}
 .Attendance_M > .head > form,
 .Attendance > .head > form,
 .Payrolls > .head > form,

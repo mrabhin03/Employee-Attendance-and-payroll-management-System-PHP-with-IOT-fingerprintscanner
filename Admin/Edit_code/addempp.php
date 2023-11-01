@@ -5,7 +5,7 @@ include 'session_check.php';
                     $empid = $_POST['Username'];
                     $fullname = $_POST['fullname'];
                     $email = $_POST['email'];
-                    $address = "";
+                    $address = "0";
                     $dob = "0000-00-00";
                     $mobile = $_POST['mobile'];
                     $gender = "";
@@ -40,7 +40,7 @@ include 'session_check.php';
                     // Shuffle the password
                     $passwordtmp = str_shuffle($password);
                     $password = password_hash($passwordtmp, PASSWORD_DEFAULT);
-                    $sql = "INSERT INTO employee_details(Emp_id, Emp_password, Emp_name, Gender, Desc_id, Emp_address, Emp_DOB, Emp_DOJ, Emp_mobileno, Emp_email, Emp_photo, Emp_status) VALUES ('$empid','$password','$fullname','$gender','$des_id','$address ','$dob','$doj','$mobile','$email','$filename',1)";
+                    $sql = "INSERT INTO employee_details(Emp_id, Emp_password, Emp_name, Gender, Desc_id, Emp_address, Emp_DOB, Emp_DOJ, Emp_mobileno, Emp_email, Emp_photo, Emp_status) VALUES ('$empid','$password','$fullname','$gender','$des_id','$address ','$dob','$doj','$mobile','$email','$filename',3)";
                     $sql1="INSERT INTO designation_for_employee(Emp_id, Desc_id, Desc_from_date, Desc_to_date, Desc_status) VALUES ('$empid','$des_id','$desfrom','$desto',1)";
                     $con->query($sql);
                     $con->query($sql1);

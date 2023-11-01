@@ -15,15 +15,15 @@ include 'session_check.php';
   $thmonth = str_replace("-", "", $value);
   $themonth_id = substr($thmonth, 0, 6);
   ?>
-    <script>
-      const liview = document.querySelector('.icon'); 
-      const liviewicon = document.querySelector('.sub_tree');
-      liview.classList.add('active');
-      liviewicon.classList.add('active');
-  </script>
+<script>
+const liview = document.querySelector('.icon');
+const liviewicon = document.querySelector('.sub_tree');
+liview.classList.add('active');
+liviewicon.classList.add('active');
+</script>
 <div class="Attendance">
     <div class="head">
-    <form method="post">
+        <form method="post">
             <input onchange="this.form.submit()" value="<?php
             if(isset($_POST['daily_date']))
             {
@@ -44,19 +44,19 @@ include 'session_check.php';
         <?php  echo "<a href='?page=dailyadd&date=$tday'><button style='width:70px;'>Generate</button></a>"; ?>
     </div>
     <div class="Daily_att">
-            <div class="Daily_att_sub">
-                <table >
+        <div class="Daily_att_sub">
+            <table>
                 <thead>
-                  <th>SI</th>
-                  <th>Employee ID</th>
-                  <th>Photo</th>
-                  <th>Name</th>
-                  <th>DATE</th>
-                  <th>STATUS</th>
-                  <th>WORKING HOURS</th>
+                    <th>SI</th>
+                    <th>Employee ID</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>DATE</th>
+                    <th>STATUS</th>
+                    <th>WORKING HOURS</th>
                 </thead>
-                <tbody >
-                  <?php
+                <tbody>
+                    <?php
                     $thmonth = str_replace("-", "", $daily_date);
                     $themonth_id = substr($thmonth, 0, 6);
                     $day=substr($thmonth, 6, 2);
@@ -73,17 +73,20 @@ include 'session_check.php';
                       $i=1;
                     while($row = $query->fetch_assoc()){
                       ?>
-                        <tr>
-                          <td><?php echo $i; $i++;?></td>
-                          <td><?php echo $row['Emp_id']; ?></td>
-                          <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
-                          <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
-                          <td><?php echo $row['Att_date']; ?></td>
-                          <td><?php echo ($row['Att_status']==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?></td>
-                          <td><?php echo $row['Working_hour']."hrs"; ?></td>
-                        </tr>
-                        
-                      <?php
+                    <tr>
+                        <td><?php echo $i; $i++;?></td>
+                        <td><?php echo $row['Emp_id']; ?></td>
+                        <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;"
+                                src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>"
+                                width="30px" height="30px"> </td>
+                        <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
+                        <td><?php echo $row['Att_date']; ?></td>
+                        <td><?php echo ($row['Att_status']==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?>
+                        </td>
+                        <td><?php echo $row['Working_hour']."hrs"; ?></td>
+                    </tr>
+
+                    <?php
                     }
                   }
                   else
@@ -101,7 +104,7 @@ include 'session_check.php';
                   }
                   ?>
                 </tbody>
-                </table>
-            </div>
+            </table>
         </div>
+    </div>
 </div>

@@ -13,20 +13,23 @@
 .calendar,
 .Attendance_M,
 .Payrolls,
-.holidays
+.holidays,
+.main_noti
 {
   height: 91%;
   width: 100%;
   float: left;
   overflow-y: auto;
 }
-
+.main_noti
+{
+  overflow: hidden;
+}
 
 
 .Bashboard
 {
   background-color: white;
-  
 }
 
 
@@ -56,7 +59,28 @@
   height: 100%;
 
 }
+.main_noti
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.noti_sub
+{
+  height: 80%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
 
+.noti_sub > .noti_body
+{
+  background-color: white;
+  width: 100%;
+  border-radius: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
 .Bashboard > .data1 >.sample_data
 {
   width: 15%;
@@ -215,9 +239,9 @@
 {
   background-color: rgb(255, 255, 255);
   width: 30%;
-  height: 74%;
+  height: 40%;
   position: absolute;
-  top: 18%;
+  top: 35%;
   left: 40%;
   text-align: center;
   border-radius: 20px;

@@ -29,7 +29,20 @@
                         <div class="Desc_show"><h4>DESIGNATION</h4><?php echo $EMP['Desc_name'];?></div>
                         <div class="Desc_show"><h4>RF ID</h4><?php echo $EMP['Rf_id']; $rf=$EMP['Rf_id'];?></div>
                         <div class="Desc_show"><h4>DATE OF JOIN</h4><?php echo $EMP['Emp_DOJ'];?></div>
-                        <div class="Desc_show"><h4>STATUS</h4><?php echo ($EMP['Emp_status']==0)? "<span style='color:red;'>INACTIVE</span>":"<span style='color:green;'>ACTIVE</span>";?></div>
+                        <div class="Desc_show"><h4>STATUS</h4><?php 
+                          if($EMP['Emp_status']==0) 
+                          {
+                            echo "<span style='color: red; font-weigth:none;'>INACTIVE</span>";
+                          }
+                          elseif($EMP['Emp_status']==1)
+                          {
+                            echo "<span style='color: green;'>ACTIVE</span>";
+                          }
+                          else
+                          {
+                            echo "<span style='color: blue;'>PENDING</span>";
+                          }
+                          ?></div>
                     </div>
             
                     <div class="data_edit">
@@ -75,9 +88,13 @@
                             {
                                 echo "<a href='Edit_code/status.php?id=$data&st=0'><button style='background-color: red; color:white;'>SUSPEND</button></a>";
                             }
-                            else
+                            elseif($EMP['Emp_status']==0)
                             {
                                 echo "<a href='Edit_code/status.php?id=$data&st=1'><button style='background-color: green; color:white;'>ACTIVE</button></a>" ;
+                            }
+                            else
+                            {
+                                echo "<a href=''><button style='background-color: blue; color:white;'>Pending</button></a>" ;
                             }
                             ?>
                         </div>

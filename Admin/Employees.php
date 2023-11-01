@@ -68,7 +68,20 @@ include 'session_check.php';
                           <td><?php echo $row['Emp_DOJ']; ?></td>
                           <td><?php echo "₹".$row['Desc_basic']; ?></td>
                           <td><?php echo $row['Emp_mobileno']; ?></td>
-                          <td><?php echo ($row['Emp_status']==1)? "<p style='color: green;'>ACTIVE</p>":"<p style='color: red; font-weigth:none;'>INACTIVE</p>"; ?></td>
+                          <td><?php 
+                          if($row['Emp_status']==0) 
+                          {
+                            echo "<p style='color: red; font-weigth:none;'>INACTIVE</p>";
+                          }
+                          elseif($row['Emp_status']==1)
+                          {
+                            echo "<p style='color: green;'>ACTIVE</p>";
+                          }
+                          else
+                          {
+                            echo "<p style='color: blue;'>PENDING</p>";
+                          }
+                          ?></td>
                           <td>
                           <?php $data=$row['Emp_id']; echo "<a href='?page=View_details&id=$data'><button class='view-emp' >View Details</button></a>" ?>                            
                           </td>

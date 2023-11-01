@@ -64,10 +64,10 @@
                 echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
               ?>
           
-              <p>Present Percentage</p>
+              <p>Total Present Percentage</p>
                 </div>
                 <div class="footerpart">
-                    <a href="">More info</a>
+                    <a href="?page=attendace">More info</a>
                 </div>
             </div>
             <div class="box">
@@ -75,10 +75,10 @@
                 <?php
                 echo "<h3>".$present['Present']."</h3>"
               ?>
-              <p>Today's Present</p>
+              <p>Total Presents</p>
                 </div>
                 <div class="footerpart">
-                <a href="">More info</a>
+                <a href="?page=attendace">More info</a>
                 </div>
             </div>
             <div class="box">
@@ -88,7 +88,7 @@
                 $absent = $con->query($attab_sql)->fetch_assoc();
                 echo "<h3>".$absent['Absents']."</h3>"
               ?>
-              <p>Today's Absents</p>
+              <p>Total Absents</p>
                 </div>
                 <div class="footerpart">
                 <a href="">More info</a>
