@@ -1,5 +1,5 @@
 <?php
-include 'session_check.php';
+include '../session_check.php';
     include '../../common/connection.php';
     $id=$_GET['id'];
     $status=$_GET['st'];

@@ -1,5 +1,5 @@
 <?php
-include 'session_check.php';
+include '../session_check.php';
 include '../../common/connection.php';
 $decsearch = $_POST['input'];
                     $sql = "SELECT * FROM employee_designation WHERE Desc_status=1 AND (Desc_name LIKE '$decsearch%' OR Desc_id LIKE '$decsearch%' OR Desc_basic LIKE '$decsearch%')";

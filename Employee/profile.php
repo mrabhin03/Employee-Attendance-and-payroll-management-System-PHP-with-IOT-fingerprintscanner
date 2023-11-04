@@ -74,7 +74,12 @@
                     </div>
                     <div class="Buttons_bar">
                         <div></div>
+                        <?php 
+                        $query= "SELECT * FROM employee_details WHERE Emp_id LIKE 'P%' AND Emp_id LIKE '%$id'";
+                        $datacount=$con->query($query)->num_rows;  
+                        ?>
                         <?php echo "<a href='?page=Edit_per_details'><button style='background-color: lightblue;width:200px; color:black;'>EDIT DETAILS</button></a>" ?>
+                        <?php if($datacount > 0){echo "<a href=''><button style='background-color: red;width:200px; color:white;'>PENDING REQUESTS:<b>".$datacount."</b> </button></a>"; } ?>
                         <div></div>
                     </div>
                 </div>

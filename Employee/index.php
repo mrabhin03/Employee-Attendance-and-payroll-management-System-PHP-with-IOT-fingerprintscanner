@@ -39,11 +39,11 @@
         <div class="side-menu">
             <ul>
                 <li class="head">MENU</li>
-                <li class="option"><a href="?page=home">DASHBOARD</a></li>
-                <li class="option"><a href="?page=attendace">ATTENDANCE</a></li>
-                <li class="option"><a href="?page=profile">PROFILE</a></li>
-                <li class="option"><a href="?page=payroll">PAYROLL</a></li>
-                <li class="option"><a href="?page=changepassword">CHANGE PASSWORD</a></li>
+                <li class="option"><a href="?page=home">Dashboard</a></li>
+                <li class="option"><a href="?page=attendace">Attendace</a></li>
+                <li class="option"><a href="?page=profile">Profile</a></li>
+                <li class="option"><a href="?page=payroll">Payroll</a></li>
+                <li class="option"><a href="?page=changepassword">Change Password</a></li>
             </ul>
         </div>
         <div class="main-content">

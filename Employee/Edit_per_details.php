@@ -67,6 +67,8 @@ include 'session_check.php';
     if(isset($_POST['update'])){
         
         $empid = $_POST['Username'];
+        $temp_id=$empid;
+        $temp_id = substr($temp_id, 1);
         $doyou = $_POST['doyou'];
         $fullname = $_POST['fullname'];
         $address = $_POST['address'];
@@ -74,26 +76,28 @@ include 'session_check.php';
         $checkpsql="SELECT * FROM employee_details WHERE Emp_id LIKE 'P%'";
         $covalue=$con->query($checkpsql)->num_rows;
         $id="P".$covalue.$id;
+        $tsqw=$covalue.$temp_id;
+        $tsqw=$tsqw*1000;
         if(!empty($filename)){
             move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);
-            $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address, Emp_Photo, Emp_status) VALUES ('$id','$fullname','$address','$filename','101')";
+            $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address,Rf_id, Emp_Photo, Emp_status) VALUES ('$id','$fullname','$address','$tsqw','$filename','101')";
         }
         else
         {
             if($doyou==1)
             {
-                $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address, Emp_status) VALUES ('$id','$fullname','$address','101')";
+                $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address,Rf_id, Emp_status) VALUES ('$id','$fullname','$address','$tsqw','101')";
             }
             else
             {
                 $filenamev1="SELECT Emp_Photo FROM employee_details WHERE Emp_id='$empid'";
                 $file=$con->query($filenamev1)->fetch_assoc();
-                $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address, Emp_Photo, Emp_status) VALUES ('$id','$fullname','$address','".$file['Emp_Photo']."','101')";
+                $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address,Rf_id, Emp_Photo, Emp_status) VALUES ('$id','$fullname','$address','$tsqw','".$file['Emp_Photo']."','101')";
             }
             
         }
-        $con->query($sqldata);
         
+        $con->query($sqldata);
         echo "<script>window.location.href = '?page=profile';</script>";
     }
 ?>
