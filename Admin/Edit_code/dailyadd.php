@@ -1,6 +1,7 @@
 <?php
 include 'session_check.php';
 include '../common/connection.php';
+$monthco = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 set_time_limit(5000);
 if(isset($_GET['date'])){
     $date = $_GET['date'];
@@ -13,7 +14,9 @@ if(isset($_GET['date'])){
         "DELETE FROM daily_attendance WHERE 1",
         "DELETE FROM monthly_attendance WHERE 1",
         "DELETE FROM overtime_details WHERE 1",
-        "DELETE FROM salary_paid WHERE 1"
+        "DELETE FROM salary_paid WHERE 1",
+        "DELETE FROM holidays WHERE 1",
+        "DELETE FROM company_calender WHERE 1"
     ];
     
     foreach ($reset_queries as $query) {
@@ -25,6 +28,24 @@ while($logdate=$log_query->fetch_assoc())
 {
     $currentdate=$logdate['thedate'];
     $monthid = date('Ym', strtotime($currentdate));
+    $Yearnew = date('Y', strtotime($currentdate));
+    $monthnew = date('m', strtotime($currentdate));
+    $cale="SELECT * FROM company_calender WHERE Month_id='$monthid'";
+                    $query2 = $con->query($cale);
+                    if($query2->num_rows==0)
+                    {
+                      if (($Yearnew % 4 == 0 && $Yearnew % 100 != 0) || ($Yearnew % 400 == 0)) {
+                        $monthco[2]=29;
+                      }
+                      else {
+                        $monthco[2]=28;
+                      }
+                      $daysval=$monthco[intval($monthnew)];
+                      $sqlin="INSERT INTO company_calender(Month_id,Year, Month, Working_day) VALUES ('$monthid','$Yearnew','$monthnew','$daysval')";
+                      $con->query($sqlin);
+                    }
+
+
     $emp="SELECT * FROM employee_details WHERE Emp_status=1 AND DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid' ORDER BY CAST(SUBSTRING('Emp_id', 2) AS SIGNED) ";
     $emp_details=$con->query($emp);
     while($data=$emp_details->fetch_assoc())

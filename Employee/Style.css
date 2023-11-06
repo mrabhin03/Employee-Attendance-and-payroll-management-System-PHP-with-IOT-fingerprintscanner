@@ -3,12 +3,18 @@
 .EMP_HOME,
 .perAttendance_M,
 .per_profile_details,
-.per_Payrolls
+.per_Payrolls,
+.calendar
 {
   background-color: white;
   overflow-y: auto;
   overflow-x: hidden;
   height: 92%;
+}
+.calendar
+{
+  background-color: rgba(0, 0, 0, 0.122);
+
 }
 .per_profile_details
 {
@@ -18,7 +24,10 @@
   justify-content: center;
   align-items: center;
 }
-
+.calendar > .cal_data
+{
+  margin-top: 65px;
+}
 
 
 .EMP_HOME > .data1

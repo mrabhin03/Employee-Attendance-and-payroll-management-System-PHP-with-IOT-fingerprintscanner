@@ -244,13 +244,34 @@ body::before {
 .holidays > .holi_data > .holi_detail > table > tbody,
 .noti_body >table > tbody
 {
-  
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
   font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
   border-spacing: 0;
   box-sizing: border-box;
+}
+.calendar > .cal_data > .cal_detail > table
+{
+  height: fit-content;
+}
+.calendar > .cal_data > .cal_detail > table > tbody > tr > td
+{
+  border: 5px solid white;
+  width: 10%;
+  font-size: 45px;
+}
+.calendar > .cal_data > .cal_detail > table > tbody > tr
+{
+  height: 170px !important;
+}
+.calendar > .cal_data > .cal_detail > table > tbody > tr > td > div
+{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr,
 .Employees > .data2 > .employee_detail > table >tbody >tr,
@@ -275,7 +296,6 @@ body::before {
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
 .Employees > .data2 > .employee_detail > table >tbody >tr:nth-child(odd),
 .Designation > .des_data > .des_detail > table > tbody > tr:nth-child(odd),
-.calendar > .cal_data > .cal_detail > table > tbody > tr:nth-child(odd),
 .Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr:nth-child(odd),
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody>tr:nth-child(odd),
 .Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd),
@@ -290,6 +310,10 @@ body::before {
 .newtable:nth-child(odd)
 {
   background-color: rgb(198, 198, 198);
+}
+.calendar > .cal_data > .cal_detail > table > tbody > tr
+{
+  background-color: rgb(174, 205, 157)
 }
 .newtable
 {
@@ -327,7 +351,7 @@ body::before {
 .Payrolls > .head > form > input,
 .Employees > .head > form > input,
 .Designation > .head > form > input,
-.calendar > .head > form > select,
+.calendar > .head > form > input,
 .EMP_HOME > .head > form > input,
 .perAttendance_M > .head > form > select,
 .per_Payrolls > .head > form > select,
@@ -357,7 +381,7 @@ body::before {
 .Payrolls > .head > form > input,
 .Employees > .head > form > input,
 .Designation > .head > form > input,
-.calendar > .head > form > select,
+.calendar > .head > form > input,
 .perAttendance_M > .head > select,
 .EMP_HOME > .head > form > input,
 .perAttendance_M > .head > form > select,
@@ -407,7 +431,8 @@ body::before {
 .Attendance_M > .head > a >button,
 .Payrolls > .head > a > button,
 .Attendance > .head > a >button,
-.holidays > .head > a> button
+.holidays > .head > a> button,
+.calendar > .cal_data > .cal_detail > table > tbody > tr > td > div >a> button
 {
   background-color: #3c8dbc;
   margin-left: 20px;
@@ -418,7 +443,14 @@ body::before {
   cursor: pointer;
   border-color: #367fa9;
 }
-
+.calendar > .cal_data > .cal_detail > table > tbody > tr > td > div >a> button
+{
+  width: 100%;
+  margin: 0;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 0px;
+}
 .update_empin
 {
   background-color: transparent;

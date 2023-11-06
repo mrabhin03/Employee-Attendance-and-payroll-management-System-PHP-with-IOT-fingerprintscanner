@@ -43,7 +43,6 @@
                 <li style="order:6" class="option"><a href="?page=Designations">Designations</a></li>
                 <li style="order:7" class="option"><a href="?page=Payrolls">Payroll</a></li>
                 <li style="order:8" class="option"><a href="?page=Calendar">Calendar</a></li>
-                <li style="order:9" class="option"><a href="?page=Holidays">Holidays</a></li>
                 <li style="order:10" class="option"><a href="?page=changepassword">Changepassword</a></li>
                 <?php if($count==0)
                 { ?>

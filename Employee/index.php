@@ -43,6 +43,7 @@
                 <li class="option"><a href="?page=attendace">Attendace</a></li>
                 <li class="option"><a href="?page=profile">Profile</a></li>
                 <li class="option"><a href="?page=payroll">Payroll</a></li>
+                <li class="option"><a href="?page=Calendar">Calendar</a></li>
                 <li class="option"><a href="?page=changepassword">Change Password</a></li>
             </ul>
         </div>

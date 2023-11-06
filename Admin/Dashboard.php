@@ -53,13 +53,7 @@
         <div class="sample_data">
             <div class="box">
                 <div class="bodypart">
-                    <?php
-                $sql = "SELECT * FROM Employee_details WHERE Emp_status=1";
-                $query = $con->query($sql);
-
-                echo "<h3>".$query->num_rows."</h3>";
-              ?>
-
+                    <h3 id="toemp">0</h3>
                     <p>Total Employees</p>
                 </div>
                 <div class="footerpart">
@@ -68,20 +62,10 @@
             </div>
             <div class="box">
                 <div class="bodypart">
-                    <?php
-                $total = $query->num_rows;
-                
-                $sql = "SELECT DISTINCT Rf_id
-                FROM emp_logs
-                WHERE Rf_id IN (SELECT Rf_id FROM employee_details WHERE Emp_status = '1') AND DATE(Time_date)='$currentdate';";
-                $query = $con->query($sql);
-                $present = $query->num_rows;
-                $absent=$total-$present;
-                $percentage = ($present/$total)*100;
-
-                echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
-              ?>
-
+                    <div
+                        style=" margin-top:10px; width:100%; height:35px;display:flex; flex-direction: row; justify-content:center; align-item:center;">
+                        <h3 style="font-size:30px; margin-top:0px;" id="pre">0</h3><sup style='font-size: 20px;'>%</sup>
+                    </div>
                     <p>Present Percentage</p>
                 </div>
                 <div class="footerpart">
@@ -90,10 +74,7 @@
             </div>
             <div class="box">
                 <div class="bodypart">
-                    <?php
-                $query = $con->query($sql);
-                echo "<h3>".$query->num_rows."</h3>"
-              ?>
+                    <h3 id="topre">0</h3>
                     <p>Today's Present</p>
                 </div>
                 <div class="footerpart">
@@ -102,9 +83,7 @@
             </div>
             <div class="box">
                 <div class="bodypart">
-                    <?php
-                echo "<h3>".$absent."</h3>"
-              ?>
+                    <h3 id="toab">0</h3>
                     <p>Today's Absents</p>
                 </div>
                 <div class="footerpart">
@@ -113,6 +92,99 @@
             </div>
 
         </div>
+        <script>
+        var data1 = 0;
+        var data2 = 0;
+        var data3 = 0;
+        var data4 = 0;
+
+        function count() {
+            var xhr = new XMLHttpRequest();
+            var url = "Edit_code/count.php";
+
+            xhr.open("POST", url, true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Check the response from PHP
+                    var response = xhr.responseText.split(',');
+                    data1 = parseInt(response[0]);
+                    data2 = response[1];
+                    data3 = parseInt(response[2]);
+                    data4 = parseInt(response[3]);
+                    autoin1();
+                }
+            };
+            xhr.send(null); // No need to send any data
+        }
+        count();
+        var h1Element = document.getElementById('toemp');
+        var i = 1;
+
+        function autoin1() {
+            if (i <= data1) {
+                h1Element.innerHTML = i;
+                i++;
+                setTimeout(autoin1, 20);
+            } else {
+                autoin2();
+            }
+        }
+        var min = 10;
+        var max = 99;
+
+        function autoin2() {
+            var j = 0;
+
+            var anotherH1Element = document.getElementById('pre');
+
+            function updateAnotherValue1() {
+                if (j <= data2) {
+                    var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+                    anotherH1Element.innerHTML = j +'.'+randomNum;
+                    j++;
+                    setTimeout(updateAnotherValue1, 10);
+                } else {
+                    anotherH1Element.innerHTML = data2;
+                    autoin3();
+                }
+            }
+
+            updateAnotherValue1();
+        }
+
+        function autoin3() {
+            var j = 1;
+            var anotherH1Element = document.getElementById('topre');
+
+            function updateAnotherValue2() {
+                if (j <= data3) {
+                    anotherH1Element.innerHTML = j;
+                    j++;
+                    setTimeout(updateAnotherValue2, 30);
+                } else {
+                    autoin4();
+                }
+            }
+
+            updateAnotherValue2();
+        }
+
+        function autoin4() {
+            var j = 1;
+            var anotherH1Element = document.getElementById('toab');
+
+            function updateAnotherValue3() {
+                if (j <= data4) {
+                    anotherH1Element.innerHTML = j;
+                    j++;
+                    setTimeout(updateAnotherValue3, 50);
+                }
+            }
+
+            updateAnotherValue3();
+        }
+        </script>
         <div class="employee_att">
             <div class="att_sub_div1">
                 <table>

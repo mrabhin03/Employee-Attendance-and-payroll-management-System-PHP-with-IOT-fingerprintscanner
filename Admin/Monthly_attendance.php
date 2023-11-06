@@ -2,6 +2,7 @@
 include 'session_check.php';
   include '../common/connection.php';
   $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
+  $monthco = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
   if(isset($_GET['date']))
   {
     list($Year,$month) = explode('-', $_GET['date']);
@@ -54,6 +55,17 @@ include 'session_check.php';
                     $cale="SELECT * FROM company_calender WHERE Month_id='$m_id'";
                     $query = $con->query($sql);
                     $query2 = $con->query($cale);
+                    if($query2->num_rows==0)
+                    {
+                      if (($Year % 4 == 0 && $Year % 100 != 0) || ($Year % 400 == 0)) {
+                        $monthco[2]=29;
+                      }
+                      $daysval=$monthco[intval($month)];
+                      $sqlin="INSERT INTO company_calender(Month_id,Year, Month, Working_day) VALUES ('$m_id','$Year','$month','$daysval')";
+                      $con->query($sqlin);
+                      $cale="SELECT * FROM company_calender WHERE Month_id='$m_id'";
+                      $query2 = $con->query($cale);
+                    }
                     $calender=$query2->fetch_assoc();
                     if($query->num_rows>0)
                     {

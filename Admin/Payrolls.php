@@ -9,7 +9,7 @@ include 'session_check.php';
     $Year = date('Y');
     $month = date('m');
   }
-  
+  $monthco = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
   ?>
 <div class="Payrolls">
     <div class="head">
@@ -45,6 +45,18 @@ include 'session_check.php';
                 </thead>
                 <tbody >
                   <?php
+                    $cale="SELECT * FROM company_calender WHERE Month_id='$m_id'";
+                    $query2 = $con->query($cale);
+                    if($query2->num_rows==0)
+                    {
+                      if (($Year % 4 == 0 && $Year % 100 != 0) || ($Year % 400 == 0)) {
+                        $monthco[2]=29;
+                      }
+                      $daysval=$monthco[intval($month)];
+                      $sqlin="INSERT INTO company_calender(Month_id,Year, Month, Working_day) VALUES ('$m_id','$Year','$month','$daysval')";
+                      $con->query($sqlin);
+                    }
+
                     $sql = "SELECT DISTINCT employee_details.Emp_id, employee_details.Emp_Photo, employee_details.Emp_name, salary_paid.*, overtime_details.*, employee_designation.*
                     FROM employee_details
                     INNER JOIN salary_paid ON employee_details.Emp_id = salary_paid.Emp_id

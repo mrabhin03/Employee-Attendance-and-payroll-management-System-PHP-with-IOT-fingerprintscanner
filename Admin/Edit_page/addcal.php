@@ -1,4 +1,4 @@
-<div class="addcal">
+<div style=" margin-top:80px;height: 200px;" class="addcal">
     <?php
 include 'session_check.php';
     include '../common/connection.php';
@@ -6,7 +6,7 @@ include 'session_check.php';
     ?>
     <form method="POST">
         <div class="main_form">
-        <div class="emp_details">
+        <div style="height: 500px;" class="emp_details">
                 <h1 style="text-align:center;">Calendar Details</h1>
                 <div class="form_div">
                     <label for="year">Year</label>
@@ -19,22 +19,6 @@ include 'session_check.php';
                         } 
                         ?>
                     </select>
-                </div>
-                <div class="form_div">
-                    <label for="Month">Month</label>
-                    <select name="month" id="mo" required>
-                    <option value="">-select-</option>
-                    <?php
-                        for($i=0;$i<12;$i++)
-                        {
-                            echo "<option value=".$i.">".$month[$i]."</option>";
-                        } 
-                        ?>
-                    </select>
-                </div>
-                <div class="form_div">
-                    <label for="day">Days</label>
-                    <input type="text" name="day" required>
                 </div>
                 <div class="add_footer">
                     <a href="?page=Calendar"><button type="button" class="cancel_insert">Close</button></a>

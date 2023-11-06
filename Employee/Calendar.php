@@ -23,7 +23,7 @@ include 'session_check.php';
   ?>
 <div class="calendar">
     <div class="head">
-    <a href="?page=addcal"><button>ADD</button></a>
+        <div style="width:15%;"></div>
         <h2>Calendar Details</h2>
         <form method="post">
             <input style="border-radius:20px;" value="<?php
@@ -103,7 +103,7 @@ include 'session_check.php';
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>
                                 </div>
-                                <?php echo "<a href='?page=holi&st=0&id=$mon_id&day=$k'><button style='background-color:white; color: black;'>Remove Holiday</button></a>"; $k++;?>
+                                <?php echo "<a ><button style='cursor: auto;background-color:white; color: black;'>Holiday</button></a>"; $k++;?>
                             </div>
                         </td>
 
@@ -119,7 +119,7 @@ include 'session_check.php';
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>
                                 </div>
-                                <?php echo "<a href='?page=holi&st=1&id=$mon_id&day=$k'><button>Add Holiday</button></a>"; $k++; ?>
+                                <?php echo "<a><button style='cursor: auto;'>Working day</button></a>"; $k++; ?>
                             </div>
                         </td>
                         <?php

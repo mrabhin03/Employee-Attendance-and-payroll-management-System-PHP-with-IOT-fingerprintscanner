@@ -61,7 +61,72 @@ liviewicon.classList.add('active');
                     $themonth_id = substr($thmonth, 0, 6);
                     $day=substr($thmonth, 6, 2);
                     $day = intval($day);
-                    $sql = "SELECT employee_details.*, daily_attendance.*
+                    $holidayquery="SELECT * FROM holidays WHERE Month_id='$themonth_id' AND day='$day'";
+                    $holi=$con->query($holidayquery)->num_rows;
+                    if($holi> 0)
+                    {
+                      echo "<tr><td colspan='8' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
+                    }
+                    else
+                    {
+                      ?>
+                    <div class="sample_data2">
+                        <div class="box">
+                            <div class="bodypart">
+                                <?php
+                $sql = "SELECT * FROM daily_attendance WHERE Att_date='$daily_date'";
+                $query = $con->query($sql);
+
+                echo "<h3>".$query->num_rows."</h3>";
+              ?>
+
+                                <p>Total Employees</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="bodypart">
+                                <?php
+                $total = $query->num_rows;
+                
+                $sql = "SELECT * FROM daily_attendance WHERE Att_date='$daily_date' AND Att_status=1;";
+                $query = $con->query($sql);
+                $present = $query->num_rows;
+                $absent=$total-$present;
+                if($present>0)
+                {
+                  $percentage = ($present/$total)*100;
+                }
+                else
+                {
+                  $percentage = 0;
+                }
+                echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
+              ?>
+
+                                <p>Present Percentage</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="bodypart">
+                                <?php
+                $query = $con->query($sql);
+                echo "<h3>".$query->num_rows."</h3>"
+              ?>
+                                <p>Total Presents</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="bodypart">
+                                <?php
+                echo "<h3>".$absent."</h3>"
+              ?>
+                                <p>Total Absents</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <?php
+                      $sql = "SELECT employee_details.*, daily_attendance.*
                     FROM employee_details
                     INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id
                     WHERE Emp_status = 1 AND Att_date = '$daily_date'
@@ -91,17 +156,9 @@ liviewicon.classList.add('active');
                   }
                   else
                   {
-                      $holidayquery="SELECT * FROM holidays WHERE Month_id='$themonth_id' AND day='$day'";
-                      $holi=$con->query($holidayquery)->num_rows;
-                      if($holi> 0)
-                      {
-                        echo "<tr><td colspan='8' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
-                      }
-                      else
-                      {
-                        echo "<tr><td colspan='8'>No Data</td></tr>";
-                      }
+                      echo "<tr><td colspan='8'>No Data</td></tr>";
                   }
+                }
                   ?>
                 </tbody>
             </table>
