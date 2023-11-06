@@ -42,6 +42,9 @@ include 'session_check.php';
           <?php
           $cale="SELECT * FROM company_calender WHERE Month_id='$mon_id'";
           $query2 = $con->query($cale);
+          if (($Year % 4 == 0 && $Year % 100 != 0) || ($Year % 400 == 0)) {
+            $monthco[2]=29;
+          }
           if($query2->num_rows==0)
           {
             $daysval=$monthco[intval($month)];
@@ -74,9 +77,6 @@ include 'session_check.php';
                     <tr>
                         <?php
                   $t1=7;
-                  if (($Year % 4 == 0 && $Year % 100 != 0) || ($Year % 400 == 0)) {
-                    $monthco[2]=29;
-                  }
                   $nedate = $yearmo."-01";
                   $dayOfWeek = date("l", strtotime($nedate));
                   $temp=$daysOfWeekarr[$dayOfWeek];
