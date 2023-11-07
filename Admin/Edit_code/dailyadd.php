@@ -7,6 +7,18 @@ if(isset($_GET['date'])){
     $date = $_GET['date'];
     $currentdate=$date;
     $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
+    if($con->query($log_sql)->num_rows == 0){
+        $inserttemp="INSERT INTO emp_logs( Rf_id, Log_status, Time_date) VALUES ('999','52','$date')";
+        $con->query($inserttemp);
+        $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
+        $log_query=$con->query($log_sql);
+        $deletetemp="DELETE FROM emp_logs WHERE Rf_id='999'";
+        $con->query($deletetemp);
+    } 
+    else
+    {
+        $log_query=$con->query($log_sql);
+    }
 }else{
     $log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
     $reset_queries = [
@@ -23,7 +35,7 @@ if(isset($_GET['date'])){
         $con->query($query);
     }
 }
-$log_query=$con->query($log_sql);
+
 while($logdate=$log_query->fetch_assoc())
 {
     $currentdate=$logdate['thedate'];
@@ -50,6 +62,7 @@ while($logdate=$log_query->fetch_assoc())
     $emp_details=$con->query($emp);
     while($data=$emp_details->fetch_assoc())
     {
+        
         $emp_rf=$data['Rf_id'];
         $emp_id=$data['Emp_id'];
         $IN="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$emp_rf AND Log_status='IN'";
