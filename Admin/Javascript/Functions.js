@@ -147,3 +147,13 @@ function checkdataEMAIL() {
     };
     xhr.send(data);
 }
+function holidays(st, mid, k) {
+    $.ajax({
+        url: "Edit_code/holi.php",
+        method: "POST",
+        data: {st: st, mid: mid, k: k },
+        success: function() {
+        }
+    });
+    location.reload();
+}

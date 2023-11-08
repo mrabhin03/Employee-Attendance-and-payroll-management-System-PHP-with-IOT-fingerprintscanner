@@ -73,7 +73,7 @@ include 'session_check.php';
                     <th>FRI</th>
                     <th>SAT</th>
                 </thead>
-                <tbody>
+                <tbody id="tablenew">
                     <tr>
                         <?php
                   $t1=7;
@@ -103,7 +103,7 @@ include 'session_check.php';
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>
                                 </div>
-                                <?php echo "<a href='?page=holi&st=0&id=$mon_id&day=$k'><button style='background-color:white; color: black;'>Remove Holiday</button></a>"; $k++;?>
+                                <?php echo "<a onclick='holidays(0,$mon_id,$k)'><button style='background-color:white; color: black;'>Remove Holiday</button></a>"; $k++;?>
                             </div>
                         </td>
 
@@ -119,7 +119,7 @@ include 'session_check.php';
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>
                                 </div>
-                                <?php echo "<a href='?page=holi&st=1&id=$mon_id&day=$k'><button>Add Holiday</button></a>"; $k++; ?>
+                                <?php echo "<a onclick='holidays(1,$mon_id,$k)'><button>Add Holiday</button></a>"; $k++; ?>
                             </div>
                         </td>
                         <?php

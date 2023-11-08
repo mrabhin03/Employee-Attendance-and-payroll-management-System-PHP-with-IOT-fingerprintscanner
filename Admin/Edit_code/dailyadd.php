@@ -21,6 +21,7 @@ if(isset($_GET['date'])){
     }
 }else{
     $log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
+    $log_query=$con->query($log_sql);
     $reset_queries = [
         "DELETE FROM salary_paid WHERE 1",
         "DELETE FROM daily_attendance WHERE 1",

@@ -16,7 +16,7 @@
     </div>
 </div>
 <div class="Bashboard">
-    <div style="display: flex; justify-content: space-between;" class="head">
+    <div style="display: flex; justify-content: space-between; z-index:1;" class="head">
         <?php echo "<a onclick='areyousure()'><button style='width:140px; height: 36px; font-size: 17px;'>Refresh all data</button></a>"; ?>
         <h3>Daily Attendance report </h3>
         <div></div>
@@ -64,7 +64,8 @@
                 <div class="bodypart">
                     <div
                         style=" margin-top:10px; width:100%; height:35px;display:flex; flex-direction: row; justify-content:center; align-item:center;">
-                        <h3 style="font-size:30px; margin-top:0px;" id="pre">0</h3><sup style='font-size: 20px;'>%</sup>
+                        <h3 style="font-size:30px; margin-top:0px;" id="pre">0.00</h3><sup
+                            style='font-size: 20px;'>%</sup>
                     </div>
                     <p>Present Percentage</p>
                 </div>
@@ -127,7 +128,7 @@
                 i++;
                 setTimeout(autoin1, 20);
             } else {
-                autoin2();
+                autoin3();
             }
         }
         var min = 10;
@@ -141,12 +142,11 @@
             function updateAnotherValue1() {
                 if (j <= data2) {
                     var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-                    anotherH1Element.innerHTML = j +'.'+randomNum;
+                    anotherH1Element.innerHTML = j + '.' + randomNum;
                     j++;
                     setTimeout(updateAnotherValue1, 10);
                 } else {
                     anotherH1Element.innerHTML = data2;
-                    autoin3();
                 }
             }
 
@@ -179,6 +179,8 @@
                     anotherH1Element.innerHTML = j;
                     j++;
                     setTimeout(updateAnotherValue3, 50);
+                } else {
+                    autoin2();
                 }
             }
 
@@ -209,7 +211,7 @@
                       $p=0;
                     while($row = $query->fetch_assoc()){
                       ?>
-                        <tr>
+                        <tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
                             <td><?php echo $i; $i++;?></td>
                             <td><?php echo $row['Emp_id']; ?></td>
                             <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;"
@@ -271,6 +273,32 @@
                   ?>
                     </tbody>
                 </table>
+                <script>
+                trans();
+
+                function trans() {
+                    for (var i = 1; i <= data1; i++) {
+                        var row = document.getElementById(i);
+                        row.style.transform = "translateX(2050px)";
+                    }
+                    for (var i = 1; i <= data1; i++) {
+                        setTimeout(function(i) {
+                            var row = document.getElementById(i);
+                            if (row) {
+                                row.style.opacity = "1";
+                                for (var p = 300; p >= 0; p--) {
+                                    setTimeout(function(p) {
+                                        if (row) {
+                                            row.style.transform = 'translateX(' + p + 'px)';
+                                        }
+                                    }, (300 - p) * 1.5, p);
+                                }
+                            }
+                        }, i * 100, i);
+                    }
+
+                }
+                </script>
             </div>
         </div>
 

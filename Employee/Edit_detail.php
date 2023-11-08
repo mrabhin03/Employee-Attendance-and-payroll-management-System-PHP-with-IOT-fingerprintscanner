@@ -108,6 +108,14 @@ body {
     $check="SELECT * FROM employee_details WHERE Emp_id='$id';";
     $data=$con->query($check);
     $empdata=$data->fetch_assoc();
+    if($empdata["Emp_status"] == 1)
+    {
+      echo "<script>window.location.href = 'index.php';</script>";
+    }
+    else if($empdata["Emp_status"] == 4)
+    {
+        echo "<script>window.location.href = 'Pending.php';</script>";
+    }
     ?>
         <form method="POST" id="register" action="savedata.php" enctype="multipart/form-data">
             <div class="main_form">

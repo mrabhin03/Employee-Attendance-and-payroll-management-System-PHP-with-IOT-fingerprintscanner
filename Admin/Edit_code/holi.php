@@ -1,9 +1,9 @@
 <?php
-include 'session_check.php';
-include '../common/connection.php';
-    $day=$_GET['day'];
-    $mid=$_GET['id'];
-    $st=$_GET['st'];
+include '../session_check.php';
+include '../../common/connection.php';
+    $day=$_POST['k'];
+    $mid=$_POST['mid'];
+    $st=$_POST['st'];
     $yeart1 = substr($mid, 0, 4);
     $montht1 = substr($mid, 4, 2);
     $datedata=$yeart1.'-'.$montht1;
@@ -21,8 +21,6 @@ include '../common/connection.php';
             $dayvalue=$dayvalue-1;
         }
         $update="UPDATE company_calender SET Working_day='$dayvalue' WHERE Month_id='$mid'";
-        $con->query($update);
         $con->query($sql);
-        echo "<script>window.location.href = 'Index.php?page=Calendar&date=$datedata';</script>";
-    
+        $con->query($update);
 ?>
