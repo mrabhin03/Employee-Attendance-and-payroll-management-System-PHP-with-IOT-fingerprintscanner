@@ -46,6 +46,15 @@
         <?php
   include '../common/connection.php';
   $currentdate=date("Y-m-d");
+  $sql = "SELECT * FROM Employee_details WHERE Emp_status=1";
+  $query = $con->query($sql);
+  $total=$query->num_rows;
+  $sql = "SELECT DISTINCT Rf_id FROM emp_logs WHERE Rf_id IN (SELECT Rf_id FROM employee_details WHERE Emp_status = '1') AND DATE(Time_date)='$currentdate';";
+  $query = $con->query($sql);
+  $present = $query->num_rows;
+  $absent=$total-$present;
+  $percentage = ($present/$total)*100;
+  $percentage=number_format($percentage, 2);
   ?>
 
     </div>
@@ -94,42 +103,23 @@
 
         </div>
         <script>
-        var data1 = 0;
-        var data2 = 0;
-        var data3 = 0;
-        var data4 = 0;
-
-        function count() {
-            var xhr = new XMLHttpRequest();
-            var url = "Edit_code/count.php";
-
-            xhr.open("POST", url, true);
-
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Check the response from PHP
-                    var response = xhr.responseText.split(',');
-                    data1 = parseInt(response[0]);
-                    data2 = response[1];
-                    data3 = parseInt(response[2]);
-                    data4 = parseInt(response[3]);
-                    autoin1();
-                }
-            };
-            xhr.send(null); // No need to send any data
-        }
-        count();
-        var h1Element = document.getElementById('toemp');
-        var i = 1;
+        autoin1();
 
         function autoin1() {
-            if (i <= data1) {
-                h1Element.innerHTML = i;
-                i++;
-                setTimeout(autoin1, 20);
-            } else {
-                autoin3();
+            var j = 1;
+            var anotherH1Element = document.getElementById('toemp');
+
+            function updateAnotherValue2() {
+                if (j <= <?php echo $total; ?>) {
+                    anotherH1Element.innerHTML = j;
+                    j++;
+                    setTimeout(updateAnotherValue2, 50);
+                } else {
+                    autoin3();
+                }
             }
+
+            updateAnotherValue2();
         }
         var min = 10;
         var max = 99;
@@ -140,13 +130,13 @@
             var anotherH1Element = document.getElementById('pre');
 
             function updateAnotherValue1() {
-                if (j <= data2) {
+                if (j <= <?php echo $percentage; ?>) {
                     var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
                     anotherH1Element.innerHTML = j + '.' + randomNum;
                     j++;
                     setTimeout(updateAnotherValue1, 10);
                 } else {
-                    anotherH1Element.innerHTML = data2;
+                    anotherH1Element.innerHTML = <?php echo $percentage; ?>;
                 }
             }
 
@@ -158,7 +148,7 @@
             var anotherH1Element = document.getElementById('topre');
 
             function updateAnotherValue2() {
-                if (j <= data3) {
+                if (j <= <?php echo $present; ?>) {
                     anotherH1Element.innerHTML = j;
                     j++;
                     setTimeout(updateAnotherValue2, 30);
@@ -175,7 +165,7 @@
             var anotherH1Element = document.getElementById('toab');
 
             function updateAnotherValue3() {
-                if (j <= data4) {
+                if (j <= <?php echo $absent; ?>) {
                     anotherH1Element.innerHTML = j;
                     j++;
                     setTimeout(updateAnotherValue3, 50);
@@ -277,21 +267,21 @@
                 trans();
 
                 function trans() {
-                    for (var i = 1; i <= data1; i++) {
+                    for (var i = 1; i <= <?php echo $total; ?>; i++) {
                         var row = document.getElementById(i);
-                        row.style.transform = "translateX(2050px)";
+                        row.style.transform = "rotateX(90deg)";
                     }
-                    for (var i = 1; i <= data1; i++) {
+                    for (var i = 1; i <= <?php echo $total; ?>; i++) {
                         setTimeout(function(i) {
                             var row = document.getElementById(i);
                             if (row) {
                                 row.style.opacity = "1";
-                                for (var p = 300; p >= 0; p--) {
+                                for (var p = 90; p >= 0; p--) {
                                     setTimeout(function(p) {
                                         if (row) {
-                                            row.style.transform = 'translateX(' + p + 'px)';
+                                            row.style.transform = 'rotateX(' + p + 'deg)';
                                         }
-                                    }, (300 - p) * 1.5, p);
+                                    }, (90 - p) * 1.5, p);
                                 }
                             }
                         }, i * 100, i);

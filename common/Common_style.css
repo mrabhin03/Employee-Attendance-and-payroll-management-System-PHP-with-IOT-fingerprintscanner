@@ -296,7 +296,7 @@ body::before {
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
 .Employees > .data2 > .employee_detail > table >tbody >tr:nth-child(odd),
 .Designation > .des_data > .des_detail > table > tbody > tr:nth-child(odd),
-.Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr:nth-child(odd),
+.Attendance > .Daily_att > .Daily_att_sub > table > tbody > tr:nth-child(even),
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >tbody>tr:nth-child(odd),
 .Payrolls > .payrolls_details > .payrolls_details_sub > table > tbody >tr:nth-child(odd),
 .EMP_HOME > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),

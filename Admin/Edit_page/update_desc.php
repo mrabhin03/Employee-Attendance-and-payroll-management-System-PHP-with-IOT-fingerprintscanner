@@ -1,4 +1,4 @@
-<div class="addempin">
+<div class="addempin" style="height: 560px; margin-top: -130px;">
     <?php
     include 'session_check.php';
     $id=$_GET['id'];

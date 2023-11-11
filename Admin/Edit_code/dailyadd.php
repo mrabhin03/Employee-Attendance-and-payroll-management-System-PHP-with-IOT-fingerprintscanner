@@ -28,8 +28,6 @@ if(isset($_GET['date'])){
         "DELETE FROM monthly_attendance WHERE 1",
         "DELETE FROM overtime_details WHERE 1",
         "DELETE FROM salary_paid WHERE 1",
-        "DELETE FROM holidays WHERE 1",
-        "DELETE FROM company_calender WHERE 1"
     ];
     
     foreach ($reset_queries as $query) {

@@ -22,7 +22,7 @@ liview.classList.add('active');
 liviewicon.classList.add('active');
 </script>
 <div class="Attendance">
-    <div class="head">
+    <div style="z-index:1;" class="head">
         <form method="post">
             <input onchange="this.form.submit()" value="<?php
             if(isset($_POST['daily_date']))
@@ -76,69 +76,142 @@ liviewicon.classList.add('active');
                                 <?php
                 $sql = "SELECT * FROM daily_attendance WHERE Att_date='$daily_date'";
                 $query = $con->query($sql);
-
-                echo "<h3>".$query->num_rows."</h3>";
-              ?>
-
-                                <p>Total Employees</p>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="bodypart">
-                                <?php
-                $total = $query->num_rows;
-                
+                $total=$query->num_rows;
                 $sql = "SELECT * FROM daily_attendance WHERE Att_date='$daily_date' AND Att_status=1;";
                 $query = $con->query($sql);
                 $present = $query->num_rows;
                 $absent=$total-$present;
                 if($present>0)
                 {
-                  $percentage = ($present/$total)*100;
+                  $percentage = number_format(($present/$total)*100,2);
                 }
                 else
                 {
-                  $percentage = 0;
+                  $percentage = 0.00;
                 }
-                echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
               ?>
+                                <h3 id='abcd'>0</h3>
 
+                                <p>Total Employees</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="bodypart">
+                                <div
+                                    style=" margin-top:10px; width:100%; height:35px;display:flex; flex-direction: row; justify-content:center; align-item:center;">
+                                    <h3 style="font-size:30px; margin-top:0px;" id="pers">0.00</h3><sup
+                                        style='font-size: 20px;'>%</sup>
+                                </div>
                                 <p>Present Percentage</p>
                             </div>
                         </div>
                         <div class="box">
                             <div class="bodypart">
-                                <?php
-                $query = $con->query($sql);
-                echo "<h3>".$query->num_rows."</h3>"
-              ?>
+                                <h3 id="presents">0</h3>
                                 <p>Total Presents</p>
                             </div>
                         </div>
                         <div class="box">
                             <div class="bodypart">
-                                <?php
-                echo "<h3>".$absent."</h3>"
-              ?>
+                                <h3 id="absents">0</h3>
                                 <p>Total Absents</p>
                             </div>
                         </div>
 
                     </div>
+                    <script>
+                    autoin1();
+
+                    function autoin1() {
+                        var j = 1;
+                        var anotherH1Element = document.getElementById('abcd');
+
+                        function updateAnotherValue2() {
+                            if (j <= <?php echo $total; ?>) {
+                                anotherH1Element.innerHTML = j;
+                                j++;
+                                setTimeout(updateAnotherValue2, 50);
+                            } else {
+                                autoin3();
+                            }
+                        }
+
+                        updateAnotherValue2();
+                    }
+                    var min = 10;
+                    var max = 99;
+
+                    function autoin2() {
+                        var j = 0;
+
+                        var anotherH1Element = document.getElementById('pers');
+
+                        function updateAnotherValue1() {
+                            if (j <= <?php echo $percentage; ?>) {
+                                var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+                                anotherH1Element.innerHTML = j + '.' + randomNum;
+                                j++;
+                                setTimeout(updateAnotherValue1, 10);
+                            } else {
+                                if (<?php echo $percentage; ?> == 0) {
+                                    anotherH1Element.innerHTML = '0.00';
+                                } else {
+                                    anotherH1Element.innerHTML = <?php echo $percentage; ?>;
+                                }
+                            }
+                        }
+
+                        updateAnotherValue1();
+                    }
+
+                    function autoin3() {
+                        var j = 1;
+                        var anotherH1Element = document.getElementById('presents');
+
+                        function updateAnotherValue2() {
+                            if (j <= <?php echo $present; ?>) {
+                                anotherH1Element.innerHTML = j;
+                                j++;
+                                setTimeout(updateAnotherValue2, 30);
+                            } else {
+                                autoin4();
+                            }
+                        }
+
+                        updateAnotherValue2();
+                    }
+
+                    function autoin4() {
+                        var j = 1;
+                        var anotherH1Element = document.getElementById('absents');
+
+                        function updateAnotherValue3() {
+                            if (j <= <?php echo $absent; ?>) {
+                                anotherH1Element.innerHTML = j;
+                                j++;
+                                setTimeout(updateAnotherValue3, 50);
+                            } else {
+                                autoin2();
+                            }
+                        }
+
+                        updateAnotherValue3();
+                    }
+                    </script>
                     <?php
                       $sql = "SELECT employee_details.*, daily_attendance.*
                     FROM employee_details
                     INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id
                     WHERE Emp_status = 1 AND Att_date = '$daily_date'
                     ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED);";
-                  
                     $query = $con->query($sql);
                     if($query->num_rows>0)
                     {
+                      $count=$query->num_rows;
                       $i=1;
                     while($row = $query->fetch_assoc()){
                       ?>
-                    <tr>
+                    <tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
                         <td><?php echo $i; $i++;?></td>
                         <td><?php echo $row['Emp_id']; ?></td>
                         <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;"
@@ -162,6 +235,32 @@ liviewicon.classList.add('active');
                   ?>
                 </tbody>
             </table>
+            <script>
+            trans();
+
+            function trans() {
+                for (var i = 1; i <= <?php echo $count; ?>; i++) {
+                    var row = document.getElementById(i);
+                    row.style.transform = "rotateX(90deg)";
+                }
+                for (var i = 1; i <= <?php echo $count; ?>; i++) {
+                    setTimeout(function(i) {
+                        var row = document.getElementById(i);
+                        if (row) {
+                            row.style.opacity = "1";
+                            for (var p = 90; p >= 0; p--) {
+                                setTimeout(function(p) {
+                                    if (row) {
+                                        row.style.transform = 'rotateX(' + p + 'deg)';
+                                    }
+                                }, (90 - p) * 1.5, p);
+                            }
+                        }
+                    }, i * 100, i);
+                }
+
+            }
+            </script>
         </div>
     </div>
 </div>

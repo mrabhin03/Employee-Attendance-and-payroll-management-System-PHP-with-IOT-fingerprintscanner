@@ -3,7 +3,7 @@ include 'session_check.php';
   include '../common/connection.php';
   ?>
 <div class="Employees">
-    <div class="head">
+    <div class="head" style="z-index:1;">
         <a href="?page=addemp"><button>ADD</button></a>
         <h2>Employees Details</h2>
         <form method="post">
@@ -57,9 +57,10 @@ include 'session_check.php';
                     if($query->num_rows)
                     {
                       $i=1;
+                      $count=$query->num_rows;
                     while($row = $query->fetch_assoc()){
                       ?>
-                        <tr>
+                        <tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
                           <td><?php echo $i; $i++; ?></td>
                           <td><?php echo $row['Emp_id']; ?></td>
                           <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;" src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>" width="30px" height="30px"> </td>
@@ -102,6 +103,32 @@ include 'session_check.php';
                   ?>
                 </tbody>
               </table>
+              <script>
+                trans();
+
+                function trans() {
+                    for (var i = 1; i <= <?php echo $count; ?>; i++) {
+                        var row = document.getElementById(i);
+                        row.style.transform= "rotateX(90deg)";
+                    }
+                    for (var i = 1; i <= <?php echo $count; ?>; i++) {
+                        setTimeout(function(i) {
+                            var row = document.getElementById(i);
+                            if (row) {
+                                row.style.opacity = "1";
+                                for (var p = 90; p >= 0; p--) {
+                                    setTimeout(function(p) {
+                                        if (row) {
+                                            row.style.transform = 'rotateX(' + p + 'deg)';
+                                        }
+                                    }, (90 - p) * 1.5, p);
+                                }
+                            }
+                        }, i * 100, i);
+                    }
+
+                }
+                </script>
         </div>
 
     </div>

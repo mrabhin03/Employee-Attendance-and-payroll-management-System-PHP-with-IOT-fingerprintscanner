@@ -84,9 +84,7 @@
             <div class="box">
                 <div class="bodypart">
                 <?php
-                $attab_sql="SELECT COUNT(*) as Absents FROM daily_attendance WHERE Att_date LIKE '$currentmonth%' AND Emp_id='$id' AND Att_status=0";
-                $absent = $con->query($attab_sql)->fetch_assoc();
-                echo "<h3>".$absent['Absents']."</h3>"
+                echo "<h3>".$calender_data['Working_day']-$present['Present']."</h3>"
               ?>
               <p>Total Absents</p>
                 </div>

@@ -34,7 +34,6 @@ include 'session_check.php';
             <table >
                 <thead>
                   <th>SI</th>
-                  <th>Designation ID</th>
                   <th>Designation Name</th>
                   <th>Basic salary</th>
                   <th>Overtime Salary</th>
@@ -55,7 +54,6 @@ include 'session_check.php';
                       ?>
                         <tr>
                           <td><?php echo $i; $i++; ?></td>
-                          <td><?php echo $row['Desc_id']; ?></td>
                           <td><?php echo $row['Desc_name']?></td>
                           <td><?php echo "₹".$row['Desc_basic']; ?></td>
                           <td><?php echo "₹".$row['Desc_overtimesalary']; ?></td>

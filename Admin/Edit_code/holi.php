@@ -21,6 +21,10 @@ include '../../common/connection.php';
             $dayvalue=$dayvalue-1;
         }
         $update="UPDATE company_calender SET Working_day='$dayvalue' WHERE Month_id='$mid'";
-        $con->query($sql);
-        $con->query($update);
+        if($con->query($sql) === TRUE)
+        {
+            $con->query($update);
+        }
+        
+        
 ?>
