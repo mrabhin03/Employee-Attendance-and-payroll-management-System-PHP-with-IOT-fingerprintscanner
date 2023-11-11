@@ -17,33 +17,27 @@ use PHPMailer\PHPMailer\SMTP;
 
 // Retrieve the data
 $email = $_SESSION['email'];
-$passwordtmp = $_SESSION['passwordtmp'];
 $fullname = $_SESSION['fullname'];
 $empid = $_SESSION['empid'];
+$subject = $_SESSION['subject'];
+$message = $_SESSION['message'];
+$goback=$_SESSION['goback'];
+
 
 // Unset the session variables
 unset($_SESSION['email']);
-unset($_SESSION['passwordtmp']);
 unset($_SESSION['fullname']);
 unset($_SESSION['empid']);
+unset($_SESSION['subject']);
+unset($_SESSION['message']);
+unset($_SESSION['goback']);
+sendEmail($email,$fullname, $subject,$message,$goback);
 
-sendEmail($email,$fullname, "Welcome '$fullname'","   
- <pre>     Welcome
- Emp ID       :'$empid'
- Emp Name     :'$fullname'
- Emp Password :'$passwordtmp' 
- </pre>
- ");
- 
 
- 
 
- 
- function sendEmail($recipient,$name, $subject, $message){
+ function sendEmail($recipient,$name, $subject, $message,$goback){
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
-
-
 
 try {
     //Server settings
@@ -78,7 +72,7 @@ try {
     echo 'Message has been senting';
     $mail->send();
     echo 'Message has been sent';
-    header('location:../Admin/?page=Employees');
+    header($goback);
 } catch (Exception $e) {
     
 }
