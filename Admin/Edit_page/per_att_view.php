@@ -38,7 +38,7 @@
                         }?>
                     </form>
                         <table >
-                            <thead>
+                            <thead style="background-color: transparent;">
                                 <th>Date</th>
                                 <th>Time In</th>
                                 <th>Time Out</th>

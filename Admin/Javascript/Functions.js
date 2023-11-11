@@ -153,7 +153,7 @@ function holidays(st, mid, k) {
         method: "POST",
         data: {st: st, mid: mid, k: k },
         success: function() {
+            location.reload();
         }
     });
-    location.reload();
 }

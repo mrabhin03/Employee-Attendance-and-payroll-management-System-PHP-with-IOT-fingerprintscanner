@@ -40,7 +40,7 @@
                     </select>
                     </form>
                     <table >
-                            <thead>
+                            <thead style="background-color: transparent;">
                                 <th>Date</th>
                                 <th>Worked Hours</th>
                                 <th>Overtime Hours</th>

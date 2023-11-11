@@ -189,7 +189,7 @@ body::before {
   border-collapse: collapse;
   width: 100%;
   height: auto;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0);
   text-align: center;
 }
 .per_att_table > table
@@ -207,7 +207,7 @@ body::before {
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > thead,
 .Employees > .data2 > .employee_detail > table >thead,
-.Designation > .des_data > .des_detail > table > thead
+.Designation > .des_data > .des_detail > table > thead,
 .calendar > .cal_data > .cal_detail > table >thead,
 .Attendance > .Daily_att > .Daily_att_sub > table > thead,
 .Attendance_M > .Monthly_att > .Monthly_att_sub > table >thead,
@@ -219,12 +219,18 @@ body::before {
 .holidays > .holi_data > .holi_detail > table > thead,
 .noti_body >table > thead
 {
+  background-color: rgb(255, 255, 255);
   font-size: 16px;
   line-height: 1.42857143;
   color: #333;
   font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight: 400;
   border-spacing: 0;
+}
+.perAttendance_M > .Monthly_att >.Monthly_att_sub > table > thead,
+.per_Payrolls > .payrolls_details > .payrolls_details_sub > table > thead
+{
+  background-color: transparent;
 }
 .per_att_table > table > thead
 {
@@ -288,6 +294,7 @@ body::before {
 {
   background-color: rgb(252, 252, 252);
   height: 60px;
+  font-size: 15px;
 }
 .noti_body >table > tbody > tr
 {
@@ -305,7 +312,7 @@ body::before {
 .holidays > .holi_data > .holi_detail > table > tbody > tr:nth-child(odd),
 .noti_body >table > tbody > tr:nth-child(odd)
 {
-  background-color: rgb(222, 222, 222);
+  background-color: rgba(222, 222, 222, 0.923);
 }
 .newtable:nth-child(odd)
 {
@@ -483,7 +490,26 @@ body::before {
   flex-direction: column;
 }
 
-
+.theprofile
+{
+  overflow: hidden;
+}
+.theprofile h6
+{
+  animation: profileh6 1s ease-in-out 1;
+  animation-delay: .1s;
+}
+@keyframes profileh6 {
+  0%{
+    transform: scaleY(0);
+  }
+  50%{
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
  .profile
 {
   height: 530px;
@@ -491,11 +517,23 @@ body::before {
   background-color: white;
   width: 230px;
   margin-left: 60px;
+  transform: translateX(0);
   display: flex;
   flex-direction: column;
   align-items: center;
   float: left;
   border-bottom: 5px solid black;
+  animation: profileload .8s ease-in-out 1;
+}
+@keyframes profileload {
+  0%{
+    opacity: 0;
+      transform: translateX(-700px);
+  }
+  100% {
+    opacity: 1;
+      transform: translateX(0px); 
+  }
 }
 .profile > h2
 {
@@ -551,7 +589,9 @@ margin-top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 }
+
 .emp_details_view>.header_view > h1
 {
   color: white;
@@ -559,6 +599,17 @@ margin-top: 0;
   height: 40px;
   width: 400px;
   border-radius: 20px;
+  animation: headingdown .8s ease-in-out 1;
+}
+@keyframes headingdown {
+  0%{
+    opacity: 0;
+      transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+      transform: translateY(0px);
+  }
 }
  .data_edit
 {
@@ -568,9 +619,21 @@ margin-top: 0;
   margin-left: 30px;
   float: left;
   display: flex;
+  transform: translateX(0);
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  animation: editprofile .8s ease-in-out 1;
+}
+@keyframes editprofile {
+  0%{
+    opacity: 0;
+      transform: translateX(700px);
+  }
+  100% {
+    opacity: 1;
+      transform: translateX(0px);
+  }
 }
 .data_edit > .data_1,
 .data_edit > .data_2
@@ -635,6 +698,28 @@ margin-top: 0;
   cursor: pointer;
   border: 2px solid white;
   transition: all .1s ease-in-out;
+}
+.Buttons_bar >a
+{
+  animation: buttonAnimation 1s ease-in-out;
+}
+.Buttons_bar > a:nth-child(1) { animation-delay: 0s; }
+.Buttons_bar > a:nth-child(2) { animation-delay: 0.1s; }
+.Buttons_bar > a:nth-child(3) { animation-delay: 0.2s; }
+.Buttons_bar > a:nth-child(4) { animation-delay: 0.3s; }
+@keyframes buttonAnimation {
+  0% {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
 
 .Buttons_bar >a> button:hover

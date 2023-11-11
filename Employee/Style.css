@@ -44,14 +44,35 @@
   height: 100%;
   margin-left: 7px;
   float: left;
+  overflow: hidden;
 }
 
 .EMP_HOME > .data1 >.sample_data > .box
 {
-  width: 100%;
+  box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
+  width: 95%;
   height: 18%;
   background-color: slategrey;
-  margin-top: 20px;
+  margin-top: 18px;
+  animation: boxload .9s ease-in-out 1;
+}
+.EMP_HOME > .data1 >.sample_data > .box:nth-child(4){animation-delay: -0.35s;}
+.EMP_HOME > .data1 >.sample_data > .box:nth-child(3){animation-delay: -0.25s;}
+.EMP_HOME > .data1 >.sample_data > .box:nth-child(2){animation-delay: -0.15s;}
+.EMP_HOME > .data1 >.sample_data > .box:nth-child(1){animation-delay: -0.05s;}
+@keyframes boxload {
+  0% {
+    opacity: 0;
+      transform: translateX(-250px);
+  }
+  50% {
+    opacity: 0;
+      transform: translateX(-250px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 
 .EMP_HOME > .data1 >.sample_data > .box > .bodypart

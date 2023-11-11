@@ -68,7 +68,6 @@ include 'session_check.php';
                     $query = $con->query($sql);
                     if($query->num_rows > 0)
                     {
-                      $count=$query->num_rows;
                       $i=1;
                       $_SESSION['month_id']=$m_id;
                     while($row = $query->fetch_assoc()){
@@ -87,16 +86,17 @@ include 'session_check.php';
                         <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?>
                         </td>
                         <td>
-                            <?php $data=$row['Emp_id']; echo "<a href='?page=payroll_details&id=$data'><button class='view-emp' >View Details</button></a>"; $i++; ?>
+                            <?php $data=$row['Emp_id']; echo "<a href='?page=payroll_details&id=$data'><button class='view-emp' >View Details</button></a>"; $i++;?>
                         </td>
                     </tr>
                     <?php
                     }
-                    ?><tr>
+                    ?><tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
                         <td colspan="10">
                             <?php echo "<a href='?page=paythebill&id=$m_id'><button class='pay'>Pay the Bill</button></a>" ?>
                         </td>
                     </tr><?php
+                    $count=$i;
                   }
                   else
                   {

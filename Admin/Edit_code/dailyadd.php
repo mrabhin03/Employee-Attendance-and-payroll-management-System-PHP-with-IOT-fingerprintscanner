@@ -64,26 +64,45 @@ while($logdate=$log_query->fetch_assoc())
         
         $emp_rf=$data['Rf_id'];
         $emp_id=$data['Emp_id'];
-        $IN="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$emp_rf AND Log_status='IN'";
+        $IN="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
         $INquery=$con->query($IN);
         $check="SELECT * FROM daily_attendance WHERE Att_date='$currentdate' AND Emp_id='$emp_id'";
         $checkquery=$con->query($check);
         if(mysqli_num_rows($INquery)>0)
-        {
+        {            
             $INrow=$INquery->fetch_assoc();
             $OUT="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$emp_rf AND Log_status='OUT'";
             $OUTquery=$con->query($OUT);
             $datetime1 = new DateTime($INrow['Time_date']);
             if(mysqli_num_rows($OUTquery)>0)
             {
-                $OUTrow=$OUTquery->fetch_assoc();
-                
-                $datetime2 = new DateTime($OUTrow['Time_date']);
-                // Calculate the difference
-                $interval = $datetime1->diff($datetime2);
-                // Extract the difference in hours
-                $hours = $interval->format('%h');
-    
+                if(mysqli_num_rows($INquery)> 1)
+                {
+                    $doublein1sql="SELECT MIN(Time_date) as inmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
+                    $doubleout1sql="SELECT MIN(Time_date) as outmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
+                    $firstin=$con->query($doublein1sql)->fetch_assoc();
+                    $firstinvalue = new DateTime($firstin['inmin']);
+                    $firstout=$con->query($doubleout1sql)->fetch_assoc();
+                    $firstoutvalue = new DateTime($firstout['outmin']);
+                    $interval1 = $firstinvalue->diff($firstoutvalue);
+                    $hours1 = $interval1->format('%h');
+                    $doublein2sql="SELECT MAX(Time_date) as inmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
+                    $doubleout2sql="SELECT MAX(Time_date) as outmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
+                    $secoin=$con->query($doublein2sql)->fetch_assoc();
+                    $secinvalue = new DateTime($secoin['inmax']);
+                    $secoinout=$con->query($doubleout2sql)->fetch_assoc();
+                    $secoutvalue = new DateTime($secoinout['outmax']);
+                    $interval2 = $secinvalue->diff($secoutvalue);
+                    $hours2 = $interval2->format('%h');
+                    $hours=$hours1+$hours2;
+                }
+                else
+                {
+                    $OUTrow=$OUTquery->fetch_assoc();
+                    $datetime2 = new DateTime($OUTrow['Time_date']);
+                    $interval = $datetime1->diff($datetime2);
+                    $hours = $interval->format('%h');
+                }
                 if(mysqli_num_rows($checkquery)>0)
                 {
                     $insert="UPDATE daily_attendance SET Working_hour='$hours', Att_status='1' WHERE Att_date='$currentdate' AND Emp_id='$emp_id'";

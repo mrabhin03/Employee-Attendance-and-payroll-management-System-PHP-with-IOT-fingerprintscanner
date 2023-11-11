@@ -120,7 +120,15 @@ liviewicon.classList.add('active');
 
                     </div>
                     <script>
-                    autoin1();
+                    function callassemble() {
+                        autoin1();
+                        autoin2();
+                        autoin3();
+                        autoin4();
+                    }
+                    window.onload = function() {
+                        setTimeout(callassemble, 700);
+                    };
 
                     function autoin1() {
                         var j = 1;
@@ -131,8 +139,6 @@ liviewicon.classList.add('active');
                                 anotherH1Element.innerHTML = j;
                                 j++;
                                 setTimeout(updateAnotherValue2, 50);
-                            } else {
-                                autoin3();
                             }
                         }
 
@@ -172,9 +178,7 @@ liviewicon.classList.add('active');
                             if (j <= <?php echo $present; ?>) {
                                 anotherH1Element.innerHTML = j;
                                 j++;
-                                setTimeout(updateAnotherValue2, 30);
-                            } else {
-                                autoin4();
+                                setTimeout(updateAnotherValue2, 80);
                             }
                         }
 
@@ -189,9 +193,7 @@ liviewicon.classList.add('active');
                             if (j <= <?php echo $absent; ?>) {
                                 anotherH1Element.innerHTML = j;
                                 j++;
-                                setTimeout(updateAnotherValue3, 50);
-                            } else {
-                                autoin2();
+                                setTimeout(updateAnotherValue3, 100);
                             }
                         }
 
