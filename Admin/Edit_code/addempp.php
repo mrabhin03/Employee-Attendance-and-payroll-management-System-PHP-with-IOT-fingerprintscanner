@@ -103,20 +103,17 @@ Best,
 <br>
 Sooraj B
 <br>
-CEO
-<br>
-[Company Name]
+CEO,[Company Name]
 </p>
 </div>           
 <p>Take one minute to set up your profile</p>
 <p>
-
-                                Emp ID       : $empid<br>
-                                Emp Name     : $fullname<br>
-                                Emp Password : $passwordtmp<br>
+ Employee ID       : $empid<br>
+ Employee Name     : $fullname<br>
+ Employee Password : $passwordtmp<br>
  </p>
 <a href='http://localhost/miniproject/login/login.php' style='text-decoration: none; color: #fff; background-color: #4285f4; padding: 10px 20px; border-radius: 5px; display: inline-block; margin-top: 20px;'>LOGIN</a>
-<p align='center'>© 2023 our system name</p>
+<p align='center'> © 2023 Trackify</p>
 </div>                   
 </body>
 </html>";
