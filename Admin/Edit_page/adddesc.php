@@ -1,4 +1,4 @@
-<div class="addempin">
+<div class="addempin" style="height:570px; margin-top:-130px;">
     <?php
 include 'session_check.php';
     include '../common/connection.php';

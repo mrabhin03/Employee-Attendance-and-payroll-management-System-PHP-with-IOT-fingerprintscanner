@@ -46,7 +46,7 @@ body::before {
   width: 18%;
   background-color: #3951a7c4;
   color: #fff;
-  height: 90%;
+  height: 92%;
   overflow-y: auto;
   overflow-x: hidden;
   float: left;
@@ -100,7 +100,7 @@ body::before {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
+  font-size: 22px;
 }
 .side-menu > ul > .option
 {

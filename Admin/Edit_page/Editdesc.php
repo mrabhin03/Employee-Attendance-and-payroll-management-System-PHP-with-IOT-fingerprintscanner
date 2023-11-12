@@ -82,12 +82,16 @@ include 'session_check.php';
                     <select   name="desc_id" required>
                         <?php 
                         $ds=$EMP['Desc_id'];
-                          $sql = "SELECT * FROM employee_designation WHERE  Desc_id != '$ds'  AND Desc_status!='0'";
+                          
                           $sql1 = "SELECT * FROM employee_designation WHERE  Desc_id = '$ds'";
-                          $query = $con->query($sql);
+                          
                           $query1 = $con->query($sql1);
                           $data=$query1->fetch_assoc();
-                          echo "<option value='$ds' selected>".$data['Desc_name']."</option>";
+                          $newsearch = "SELECT * FROM employee_designation WHERE  Desc_name = '".$data['Desc_name']."' AND Desc_status!='0'";
+                          $newdes=$con->query($newsearch)->fetch_assoc();
+                          $sql = "SELECT * FROM employee_designation WHERE  Desc_id != '".$newdes['Desc_id']."'  AND Desc_status!='0'";
+                          $query = $con->query($sql);
+                          echo "<option value='".$newdes['Desc_id']."' selected>".$newdes['Desc_name']."</option>";
                           while($prow = $query->fetch_assoc()){
                             echo "
                               <option value='".$prow['Desc_id']."'>".$prow['Desc_name']."</option>

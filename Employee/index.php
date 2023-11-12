@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="Style.css?v=<?php echo time()?>">
+    <link rel="icon" href="unavailable">
     <link rel="stylesheet"  href="../common/Common_style.css?v=<?php echo time()?>">
     <title>Biometric attendance system</title>
 

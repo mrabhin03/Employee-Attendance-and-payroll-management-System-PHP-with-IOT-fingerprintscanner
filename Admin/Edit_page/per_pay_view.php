@@ -81,15 +81,28 @@
                                 <td><?php echo ($row['Salary_status']==1)? "<p style='color: rgb(13, 255, 0);'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?>
                                 </td>
                             </tr>
-                            <?php
-                                        }?>
+                            <?php }
+                            if ($totalsalary >= 1000000000000) {
+                                $tsalary = number_format(($totalsalary / 1000000000000), 2) . "T";
+                            } elseif ($totalsalary >= 1000000000) {
+                                $tsalary = number_format(($totalsalary / 1000000000), 2) . "B";
+                            } elseif ($totalsalary >= 1000000) {
+                                $tsalary = number_format(($totalsalary / 1000000), 2) . "M";
+                            } elseif ($totalsalary >= 1000) {
+                                $tsalary = number_format(($totalsalary / 1000), 2) . "k";
+                            } else {
+                                $tsalary = $totalsalary;
+                            }
+                            
+                            
+                            ?>
                             <tr style="opacity: 0; z-index:0; background-color: #8200006a;" id="<?php echo $i; $i++; ?>">
                                 <td colspan="2" style="font-size:25px;">TOTAL</td>
                                 <td><?php echo (!empty($workedhours))?$workedhours."hrs":"---";?>
                                 </td>
                                 <td><?php echo (!empty($overtimehours))?$overtimehours."hrs":"---";?>
                                 </td>
-                                <td><?php echo "₹ ".number_format($totalsalary); ?>
+                                <td><?php echo "₹ ".$tsalary; ?>
                                 </td>
                                 <td>
                                 </td>
