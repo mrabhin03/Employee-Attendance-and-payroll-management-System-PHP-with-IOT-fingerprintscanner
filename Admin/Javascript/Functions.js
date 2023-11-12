@@ -38,6 +38,48 @@ function add_new_page()
         addempdata.classList.add('active');
       }
 }
+joinvalue=0;
+function submitemp()
+{
+    checktofromdata()
+    if(joinvalue==1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function joincheck()
+{
+    joinvalue=document.getElementById('joindata');
+    fromdate=document.getElementById('fromdata');
+    dateva=joinvalue.value
+    let month_date = dateva.substring(0, dateva.lastIndexOf("-"));
+    fromdate.value=month_date;
+}
+function checktofromdata()
+{
+    fromdate=document.getElementById('fromdata');
+    todate=document.getElementById('todata');
+    datevalid=document.getElementById('notvaliddate');
+    datevalid.textContent="";
+    if(fromdate.value<=todate.value)
+    {
+        todate.style.borderColor = '#d2d6de';
+        joinvalue=1;
+    }
+    else
+    {
+        todate.style.borderColor = 'red';
+        joinvalue=0;
+        datevalid.textContent="Invalid Designation Date";
+    }
+}
+
+
 function checktofromfirst()
 {
     oldto=document.getElementById('oldto');
@@ -53,25 +95,41 @@ function checktofromfirst()
     }
     month=month.toString().padStart(2, '0');
     newfrom.value=year+"-"+month;
+    checktofromsec();
 }
 checkvalue=0;
 function checktofromsec()
 {
     newfrom1=document.getElementById('newfrom');
     newto1=document.getElementById('newto');
+    oldfrom1=document.getElementById('oldfrom');
+    oldto1=document.getElementById('oldto');
     invalid=document.getElementById('not_valid');
-    if(newfrom1.value>=newto1.value)
+    invalid2=document.getElementById('not_validfi');
+    if(oldto1.value>=oldfrom1.value)
     {
-        newto1.style.borderColor = 'red';
-        invalid.textContent="Invalid Designation Date";
-        checkvalue=0;
+        invalid2.textContent="";
+        oldto1.style.borderColor = '#d2d6de';
+        if(newfrom1.value>=newto1.value)
+        {
+            newto1.style.borderColor = 'red';
+            invalid.textContent="Invalid Designation Date";
+            checkvalue=0;
+        }
+        else
+        {
+            newto1.style.borderColor = '#d2d6de';
+            invalid.textContent="";
+            checkvalue=1;
+        }
     }
     else
     {
-        newto1.style.borderColor = '#d2d6de';
-        invalid.textContent="";
-        checkvalue=1;
+        invalid2.textContent="Invalid Designation Date";
+        oldto1.style.borderColor = 'red';
+        checkvalue=0;
     }
+    
 }
 function thesubmitfun()
 {
@@ -153,7 +211,7 @@ function holidays(st, mid, k) {
         method: "POST",
         data: {st: st, mid: mid, k: k },
         success: function() {
+            location.reload();
         }
     });
-    location.reload();
 }

@@ -1,11 +1,8 @@
 <?php
 include 'session_check.php';
-    if(isset($_POST["gen_payroll"]))
+    if(isset($_GET["mid"]))
     {
-        $year=$_POST['year'];
-        $month=$_POST['month']+1;
-        $month = str_pad($month, 2, "0", STR_PAD_LEFT);
-        $monthid=$year.$month;
+        $monthid=$_GET["mid"];
         $empdata="SELECT * FROM employee_details WHERE Emp_status!=2 AND Emp_id  NOT LIKE 'U%' AND DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
         $empdbdata=$con->query($empdata);
         $calender_sql="SELECT * FROM company_calender WHERE Month_id='$monthid'";
@@ -97,11 +94,10 @@ include 'session_check.php';
             }
             else{
                 echo "<script>alert('Monthly attendance not found')</script>";
-                $date = substr($monthid, 0, 4) . '-' . substr($monthid, 4);
-                echo "<script>window.location.href = '?page=Monthly_attendance&date=$date';</script>";
+                echo "<script>window.location.href = '?page=Monthly_attendance';</script>";
             }
             
         }
-        echo "<script>window.location.href = '?page=Payrolls&date=$monthid';</script>";
+        echo "<script>window.location.href = '?page=Payrolls';</script>";
     }
 ?>

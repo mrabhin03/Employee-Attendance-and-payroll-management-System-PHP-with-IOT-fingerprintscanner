@@ -5,6 +5,7 @@ $monthco = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 set_time_limit(5000);
 if(isset($_GET['date'])){
     $date = $_GET['date'];
+    $_SESSION['datevalue']=$date;
     $currentdate=$date;
     $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
     if($con->query($log_sql)->num_rows == 0){
@@ -20,8 +21,23 @@ if(isset($_GET['date'])){
         $log_query=$con->query($log_sql);
     }
 }else{
-    $log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
-    $log_query=$con->query($log_sql);
+    $log_sqlmax="SELECT MAX(DATE(Time_date)) as maxthedate FROM emp_logs;";
+    $maxlog_query=$con->query($log_sqlmax);
+    $maxdatevalu=$maxlog_query->fetch_assoc();
+    $log_sqlmin="SELECT MIN(DATE(Time_date)) as minthedate FROM emp_logs;";
+    $minlog_query=$con->query($log_sqlmin);
+    $mindatevalu=$minlog_query->fetch_assoc();
+    $newdatequery="WITH RECURSIVE DateRange AS (
+        SELECT CAST('".$mindatevalu['minthedate']."' AS DATE) AS thedate
+        UNION ALL
+        SELECT thedate + INTERVAL 1 DAY
+        FROM DateRange
+        WHERE thedate < '".$maxdatevalu['maxthedate']."'
+    )
+    
+    SELECT thedate
+    FROM DateRange;";
+    $log_query=$con->query($newdatequery);
     $reset_queries = [
         "DELETE FROM salary_paid WHERE 1",
         "DELETE FROM daily_attendance WHERE 1",
@@ -33,6 +49,7 @@ if(isset($_GET['date'])){
     foreach ($reset_queries as $query) {
         $con->query($query);
     }
+    
 }
 
 while($logdate=$log_query->fetch_assoc())
@@ -41,7 +58,21 @@ while($logdate=$log_query->fetch_assoc())
     $monthid = date('Ym', strtotime($currentdate));
     $Yearnew = date('Y', strtotime($currentdate));
     $monthnew = date('m', strtotime($currentdate));
-    $cale="SELECT * FROM company_calender WHERE Month_id='$monthid'";
+    $dayva = intval(date('d', strtotime($currentdate)));
+    $holidaysql="SELECT * FROM holidays WHERE Month_id='$monthid' AND day='$dayva'";
+    $yesorno = $con->query($holidaysql)->num_rows;
+    if($yesorno> 0)
+    {
+        $thecheck="SELECT * FROM daily_attendance WHERE Att_date='$currentdate'";
+        $newcheckquery=$con->query($thecheck);
+        if($newcheckquery->num_rows> 0)
+        {
+            $newdaily="UPDATE daily_attendance SET Working_hour='0' WHERE Att_date='$daily_date'";
+            $con->query($newdaily);
+        }
+    }
+    else {
+        $cale="SELECT * FROM company_calender WHERE Month_id='$monthid'";
                     $query2 = $con->query($cale);
                     if($query2->num_rows==0)
                     {
@@ -64,26 +95,45 @@ while($logdate=$log_query->fetch_assoc())
         
         $emp_rf=$data['Rf_id'];
         $emp_id=$data['Emp_id'];
-        $IN="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$emp_rf AND Log_status='IN'";
+        $IN="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
         $INquery=$con->query($IN);
         $check="SELECT * FROM daily_attendance WHERE Att_date='$currentdate' AND Emp_id='$emp_id'";
         $checkquery=$con->query($check);
         if(mysqli_num_rows($INquery)>0)
-        {
+        {            
             $INrow=$INquery->fetch_assoc();
             $OUT="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$emp_rf AND Log_status='OUT'";
             $OUTquery=$con->query($OUT);
             $datetime1 = new DateTime($INrow['Time_date']);
             if(mysqli_num_rows($OUTquery)>0)
             {
-                $OUTrow=$OUTquery->fetch_assoc();
-                
-                $datetime2 = new DateTime($OUTrow['Time_date']);
-                // Calculate the difference
-                $interval = $datetime1->diff($datetime2);
-                // Extract the difference in hours
-                $hours = $interval->format('%h');
-    
+                if(mysqli_num_rows($INquery)> 1)
+                {
+                    $doublein1sql="SELECT MIN(Time_date) as inmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
+                    $doubleout1sql="SELECT MIN(Time_date) as outmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
+                    $firstin=$con->query($doublein1sql)->fetch_assoc();
+                    $firstinvalue = new DateTime($firstin['inmin']);
+                    $firstout=$con->query($doubleout1sql)->fetch_assoc();
+                    $firstoutvalue = new DateTime($firstout['outmin']);
+                    $interval1 = $firstinvalue->diff($firstoutvalue);
+                    $hours1 = $interval1->format('%h');
+                    $doublein2sql="SELECT MAX(Time_date) as inmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
+                    $doubleout2sql="SELECT MAX(Time_date) as outmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
+                    $secoin=$con->query($doublein2sql)->fetch_assoc();
+                    $secinvalue = new DateTime($secoin['inmax']);
+                    $secoinout=$con->query($doubleout2sql)->fetch_assoc();
+                    $secoutvalue = new DateTime($secoinout['outmax']);
+                    $interval2 = $secinvalue->diff($secoutvalue);
+                    $hours2 = $interval2->format('%h');
+                    $hours=$hours1+$hours2;
+                }
+                else
+                {
+                    $OUTrow=$OUTquery->fetch_assoc();
+                    $datetime2 = new DateTime($OUTrow['Time_date']);
+                    $interval = $datetime1->diff($datetime2);
+                    $hours = $interval->format('%h');
+                }
                 if(mysqli_num_rows($checkquery)>0)
                 {
                     $insert="UPDATE daily_attendance SET Working_hour='$hours', Att_status='1' WHERE Att_date='$currentdate' AND Emp_id='$emp_id'";
@@ -120,13 +170,16 @@ while($logdate=$log_query->fetch_assoc())
                 }
               
         }
-        $con->query($insert);
+       $con->query($insert);
         
     }
+        
+    }
+    
 }
 
 if(isset($_GET['date'])){
-    echo "<script>window.location.href = '?page=Attendance&date=$currentdate';</script>";
+    echo "<script>window.location.href = '?page=Attendance';</script>";
 }else{
     include 'al_month.php';
 }

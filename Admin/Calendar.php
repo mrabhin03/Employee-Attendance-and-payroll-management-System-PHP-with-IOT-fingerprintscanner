@@ -98,7 +98,7 @@ include 'session_check.php';
                       ?>
 
                         <td>
-                            <div style='background-color:red; color:white; <?php if($k==date('d')){ echo "border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>' >
+                            <div style='background-color:red; color:white; <?php if($k<10){$day='0'.$k;}else{$day=$k;} $date=$yearmo.'-'.$day; if($date==date('Y-m-d')){ echo "border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>' >
                                 <div
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>
@@ -114,7 +114,7 @@ include 'session_check.php';
                         {
                           ?>
                         <td>
-                            <div style='<?php if($k==date('d')){ echo "color:white; border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>'>
+                            <div style='<?php if($k<10){$day='0'.$k;}else{$day=$k;} $date=$yearmo.'-'.$day; if($date==date('Y-m-d')){ echo "color:white; border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>'>
                                 <div
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>

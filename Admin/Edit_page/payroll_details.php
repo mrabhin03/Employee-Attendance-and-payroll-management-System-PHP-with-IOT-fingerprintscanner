@@ -1,18 +1,20 @@
 <?php
 include 'session_check.php';
   include '../common/connection.php';
-    $id=$_GET['id'];
+    $id=$_SESSION['detailid'];
     $date=$_SESSION['month_id'];
     $year = substr($date, 0, 4);
     $month = substr($date, 4, 2);
     $datevalue = $year . '-' . $month;
+    $emp_query=$con->query("SELECT Emp_name FROM employee_details WHERE Emp_id='$id'");
+    $emp_row=$emp_query->fetch_array();
 ?>
 <div class="pay_details">
     <div class="pay_details_sub">
         <div class="main_pay">
-        <a href="?page=Payrolls">X</a>
-        <h1>PAYROLL DETAIL</h1>
-        <div style="width: 50px;"></div>
+        <?php echo "<a href='?page=Payrolls'>X</a>"; ?>
+        <h1>Payroll details of  <?php echo $emp_row["Emp_name"]; ?></h1>
+        <div style="width: 80px;"></div>
         </div>
         <div class="payroll_head">
             <div>

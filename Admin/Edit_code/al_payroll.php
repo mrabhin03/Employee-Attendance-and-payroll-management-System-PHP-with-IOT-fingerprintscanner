@@ -94,7 +94,15 @@ if($month_id_query->num_rows > 0)
             }
             else
             {
-                $salary_insert="INSERT INTO salary_paid (Emp_id, Desc_id, Month_id, Salary_basic, Salary_da, Salary_ma, Salary_pf, Salary_status, Working_hour, Total_salary) VALUES ('$empid','$descid','$monthid','$month_basic','$salaryda','$salaryma','$salarypf',0,'$workhr','$month_total')";
+                if($monthid<date('Ym'))
+                {
+                    $sta=1;
+                }
+                else
+                {
+                    $sta=0;
+                }
+                $salary_insert="INSERT INTO salary_paid (Emp_id, Desc_id, Month_id, Salary_basic, Salary_da, Salary_ma, Salary_pf, Salary_status, Working_hour, Total_salary) VALUES ('$empid','$descid','$monthid','$month_basic','$salaryda','$salaryma','$salarypf','$sta','$workhr','$month_total')";
             }
             $con->query($salary_insert);
         }

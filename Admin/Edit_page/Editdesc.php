@@ -1,7 +1,7 @@
 <?php
 include 'session_check.php';
     include '../common/connection.php';
-    $data_id=$_GET['id'];
+    $data_id=$_SESSION['detailid'];
     $query="SELECT * FROM designation_for_employee WHERE Emp_id='$data_id' AND Desc_status='1'";
     $data=$con->query($query);
     $EMP = $data->fetch_assoc();
@@ -30,7 +30,7 @@ include 'session_check.php';
             <table class="edit_table">
             <tr>
                     <td>
-                        <label for="Username">Username</label>
+                        <label for="Username">Emp ID</label>
                     </td>
                     <td>
                         <input type="text" id="name" name="Username" value="<?php echo $EMP['Emp_id'];?>" readonly>
@@ -51,6 +51,9 @@ include 'session_check.php';
                     <td>
                         <input onchange="checktofromfirst()" type="month" id="oldto" name="olddes_to" value="<?php echo $date;?>">
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label style="color:red;width:100%; text-align:center;"  id="not_validfi"></label></td>
                 </tr>
                 <tr>
                     <td>
@@ -97,7 +100,7 @@ include 'session_check.php';
                 <tr class="footer_tr">
                     <td colspan="2">
                         <div class="Edit_footer">
-                            <?php echo "<a href='?page=View_details&id=$data_id'><button  type='button' class='cancel_edit' >Close</button></a>" ?>
+                            <?php echo "<a href='?page=View_details'><button  type='button' class='cancel_edit' >Close</button></a>" ?>
         	                <button type="submit"  class="save_edit" name="update_desc" >Update</button>
                         </div>
                     </td>
@@ -121,6 +124,6 @@ include 'session_check.php';
         $insert="INSERT INTO designation_for_employee (Emp_id, Desc_id, Desc_from_date, Desc_to_date, Desc_status) VALUES ('$id','$desc_id','$date_from',' $date_to','1')";
         $con->query($update);
         $con->query($insert);
-        echo "<script>window.location.href = '?page=View_details&id=$id';</script>";
+        echo "<script>window.location.href = '?page=View_details';</script>";
     }
 ?>

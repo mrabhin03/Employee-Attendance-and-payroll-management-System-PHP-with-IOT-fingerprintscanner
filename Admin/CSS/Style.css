@@ -30,7 +30,7 @@
 
 .Bashboard
 {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.079);
 }
 
 
@@ -90,6 +90,7 @@
   float: left;
   position: fixed;
   margin-top: -10px;
+  overflow: hidden;
 }
  .sample_data2
 {
@@ -101,6 +102,7 @@
   margin-top: 10px;
   margin-bottom: 5px;
   align-items: center;
+  overflow: hidden;
 }
 .sample_data2  > .box
 {
@@ -113,16 +115,54 @@
   align-items: center;
   border-radius: 20px;
   box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
+  animation: box2load .9s ease-in-out 1;
 
+}
+.sample_data2  > .box:nth-child(1){animation-delay: -0.35s;}
+.sample_data2  > .box:nth-child(2){animation-delay: -0.25s;}
+.sample_data2  > .box:nth-child(3){animation-delay: -0.15s;}
+.sample_data2  > .box:nth-child(4){animation-delay: -0.05s;}
+@keyframes box2load {
+  0% {
+    opacity: 0;
+      transform: translateY(-50px);
+  }
+  50% {
+    opacity: 0;
+      transform: translateY(-250px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 .Bashboard > .data1 >.sample_data > .box
 {
-  width: 100%;
+  width: 96%;
   height: 18%;
   background-color: slategrey;
   margin-top: 20px;
-  box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.632);
   border-radius: 5px;
+  animation: boxload .9s ease-in-out 1;
+}
+.Bashboard > .data1 >.sample_data > .box:nth-child(4){animation-delay: -0.35s;}
+.Bashboard > .data1 >.sample_data > .box:nth-child(3){animation-delay: -0.25s;}
+.Bashboard > .data1 >.sample_data > .box:nth-child(2){animation-delay: -0.15s;}
+.Bashboard > .data1 >.sample_data > .box:nth-child(1){animation-delay: -0.05s;}
+@keyframes boxload {
+  0% {
+    opacity: 0;
+      transform: translateX(-250px);
+  }
+  50% {
+    opacity: 0;
+      transform: translateX(-250px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 
 .Bashboard > .data1 >.sample_data > .box > .bodypart,
@@ -318,7 +358,7 @@
 }
 .addempin.active .emp_details
 {
-  transform: translate(-500px,-110px);
+  transform: translate(-500px,0px);
 }
 
 .addempin .designation_add
@@ -326,7 +366,7 @@
   height: 100%;
   width: 100%;
   float: left;
-  transform: translate(500px,110px);
+  transform: translate(500px,0px);
   position: absolute;
   transition: all .3s ease-in;
 }

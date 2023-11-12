@@ -17,7 +17,7 @@
                 <h1> Details of the Employee</h1>
                 <div></div>
             </div>
-            <div>
+            <div class="theprofile">
                 <div class="profile">
                     <img style=" object-fit: cover; "
                         src="<?php echo (!empty($EMP['Emp_Photo']))? '../images/'.$EMP['Emp_Photo']:'../images/profile.jpg'; ?>">

@@ -59,13 +59,13 @@
                     while($row = $query->fetch_assoc()){
                         $monthdata = substr($row['Month_id'], 4, 2);
                         $monthdata = intval($monthdata);
-                        if($row['Desc_basic']>0)
+                        if($row['Salary_basic']>0)
                         {
-                            echo "<tr style='font-size:17px;'>";
+                            echo "<tr style='font-size:17px; opacity: 0; z-index:0;' id='$i'>";
                         }
                         else
                         {
-                            echo "<tr style='background-color: red; font-size:17px; color:white;border: 2px solid white;'>";
+                            echo "<tr style='background-color: darkred; font-size:17px; color:white;border: 2px solid white;opacity: 0; z-index:0;' id='$i'>";
                         }
                       ?>
                         
@@ -82,7 +82,9 @@
                           </td>
                         </tr>
                       <?php
+                      $i++;
                     }
+                    $count=$i;
                   }
                   else
                   {
@@ -97,6 +99,33 @@
                   ?>
                 </tbody>
               </table>
+              <script>
+            trans();
+
+            function trans() {
+                for (var i = 1; i < <?php echo $count; ?>; i++) {
+                  
+                    var row = document.getElementById(i);
+                    row.style.transform = "rotateX(90deg)";
+                }
+                for (var i = 1; i < <?php echo $count; ?>; i++) {
+                    setTimeout(function(i) {
+                        var row = document.getElementById(i);
+                        if (row) {
+                            row.style.opacity = "1";
+                            for (var p = 90; p >= 0; p--) {
+                                setTimeout(function(p) {
+                                    if (row) {
+                                        row.style.transform = 'rotateX(' + p + 'deg)';
+                                    }
+                                }, (90 - p) * 1.5, p);
+                            }
+                        }
+                    }, i * 100, i);
+                }
+
+            }
+            </script>
         </div>
 
     </div>

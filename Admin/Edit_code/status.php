@@ -11,7 +11,7 @@ include '../session_check.php';
     }
     else
     {
-        echo "<script>window.location.href = '../Index.php?page=View_details&id=$id';</script>";
+        echo "<script>window.location.href = '../Index.php?page=View_details';</script>";
     }
     
 ?>

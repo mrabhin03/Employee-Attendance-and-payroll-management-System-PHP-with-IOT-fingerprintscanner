@@ -1,8 +1,8 @@
 <?php
 include 'session_check.php';
   include '../common/connection.php';
-  if(isset($_GET['date'])){
-    $date = $_GET['date'];
+  if(isset($_SESSION['month_id'])){
+    $date = $_SESSION['month_id'];
     $month = substr($date, 4, 2);
     $Year = substr($date, 0, 4);
   }else{
@@ -13,9 +13,7 @@ include 'session_check.php';
   ?>
 <div class="Payrolls">
     <div style="z-index:1;" class="head">
-        <a href="?page=generate_salary_page"><button style='width:70px;'>Generate</button></a>
-        <h2>Payrolls Details</h2>
-        <form method="post">
+        <form method="post" style="order:3;">
             <input value="<?php
             if(isset($_POST['month_date']))
             {
@@ -23,9 +21,13 @@ include 'session_check.php';
                 list($Year,$month) = explode('-', $date);
             }
             $m_id=$Year.$month;
+            $_SESSION['month_id']=$m_id;
             echo $Year."-".$month;
         ?>" type="month" onchange="this.form.submit()" name="month_date" required>
         </form>
+
+        <h2 style="order:2;">Payrolls Details</h2>
+        <?php echo "<a style='order:1;' href='?page=generate_payroll&mid=$m_id'><button style='width:70px;'>Generate</button></a>" ?>
     </div>
     <div class="payrolls_details">
         <div class="payrolls_details_sub">
@@ -68,9 +70,7 @@ include 'session_check.php';
                     $query = $con->query($sql);
                     if($query->num_rows > 0)
                     {
-                      $count=$query->num_rows;
                       $i=1;
-                      $_SESSION['month_id']=$m_id;
                     while($row = $query->fetch_assoc()){
                       ?>
                     <tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
@@ -81,22 +81,23 @@ include 'session_check.php';
                         <td><?php echo $row['Emp_name']?></td>
                         <td><?php echo $row['Desc_name']; ?></td>
                         <td><?php echo "₹".number_format($row['Salary_basic']); ?></td>
-                        <td><?php echo ($row['Salary_basic']!=0)? $row['Working_hour']:0 ?>hr</td>
-                        <td><?php echo ($row['Salary_basic']!=0)? $row['Overtime_hrs']:0 ?>hr</td>
+                        <td><?php echo ($row['Salary_basic']!=0)? $row['Working_hour']."hrs":"---" ?></td>
+                        <td><?php echo ($row['Salary_basic']!=0)? $row['Overtime_hrs']."hrs":"---"  ?></td>
                         <td><?php echo "₹".number_format($row['Total_salary']); ?></td>
                         <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?>
                         </td>
                         <td>
-                            <?php $data=$row['Emp_id']; echo "<a href='?page=payroll_details&id=$data'><button class='view-emp' >View Details</button></a>"; $i++; ?>
+                            <?php $data=$row['Emp_id']; echo "<a href='?page=page_controller&id=$data&pageto=2'><button class='view-emp' >View Details</button></a>"; $i++;?>
                         </td>
                     </tr>
                     <?php
                     }
-                    ?><tr>
+                    ?><tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
                         <td colspan="10">
                             <?php echo "<a href='?page=paythebill&id=$m_id'><button class='pay'>Pay the Bill</button></a>" ?>
                         </td>
                     </tr><?php
+                    $count=$i;
                   }
                   else
                   {

@@ -103,7 +103,15 @@
 
         </div>
         <script>
-        autoin1();
+        function callassemble() {
+            autoin1();
+            autoin2();
+            autoin3();
+            autoin4();
+        }
+        window.onload = function() {
+            setTimeout(callassemble, 500);
+        };
 
         function autoin1() {
             var j = 1;
@@ -114,8 +122,6 @@
                     anotherH1Element.innerHTML = j;
                     j++;
                     setTimeout(updateAnotherValue2, 50);
-                } else {
-                    autoin3();
                 }
             }
 
@@ -136,7 +142,11 @@
                     j++;
                     setTimeout(updateAnotherValue1, 10);
                 } else {
-                    anotherH1Element.innerHTML = <?php echo $percentage; ?>;
+                    if (<?php echo $percentage; ?> == 0) {
+                        anotherH1Element.innerHTML = '0.00';
+                    } else {
+                        anotherH1Element.innerHTML = <?php echo $percentage; ?>;
+                    }
                 }
             }
 
@@ -151,9 +161,7 @@
                 if (j <= <?php echo $present; ?>) {
                     anotherH1Element.innerHTML = j;
                     j++;
-                    setTimeout(updateAnotherValue2, 30);
-                } else {
-                    autoin4();
+                    setTimeout(updateAnotherValue2, 70);
                 }
             }
 
@@ -168,9 +176,7 @@
                 if (j <= <?php echo $absent; ?>) {
                     anotherH1Element.innerHTML = j;
                     j++;
-                    setTimeout(updateAnotherValue3, 50);
-                } else {
-                    autoin2();
+                    setTimeout(updateAnotherValue3, 70);
                 }
             }
 
@@ -181,6 +187,16 @@
             <div class="att_sub_div1">
                 <table>
                     <thead>
+                        <?php 
+                        $monthidva=date("Ym");
+                        $dayva=intval(date("d"));
+                        $holidaysql="SELECT * FROM holidays WHERE Month_id='$monthidva' AND day='$dayva'";
+                        $yesorno = $con->query($holidaysql)->num_rows;
+                        if($yesorno> 0)
+                        {
+                          echo "<tr><td colspan='7' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
+                        }
+                        ?>
                         <th>SI</th>
                         <th>Employee ID</th>
                         <th>Photo</th>
@@ -212,17 +228,24 @@
                             $rf=$row['Rf_id'];
                             $select1="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='IN'";
                             $IN = $con->query($select1);
-                            if($IN->num_rows> 0)
+                            if($IN->num_rows> 0 )
                             {
                               $att=1;
                               $INrow = $IN->fetch_assoc();
                               $INdata = date('H:i:s', strtotime($INrow['Time_date']));
-                              $select2="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='OUT'";
+                              $select2="SELECT MAX(Time_date) as Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='OUT'";
                               $OUT = $con->query($select2);
                               if($OUT->num_rows> 0)
                               {
                                 $OUTrow = $OUT->fetch_assoc();
-                                $OUTdata = date('H:i:s', strtotime($OUTrow['Time_date']));
+                                if($OUTrow['Time_date']==NULL)
+                                {
+                                    $OUTdata="---";
+                                }
+                                else
+                                {
+                                    $OUTdata = date('H:i:s', strtotime($OUTrow['Time_date']));
+                                }
                               }
                               else
                               {
