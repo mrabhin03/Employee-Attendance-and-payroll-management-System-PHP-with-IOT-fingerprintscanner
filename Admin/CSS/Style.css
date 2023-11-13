@@ -115,7 +115,7 @@
   align-items: center;
   border-radius: 20px;
   box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
-  animation: box2load .9s ease-in-out 1;
+  animation: box2load 1.2s ease-in-out 1;
 
 }
 .sample_data2  > .box:nth-child(1){animation-delay: -0.35s;}
@@ -129,7 +129,7 @@
   }
   50% {
     opacity: 0;
-      transform: translateY(-250px);
+      transform: translateY(-130px);
   }
   100% {
     opacity: 1;

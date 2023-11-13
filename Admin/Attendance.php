@@ -93,8 +93,6 @@ liviewicon.classList.add('active');
                         $newdaily="UPDATE daily_attendance SET Working_hour='0' WHERE Att_date='$daily_date'";
                         $con->query($newdaily);
                     }
-                    else
-                    {
                       ?>
                     <div class="sample_data2">
                         <div class="box">
@@ -153,7 +151,7 @@ liviewicon.classList.add('active');
                         autoin4();
                     }
                     window.onload = function() {
-                        setTimeout(callassemble, 700);
+                        setTimeout(callassemble, 900);
                     };
 
                     function autoin1() {
@@ -279,7 +277,6 @@ liviewicon.classList.add('active');
                   {
                       echo "<tr><td colspan='8'>No Data</td></tr>";
                   }
-                }
                   ?>
                 </tbody>
             </table>

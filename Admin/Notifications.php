@@ -248,8 +248,8 @@ $no=101;
                             </table>
                         </td>
                         <td>
-                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=1'><button class='approvedata' style='height:25px;width:65px;background-color:green; border: 1px solid white; color:white' >Approve</button></a>" ?>
-                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=0'><button class='rejectdata' style='height:25px;width:65px;background-color:red; border: 1px solid white; color:white'>Reject</button></a>" ?>
+                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=1'><button class='thebuttons' style='height:25px;width:65px;background-color:green; border: 2px solid white; color:white' >Approve</button></a>" ?>
+                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=0'><button class='thebuttons' style='height:25px;width:65px;background-color:red; border: 2px solid white; color:white'>Reject</button></a>" ?>
                         </td>
                     </tr>
                     <?php

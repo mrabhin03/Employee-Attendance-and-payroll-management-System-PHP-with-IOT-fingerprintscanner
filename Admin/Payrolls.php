@@ -87,7 +87,7 @@ include 'session_check.php';
                         <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?>
                         </td>
                         <td>
-                            <?php $data=$row['Emp_id']; echo "<a href='?page=page_controller&id=$data&pageto=2'><button class='view-emppay' style='height:30px;width:90px;background-color:slategrey; border: 1px solid black; color:white' >View Details</button></a>"; $i++;?>
+                            <?php $data=$row['Emp_id']; echo "<a href='?page=page_controller&id=$data&pageto=2'><button class='thebuttons' style='height:30px;width:90px;background-color:slategrey; color:white' >View Details</button></a>"; $i++;?>
                         </td>
                     </tr>
                     <?php

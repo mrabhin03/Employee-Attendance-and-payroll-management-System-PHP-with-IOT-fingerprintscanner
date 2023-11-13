@@ -340,6 +340,18 @@ body::before {
 {
   background-color: rgb(174, 205, 157)
 }
+.thebuttons
+{
+  border: 2px solid white; 
+  border-radius: 5px;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+  cursor:pointer;
+}
+.thebuttons:hover
+{
+  transform: scale(1.1);
+}
 .newtable
 {
   color: yellow;
