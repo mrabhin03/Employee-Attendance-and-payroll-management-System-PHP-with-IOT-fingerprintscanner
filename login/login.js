@@ -11,10 +11,11 @@ function validation(){
   function validateuser(){
     var uname = /^[A-Za-z0-9]*$/;
     var username = document.getElementById("username");
+    var username12 = document.getElementById("theuserdiv");
   
-    if (!username.value.trim().match(uname)) {
+    if (!username.value.trim().match(uname)|| (username.value=="")) {
       document.getElementById("usernameinvalid").style.visibility = "visible";
-      username.style.border = "solid 3px red";
+      username12.style.borderBottom = "solid 3px red";
       return false;
     } else {
       return true;
@@ -41,17 +42,18 @@ function validation(){
       }
       document.getElementById("passwordinvalid").innerHTML = errorText;
       document.getElementById("passwordinvalid").style.visibility = "visible";
-      document.getElementById("password").style.border = "solid 3px red";
+      document.getElementById("thepassdiv").style.borderBottom = "solid 3px red";
       return false;
     }
   }
   
   function defaultView(){
-    document.getElementById("username").style.border = "1px solid #ccc";
-    document.getElementById("password").style.border = "1px solid #ccc";
+    document.getElementById("username").style.border = "none";
+    document.getElementById("password").style.border = "none";
     document.getElementById("passwordinvalid").style.visibility = "hidden";
     document.getElementById("usernameinvalid").style.visibility = "hidden";
     document.getElementById("wrongpassword").style.visibility = "hidden";
+    document.getElementById("theuserdiv").style.borderBottom = "3px solid rgb(155, 155, 155)";
 
   }
   
@@ -63,4 +65,19 @@ function validation(){
       } else {
         Inputbox.type="text";
       }
+}
+
+const pa_main =document.querySelector('.pbox');
+function show_first(){
+    var passwordInput = document.getElementById("password");
+    if(passwordInput.type=="password")
+    {
+        passwordInput.type="text";
+        pa_main.classList.add('show_it');
+    }
+    else
+    {
+        passwordInput.type="password";
+        pa_main.classList.remove('show_it');
+    }
 }

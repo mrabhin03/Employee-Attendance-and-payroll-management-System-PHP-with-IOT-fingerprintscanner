@@ -132,11 +132,11 @@
             function listassamble() {
                 valtemp = 0;
                 if (valtemp == <?php echo $val ?>) {
-                    for (var p = 0; p <= 100; p++) {
+                    for (var p = 0; p <= 10; p++) {
                         (function(p) {
                             setTimeout(function() {
                                 if (body) {
-                                    var r = p / 100;
+                                    var r = p / 10;
                                     body.style.transform = "scaleX("+r+")";
                                 }
                             }, p * 2);
