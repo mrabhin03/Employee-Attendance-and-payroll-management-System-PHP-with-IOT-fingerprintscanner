@@ -22,8 +22,8 @@ include 'session_check.php';
 );
   ?>
 <div class="calendar">
-    <div class="head">
-    <a href="?page=addcal"><button>ADD</button></a>
+    <div style="z-index: 2;" class="head">
+        <a href="?page=addcal"><button>ADD</button></a>
         <h2>Calendar Details</h2>
         <form method="post">
             <input style="border-radius:20px;" value="<?php
@@ -39,7 +39,7 @@ include 'session_check.php';
     </div>
     <div class="cal_data">
         <div class="cal_detail">
-          <?php
+            <?php
           $cale="SELECT * FROM company_calender WHERE Month_id='$mon_id'";
           $query2 = $con->query($cale);
           if (($Year % 4 == 0 && $Year % 100 != 0) || ($Year % 400 == 0)) {
@@ -56,11 +56,17 @@ include 'session_check.php';
           $datavalue=$query2->fetch_assoc();
           ?>
             <div style="margin-bottom:5px; width: 100%; height: 50px;  display:flex; justify-content:space-around;">
-                <div style="border-radius:20px; width: 400px; height: 100%; background-color: rgba(255, 255, 255, 0.852); display:flex; align-item:center; justify-content:space-around;">
-                  <h1 style="font-size:20px;">Total number of working days : <?php echo $datavalue['Working_day'] ?></h1>
+                <div
+                    style="border-radius:20px; width: 400px; height: 100%; background-color: rgba(255, 255, 255, 0.852); display:flex; align-item:center; justify-content:space-around;">
+                    <h1 id="worksdate" style="font-size:20px;">Total number of working days :
+                        <?php $works=$datavalue['Working_day']; echo $datavalue['Working_day'] ?>
+                    </h1>
                 </div>
-                <div style="border-radius:20px; width: 400px; height: 100%; background-color: rgba(255, 255, 255, 0.852); display:flex; align-item:center; justify-content:space-around;">
-                  <h1 style="font-size:20px;">Total number of holidays : <?php echo $monthco[intval($month)]-$datavalue['Working_day'] ?></h1>
+                <div
+                    style="border-radius:20px; width: 400px; height: 100%; background-color: rgba(255, 255, 255, 0.852); display:flex; align-item:center; justify-content:space-around;">
+                    <h1 id="holidate" style="font-size:20px;">Total number of holidays :
+                        <?php $holidata1=$monthco[intval($month)]-$datavalue['Working_day']; echo $monthco[intval($month)]-$datavalue['Working_day'] ?>
+                    </h1>
                 </div>
             </div>
             <table>
@@ -85,6 +91,7 @@ include 'session_check.php';
                     {
                       $i=1;
                       $k=1;
+                      $countt=1;
                     while($i<$monthco[intval($month)]+$temp){
                       if($i<$temp)
                       {
@@ -98,7 +105,8 @@ include 'session_check.php';
                       ?>
 
                         <td>
-                            <div style='background-color:red; color:white; <?php if($k<10){$day='0'.$k;}else{$day=$k;} $date=$yearmo.'-'.$day; if($date==date('Y-m-d')){ echo "border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>' >
+                            <div id='<?php echo $countt; ?>'
+                                style='background-color:red; color:white; <?php if($k<10){$day='0'.$k;}else{$day=$k;} $date=$yearmo.'-'.$day; if($date==date('Y-m-d')){ echo "border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>'>
                                 <div
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>
@@ -114,7 +122,8 @@ include 'session_check.php';
                         {
                           ?>
                         <td>
-                            <div style='<?php if($k<10){$day='0'.$k;}else{$day=$k;} $date=$yearmo.'-'.$day; if($date==date('Y-m-d')){ echo "color:white; border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>'>
+                            <div id='<?php echo $countt; ?>'
+                                style='<?php if($k<10){$day='0'.$k;}else{$day=$k;} $date=$yearmo.'-'.$day; if($date==date('Y-m-d')){ echo "color:white; border-radius:5px;border: 10px solid white; box-sizing: border-box;";} ?>'>
                                 <div
                                     style="width:100%; display:flex; justify-content:center; align-items:center; height:60%;">
                                     <?php echo "<b>".$k."</b>";?>
@@ -124,6 +133,7 @@ include 'session_check.php';
                         </td>
                         <?php
                         }
+                       $countt++;
                       }
                       $i++;
                       if($i%7==1)
@@ -153,6 +163,63 @@ include 'session_check.php';
                   ?>
                 </tbody>
             </table>
+            <script>
+            autoin3();
+            autoin4();
+
+            function autoin3() {
+                var j = 1;
+                var anotherH1Element = document.getElementById('worksdate');
+
+                function updateAnotherValue2() {
+                    if (j <= <?php echo $works; ?>) {
+                        anotherH1Element.innerHTML = "Total number of working days : " + j;
+                        j++;
+                        setTimeout(updateAnotherValue2, 20);
+                    }
+                }
+
+                updateAnotherValue2();
+            }
+
+            function autoin4() {
+                var j = 1;
+                var anotherH1Element = document.getElementById('holidate');
+
+                function updateAnotherValue2() {
+                    if (j <= <?php echo $holidata1; ?>) {
+                        anotherH1Element.innerHTML = "Total number of holidays : " + j;
+                        j++;
+                        setTimeout(updateAnotherValue2, 100);
+                    }
+                }
+
+                updateAnotherValue2();
+            }
+            trans();
+
+            function trans() {
+                for (var i = 1; i < <?php echo $countt; ?>; i++) {
+                    var row = document.getElementById(i);
+                    row.style.opacity = "0";
+                }
+
+                for (var i = 1; i < <?php echo $countt; ?>; i++) {
+                    setTimeout(function(i) {
+                        var row = document.getElementById(i);
+                        if (row) {
+                            for (var op = 0; op <= 1; op += 0.1) {
+                                setTimeout(function(op) {
+                                    if (row) {
+                                        row.style.opacity = op;
+                                    }
+                                }, op * 100, op);
+                            }
+                        }
+                    }, i * 40, i);
+                }
+            }
+            </script>
         </div>
     </div>
 </div>
