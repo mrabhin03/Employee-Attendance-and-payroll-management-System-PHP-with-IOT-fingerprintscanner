@@ -83,7 +83,7 @@ include 'session_check.php';
                           }
                           ?></td>
                           <td>
-                          <?php $data=$row['Emp_id']; echo "<a href='?page=page_controller&id=$data&pageto=1'><button class='view-emp' >View Details</button></a>" ?>                            
+                          <?php $data=$row['Emp_id']; echo "<a href='?page=page_controller&id=$data&pageto=1'><button class='view-emp' style='height:30px;width:90px;background-color:slategrey; border: 1px solid black; color:white'>View Details</button></a>" ?>                            
                           </td>
                         </tr>
                       <?php

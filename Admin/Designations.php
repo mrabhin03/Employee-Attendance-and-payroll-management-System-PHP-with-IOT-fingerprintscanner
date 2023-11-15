@@ -62,8 +62,8 @@ include 'session_check.php';
                           <td><?php echo $row['Desc_pf']; ?></td>
                           <td><?php echo $row['Desc_inc']; ?></td>
                           <td>
-                          <?php $data=$row['Desc_id']; echo "<a href='?page=update_desc&id=$data'><button class='view-desc' >Edit Details</button></a>" ?>
-                          <?php echo "<a href='?page=delete_desc&id=$data'><button class='view-desc' >Delete</button></a>" ?>                            
+                          <?php $data=$row['Desc_id']; echo "<a href='?page=update_desc&id=$data'><button class='view-desc' style='height:25px;width:60px;background-color:green; border: 1px solid black; color:white'>Edit</button></a>" ?>
+                          <?php echo "<a href='?page=delete_desc&id=$data'><button class='view-desc' style='height:25px;width:60px;background-color:red; border: 1px solid black; color:white'>Delete</button></a>" ?>                            
                           </td>
                         </tr>
                       <?php

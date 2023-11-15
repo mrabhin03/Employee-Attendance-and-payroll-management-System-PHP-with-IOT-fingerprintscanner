@@ -30,7 +30,7 @@ $no=101;
                             $result = substr($row['Emp_id'], $position);
                         }
                       ?>
-                    <tr style="  border: 9px solid rgb(0, 0, 0);">
+                    <tr style="  border: 3px solid white;">
                         <td style="font-size:200%;"><?php echo $i; $i++; ?></td>
                         <td style="font-size:200%;"><?php echo $result; ?></td>
                         <td>
@@ -248,8 +248,8 @@ $no=101;
                             </table>
                         </td>
                         <td>
-                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=1'><button class='view-emp' >Approve</button></a>" ?>
-                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=0'><button class='view-emp' >Reject</button></a>" ?>
+                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=1'><button class='approvedata' style='height:25px;width:65px;background-color:green; border: 1px solid white; color:white' >Approve</button></a>" ?>
+                            <?php $data=$row['Emp_id']; echo "<a href='?page=Approvechange&id=$data&va=0'><button class='rejectdata' style='height:25px;width:65px;background-color:red; border: 1px solid white; color:white'>Reject</button></a>" ?>
                         </td>
                     </tr>
                     <?php

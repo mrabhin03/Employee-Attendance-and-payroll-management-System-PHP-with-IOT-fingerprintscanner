@@ -76,11 +76,12 @@
 
 .noti_sub > .noti_body
 {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.486);
   width: 100%;
   border-radius: 20px;
   height: 100%;
   overflow-y: auto;
+  color: white;
 }
 .Bashboard > .data1 >.sample_data
 {
