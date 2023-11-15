@@ -454,12 +454,6 @@ body::before {
   justify-content: space-between;
   position: fixed;
 }
-.EMP_HOME > .head,
-.perAttendance_M > .head,
-.per_Payrolls > .head
-{
-  width: 82.5%;
-}
 
 .Employees > .head > a> button,
 .Bashboard > .head > a> button,

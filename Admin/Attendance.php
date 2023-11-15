@@ -32,7 +32,7 @@ liviewicon.classList.add('active');
     </div>
     <div style="z-index:1;" class="head">
         <form method="post">
-            <input onchange="this.form.submit()" value="<?php
+            <input style="border-radius:20px;" onchange="this.form.submit()" value="<?php
             if(isset($_POST['daily_date']))
             {
                 $daily_date=$_POST['daily_date'];
@@ -90,8 +90,9 @@ liviewicon.classList.add('active');
                     if($holi> 0)
                     {
                         echo "<tr><td colspan='8' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
-                        $newdaily="UPDATE daily_attendance SET Working_hour='0' WHERE Att_date='$daily_date'";
-                        $con->query($newdaily);
+                    }
+                    else
+                    {
                     }
                       ?>
                     <div class="sample_data2">

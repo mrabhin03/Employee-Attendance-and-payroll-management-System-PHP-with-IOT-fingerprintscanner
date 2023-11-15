@@ -7,7 +7,7 @@ include 'session_check.php';
         <a href="?page=addemp"><button>ADD</button></a>
         <h2>Employees Details</h2>
         <form method="post">
-            <input id="search" type="text" placeholder="Search" name="sevalue">
+            <input style="border-radius:20px;" id="search" type="text" placeholder="Search" name="sevalue">
         </form>
         <script type="text/javascript">
           $(document).ready(function()
@@ -50,7 +50,7 @@ include 'session_check.php';
                     FROM employee_details
                     INNER JOIN designation_for_employee ON employee_details.Emp_id = designation_for_employee.Emp_id
                     INNER JOIN employee_designation ON designation_for_employee.Desc_id = employee_designation.Desc_id
-                    WHERE employee_details.Emp_status != 2 AND designation_for_employee.Desc_status='1'
+                    WHERE employee_details.Emp_id LIKE 'E%' AND designation_for_employee.Desc_status='1'
                     ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS SIGNED);";
                     $query = $con->query($sql);
                     if($query->num_rows)
@@ -76,6 +76,10 @@ include 'session_check.php';
                           elseif($row['Emp_status']==1)
                           {
                             echo "<p style='color: green;'>ACTIVE</p>";
+                          }
+                          elseif($row['Emp_status']==2)
+                          {
+                            echo "<p style='color: red;'>EX Emp</p>";
                           }
                           else
                           {

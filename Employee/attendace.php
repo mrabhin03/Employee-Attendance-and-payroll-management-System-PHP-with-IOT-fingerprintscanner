@@ -10,7 +10,7 @@
         <div></div>
         <h2>Monthly Attendance</h2>
         <form method="post">
-            <select onchange="this.form.submit()" name="date" id="">
+            <select style="border-radius:20px;" onchange="this.form.submit()" name="date" id="">
                 <?php
               if(isset($_POST["date"]))
               {
@@ -36,7 +36,7 @@
     <div class="Monthly_att">
         <div class="Monthly_att_sub">
             <table>
-                <thead>
+                <thead style="background-color: white;">
                     <th>SI</th>
                     <th>DATE</th>
                     <th>Worked hr</th>

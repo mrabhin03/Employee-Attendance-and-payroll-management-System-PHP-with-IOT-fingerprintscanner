@@ -14,7 +14,7 @@ include 'session_check.php';
 <div class="Payrolls">
     <div style="z-index:1;" class="head">
         <form method="post" style="order:3;">
-            <input value="<?php
+            <input style="border-radius:20px;" value="<?php
             if(isset($_POST['month_date']))
             {
                 $date=$_POST['month_date'];

@@ -10,7 +10,7 @@ include 'session_check.php';
             {
                 $date = date("Y-m", strtotime($montdata['Dates']));
                 $monthid = date("Ym", strtotime($montdata['Dates']));
-                $empdata="SELECT * FROM employee_details WHERE DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
+                $empdata="SELECT * FROM employee_details WHERE DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid' AND Emp_status=1";
         $empdbdata=$con->query($empdata);
         while($emp=$empdbdata->fetch_array())
         {

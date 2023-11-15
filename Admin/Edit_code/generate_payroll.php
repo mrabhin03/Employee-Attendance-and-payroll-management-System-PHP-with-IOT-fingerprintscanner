@@ -3,7 +3,7 @@ include 'session_check.php';
     if(isset($_GET["mid"]))
     {
         $monthid=$_GET["mid"];
-        $empdata="SELECT * FROM employee_details WHERE Emp_status!=2 AND Emp_id  NOT LIKE 'U%' AND DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
+        $empdata="SELECT * FROM employee_details WHERE Emp_status=1 AND Emp_id  NOT LIKE 'U%' AND DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
         $empdbdata=$con->query($empdata);
         $calender_sql="SELECT * FROM company_calender WHERE Month_id='$monthid'";
         $cal_query=$con->query($calender_sql);

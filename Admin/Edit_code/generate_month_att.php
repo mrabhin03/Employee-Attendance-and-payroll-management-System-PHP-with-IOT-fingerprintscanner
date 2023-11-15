@@ -6,15 +6,21 @@ include 'session_check.php';
         $month=$_GET['month'];
         $date=$year."-".$month;
         $monthid=$year.$month;
-        $empdata="SELECT * FROM employee_details WHERE DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
+        $empdata="SELECT * FROM employee_details WHERE DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid' AND Emp_status='1'";
         $empdbdata=$con->query($empdata);
         while($emp=$empdbdata->fetch_array())
         {
             $empid=$emp['Emp_id'];
-            $datecheck="SELECT * FROM daily_attendance WHERE Att_date LIKE '$date%' AND Emp_id='$empid' AND Att_status=1";
+            $datecheck="SELECT DISTINCT DA.*
+            FROM daily_attendance DA
+            LEFT JOIN holidays H ON DAY(DA.Att_date) = H.day AND H.Month_id = '$monthid'
+            WHERE DA.Att_date LIKE '$date%'
+              AND DA.Emp_id = '$empid'
+              AND DA.Att_status = 1
+              AND H.day IS NULL;";
             $data=$con->query($datecheck);
             $dec_id=$emp['Desc_id'];
-            $descforempquery=$con->query("SELECT * FROM designation_for_employee WHERE Emp_id='$empid'");
+            $descforempquery=$con->query("SELECT * FROM designation_for_employee WHERE Emp_id='$empid' ");
             if($descforempquery->num_rows> 0)
             {
                 $ir=0;

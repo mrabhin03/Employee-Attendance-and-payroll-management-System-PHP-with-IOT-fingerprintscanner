@@ -9,7 +9,7 @@
         <div></div>
         <h2>Payrolls Details</h2>
         <form method="post">
-        <select onchange="this.form.submit()" name="date" id="">
+        <select style="border-radius:20px;" onchange="this.form.submit()" name="date" id="">
               <?php
               if(isset($_POST["date"]))
               {
@@ -34,7 +34,7 @@
     <div class="payrolls_details">
         <div class="payrolls_details_sub">
             <table >
-                <thead>
+                <thead style="background-color: white;">
                   <th>Month</th>
                   <th>Designation</th>
                   <th>Designation Salary</th>
@@ -62,10 +62,12 @@
                         if($row['Salary_basic']>0)
                         {
                             echo "<tr style='font-size:17px; opacity: 0; z-index:0;' id='$i'>";
+                            $st="green";
                         }
                         else
                         {
                             echo "<tr style='background-color: darkred; font-size:17px; color:white;border: 2px solid white;opacity: 0; z-index:0;' id='$i'>";
+                            $st="lightgreen";
                         }
                       ?>
                         
@@ -76,7 +78,7 @@
                             <td><?php echo "₹".number_format($row['Salary_basic']); ?></td>
                             <td><?php echo ($row['Salary_basic']!=0)? $row['Overtime_hrs']:0 ?>hr</td>
                             <td><?php echo "₹".number_format($row['Total_salary']); ?></td>
-                            <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
+                            <td><?php echo ($row['Salary_status']==1)? "<p style='color: $st;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                             <td>
                           <?php $month=$row['Month_id'];  echo "<a href='?page=per_payroll&check=$month'><button class='view-emp' >View Details</button></a>" ?>                            
                           </td>

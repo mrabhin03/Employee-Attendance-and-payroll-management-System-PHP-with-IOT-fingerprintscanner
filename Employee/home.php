@@ -15,7 +15,7 @@
         <div></div>
         <h3>Daily Attendance report </h3>
         <form method="post">
-            <input value="<?php
+            <input style="border-radius:20px;" value="<?php
             if(isset($_POST['month_date']))
             {
                 $date=$_POST['month_date'];
@@ -52,7 +52,7 @@
             <div class="box">
                 <div class="bodypart">
                     <?php
-                        $EMPsql = "SELECT * FROM employee_details WHERE Emp_status=1 AND Emp_id='$id';";
+                        $EMPsql = "SELECT * FROM employee_details WHERE Emp_id='$id';";
                         $empquery = $con->query($EMPsql);
                         $row = $empquery->fetch_assoc();
                         $rf=$row["Rf_id"];
@@ -186,6 +186,10 @@
                     </thead>
                     <tbody>
                         <?php
+                        if($row['Emp_status'] !=1)
+                        {
+                          echo "<tr><td colspan='7' style='background-color: rgb(192, 19, 19); color:white;font-size:30px;'>SUSPENDED ACCOUNT</td></tr>";
+                        }
                     if($empquery->num_rows>0)
                     {
                         $i=1;
@@ -206,7 +210,14 @@
                             $monthhliid = str_replace("-", "", $currentmonth);
                             $holidayquet="SELECT * FROM holidays WHERE Month_id='$monthhliid' AND day='$day'";
                             $holiday=$con->query($holidayquet)->num_rows;
-                            $select1="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='IN'";
+                            $select1="SELECT emp_logs.*
+                            FROM emp_logs 
+                            LEFT JOIN employee_details ON employee_details.Rf_id = emp_logs.Rf_id
+                            LEFT JOIN daily_attendance ON DATE(daily_attendance.Att_date) = DATE(emp_logs.Time_date) AND employee_details.Emp_id = daily_attendance.Emp_id
+                            WHERE emp_logs.Rf_id = '$rf' 
+                              AND DATE(emp_logs.Time_date) = '$currentdate'  
+                              AND emp_logs.Log_status = 'IN'
+                              AND daily_attendance.Att_date IS NOT NULL;";
                             $IN = $con->query($select1);
                             if($IN->num_rows> 0)
                             {
@@ -235,6 +246,7 @@
                             }
                              if($holiday==0)
                             { 
+
                           ?>
                         <tr style="opacity: 0; z-index:0;font-size:17px;" id="<?php echo 'Home'.$i; ?>">
                             <td><?php echo $i; $i++;?></td>
@@ -256,7 +268,7 @@
                         }
                         else
                         {
-                            echo"<tr id='Home$i' style='background-color: rgb(192, 19, 19); color:white; border: 2px solid white;'>
+                            echo"<tr id='Home$i' style='opacity: 0;background-color: rgb(192, 19, 19); color:white; border: 2px solid white;'>
                                     <td>$i</td>
                                     <td>$currentdate</td>
                                     <td colspan='6' ><p style=' font-size:20px; '>Public Holiday</p></td>
@@ -289,11 +301,11 @@
                         setTimeout(function(i) {
                             var row = document.getElementById('Home' + i);
                             if (row) {
-                                row.style.opacity = "1";
                                 for (var p = 90; p >= 0; p--) {
                                     setTimeout(function(p) {
                                         if (row) {
                                             row.style.transform = 'rotateX(' + p + 'deg)';
+                                            row.style.opacity = "1";
                                         }
                                     }, (90 - p) * 1.5, p);
                                 }

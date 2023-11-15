@@ -6,7 +6,7 @@
 .per_Payrolls,
 .calendar
 {
-  background-color: white;
+  background-color: transparent;
   overflow-y: auto;
   overflow-x: hidden;
   height: 92%;
@@ -28,7 +28,6 @@
 {
   margin-top: 65px;
 }
-
 
 .EMP_HOME > .data1
 {

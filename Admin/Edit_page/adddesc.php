@@ -1,4 +1,4 @@
-<div class="addempin" style="height:570px; margin-top:-130px;">
+<div class="addempin" style="height:530px; margin-top:-110px;">
     <?php
 include 'session_check.php';
     include '../common/connection.php';
@@ -39,10 +39,6 @@ include 'session_check.php';
                 <div class="form_div">
                     <label for="pf">Provident fund</label>
                     <input type="text" id="pf" name="pf" required>
-                </div>
-                <div class="form_div">
-                    <label for="inc">Increment</label>
-                    <input type="text" id="inc" name="inc" required>
                 </div>
                 <div class="add_footer">
                     <a href="?page=Designations"><button type="button" class="cancel_insert">Close</button></a>

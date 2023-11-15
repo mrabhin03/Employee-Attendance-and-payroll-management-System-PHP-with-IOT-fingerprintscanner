@@ -9,8 +9,7 @@ include 'session_check.php';
                     $da = $_POST['da'];
                     $ma = $_POST['ma'];
                     $pf = $_POST['pf'];
-                    $inc = $_POST['inc'];
-                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic,Desc_overtimesalary, Desc_da, Desc_ma, Desc_pf, Desc_inc, Desc_status) VALUES ('$descid','$descname','$salary','$OVsalary','$da','$ma','$pf','$inc',1)";
+                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic,Desc_overtimesalary, Desc_da, Desc_ma, Desc_pf, Desc_status) VALUES ('$descid','$descname','$salary','$OVsalary','$da','$ma','$pf',1)";
                     $con->query($sql);
                     echo "<script>window.location.href = '?page=Designations';</script>";
                 }

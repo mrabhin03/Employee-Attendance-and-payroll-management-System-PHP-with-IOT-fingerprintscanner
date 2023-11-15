@@ -51,12 +51,21 @@
                                         $query = $con->query($sql);
                                     if($query->num_rows)
                                     {
+                                        $daycount=0;
                                         $i=1;
                                         for($day=$monthdays[intval($monthdata)];$day>0;$day--)
                                         {
                                             
                                             $date=$Year."-".$monthdata."-".sprintf("%02d", $day);
-                                            $invalue_sql="SELECT * FROM emp_logs WHERE Rf_id='$rf' AND DATE(Time_date)='$date'  AND Log_status='IN'";
+                                            $invalue_sql="SELECT emp_logs.*
+                                            FROM emp_logs 
+                                            LEFT JOIN employee_details ON employee_details.Rf_id = emp_logs.Rf_id
+                                            LEFT JOIN daily_attendance ON DATE(daily_attendance.Att_date) = DATE(emp_logs.Time_date) AND employee_details.Emp_id = daily_attendance.Emp_id
+                                            WHERE emp_logs.Rf_id = '$rf' 
+                                              AND DATE(emp_logs.Time_date) = '$date'  
+                                              AND emp_logs.Log_status = 'IN'
+                                              AND daily_attendance.Att_date IS NOT NULL;
+                                            ";
                                             $inquery = $con->query($invalue_sql);
                                             if($inquery->num_rows)
                                             {
@@ -90,7 +99,15 @@
                                 <td><?php echo $timein ?></td>
                                 <td><?php echo $timeout ?></td>
                                 <td><?php echo (!empty($hours))?$hours."hrs":"---" ; ?></td>
-                                <td><?php echo ($status==1)? "<p style='color: rgb(13, 255, 0);'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?>
+                                <td><?php 
+                                    if ($status == 1) {
+                                        echo "<p style='color: rgb(13, 255, 0);'>PRESENT</p>";
+                                        $daycount++;
+                                    } else {
+                                        echo "<p style='color: red; font-weight: none;'>ABSENT</p>";
+                                    }
+                                    ?>
+
                                 </td>
                                 <?php }
                                     else
@@ -103,7 +120,12 @@
                             </tr>
                             <?php
                                         }
-                                        $count=$i;
+                                        $count=$i+1;
+                                        $totaldaycount=$monthdays[intval($monthdata)];
+                                        echo "<tr style='background-color: #8200006a;opacity: 0; z-index:0;' id='$i'><td colspan='2'>Total Number of days: $totaldaycount</td>";
+                                        echo "<td colspan='2'>Total Number of Presents: $daycount</td>";
+                                        $absents=$totaldaycount-$daycount;
+                                        echo "<td colspan='2'>Total Number of absents: $absents</td></tr>";
                                     }
                                      else
                                     {

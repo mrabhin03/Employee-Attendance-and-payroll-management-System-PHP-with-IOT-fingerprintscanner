@@ -1,4 +1,4 @@
-<div class="addempin" style="height: 560px; margin-top: -130px;">
+<div class="addempin" style="height: 510px; margin-top: -110px;">
     <?php
     include 'session_check.php';
     $id=$_GET['id'];
@@ -44,10 +44,6 @@
                     <label for="pf">Provident fund</label>
                     <input type="text" id="pf" name="pf" value="<?php echo $row['Desc_pf']; ?>" required>
                 </div>
-                <div class="form_div">
-                    <label for="inc">Increment</label>
-                    <input type="text" id="inc" name="inc" value="<?php echo $row['Desc_inc']; ?>" required>
-                </div>
                 <div class="add_footer">
                     <a href="?page=Designations"><button type="button" class="cancel_insert">Close</button></a>
                     <button type="submit" name="update_desc" class="save"> Add</button>
@@ -62,10 +58,9 @@
                     $da = $_POST['da'];
                     $ma = $_POST['ma'];
                     $pf = $_POST['pf'];
-                    $inc = $_POST['inc'];
                     $sql_update="UPDATE employee_designation SET Desc_status=0 WHERE Desc_id='$desc_id'";
                     $con->query($sql_update);
-                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic,Desc_overtimesalary, Desc_da, Desc_ma, Desc_pf, Desc_inc, Desc_status) VALUES ('$descid','$descname','$salary',$OVsalary,'$da','$ma','$pf','$inc',1)";
+                    $sql = "INSERT INTO employee_designation (Desc_id, Desc_name, Desc_basic,Desc_overtimesalary, Desc_da, Desc_ma, Desc_pf, Desc_status) VALUES ('$descid','$descname','$salary',$OVsalary,'$da','$ma','$pf',1)";
                     $con->query($sql);
                     echo "<script>window.location.href = '?page=Designations';</script>";
                 }

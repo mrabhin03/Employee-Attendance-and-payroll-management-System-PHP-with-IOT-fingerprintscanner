@@ -45,8 +45,11 @@
                           {
                             echo "<span style='color: green;'>ACTIVE</span>";
                           }
-                          else
+                          elseif($EMP['Emp_status']== 2)
                           {
+                            echo "<span style='color: red;'>Ex Emp</span>";
+                          }
+                          else {
                             echo "<span style='color: blue;'>PENDING</span>";
                           }
                           ?>
@@ -88,10 +91,13 @@
                         </div>
                     </div>
                     <div class="Buttons_bar">
-                        <?php $data=$EMP['Emp_id']; echo "<a href='?page=Edit'><button style='background-color: lightblue; color:black;'>EDIT</button></a>" ?>
-                        <?php $data=$EMP['Emp_id']; echo "<a href='?page=Editdesc'><button style='background-color: brown; color:white;'>EDIT DESC</button></a>" ?>
-                        <?php $data=$EMP['Emp_id']; echo "<a href='Edit_code/status.php?id=$data&st=2'><button style='background-color: yellow; color:black;'>DELETE</button></a>" ?>
-                        <?php $data=$EMP['Emp_id']; 
+                        <?php
+                        $data=$EMP['Emp_id'];
+                        if($EMP['Emp_status']!= 2)
+                        {
+                          echo "<a href='?page=Edit'><button style='background-color: lightblue; color:black;'>EDIT</button></a>";
+                          echo "<a href='?page=Editdesc'><button style='background-color: brown; color:white;'>EDIT DESC</button></a>";
+                          echo "<a href='Edit_code/status.php?id=$data&st=2'><button style='background-color: yellow; color:black;'>DELETE</button></a>";
                             if($EMP['Emp_status']==1)
                             {
                                 echo "<a href='Edit_code/status.php?id=$data&st=0'><button style='background-color: red; color:white;'>SUSPEND</button></a>";
@@ -104,6 +110,10 @@
                             {
                                 echo "<a href=''><button style='background-color: blue; color:white;'>Pending</button></a>" ;
                             }
+                        }
+                        else {
+                            echo "<button style='border-radius:20px; border:2px solid white; width:100%;background-color: red; color:white;'>This account can't be edited</button>";
+                        }
                             ?>
                     </div>
                 </div>
@@ -132,9 +142,9 @@
                         </thead>
                         <tbody id="tabledata">
                             <?php
-                                        $sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs ORDER BY DATE(Time_date) DESC  LIMIT 5;";
+                                        $sql="SELECT DISTINCT Att_date as thedate FROM daily_attendance WHERE Emp_id='$data' ORDER BY Att_date DESC  LIMIT $num;";
                                         $query = $con->query($sql);
-                                    if($query->num_rows)
+                                    if($query->num_rows>0 && $num> 0)
                                     {
                                         $i=1;
                                         while($row = $query->fetch_assoc())
@@ -219,7 +229,7 @@
                                         FROM salary_paid
                                         INNER JOIN overtime_details ON salary_paid.Month_id = overtime_details.Month_id AND salary_paid.Emp_id = overtime_details.Emp_id WHERE salary_paid.Emp_id='$data' ORDER BY salary_paid.Month_id DESC LIMIT 5;";
                                         $query = $con->query($sql);
-                                    if($query->num_rows)
+                                    if($query->num_rows > 0 && $num> 0)
                                     {
                                         $i=1;
                                         while($row = $query->fetch_assoc())
