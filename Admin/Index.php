@@ -37,6 +37,8 @@
         }
         </script>
         <div class="top-bar">
+            <img src="../images/logo.png" alt="Logo">
+            <h1 style="letter-spacing: 1px;" id="thetitle">TRACKIFY</h1>
             <button onclick="logout()" Style='float:right;'>Logout</button>
             <script>
             function logout() {
@@ -46,7 +48,7 @@
         </div>
         <div class="main-body">
             <div class="side-menu" id="thesidebar">
-                <ul id="theul"  style="height:100%;">
+                <ul id="theul" style="height:100%;">
                     <li style="order:1;" class="head">PAGES</li>
                     <li style="order:3" class="option"><a href="?page=Dashboard">Dashboard</a></li>
                     <li style="order:4" class="option">
@@ -77,7 +79,7 @@
                     <?php
                 }
                 ?>
-                <li style="order:13; opacity: 0; height:20px;" class="option"><a >Changepassword</a></li>
+                    <li style="order:13; opacity: 0; height:20px;" class="option"><a>Changepassword</a></li>
                 </ul>
             </div>
             <script>
@@ -127,65 +129,99 @@
             ?>
             </div>
             <script>
-            listassamble();
+            var row2 = document.getElementById('thesidebar');
+            window.onload = function() {
+                setTimeout(callassemble, 800);
+                if (0 == <?php echo $val ?>) {
+                    listassamble();
+                    setTimeout(thesidebar, 500);
+                    setTimeout(trackdata, 80);
+                }
+                else
+                {
+                    row2.style.opacity = 1;
+                }
+            };
+
+            function trackdata() {
+                qw=1;
+                var title = document.getElementById('thetitle');
+                for (var p = 1; p <40; p++) {
+                    setTimeout(function(p) {
+                        if (row2) {
+                            title.style.letterSpacing = ""+qw+"px";
+                           if(p<20)
+                           {
+                            qw++;
+                           }
+                           else
+                           {
+                            qw--;
+                           }
+                        }
+                    }, p * 10, p);
+                }
+            }
+
+            function thesidebar() {
+                row2.style.opacity = 1;
+                for (var p = 0; p <= 300; p++) {
+                    setTimeout(function(p) {
+                        if (row2) {
+                            row2.style.transform = "translateX(" + -(300 - p) + "px)";
+                        }
+                    }, p * 1, p);
+                }
+
+            }
 
             function listassamble() {
-                valtemp = 0;
-                if (valtemp == <?php echo $val ?>) {
-                    for (var p = 0; p <= 10; p++) {
-                        (function(p) {
-                            setTimeout(function() {
-                                if (body) {
-                                    var r = p / 10;
-                                    body.style.transform = "scaleX("+r+")";
-                                }
-                            }, p * 2);
-                        })(p);
-                    }
-                    var row = document.getElementById('theul');
-                    row.style.overflowY = 'auto';
-                    var children = row.children;
-                    var row2 = document.getElementById('thesidebar');
-                    row2.style.transform = "translateX(-200px)";
-                    row2.style.opacity = 1;
-                    var row3 = document.getElementById('thefirsthead');
-                    row3.style.opacity = "0";
-                    for (var p = 0; p <= 10; p++) {
-                        (function(p) {
-                            setTimeout(function() {
-                                if (row3) {
-                                    var r = p / 10;
-                                    row3.style.opacity = r;
-                                }
-                            }, p * 80);
-                        })(p);
-                    }
-                    for (var p = 0; p <= 200; p++) {
-                        setTimeout(function(p) {
-                            if (row2) {
-                                row2.style.transform = "translateX(" + -(200 - p) + "px)";
+               
+                row2.style.transform = "translateX(-300px)";
+                row2.style.opacity = 0;
+                for (var p = 0; p <= 10; p++) {
+                    (function(p) {
+                        setTimeout(function() {
+                            if (body) {
+                                var r = p / 10;
+                                body.style.transform = "scaleX(" + r + ")";
                             }
-                        }, p * 1, p);
-                    }
-                    for (var i = 1; i < children.length; i++) {
-                        children[i].style.transform = "rotateX(90deg)";
-                        children[i].style.opacity = "0";
-                    }
-                    for (var i = 1; i < children.length; i++) {
-                        setTimeout(function(i) {
-                            var child = children[i];
-                            if (child) {
-                                for (var p = 0; p <= 100; p++) {
-                                    setTimeout(function(p) {
-                                        if (child) {
-                                            child.style.transform = "rotateX(" + (90 - p) + "deg)";
-                                            child.style.opacity = p / 100;
-                                        }
-                                    }, p * 5, p);
-                                }
+                        }, p * 11);
+                    })(p);
+                }
+                var row = document.getElementById('theul');
+                row.style.overflowY = 'auto';
+                var children = row.children;
+                var row3 = document.getElementById('thefirsthead');
+                row3.style.opacity = "0";
+                for (var p = 0; p <= 10; p++) {
+                    (function(p) {
+                        setTimeout(function() {
+                            if (row3) {
+                                var r = p / 10;
+                                row3.style.opacity = r;
                             }
-                        }, i * 200, i);
-                    }
+                        }, p * 80);
+                    })(p);
+                }
+                for (var i = 1; i < children.length; i++) {
+                    children[i].style.transform = "rotateX(90deg)";
+                    children[i].style.opacity = "0";
+                }
+                for (var i = 1; i < children.length; i++) {
+                    setTimeout(function(i) {
+                        var child = children[i];
+                        if (child) {
+                            for (var p = 0; p <= 100; p++) {
+                                setTimeout(function(p) {
+                                    if (child) {
+                                        child.style.transform = "rotateX(" + (90 - p) + "deg)";
+                                        child.style.opacity = p / 100;
+                                    }
+                                }, p * 5, p);
+                            }
+                        }
+                    }, i * 200, i);
                 }
             }
             </script>

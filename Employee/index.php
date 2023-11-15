@@ -29,6 +29,7 @@
     ?>
     <div class="top-bar">
         <img src="../images/logo.png" alt="Logo">
+        <h1 style="letter-spacing: 1px;" id="thetitle">TRACKIFY</h1>
         <button onclick="logout()">Logout</button>
         <script>
             function logout() {

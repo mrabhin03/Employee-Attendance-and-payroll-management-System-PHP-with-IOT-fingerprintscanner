@@ -122,7 +122,7 @@ a{
 }
 .button1{
     border: none;
-    transition: transform .3s ease-in-out;
+    transition: transform .2s ease-in-out;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -133,6 +133,14 @@ a{
     width: 300px;
     height: 50px;
     background-image: url(../common/wallpaper/violet.png);
+}
+.button1:hover
+{
+    transform: scale(1.1);
+}
+.button1:focus
+{
+    transform: scale(1);
 }
 .button1 h6{
     font-family: Verdana, Geneva, Tahoma, sans-serif;

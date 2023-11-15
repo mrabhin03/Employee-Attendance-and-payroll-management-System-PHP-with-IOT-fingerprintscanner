@@ -59,7 +59,15 @@
 
     </div>
     <div class="data1">
-        <div class="sample_data">
+        <div class="sample_data" style="<?php if(isset($_SESSION['init2']))
+        {
+            echo "height:100%";
+        }
+        else
+        {
+            $_SESSION['init2']=1;
+            echo "height:91%";
+        }?>">
             <div class="box">
                 <div class="bodypart">
                     <h3 id="toemp">0</h3>
@@ -109,9 +117,6 @@
             autoin3();
             autoin4();
         }
-        window.onload = function() {
-            setTimeout(callassemble, 500);
-        };
 
         function autoin1() {
             var j = 1;
@@ -217,12 +222,12 @@
                       $p=0;
                     while($row = $query->fetch_assoc()){
                       ?>
-                        <tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
+                        <tr style="opacity: 0; z-index:0; transform: rotateX(90deg);" id="<?php echo $i;?>">
                             <td><?php echo $i; $i++;?></td>
                             <td><?php echo $row['Emp_id']; ?></td>
                             <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;"
                                     src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>"
-                                    width="30px" height="30px"> </td>
+                                    width="30px" height="30px" loading="lazy"> </td>
                             <td><?php echo $row['Emp_name']; ?></td>
                             <?php
                             $rf=$row['Rf_id'];
@@ -274,6 +279,7 @@
 
                         <?php
                     }
+                    $count=$i;
                   }
                   else
                   {
@@ -287,31 +293,27 @@
                     </tbody>
                 </table>
                 <script>
-                trans();
+                    trans();
 
-                function trans() {
-                    for (var i = 1; i <= <?php echo $total; ?>; i++) {
-                        var row = document.getElementById(i);
-                        row.style.transform = "rotateX(90deg)";
-                    }
-                    for (var i = 1; i <= <?php echo $total; ?>; i++) {
-                        setTimeout(function(i) {
-                            var row = document.getElementById(i);
-                            if (row) {
-                                row.style.opacity = "1";
-                                for (var p = 90; p >= 0; p--) {
-                                    setTimeout(function(p) {
-                                        if (row) {
-                                            row.style.transform = 'rotateX(' + p + 'deg)';
-                                        }
-                                    }, (90 - p) * 1.5, p);
+                    function trans() {
+                        for (var i = 1; i < <?php echo $count; ?>; i++) {
+                            setTimeout(function(i) {
+                                var row = document.getElementById(i);
+                                if (row) {
+                                    row.style.opacity = "1";
+                                    for (var p = 90; p >= 0; p--) {
+                                        setTimeout(function(p) {
+                                            if (row) {
+                                                row.style.transform = 'rotateX(' + p + 'deg)';
+                                            }
+                                        }, (90 - p) * 1.5, p);
+                                    }
                                 }
-                            }
-                        }, i * 100, i);
-                    }
+                            }, i * 100, i);
+                        }
 
-                }
-                </script>
+                    }
+                    </script>
             </div>
         </div>
 

@@ -22,6 +22,14 @@ liview.classList.add('active');
 liviewicon.classList.add('active');
 </script>
 <div class="Attendance">
+    <div class="thefulldivatt">
+        <div class="loading2">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+            <h2>Calculating...</h2>
+        </div>
+    </div>
     <div style="z-index:1;" class="head">
         <form method="post">
             <input onchange="this.form.submit()" value="<?php
@@ -42,9 +50,24 @@ liviewicon.classList.add('active');
         ?>" type="date" name="daily_date" required>
         </form>
         <h2>Daily Attendance</h2>
-        <?php echo "<a href='?page=dailyadd&date=$tday'><button style='width:70px;'>Generate</button></a>"; ?>
+        <?php echo "<a onclick='loadthebar()' href='?page=dailyadd&date=$tday'><button style='width:70px;'>Generate</button></a>"; ?>
     </div>
     <div class="Daily_att">
+        <script>
+        const loading = document.querySelector('.loading2');
+        const areyou = document.querySelector('.thefulldivatt');
+
+        function loadthebar() {
+
+            if (loading.classList.contains('active')) {
+                areyou.classList.remove('active');
+                loading.classList.remove('active');
+            } else {
+                areyou.classList.add('active');
+                loading.classList.add('active');
+            }
+        }
+        </script>
         <div class="Daily_att_sub">
             <table>
                 <thead>
