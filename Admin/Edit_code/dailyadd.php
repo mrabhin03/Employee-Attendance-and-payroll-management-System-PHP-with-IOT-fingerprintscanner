@@ -63,13 +63,7 @@ while($logdate=$log_query->fetch_assoc())
     $yesorno = $con->query($holidaysql)->num_rows;
     if($yesorno> 0)
     {
-        $thecheck="SELECT * FROM daily_attendance WHERE Att_date='$currentdate'";
-        $newcheckquery=$con->query($thecheck);
-        if($newcheckquery->num_rows> 0)
-        {
-            $newdaily="UPDATE daily_attendance SET Working_hour='0' WHERE Att_date='$daily_date'";
-            $con->query($newdaily);
-        }
+        
     }
     else {
         $cale="SELECT * FROM company_calender WHERE Month_id='$monthid'";
