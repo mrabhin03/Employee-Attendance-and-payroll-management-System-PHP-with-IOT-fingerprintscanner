@@ -53,6 +53,7 @@
                                     {
                                         $daycount=0;
                                         $i=1;
+                                        $totalwork=0;
                                         for($day=$monthdays[intval($monthdata)];$day>0;$day--)
                                         {
                                             
@@ -94,7 +95,7 @@
                                 ?>
                             <tr style="opacity: 0; z-index:0;" id="<?php echo $i; $i++?>">
                                 <?php if($true==0)
-                                    { ?>
+                                    { $totalwork++;?>
                                 <td><?php echo $date; ?></td>
                                 <td><?php echo $timein ?></td>
                                 <td><?php echo $timeout ?></td>
@@ -121,10 +122,10 @@
                             <?php
                                         }
                                         $count=$i+1;
-                                        $totaldaycount=$monthdays[intval($monthdata)];
+                                        $totaldaycount=$totalwork;
                                         echo "<tr style='background-color: #8200006a;opacity: 0; z-index:0;' id='$i'><td colspan='2'>Total Number of days: $totaldaycount</td>";
                                         echo "<td colspan='2'>Total Number of Presents: $daycount</td>";
-                                        $absents=$totaldaycount-$daycount;
+                                        $absents=$totalwork-$daycount;
                                         echo "<td colspan='2'>Total Number of absents: $absents</td></tr>";
                                     }
                                      else
