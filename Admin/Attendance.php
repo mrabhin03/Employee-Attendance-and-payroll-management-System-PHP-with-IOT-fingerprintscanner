@@ -145,7 +145,9 @@ liviewicon.classList.add('active');
 
                     </div>
                     <script>
+                        thespeed=0;
                     function callassemble() {
+                        thespeed=100-<?php echo $percentage; ?>;
                         autoin1();
                         autoin2();
                         autoin3();
@@ -182,7 +184,7 @@ liviewicon.classList.add('active');
                                 var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
                                 anotherH1Element.innerHTML = j + '.' + randomNum;
                                 j++;
-                                setTimeout(updateAnotherValue1, 10);
+                                setTimeout(updateAnotherValue1, thespeed);
                             } else {
                                 if (<?php echo $percentage; ?> == 0) {
                                     anotherH1Element.innerHTML = '0.00';
@@ -226,11 +228,14 @@ liviewicon.classList.add('active');
                     }
                     </script>
                     <?php
-                      $sql = "SELECT employee_details.*, daily_attendance.*
-                    FROM employee_details
-                    INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id
-                    WHERE Emp_status = 1 AND Att_date = '$daily_date'
-                    ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED);";
+                      $sql = "SELECT employee_details.*, daily_attendance.*, MAX(TIME(emp_logs.Time_date)) AS max_time_date
+                      FROM employee_details
+                      INNER JOIN daily_attendance ON employee_details.Emp_id = daily_attendance.Emp_id
+                      LEFT JOIN emp_logs ON employee_details.Rf_id = emp_logs.Rf_id AND DATE(emp_logs.Time_date) = daily_attendance.Att_date
+                      WHERE employee_details.Emp_status = 1 AND daily_attendance.Att_date = '$daily_date'
+                      GROUP BY employee_details.Emp_id, daily_attendance.Att_id
+                      ORDER BY CAST(SUBSTRING(employee_details.Emp_id, 2) AS UNSIGNED);
+                      ";
                     $query = $con->query($sql);
                     if($query->num_rows>0)
                     {
@@ -241,10 +246,27 @@ liviewicon.classList.add('active');
                         {
                             $workhrs=$row['Working_hour'];
                             $workhrs=$workhrs."hrs";
-                            if($row['Working_hour']>8)
+                            if($row['max_time_date']!=NULL)
                             {
-                                $over=$row['Working_hour']-8;
-                                $over=$over."hrs";
+                                $d1= new DateTime("19:00:00");
+                                $d2= new DateTime($row['max_time_date']);
+                                if($d2>$d1)
+                                {
+                                    $diffdata=$d1->diff($d2);
+                                    if($diffdata->format('%h')> 0)
+                                    {
+                                        $over=$diffdata->format('%h')."hrs";
+                                    }
+                                    else
+                                    {
+                                        $over="---";
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    $over="---";
+                                }
                             }
                             else
                             {

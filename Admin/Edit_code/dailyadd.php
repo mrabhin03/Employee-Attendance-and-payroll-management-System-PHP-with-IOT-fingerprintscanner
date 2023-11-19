@@ -7,7 +7,7 @@ if(isset($_GET['date'])){
     $date = $_GET['date'];
     $_SESSION['datevalue']=$date;
     $currentdate=$date;
-    $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
+    $log_sql="SELECT DISTINCT(DATE(Time_date)) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
     if($con->query($log_sql)->num_rows == 0){
         $inserttemp="INSERT INTO emp_logs( Rf_id, Log_status, Time_date) VALUES ('999','52','$date')";
         $con->query($inserttemp);
@@ -85,38 +85,74 @@ while($logdate=$log_query->fetch_assoc())
     $emp="SELECT * FROM employee_details WHERE Emp_status=1 AND DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid' ORDER BY CAST(SUBSTRING('Emp_id', 2) AS SIGNED) ";
     $emp_details=$con->query($emp);
     while($data=$emp_details->fetch_assoc())
-    {
-        
+    {   
         $emp_rf=$data['Rf_id'];
         $emp_id=$data['Emp_id'];
-        $IN="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
+        $IN="SELECT TIME(Time_date) as Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
         $INquery=$con->query($IN);
         $check="SELECT * FROM daily_attendance WHERE Att_date='$currentdate' AND Emp_id='$emp_id'";
         $checkquery=$con->query($check);
         if(mysqli_num_rows($INquery)>0)
         {            
             $INrow=$INquery->fetch_assoc();
-            $OUT="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$emp_rf AND Log_status='OUT'";
+            $OUT="SELECT TIME(Time_date) as Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$emp_rf AND Log_status='OUT'";
             $OUTquery=$con->query($OUT);
-            $datetime1 = new DateTime($INrow['Time_date']);
+            if($INrow['Time_date']<="10:00:00")
+            {
+                $onestarttime="10:00:00";
+            }
+            else {
+                $onestarttime=$INrow['Time_date'];
+            }
+            $datetime1 = new DateTime($onestarttime);
             if(mysqli_num_rows($OUTquery)>0)
             {
                 if(mysqli_num_rows($INquery)> 1)
                 {
-                    $doublein1sql="SELECT MIN(Time_date) as inmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
-                    $doubleout1sql="SELECT MIN(Time_date) as outmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
+                    $doublein1sql="SELECT MIN(TIME(Time_date)) as inmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
+                    $doubleout1sql="SELECT MIN(TIME(Time_date)) as outmin FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
                     $firstin=$con->query($doublein1sql)->fetch_assoc();
-                    $firstinvalue = new DateTime($firstin['inmin']);
+                    if($firstin['inmin']<="10:00:00")
+                    {
+                       $starttime="10:00:00";
+                    }
+                    else {
+                        $starttime=$firstin['inmin'];
+                    }
+                    $firstinvalue = new DateTime($starttime);
                     $firstout=$con->query($doubleout1sql)->fetch_assoc();
-                    $firstoutvalue = new DateTime($firstout['outmin']);
+                    if($firstout['outmin']>="13:00:00")
+                    {
+                       $startintime="13:00:00";
+                    }
+                    else {
+                        $startintime=$firstout['outmin'];
+                    }
+                    $firstoutvalue = new DateTime($startintime);
                     $interval1 = $firstinvalue->diff($firstoutvalue);
                     $hours1 = $interval1->format('%h');
-                    $doublein2sql="SELECT MAX(Time_date) as inmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
-                    $doubleout2sql="SELECT MAX(Time_date) as outmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
+                    $doublein2sql="SELECT MAX(TIME(Time_date)) as inmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
+                    $doubleout2sql="SELECT MAX(TIME(Time_date)) as outmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='OUT'";
                     $secoin=$con->query($doublein2sql)->fetch_assoc();
-                    $secinvalue = new DateTime($secoin['inmax']);
+                    if($secoin['inmax']<="14:00:00")
+                    {
+                       $endintime="14:00:00";
+                      
+                    }
+                    else {
+                        $endintime=$secoin['inmax'];
+                    }
+                    $secinvalue = new DateTime($endintime);
                     $secoinout=$con->query($doubleout2sql)->fetch_assoc();
-                    $secoutvalue = new DateTime($secoinout['outmax']);
+                    if($secoinout['outmax']>="19:00:00")
+                    {
+                       $endtime="19:00:00";
+                      
+                    }
+                    else {
+                        $endtime=$secoinout['outmax'];
+                    }
+                    $secoutvalue = new DateTime($endtime);
                     $interval2 = $secinvalue->diff($secoutvalue);
                     $hours2 = $interval2->format('%h');
                     $hours=$hours1+$hours2;
@@ -124,9 +160,17 @@ while($logdate=$log_query->fetch_assoc())
                 else
                 {
                     $OUTrow=$OUTquery->fetch_assoc();
-                    $datetime2 = new DateTime($OUTrow['Time_date']);
+                    if($OUTrow['Time_date']>="19:00:00")
+                    {
+                       $oneendtime="19:00:00";
+                      
+                    }
+                    else {
+                        $oneendtime=$OUTrow['Time_date'];
+                    }
+                    $datetime2 = new DateTime($oneendtime);
                     $interval = $datetime1->diff($datetime2);
-                    $hours = $interval->format('%h');
+                    $hours = $interval->format('%h')-1;
                 }
                 if(mysqli_num_rows($checkquery)>0)
                 {
@@ -171,7 +215,6 @@ while($logdate=$log_query->fetch_assoc())
     }
     
 }
-
 if(isset($_GET['date'])){
     echo "<script>window.location.href = '?page=Attendance';</script>";
 }else{

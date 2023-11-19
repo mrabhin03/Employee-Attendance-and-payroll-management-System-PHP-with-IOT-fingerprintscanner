@@ -11,14 +11,22 @@ include 'session_check.php';
         while($emp=$empdbdata->fetch_array())
         {
             $empid=$emp['Emp_id'];
-            $datecheck="SELECT DISTINCT DA.*
-            FROM daily_attendance DA
-            LEFT JOIN holidays H ON DAY(DA.Att_date) = H.day AND H.Month_id = '$monthid'
-            WHERE DA.Att_date LIKE '$date%'
-              AND DA.Emp_id = '$empid'
-              AND DA.Att_status = 1
-              AND H.day IS NULL;";
+            $datecheck="SELECT DISTINCT DA.*, 
+                (SELECT MAX(TIME(EL_sub.Time_date)) 
+                FROM emp_logs EL_sub 
+                WHERE det.RF_id = EL_sub.RF_id 
+                AND DATE(EL_sub.Time_date) = DA.Att_date) AS max_time
+                FROM daily_attendance DA
+                INNER JOIN employee_details det ON DA.Emp_id = det.Emp_id
+                LEFT JOIN holidays H ON DAY(DA.Att_date) = H.day AND H.Month_id = '$monthid'
+                LEFT JOIN emp_logs EL ON det.RF_id = EL.RF_id AND DATE(EL.Time_date) = DA.Att_date
+                WHERE DA.Att_date LIKE '$date%'
+                AND DA.Emp_id = '$empid'
+                AND DA.Att_status = 1
+                AND H.day IS NULL
+                AND EL.Rf_id IS NOT NULL;";
             $data=$con->query($datecheck);
+
             $dec_id=$emp['Desc_id'];
             $descforempquery=$con->query("SELECT * FROM designation_for_employee WHERE Emp_id='$empid' ");
             if($descforempquery->num_rows> 0)
@@ -57,19 +65,22 @@ include 'session_check.php';
                 $count=0;
                 while($row = $data->fetch_assoc())
                 {
-                    if($row['Working_hour']<=8)
+                    $hours1+=$row['Working_hour'];
+                    $d1= new DateTime("19:00:00");
+                    $d2= new DateTime($row['max_time']);
+                    if($d2>$d1)
                     {
-                        $hours1+=$row['Working_hour'];
-                    }
-                    else
-                    {
-                        $hours2+=$row['Working_hour'];
-                        $count++;
+                        $diffdata=$d1->diff($d2);
+                        if($diffdata->format('%h')> 0)
+                        {
+                            $hours2+=$diffdata->format('%h');
+                        }
+                                    
                     }
                     
                 }
-                $normalhours=$hours1+(8*$count);
-                $overhours=$hours2-(8*$count);
+                $normalhours=$hours1;
+                $overhours=$hours2;
                 if($monthcheck->num_rows>0)
                 {
                     $insert_mo="UPDATE monthly_attendance SET Normal_work_hr='$normalhours' WHERE Emp_id='$empid' AND  Month_id='$monthid'";

@@ -94,14 +94,16 @@
 
         </div>
         <script>
+            thespeed=0;
         function callassemble() {
+            thespeed=100-<?php echo $percentage; ?>;
             autoin1();
             autoin2();
             autoin3();
             autoin4();
         }
         window.onload = function() {
-            setTimeout(callassemble, 500);
+            setTimeout(callassemble, 800);
         };
 
         function autoin1() {
@@ -131,7 +133,7 @@
                     var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
                     anotherH1Element.innerHTML = j + '.' + randomNum;
                     j++;
-                    setTimeout(updateAnotherValue1, 10);
+                    setTimeout(updateAnotherValue1, thespeed);
                 } else {
                     if (<?php echo $percentage; ?> == 0) {
                         anotherH1Element.innerHTML = '0.00';
