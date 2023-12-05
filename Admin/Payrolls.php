@@ -27,7 +27,11 @@ include 'session_check.php';
         </form>
 
         <h2 style="order:2;">Payrolls Details</h2>
-        <?php echo "<a style='order:1;' href='?page=generate_payroll&mid=$m_id'><button style='width:70px;'>Generate</button></a>" ?>
+        <div style='order:1;' >
+        <?php echo "<a  href='?page=generate_payroll&mid=$m_id'><button style='width:70px;'>Generate</button></a>" ?>
+        <?php echo "<a style='margin-left:-10px; ' href='?page=Bonus_details&mid=$m_id'><button style='width:70px;'>Bonus</button></a>" ?>
+        </div>
+        
     </div>
     <div class="payrolls_details">
         <div class="payrolls_details_sub">

@@ -85,6 +85,15 @@ if($month_id_query->num_rows > 0)
             {
                 $month_total=$month_total+$ov_salary;
             }  
+            $bonus="SELECT Bonus_salary FROM bonus_salary WHERE Emp_id='$empid' AND Month_id='$monthid' "; 
+                $bonusquery=$con->query($bonus);
+                if($bonusquery->num_rows>0)
+                {
+                    while($bonusdata=$bonusquery->fetch_assoc())
+                    {
+                        $month_total=$month_total+$bonusdata['Bonus_salary'];
+                    }
+                }
             $check_salary_sql="SELECT * FROM salary_paid WHERE Emp_id='$empid' AND Month_id='$monthid'";
             $check_salary_query=$con->query($check_salary_sql);
             

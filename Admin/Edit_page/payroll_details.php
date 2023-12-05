@@ -41,8 +41,18 @@ include 'session_check.php';
          INNER JOIN overtime_details ON overtime_details.Emp_id=salary_paid.Emp_id AND overtime_details.Month_id=salary_paid.Month_id
          WHERE salary_paid.Emp_id='$id' AND salary_paid.Month_id='$date'";
          $rowquery=$con->query($details);
-         if($rowquery->num_rows > 0)
-         {
+         $bonusamount=0;
+         $bonus="SELECT Bonus_salary FROM bonus_salary WHERE Emp_id='$id' AND Month_id='$date' "; 
+        $bonusquery=$con->query($bonus);
+        if($bonusquery->num_rows>0)
+        {
+            while($bonusdata=$bonusquery->fetch_assoc())
+            {
+                $bonusamount=$bonusamount+$bonusdata['Bonus_salary'];
+            }
+        }
+        if($rowquery->num_rows > 0)
+        {
             $row=$rowquery->fetch_assoc();
         ?>
         <div class="payroll_scale01">
@@ -113,7 +123,8 @@ include 'session_check.php';
                     <th>Medical allowance</th>
                     <th>Provident fund</th>
                     <th>Overtime total</th>
-                    <th>Total</th>
+                    <th>Bonus Salary</th>
+                    <th>Total Salary</th>
                     <th>Status</th>
                 </thead>
                 <tbody>
@@ -123,6 +134,7 @@ include 'session_check.php';
                         <td><?php echo "₹".number_format($row['Salary_ma']);?></td>
                         <td><?php echo "₹".number_format($row['Salary_pf']);?></td>
                         <td><?php echo ($row['Overtime_hrs']>4)? "₹".number_format($row['Overtime_salary']*4):  "₹".number_format($row['Overtime_salary']*$row['Overtime_hrs'])?></td>
+                        <td><?php echo "₹".number_format($bonusamount);?></td>
                         <td><?php echo "₹".number_format($row['Total_salary']);?></td>
                         <td><?php echo ($row['Salary_status']==1)? "<p style='color: green;'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?></td>
                     </tr>
@@ -140,4 +152,5 @@ include 'session_check.php';
             <?php
         } ?>
     </div>
+   
 </div>
