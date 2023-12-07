@@ -427,7 +427,7 @@
                         }
                         else
                         {
-                            echo"<tr id='Home$i' style='opacity: 0;background-color: rgb(192, 19, 19); color:white; border: 2px solid white;'>
+                            echo"<tr id='Home$i' class='holidaysbo' style='opacity: 0;background-color: rgb(192, 19, 19); color:white;'>
                                     <td>$i</td>
                                     <td>$currentdate</td>
                                     <td colspan='6' ><p style=' font-size:20px; '>Public Holiday</p></td>
@@ -474,6 +474,17 @@
                                     }, (90 - p) * 1.5, p);
                                 }
                             }
+                            if (i == <?php echo $count-1; ?>) {
+                            const holi = document.getElementsByClassName('holidaysbo');
+                            if (holi.length > 0) {
+                                for(j=0;j<holi.length;j++)
+                                {
+                                    holi[j].style.border = '2px solid white';
+                                    holi[j].style.boxSizing = 'border-box';
+                                }
+                            }
+
+                        }
                         }, i * 100, i);
                     }
 
