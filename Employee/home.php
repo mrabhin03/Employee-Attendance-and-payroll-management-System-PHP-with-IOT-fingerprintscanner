@@ -94,9 +94,10 @@
 
         </div>
         <script>
-            thespeed=0;
+        thespeed = 0;
+
         function callassemble() {
-            thespeed=100-<?php echo $percentage; ?>;
+            thespeed = 100 - <?php echo $percentage; ?>;
             autoin1();
             autoin2();
             autoin3();
@@ -177,8 +178,158 @@
         }
         </script>
         <div class="employee_att">
+            <div id="barmenu" style="opacity:0;" class="bar_main">
+                <div class="bar_top">
+                    <div class="bar11">
+                        <table>
+                            <tbody>
+                                <?php $total_days=30; $temphr=10;
+                                echo"<tr><td rowspan='11'><div style='transform: rotate(-90deg);'>Hours</div></td><td>$temphr</td></tr>";
+                                $temphr--;
+                                while($temphr>=0)
+                                {
+
+                                    echo"<tr><td>0$temphr</td></tr>";
+                                    $temphr--;
+                                }
+                                 ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bar12">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <?php $days=1;
+                                    echo "<script>let barheights = [];</script>";
+                                    while($days<=$total_days)
+                                    {
+                                        if($days<10)
+                                        {
+                                            $pri="0".$days;
+                                        }
+                                        else
+                                        {
+                                            $pri=$days;
+                                        }
+                                        $checkdate=$currentmonth."-".$pri;
+
+                                        $sqlbar="SELECT Working_hour FROM daily_attendance WHERE Emp_id='$id' AND Att_date='$checkdate'";
+                                        $datahr=$con->query($sqlbar);
+                                        if($datahr->num_rows>0)
+                                        {
+                                            $valueshr=$datahr->fetch_assoc();
+                                            if($valueshr['Working_hour']=='0')
+                                            {
+                                                $hourdata=5;
+                                                $colordata="red";
+                                            }
+                                            else
+                                            {
+                                                $hourdata=($valueshr['Working_hour']*10);
+                                                if($valueshr['Working_hour']>=8)
+                                                {
+                                                    $colordata='limegreen';
+                                                    $sqlbarover="SELECT MAX(TIME(Time_date)) as time FROM `emp_logs` 
+                                                    INNER JOIN employee_details ON employee_details.Rf_id=emp_logs.Rf_id 
+                                                    WHERE DATE(Time_date)='$checkdate' AND employee_details.Emp_id='$id' AND Log_status='OUT'";
+                                                    $datahrover=$con->query($sqlbarover);
+                                                    $rowch=$datahrover->fetch_assoc();
+                                                    if($rowch['time']!=NULL)
+                                                    {
+                                                        $d1= new DateTime("19:00:00");
+                                                        $d2= new DateTime($rowch['time']);
+                                                        if($d2>$d1)
+                                                        {
+                                                            $diffdata=$d1->diff($d2);
+                                                            if($diffdata->format('%h')> 0)
+                                                            {
+                                                                $hourdata=$hourdata+($diffdata->format('%h'))*10;
+                                                            }
+                                    
+                                                        }
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    $colordata="yellow";
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            $hourdata=5;
+                                            $colordata="yellow";
+                                        }
+                                        if($hourdata>=100)
+                                        {
+                                            $hourdata=100;
+                                        }
+                                        else
+                                        {
+                                            $hourdata=$hourdata-2;
+                                        }
+                                        echo "<td><div class='thebarmain'><div id='B$days' style='height: 0%;width:100%;background-color:$colordata;'></div></div></td>";
+                                        echo "<script>barheights[$days]=$hourdata;</script>";
+                                        $days++;
+                                    } ?>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <script>
+                        baranime();
+
+                        function baranime() {
+                            for (var i = 1; i < barheights.length; i++) {
+                                setTimeout(function(i) {
+                                    var row = document.getElementById('B' + i);
+                                    if (row) {
+                                        for (var p = 0; p <= barheights[i]; p++) {
+                                            setTimeout(function(p) {
+                                                if (row) {
+                                                    row.style.height = p+'%';
+                                                }
+                                            }, (100 + p) * 4, p);
+                                        }
+                                    }
+                                }, i * 50, i);
+                            }
+                        }
+                        </script>
+                    </div>
+                </div>
+                <div class="bar_bottom">
+                    <div class="bar21"></div>
+                    <div class="bar22">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <?php $days=1;
+                                    while($days<=$total_days)
+                                    {
+                                        if($days<10)
+                                        {
+                                            $pri="0".$days;
+                                        }
+                                        else
+                                        {
+                                            $pri=$days;
+                                        }
+                                        echo "<td>$pri</td>";
+                                        $days++;
+                                    } ?>
+                                </tr>
+                                <tr>
+                                    <td colspan='<?php echo $total_days; ?>'>Days</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="att_sub_div1">
-                <table style=' border-collapse: collapse;'>
+                <table id="thetable" style=' border-collapse: collapse;opacity:0; transition: all .3s ease-in-out;'>
                     <thead>
                         <th>SI</th>
                         <th>Date</th>
@@ -212,14 +363,15 @@
                             $monthhliid = str_replace("-", "", $currentmonth);
                             $holidayquet="SELECT * FROM holidays WHERE Month_id='$monthhliid' AND day='$day'";
                             $holiday=$con->query($holidayquet)->num_rows;
-                            $select1="SELECT emp_logs.*
+                            $select1="SELECT MIN(emp_logs.Time_date) as Time_date
                             FROM emp_logs 
                             LEFT JOIN employee_details ON employee_details.Rf_id = emp_logs.Rf_id
                             LEFT JOIN daily_attendance ON DATE(daily_attendance.Att_date) = DATE(emp_logs.Time_date) AND employee_details.Emp_id = daily_attendance.Emp_id
                             WHERE emp_logs.Rf_id = '$rf' 
                               AND DATE(emp_logs.Time_date) = '$currentdate'  
                               AND emp_logs.Log_status = 'IN'
-                              AND daily_attendance.Att_date IS NOT NULL;";
+                              AND daily_attendance.Att_date IS NOT NULL
+                            GROUP BY emp_logs.Rf_id;";
                             $IN = $con->query($select1);
                             if($IN->num_rows> 0)
                             {
@@ -227,7 +379,7 @@
                               while($INrow = $IN->fetch_assoc())
                                 {
                                     $INdata = date('H:i:s', strtotime($INrow['Time_date']));
-                                    $select2="SELECT Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='OUT'";
+                                    $select2="SELECT MAX(Time_date) as Time_date FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id=$rf AND Log_status='OUT'";
                                     $OUT = $con->query($select2);
                                     if($OUT->num_rows> 0)
                                     {
@@ -298,6 +450,11 @@
                     for (var i = 1; i < <?php echo $count; ?>; i++) {
                         var row = document.getElementById('Home' + i);
                         row.style.transform = "rotateX(90deg)";
+                        var row1 = document.getElementById('barmenu');
+                        row1.style.opacity = "1";
+                        var table = document.getElementById('thetable');
+                        table.style.opacity = "1";
+
                     }
                     for (var i = 1; i < <?php echo $count; ?>; i++) {
                         setTimeout(function(i) {

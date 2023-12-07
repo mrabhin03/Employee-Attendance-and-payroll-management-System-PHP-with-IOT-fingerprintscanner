@@ -26,7 +26,7 @@ include '../common/connection.php'; ?>
                         </div>
                         <div
                             style="height:100%; width:65%; display:flex; align-items: center; justify-content: center;">
-                            <input placeholder="Enter the Bonus Amount" style="text-align:center;width:90%;border-radius:10px;" type="text" id="Bonusamo" name="Bonusamo" required >
+                            <input placeholder="Enter the Bonus Amount ₹" style="text-align:center;width:90%;border-radius:10px;" type="text" id="Bonusamo" name="Bonusamo" required >
                         </div>
                     </div>
                 </div>
