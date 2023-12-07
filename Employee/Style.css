@@ -396,9 +396,9 @@
 .commonbar
 {
   height: 0%;
-  border: 2px solid white;
+  border: 1px solid white;
   width:100%;
-  box-shadow: 2px 2px 5px rgb(0, 0, 0);
+  box-shadow: 5px 8px 25px rgb(0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -427,8 +427,14 @@
 }
 .infobar > div
 {
-  height:20px; 
+  height:15px; 
   border:2px solid black; 
   border-radius: 2px; 
-  width: 20px; 
+  width: 15px; 
+  margin-top: -4px;
+  box-shadow: 2px 2px 1px rgb(0, 0, 0);
+}
+.infobar > h3
+{
+  font-size:13px;
 }

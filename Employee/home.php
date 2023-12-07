@@ -190,25 +190,25 @@
                         <div
                             style="background-color:yellow;">
                         </div>
-                        <h3 style="font-size:13px;">Below normal Working hour</h3>
+                        <h3>Below normal Working hour</h3>
                     </div>
-                    <div class="infobar" style="width:15%">
+                    <div class="infobar">
                         <div
                             style="background-color:red;">
                         </div>
-                        <h3 style="font-size:13px;">Zero hours worked</h3>
+                        <h3>Zero hours worked(Absent)</h3>
                     </div>
                     <div class="infobar" style="width:24%;">
                         <div
                             style="background-color:limegreen;">
                         </div>
-                        <h3 style="font-size:13px;">Normal Working hours completed</h3>
+                        <h3>Normal Working hours completed</h3>
                     </div>
                     <div class="infobar" style="width:12%;">
                         <div
                             style="background-color:lightsalmon;">
                         </div>
-                        <h3 style="font-size:13px;">Public holiday</h3>
+                        <h3>Public holiday</h3>
                     </div>
                 </div>
                 <div class="bar_top">
