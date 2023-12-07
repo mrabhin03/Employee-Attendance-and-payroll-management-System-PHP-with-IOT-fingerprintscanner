@@ -28,6 +28,7 @@
             if (($Year % 4 == 0 && $Year % 100 != 0) || $Year % 400 == 0) {
               $monthdays[2]=29;
           }
+          $topdate=  $monthdays[intval($month)];
         ?>" type="month" onchange="this.form.submit()" name="month_date" required>
         </form>
 
@@ -188,7 +189,7 @@
                     <div class="bar11">
                         <table>
                             <tbody>
-                                <?php $total_days=30; $temphr=10;
+                                <?php $total_days= $topdate; $temphr=10;
                                 echo"<tr><td rowspan='11'><div style='transform: rotate(-90deg);'>Hours</div></td><td>$temphr</td></tr>";
                                 $temphr--;
                                 while($temphr>=0)
@@ -269,13 +270,13 @@
                                         }
                                         if($hourdata>=100)
                                         {
-                                            $hourdata=100;
+                                            $hourdata=100-2;
                                         }
                                         else
                                         {
                                             $hourdata=$hourdata-2;
                                         }
-                                        echo "<td><div class='thebarmain'><div id='B$days' style='height: 0%;width:100%;background-color:$colordata;'></div></div></td>";
+                                        echo "<td><div class='thebarmain'><div class='commonbar' id='B$days' style='background-color:$colordata;'></div></div></td>";
                                         echo "<script>barheights[$days]=$hourdata;</script>";
                                         $days++;
                                     } ?>
