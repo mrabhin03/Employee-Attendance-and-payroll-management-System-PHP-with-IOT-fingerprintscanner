@@ -33,6 +33,11 @@
 
     </div>
     <div class="data1">
+        <?php $sqldatacheck="SELECT * FROM daily_attendance WHERE Att_date LIKE '$currentmonth%' AND Emp_id='$id'"; 
+        $calendercheck="SELECT * FROM company_calender WHERE Month_id='$monthid'";
+        if((($con->query($sqldatacheck)->num_rows)>0)&&(($con->query($calendercheck)->num_rows)>0))
+        {
+        ?>
         <div class="sample_data">
             <div class="box">
                 <div class="bodypart">
@@ -288,7 +293,7 @@
                                         for (var p = 0; p <= barheights[i]; p++) {
                                             setTimeout(function(p) {
                                                 if (row) {
-                                                    row.style.height = p+'%';
+                                                    row.style.height = p + '%';
                                                 }
                                             }, (100 + p) * 4, p);
                                         }
@@ -476,6 +481,13 @@
                 </script>
             </div>
         </div>
-
+        <?php } else
+                {
+                ?>
+        <div style=" height:72%; width:100%; display:flex; align-items: center; justify-content: center;">
+            <h1 style="font-size:90px">NO DATA</h1>
+        </div>
+        <?php   
+        }?>
     </div>
 </div>
