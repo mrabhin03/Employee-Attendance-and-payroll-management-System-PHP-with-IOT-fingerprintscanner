@@ -185,9 +185,35 @@
         </script>
         <div class="employee_att">
             <div id="barmenu" style="opacity:0;" class="bar_main">
+                <div class="bat_title">
+                    <div class="infobar">
+                        <div
+                            style="background-color:yellow;">
+                        </div>
+                        <h3 style="font-size:13px;">Below normal Working hour</h3>
+                    </div>
+                    <div class="infobar" style="width:15%">
+                        <div
+                            style="background-color:red;">
+                        </div>
+                        <h3 style="font-size:13px;">Zero hours worked</h3>
+                    </div>
+                    <div class="infobar" style="width:24%;">
+                        <div
+                            style="background-color:limegreen;">
+                        </div>
+                        <h3 style="font-size:13px;">Normal Working hours completed</h3>
+                    </div>
+                    <div class="infobar" style="width:12%;">
+                        <div
+                            style="background-color:lightsalmon;">
+                        </div>
+                        <h3 style="font-size:13px;">Public holiday</h3>
+                    </div>
+                </div>
                 <div class="bar_top">
                     <div class="bar11">
-                        <table>
+                        <table border='1'>
                             <tbody>
                                 <?php $total_days= $topdate; $temphr=10;
                                 echo"<tr><td rowspan='11'><div style='transform: rotate(-90deg);'>Hours</div></td><td>$temphr</td></tr>";
@@ -266,7 +292,7 @@
                                         else
                                         {
                                             $hourdata=5;
-                                            $colordata="yellow";
+                                            $colordata="lightsalmon";
                                         }
                                         if($hourdata>=100)
                                         {
@@ -308,7 +334,7 @@
                 <div class="bar_bottom">
                     <div class="bar21"></div>
                     <div class="bar22">
-                        <table>
+                        <table border='1'>
                             <tbody>
                                 <tr>
                                     <?php $days=1;
@@ -476,16 +502,15 @@
                                 }
                             }
                             if (i == <?php echo $count-1; ?>) {
-                            const holi = document.getElementsByClassName('holidaysbo');
-                            if (holi.length > 0) {
-                                for(j=0;j<holi.length;j++)
-                                {
-                                    holi[j].style.border = '2px solid white';
-                                    holi[j].style.boxSizing = 'border-box';
+                                const holi = document.getElementsByClassName('holidaysbo');
+                                if (holi.length > 0) {
+                                    for (j = 0; j < holi.length; j++) {
+                                        holi[j].style.border = '2px solid white';
+                                        holi[j].style.boxSizing = 'border-box';
+                                    }
                                 }
-                            }
 
-                        }
+                            }
                         }, i * 100, i);
                     }
 
