@@ -101,7 +101,6 @@ include 'session_check.php';
                         if($con->query($holi)->num_rows> 0)
                         {
                       ?>
-
                         <td>
                             <div id='<?php echo $countt; ?>' style="background-color:red; color:white;">
                                 <div
@@ -111,8 +110,6 @@ include 'session_check.php';
                                 <?php echo "<a ><button style='cursor: auto;background-color:white; color: black;'>Holiday</button></a>"; $k++;?>
                             </div>
                         </td>
-
-
                         <?php
                         }
                         else
@@ -199,7 +196,6 @@ include 'session_check.php';
                     var row = document.getElementById(i);
                     row.style.opacity = "0";
                 }
-
                 for (var i = 1; i < <?php echo $countt; ?>; i++) {
                     setTimeout(function(i) {
                         var row = document.getElementById(i);

@@ -17,7 +17,8 @@
 </div>
 <div class="Bashboard">
     <div style="display: flex; justify-content: space-between; z-index:1;" class="head">
-        <?php echo "<a onclick='areyousure()'><button style='width:140px; height: 36px; font-size: 17px;'>Refresh all data</button></a>"; ?>
+    <div></div>
+        <?php /* echo "<a onclick='areyousure()'><button style='width:140px; height: 36px; font-size: 17px;'>Refresh all data</button></a>"; */ ?>
         <h3>Daily Attendance report </h3>
         <div></div>
         <script>

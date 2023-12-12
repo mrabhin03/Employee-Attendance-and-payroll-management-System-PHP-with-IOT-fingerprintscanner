@@ -22,7 +22,7 @@ function validation(){
     }
   }
   function validatepass(){
-    var errorText = "Invalid password :";
+    var errorText = "Invalid password ";
     var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
     var password = document.getElementById("password").value;
   
@@ -30,15 +30,15 @@ function validation(){
       return true;
     } else {
       if (password.length < 8) {
-        errorText += "Password must be at least 8 characters long. ";
+        errorText += " : Password must be at least 8 characters long. ";
       } else if (!/[A-Z]/.test(password)) {
-        errorText += "Password must contain at least one uppercase letter. ";
+        errorText += " : Password must contain at least one uppercase letter. ";
       } else if (!/[a-z]/.test(password)) {
-        errorText += "Password must contain at least one lowercase letter. ";
+        errorText += " : Password must contain at least one lowercase letter. ";
       } else if (!/\d/.test(password)) {
-        errorText += "Password must contain at least one digit. ";
+        errorText += " : Password must contain at least one digit. ";
       } else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-        errorText += "Password must contain at least one special character. ";
+        errorText += " : Password must contain at least one special character. ";
       }
       document.getElementById("passwordinvalid").innerHTML = errorText;
       document.getElementById("passwordinvalid").style.visibility = "visible";

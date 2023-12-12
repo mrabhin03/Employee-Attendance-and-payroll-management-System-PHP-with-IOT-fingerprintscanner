@@ -7,7 +7,6 @@
   $month=date("m");
   $monthvalue=date("n");
   $id=$_SESSION['Emp_id'];
-  $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
   $monthdays = array(0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
   ?>
 <div class="EMP_HOME">
@@ -259,7 +258,7 @@
                                             else
                                             {
                                                 $hourdata=($valueshr['Working_hour']*10);
-                                                if($valueshr['Working_hour']>=8)
+                                                if($valueshr['Working_hour']==8)
                                                 {
                                                     $colordata='limegreen';
                                                     $sqlbarover="SELECT MAX(TIME(Time_date)) as time FROM `emp_logs` 
