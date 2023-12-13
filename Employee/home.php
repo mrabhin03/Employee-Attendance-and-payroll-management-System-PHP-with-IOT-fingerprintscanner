@@ -186,26 +186,22 @@
             <div id="barmenu" style="opacity:0;" class="bar_main">
                 <div class="bat_title">
                     <div class="infobar">
-                        <div
-                            style="background-color:yellow;">
+                        <div style="background-color:yellow;">
                         </div>
                         <h3>Below normal Working hour</h3>
                     </div>
                     <div class="infobar">
-                        <div
-                            style="background-color:red;">
+                        <div style="background-color:red;">
                         </div>
                         <h3>Zero hours worked(Absent)</h3>
                     </div>
                     <div class="infobar" style="width:24%;">
-                        <div
-                            style="background-color:limegreen;">
+                        <div style="background-color:limegreen;">
                         </div>
                         <h3>Normal Working hours completed</h3>
                     </div>
                     <div class="infobar" style="width:12%;">
-                        <div
-                            style="background-color:lightsalmon;">
+                        <div style="background-color:lightsalmon;">
                         </div>
                         <h3>Public holiday</h3>
                     </div>
@@ -229,6 +225,7 @@
                     </div>
                     <div class="bar12">
                         <table>
+                            <div class="barblur"></div>
                             <tbody>
                                 <tr>
                                     <?php $days=1;
@@ -296,12 +293,15 @@
                                         if($hourdata>=100)
                                         {
                                             $hourdata=100-2;
+                                            $ts=10;
                                         }
                                         else
                                         {
+                                            $ts=($hourdata==5)?"-- ":$hourdata/10;
                                             $hourdata=$hourdata-2;
                                         }
-                                        echo "<td><div class='thebarmain'><div class='commonbar' id='B$days' style='background-color:$colordata;'></div></div></td>";
+                                        $ts=(($ts<10)&&($ts!="-- "))?"0".$ts."hrs":$ts."hrs";
+                                        echo "<td><div class='thebarmain'><div class='commonbar' id='B$days' style='background-color:$colordata;'><h3>$ts</h3></div></div></td>";
                                         echo "<script>barheights[$days]=$hourdata;</script>";
                                         $days++;
                                     } ?>
@@ -309,6 +309,19 @@
                             </tbody>
                         </table>
                         <script>
+                        const commonBars = document.querySelectorAll('.commonbar');
+                        const barBlur = document.querySelector('.barblur');
+
+                        commonBars.forEach(commonBar => {
+                            commonBar.addEventListener('mouseover', function() {
+                                barBlur.style.backdropFilter ='blur(3px)'; 
+                            });
+
+                            commonBar.addEventListener('mouseout', function() {
+                                barBlur.style.backdropFilter =''; 
+                            });
+                        });
+
                         baranime();
 
                         function baranime() {
