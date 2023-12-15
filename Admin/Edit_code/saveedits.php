@@ -16,6 +16,6 @@ include '../../common/connection.php';
         $sql = "UPDATE employee_details SET Emp_name='$fullname',Emp_Address='$address',Emp_mobileno='$mobile',Emp_email='$email' WHERE Emp_id='$empid'";
     }
     $con->query($sql);
-    echo "<script>window.location.href = '../index.php?page=View_details&id=$empid';</script>";
+    echo "<script>window.location.href = '../index.php?page=View_details';</script>";
 
 ?>

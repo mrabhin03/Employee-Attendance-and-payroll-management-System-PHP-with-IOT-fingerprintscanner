@@ -39,7 +39,6 @@ include 'session_check.php';
                   <th>Name</th>
                   <th>Designation</th>
                   <th>Date of Join</th>
-                  <th>Salary</th>
                   <th>Mobile No</th>
                   <th>Status</th>
                   <th>Tools</th>
@@ -57,6 +56,7 @@ include 'session_check.php';
                     if($query->num_rows)
                     {
                       $i=1;
+                      $ji=1;
                       $count=$query->num_rows;
                     while($row = $query->fetch_assoc()){
                       ?>
@@ -67,7 +67,6 @@ include 'session_check.php';
                           <td><?php echo $row['Emp_name']?></td>
                           <td><?php echo $row['Desc_name']; ?></td>
                           <td><?php echo $row['Emp_DOJ']; ?></td>
-                          <td><?php echo "₹".$row['Desc_basic']; ?></td>
                           <td><?php echo $row['Emp_mobileno']; ?></td>
                           <td><?php 
                           if($row['Emp_status']==0) 
@@ -84,7 +83,7 @@ include 'session_check.php';
                           }
                           ?></td>
                           <td>
-                          <?php $data=$row['Emp_id']; echo "<a href='?page=View_details&id=$data'><button class='view-emp' >View Details</button></a>" ?>                            
+                          <?php $data=$row['Emp_id']; echo "<a href='?page=page_controller&id=$data&pageto=1'><button class='view-emp' >View Details</button></a>" ?>                            
                           </td>
                         </tr>
                       <?php
@@ -105,7 +104,6 @@ include 'session_check.php';
               </table>
               <script>
                 trans();
-
                 function trans() {
                     for (var i = 1; i <= <?php echo $count; ?>; i++) {
                         var row = document.getElementById(i);

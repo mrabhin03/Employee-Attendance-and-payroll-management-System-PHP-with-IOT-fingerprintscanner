@@ -8,7 +8,7 @@ include 'session_check.php';
                     $email = $_POST['email'];
                     $address = "0";
                     $dob = "0000-00-00";
-                    $mobile = $_POST['mobile'];
+                    $mobile = '0';
                     $gender = "";
                     $filename ="";
                     $doj = $_POST['DOJ'];

@@ -5,6 +5,7 @@ $monthco = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 set_time_limit(5000);
 if(isset($_GET['date'])){
     $date = $_GET['date'];
+    $_SESSION['datevalue']=$date;
     $currentdate=$date;
     $log_sql="SELECT DATE(Time_date) as thedate FROM emp_logs WHERE DATE(Time_date)='$date';";
     if($con->query($log_sql)->num_rows == 0){
@@ -20,8 +21,23 @@ if(isset($_GET['date'])){
         $log_query=$con->query($log_sql);
     }
 }else{
-    $log_sql="SELECT DISTINCT DATE(Time_date) as thedate FROM emp_logs;";
-    $log_query=$con->query($log_sql);
+    $log_sqlmax="SELECT MAX(DATE(Time_date)) as maxthedate FROM emp_logs;";
+    $maxlog_query=$con->query($log_sqlmax);
+    $maxdatevalu=$maxlog_query->fetch_assoc();
+    $log_sqlmin="SELECT MIN(DATE(Time_date)) as minthedate FROM emp_logs;";
+    $minlog_query=$con->query($log_sqlmin);
+    $mindatevalu=$minlog_query->fetch_assoc();
+    $newdatequery="WITH RECURSIVE DateRange AS (
+        SELECT CAST('".$mindatevalu['minthedate']."' AS DATE) AS thedate
+        UNION ALL
+        SELECT thedate + INTERVAL 1 DAY
+        FROM DateRange
+        WHERE thedate < '".$maxdatevalu['maxthedate']."'
+    )
+    
+    SELECT thedate
+    FROM DateRange;";
+    $log_query=$con->query($newdatequery);
     $reset_queries = [
         "DELETE FROM salary_paid WHERE 1",
         "DELETE FROM daily_attendance WHERE 1",
@@ -33,6 +49,7 @@ if(isset($_GET['date'])){
     foreach ($reset_queries as $query) {
         $con->query($query);
     }
+    
 }
 
 while($logdate=$log_query->fetch_assoc())
@@ -41,7 +58,21 @@ while($logdate=$log_query->fetch_assoc())
     $monthid = date('Ym', strtotime($currentdate));
     $Yearnew = date('Y', strtotime($currentdate));
     $monthnew = date('m', strtotime($currentdate));
-    $cale="SELECT * FROM company_calender WHERE Month_id='$monthid'";
+    $dayva = intval(date('d', strtotime($currentdate)));
+    $holidaysql="SELECT * FROM holidays WHERE Month_id='$monthid' AND day='$dayva'";
+    $yesorno = $con->query($holidaysql)->num_rows;
+    if($yesorno> 0)
+    {
+        $thecheck="SELECT * FROM daily_attendance WHERE Att_date='$currentdate'";
+        $newcheckquery=$con->query($thecheck);
+        if($newcheckquery->num_rows> 0)
+        {
+            $newdaily="UPDATE daily_attendance SET Working_hour='0' WHERE Att_date='$daily_date'";
+            $con->query($newdaily);
+        }
+    }
+    else {
+        $cale="SELECT * FROM company_calender WHERE Month_id='$monthid'";
                     $query2 = $con->query($cale);
                     if($query2->num_rows==0)
                     {
@@ -139,13 +170,16 @@ while($logdate=$log_query->fetch_assoc())
                 }
               
         }
-        $con->query($insert);
+       $con->query($insert);
         
     }
+        
+    }
+    
 }
 
 if(isset($_GET['date'])){
-    echo "<script>window.location.href = '?page=Attendance&date=$currentdate';</script>";
+    echo "<script>window.location.href = '?page=Attendance';</script>";
 }else{
     include 'al_month.php';
 }

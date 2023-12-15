@@ -3,6 +3,7 @@
 <div class="changepassword">
 <script src="changepassword/scriptforchange.js?v=<?php echo time()?>"></script>
     <div class="change-container" >
+        <h2 style="text-align:center; font-size:35px; margin-top: 0;">Change Password</h2>
         <form onsubmit="return validation();" action="./changepassword/change.php" method="post">
         <div class="passchange">
         <label style="color: white;" for="cur-password">Current Password : </label>

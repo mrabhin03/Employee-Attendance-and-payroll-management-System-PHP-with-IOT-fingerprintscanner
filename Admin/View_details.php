@@ -5,7 +5,7 @@
         $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");?>
     <div class="update_form">
         <?php 
-            $id=$_GET['id'];
+            $id=$_SESSION['detailid'];
             $query="SELECT employee_details.*, employee_designation.Desc_name, designation_for_employee.Desc_id
             FROM employee_details
             INNER JOIN designation_for_employee ON employee_details.Emp_id = designation_for_employee.Emp_id
@@ -88,8 +88,8 @@
                         </div>
                     </div>
                     <div class="Buttons_bar">
-                        <?php $data=$EMP['Emp_id']; echo "<a href='?page=Edit&id=$data'><button style='background-color: lightblue; color:black;'>EDIT</button></a>" ?>
-                        <?php $data=$EMP['Emp_id']; echo "<a href='?page=Editdesc&id=$data'><button style='background-color: brown; color:white;'>EDIT DESC</button></a>" ?>
+                        <?php $data=$EMP['Emp_id']; echo "<a href='?page=Edit'><button style='background-color: lightblue; color:black;'>EDIT</button></a>" ?>
+                        <?php $data=$EMP['Emp_id']; echo "<a href='?page=Editdesc'><button style='background-color: brown; color:white;'>EDIT DESC</button></a>" ?>
                         <?php $data=$EMP['Emp_id']; echo "<a href='Edit_code/status.php?id=$data&st=2'><button style='background-color: yellow; color:black;'>DELETE</button></a>" ?>
                         <?php $data=$EMP['Emp_id']; 
                             if($EMP['Emp_status']==1)
@@ -168,7 +168,7 @@
                                 <td><?php echo $date; ?></td>
                                 <td><?php echo $timein ?></td>
                                 <td><?php echo $timeout ?></td>
-                                <td><?php echo $hours."hrs"; ?></td>
+                                <td><?php echo (!empty($hours))?$hours."hrs":"---" ;?></td>
                                 <td><?php echo ($status==1)? "<p style='color: rgb(13, 255, 0);'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?>
                                 </td>
                             </tr>
@@ -188,7 +188,7 @@
                                 ?>
                         </tbody>
                     </table>
-                    <?php echo "<a href='?page=per_att_view&id=$data'><button class='Moreview'>More Details</button></a>" ?>
+                    <?php echo "<a href='?page=per_att_view'><button class='Moreview'>More Details</button></a>" ?>
                 </div>
             </div>
             <div class="per_att">
@@ -230,8 +230,8 @@
                                 ?>
                             <tr>
                                 <td><?php echo $monthar[$monthdata]." ".$yeardata; ?></td>
-                                <td><?php echo $row['Working_hour']." hrs"; ?></td>
-                                <td><?php echo $row['Overtime_hrs']." hrs"; ?></td>
+                                <td><?php echo (!empty($row['Working_hour']))?$row['Working_hour']."hrs":"---" ; ?></td>
+                                <td><?php echo (!empty($row['Overtime_hrs']))?$row['Overtime_hrs']."hrs":"---" ;?></td>
                                 <td><?php echo "₹ ".number_format($row['Total_salary']); ?></td>
                                 <td><?php echo ($row['Salary_status']==1)? "<p style='color: rgb(13, 255, 0);'>PAID</p>":"<p style='color: red; font-weigth:none;'>PENDING</p>"; ?>
                                 </td>
@@ -252,7 +252,7 @@
                                 ?>
                         </tbody>
                     </table>
-                    <?php echo "<a href='?page=per_pay_view&id=$data'><button class='Moreview'>More Details</button></a>" ?>
+                    <?php echo "<a href='?page=per_pay_view'><button class='Moreview'>More Details</button></a>" ?>
                 </div>
             </div>
         </div>

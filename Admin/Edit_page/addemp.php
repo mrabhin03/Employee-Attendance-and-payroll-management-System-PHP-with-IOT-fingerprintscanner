@@ -1,12 +1,12 @@
-<div class="addempin" >
-<div  class="thefulldiv">
-  <div class="loading">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
-    <h2>Please wait till <br> The Account is created</h2>
-  </div>
-</div>
+<div class="addempin">
+    <div class="thefulldiv">
+        <div class="loading">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+            <h2>Please wait till <br> The Account is created</h2>
+        </div>
+    </div>
     <?php
     include 'session_check.php';
     if(isset($_POST["add"]) )
@@ -22,12 +22,12 @@
     $count=$data->fetch_assoc();
     $empid="E".$count['MAX_VALUE']+1;
     ?>
-    <form method="POST" enctype="multipart/form-data">
+    <form onsubmit="return submitemp();" method="POST" enctype="multipart/form-data">
         <div class="main_form">
             <div class="emp_details">
                 <h1 style="text-align:center;">Employee Details</h1>
                 <div class="form_div">
-                    <label for="username">Username</label>
+                    <label for="username">Emp ID</label>
                     <input type="text" id="user" value="<?php echo $empid ?>" name="Username" readonly required>
                 </div>
                 <div class="form_div">
@@ -38,8 +38,10 @@
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email" required>
                 </div>
-                <div class="form_div"  style="margin:0;margin-bottom:0px;">
-                    <label style=" color:red; margin-left:167px; margin-top:2px; margin-bottom:0px; color: red; width:51%; text-align:center;" id="notemail"></label>
+                <div class="form_div" style="margin:0;margin-bottom:0px;">
+                    <label
+                        style=" color:red; margin-left:167px; margin-top:2px; margin-bottom:0px; color: red; width:51%; text-align:center;"
+                        id="notemail"></label>
                 </div>
                 <div class="add_footer">
                     <a href="?page=Employees"><button type="button" class="cancel_insert">Close</button></a>
@@ -53,7 +55,7 @@
                 <h4 class="modal-title" style="text-align: center;"><b>Designation Details</b></h4>
                 <div class="form_div">
                     <label for="DOJ">Date of Join</label>
-                    <input type="date" name="DOJ" required>
+                    <input onchange="joincheck();" id="joindata" type="date" name="DOJ" required>
                 </div>
                 <div class="form_div">
                     <label for="Desig">Desgnation</label>
@@ -72,11 +74,16 @@
                 </div>
                 <div class="form_div">
                     <label for="Desig_from">Designation From</label>
-                    <input type="month" name="Des_from" required>
+                    <input id="fromdata" type="month" name="Des_from" readonly>
                 </div>
                 <div class="form_div">
                     <label for="Desig_to">Designation To</label>
-                    <input type="month" name="Des_to" required>
+                    <input onchange="checktofromdata()" id="todata" type="month" name="Des_to" required>
+                </div>
+                <div class="form_div" style="margin:0;margin-bottom:0px;">
+                    <label
+                        style=" color:red; margin-left:167px; margin-top:2px; margin-bottom:0px; color: red; width:51%; text-align:center;"
+                        id="notvaliddate"></label>
                 </div>
                 <div class="add_footer">
                     <button onclick="add_new_page()" type="button" class="back">Back</button>

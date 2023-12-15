@@ -4,9 +4,9 @@ include 'session_check.php';
   $Year = date('Y');
   $month = date('m');
   $day= date('d');
-  if(isset($_GET['date']))
+  if(isset( $_SESSION['datevalue']))
   {
-    $value=$_GET['date'];
+    $value= $_SESSION['datevalue'];
   }
   else
   {
@@ -37,11 +37,12 @@ liviewicon.classList.add('active');
                 $tday=$daily_date;
                 echo $daily_date;
             }
+            $_SESSION['month_id']=substr($daily_date, 0, 4).substr($daily_date, 5, 2);
 
         ?>" type="date" name="daily_date" required>
         </form>
         <h2>Daily Attendance</h2>
-        <?php  echo "<a href='?page=dailyadd&date=$tday'><button style='width:70px;'>Generate</button></a>"; ?>
+        <?php echo "<a href='?page=dailyadd&date=$tday'><button style='width:70px;'>Generate</button></a>"; ?>
     </div>
     <div class="Daily_att">
         <div class="Daily_att_sub">
@@ -51,9 +52,9 @@ liviewicon.classList.add('active');
                     <th>Employee ID</th>
                     <th>Photo</th>
                     <th>Name</th>
-                    <th>DATE</th>
+                    <th>Worked hours</th>
+                    <th>Overtime hours</th>
                     <th>STATUS</th>
-                    <th>WORKING HOURS</th>
                 </thead>
                 <tbody>
                     <?php
@@ -65,7 +66,9 @@ liviewicon.classList.add('active');
                     $holi=$con->query($holidayquery)->num_rows;
                     if($holi> 0)
                     {
-                      echo "<tr><td colspan='8' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
+                        echo "<tr><td colspan='8' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
+                        $newdaily="UPDATE daily_attendance SET Working_hour='0' WHERE Att_date='$daily_date'";
+                        $con->query($newdaily);
                     }
                     else
                     {
@@ -212,6 +215,26 @@ liviewicon.classList.add('active');
                       $count=$query->num_rows;
                       $i=1;
                     while($row = $query->fetch_assoc()){
+                        if($row['Working_hour']>0)
+                        {
+                            $workhrs=$row['Working_hour'];
+                            $workhrs=$workhrs."hrs";
+                            if($row['Working_hour']>8)
+                            {
+                                $over=$row['Working_hour']-8;
+                                $over=$over."hrs";
+                            }
+                            else
+                            {
+                                $over="---";
+                            }
+                        }
+                        else
+                        {
+                            $workhrs="---";
+                            $over="---";
+                        }
+                        
                       ?>
                     <tr style="opacity: 0; z-index:0;" id="<?php echo $i; ?>">
                         <td><?php echo $i; $i++;?></td>
@@ -219,11 +242,11 @@ liviewicon.classList.add('active');
                         <td><img style="border-radius: 50%; object-fit: cover; width:45px; height:45px;"
                                 src="<?php echo (!empty($row['Emp_Photo']))? '../images/'.$row['Emp_Photo']:'../images/profile.jpg'; ?>"
                                 width="30px" height="30px"> </td>
-                        <td><?php echo $row['Emp_name']/*.' '.$row['lastname']; */?></td>
-                        <td><?php echo $row['Att_date']; ?></td>
+                        <td><?php echo $row['Emp_name'];?></td>
+                        <td><?php echo $workhrs; ?></td>
+                        <td><?php echo $over;?></td>
                         <td><?php echo ($row['Att_status']==1)? "<p style='color: green;'>PRESENT</p>":"<p style='color: red; font-weigth:none;'>ABSENT</p>"; ?>
                         </td>
-                        <td><?php echo $row['Working_hour']."hrs"; ?></td>
                     </tr>
 
                     <?php

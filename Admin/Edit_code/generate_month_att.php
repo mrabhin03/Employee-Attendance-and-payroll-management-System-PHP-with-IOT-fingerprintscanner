@@ -1,10 +1,9 @@
 <?php
 include 'session_check.php';
-    if(isset($_POST["gen_att"]))
+    if(isset($_GET["year"]))
     {
-        $year=$_POST['year'];
-        $month=$_POST['month']+1;
-        $month = str_pad($month, 2, "0", STR_PAD_LEFT);
+        $year=$_GET['year'];
+        $month=$_GET['month'];
         $date=$year."-".$month;
         $monthid=$year.$month;
         $empdata="SELECT * FROM employee_details WHERE DATE_FORMAT(Emp_DOJ, '%Y%m')<='$monthid'";
@@ -89,7 +88,7 @@ include 'session_check.php';
                     $insert_ov="INSERT INTO overtime_details(Emp_id, Month_id, Overtime_hrs, Overtime_salary) VALUES ('$empid','$monthid','0','$Oversalary')";
                 }
             }
-            $con->query($insert_mo);
+           $con->query($insert_mo);
             $con->query($insert_ov);
 
         }

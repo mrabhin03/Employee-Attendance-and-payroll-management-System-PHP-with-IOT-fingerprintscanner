@@ -358,7 +358,7 @@
 }
 .addempin.active .emp_details
 {
-  transform: translate(-500px,-110px);
+  transform: translate(-500px,0px);
 }
 
 .addempin .designation_add
@@ -366,7 +366,7 @@
   height: 100%;
   width: 100%;
   float: left;
-  transform: translate(500px,110px);
+  transform: translate(500px,0px);
   position: absolute;
   transition: all .3s ease-in;
 }

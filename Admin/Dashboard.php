@@ -187,6 +187,16 @@
             <div class="att_sub_div1">
                 <table>
                     <thead>
+                        <?php 
+                        $monthidva=date("Ym");
+                        $dayva=intval(date("d"));
+                        $holidaysql="SELECT * FROM holidays WHERE Month_id='$monthidva' AND day='$dayva'";
+                        $yesorno = $con->query($holidaysql)->num_rows;
+                        if($yesorno> 0)
+                        {
+                          echo "<tr><td colspan='7' style='background-color: red; color:white;font-size:30px;'>HOLIDAY</td></tr>";
+                        }
+                        ?>
                         <th>SI</th>
                         <th>Employee ID</th>
                         <th>Photo</th>
