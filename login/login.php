@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="login.css?v=<?php echo time()?>">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
 
 </head>
-
+<?php setcookie("theempid", "", time() - 3600, "/");
+setcookie("theemppass", "", time() - 3600, "/"); ?>
 <body class="body">
     <div class="Main">
         <div class="page">
@@ -50,21 +52,24 @@
                             <span class="hide_pass_first" onclick="show_first();">
                                 <ion-icon name="eye-off-outline"></ion-icon>
                             </span>
+                            <div class="forgot-div"><a onclick="forgot();">Forgot Password</a></div>
                         </div>
                         <?php
                             if (isset($_GET["wrongpassword"]) && $_GET["wrongpassword"] === "true") {
-                                echo '<div id="wrongpassword" style="color:red; margin-top:5px;font-family:sans-serif; position:fixed; font-size:13px;">Wrong Password or Username. Please try again.</div>';
+                                echo '<div id="wrongpassword" style="color:red; margin-top:25px;margin-left:10px;font-family:sans-serif; position:fixed; font-size:13px;">Wrong Password or Username. Please try again.</div>';
                             }
                         ?>
                     </div>
-                    <div style="width:100%; margin-bottom:-5px;">
-                        <label id="passwordinvalid" style="color: red; font-size:13px;"></label>
+                    <div style="width:20%; top:440px;position:fixed;">
+                        <label id="passwordinvalid" style="width:100%;color: red; font-size:11px;"></label>
                     </div>
                     <button type="submit" class="button1">
                         <h6>Login</h6>
                     </button>
                 </form>
             </div>
+        </div>
+    </div>
             <script src="login.js?v=<?php echo time()?>"></script>
 </body>
 

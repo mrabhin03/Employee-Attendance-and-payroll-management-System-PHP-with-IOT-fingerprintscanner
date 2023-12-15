@@ -32,13 +32,11 @@ include 'session_check.php';
                         $letters2 .= $char;
                     }
 
-                    // Ensure at least 1 character from each set
                     $password = $letters1[rand(0, 25)] . $letters2[rand(0, 25)] . $special[rand(0, count($special) - 1)] . $numbers[rand(0, 9)];
 
                     $remainingCharacters = $letters1 . $letters2 . implode('', $special) . $numbers;
                     $password .= substr(str_shuffle($remainingCharacters), 0, 6);
 
-                    // Shuffle the password
                     $passwordtmp = str_shuffle($password);
                     $password = password_hash($passwordtmp, PASSWORD_DEFAULT);
                     $sql = "INSERT INTO employee_details(Emp_id, Emp_password, Emp_name, Gender, Desc_id, Emp_address, Emp_DOB, Emp_DOJ, Emp_mobileno, Emp_email, Rf_id, Emp_photo, Emp_status) VALUES ('$empid','$password','$fullname','$gender','$des_id','$address ','$dob','$doj','$mobile','$email','$rf', '$filename',3)";
