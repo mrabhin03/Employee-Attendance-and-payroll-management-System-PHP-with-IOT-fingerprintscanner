@@ -6,10 +6,10 @@ $no=101;
 ?><div class="main_noti">
     <div class="noti_sub">
         <div class="noti_body">
-            <div class="head">
+            <div class="head" >
                 <h2 align='center'>Update Requests</h2>
             </div>
-            <table>
+            <table border='1'>
                 <thead style="font-size:24px">
                     <th>SI</th>
                     <th>Employee ID</th>

@@ -13,7 +13,7 @@
         <div style="width: 110%" class="emp_details_view">
             <div class="header_view">
                 <?php echo "<a href='?page=View_details'>X</a>"; ?>
-                <h1 style="width: 60%">Attendance of <?php echo $emp_row["Emp_name"]?></h1>
+                <h1 style="width: 60%">Payrolls of <?php echo $emp_row["Emp_name"]?></h1>
                 <div></div>
             </div>
             <div style="border: none; margin-top:0px" class="per_att">

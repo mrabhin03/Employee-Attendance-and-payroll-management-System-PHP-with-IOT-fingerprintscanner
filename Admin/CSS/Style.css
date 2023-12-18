@@ -76,12 +76,22 @@
 
 .noti_sub > .noti_body
 {
-  background-color: rgba(0, 0, 0, 0.486);
+  background-color: rgba(99, 99, 99, 0.811);
   width: 100%;
   border-radius: 20px;
   height: 100%;
   overflow-y: auto;
   color: white;
+}
+.noti_sub > .noti_body > .head
+{
+  height: 13%;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #72727296;
+  border-bottom: 3px solid white;
 }
 .Bashboard > .data1 >.sample_data
 {
@@ -349,6 +359,7 @@
 
 .bonus
 {
+
   background-color: rgb(255, 255, 255);
   width: 80%;
   height: 80%;

@@ -195,6 +195,7 @@ body::before {
 .newbody >table,
 .in2 > table
 {
+
   border-collapse: collapse;
   width: 100%;
   height: auto;
@@ -208,7 +209,6 @@ body::before {
 .noti_body >table
 {
   background-color: transparent;
-  margin-top: 20px;
 }
 .per_att_table > table > thead
 {
@@ -240,7 +240,7 @@ body::before {
 }
 .noti_body >table > thead
 {
-  background-color: #0000008b;
+  background-color: #000000a5;
   color: white;
 }
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > thead,
@@ -319,7 +319,7 @@ body::before {
 .noti_body >table > tbody > tr
 {
   height: fit-content;
-  background-color: rgba(79, 46, 46, 0.219);
+  background-color: rgba(46, 46, 46, 0.556);
   color: white;
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
