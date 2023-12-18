@@ -38,13 +38,13 @@ $no=101;
                         <?php 
                         if($theoption == 'R')
                             { ?>
-                            <td style="font-size:200%;">Register</td>
+                            <td style="font-size:170%;">Register</td>
                             <?php 
                             }
                             else
                             {
                                 ?>
-                                <td style="font-size:200%;">Update</td>
+                                <td style="font-size:170%;">Update</td>
                                 <?php
                             }?>
                         <td>
@@ -61,7 +61,7 @@ $no=101;
                                         if($row2['Emp_name']!=$row['Emp_name'])
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Name</td>";
+                                            echo "<td>Name:</td>";
                                             if($row2['Emp_name']=='')
                                             {
                                                 echo "<td>NONE</td>";
@@ -70,7 +70,7 @@ $no=101;
                                             {
                                                 echo "<td>".$row2['Emp_name']."</td>";
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             echo "<td>".$row["Emp_name"]."</td>";
                                             echo "</tr>";
                                         }
@@ -78,7 +78,7 @@ $no=101;
                                         {
                                             
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Address</td>";
+                                            echo "<td>Address:</td>";
                                             if($row2['Emp_Address']=='0')
                                             {
                                                 echo "<td>NONE</td>";
@@ -87,14 +87,14 @@ $no=101;
                                             {
                                                 echo "<td>".$row2['Emp_Address']."</td>";
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             echo "<td>".$row["Emp_Address"]."</td>";
                                             echo "</tr>";
                                         }
                                         if($row2['Emp_DOB']!=$row['Emp_DOB'])
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Date of birth</td>";
+                                            echo "<td>Date of birth:</td>";
                                             if($row2['Emp_DOB']=='0000-00-00')
                                             {
                                                 echo "<td>NONE</td>";
@@ -103,14 +103,14 @@ $no=101;
                                             {
                                                 echo "<td>".$row2['Emp_DOB']."</td>";
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             echo "<td>".$row["Emp_DOB"]."</td>";
                                             echo "</tr>";
                                         }
                                         if($row2['Emp_mobileno']!=$row['Emp_mobileno'])
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Moble no</td>";
+                                            echo "<td>Moble no:</td>";
                                             if($row2['Emp_mobileno']=='0')
                                             {
                                                 echo "<td>NONE</td>";
@@ -119,14 +119,14 @@ $no=101;
                                             {
                                                 echo "<td>".$row2['Emp_mobileno']."</td>";
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             echo "<td>".$row["Emp_mobileno"]."</td>";
                                             echo "</tr>";
                                         }
                                         if($row2['gender']!=$row['gender'])
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Gender</td>";
+                                            echo "<td>Gender:</td>";
                                             if($row2['gender']=='')
                                             {
                                                 echo "<td>NONE</td>";
@@ -135,14 +135,14 @@ $no=101;
                                             {
                                                 echo "<td>".$row2['gender']."</td>";
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             echo "<td>".$row["gender"]."</td>";
                                             echo "</tr>";
                                         }
                                         if($row2['Emp_Photo']!=$row['Emp_Photo'])
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Photo</td>";
+                                            echo "<td>Photo:</td>";
                                             if($row2['Emp_Photo']=='')
                                             {
                                                 ?>
@@ -161,7 +161,7 @@ $no=101;
                                 </td>
                                 <?php
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             if($row['Emp_Photo']=='')
                                             {
                                                 ?>
@@ -188,7 +188,7 @@ $no=101;
                                         if($row2['Emp_name']!=$row['Emp_name'] && $row['Emp_name']!='')
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Name</td>";
+                                            echo "<td>Name:</td>";
                                             if($row2['Emp_name']=='')
                                             {
                                                 echo "<td>NONE</td>";
@@ -197,7 +197,7 @@ $no=101;
                                             {
                                                 echo "<td>".$row2['Emp_name']."</td>";
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             echo "<td>".$row["Emp_name"]."</td>";
                                             echo "</tr>";
                                         }
@@ -205,7 +205,7 @@ $no=101;
                                         {
                                             
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Address</td>";
+                                            echo "<td>Address:</td>";
                                             if($row2['Emp_Address']=='0')
                                             {
                                                 echo "<td>NONE</td>";
@@ -214,14 +214,14 @@ $no=101;
                                             {
                                                 echo "<td>".$row2['Emp_Address']."</td>";
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             echo "<td>".$row["Emp_Address"]."</td>";
                                             echo "</tr>";
                                         }
                                         if($row2['Emp_Photo']!=$row['Emp_Photo'])
                                         {
                                             echo "<tr class='newtable'>";
-                                            echo "<td>Photo</td>";
+                                            echo "<td>Photo:</td>";
                                             if($row2['Emp_Photo']=='')
                                             {
                                                 ?>
@@ -240,7 +240,7 @@ $no=101;
                                 </td>
                                 <?php
                                             }
-                                            echo "<td>-></td>";
+                                            echo "<td><span><ion-icon name='arrow-forward-outline'></ion-icon></span></td>";
                                             if($row['Emp_Photo']=='')
                                             {
                                                 ?>
