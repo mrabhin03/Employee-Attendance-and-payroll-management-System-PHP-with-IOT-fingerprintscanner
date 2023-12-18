@@ -6,8 +6,8 @@
   $year=date('Y');
   ?>
 <div class="perAttendance_M">
-    <div class="head">
-        <div></div>
+    <div class="head" style="z-index:2;">
+        <div style="width:160px"></div>
         <h2>Monthly Attendance</h2>
         <form method="post">
             <select style="border-radius:20px;" onchange="this.form.submit()" name="date" id="">
