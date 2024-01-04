@@ -31,9 +31,9 @@ if($query1T->num_rows>0)
         <div class="head">
             <h1 style="margin-left:10px;">
                 <?php echo "<a style='text-decoration: none; color:black;'  href='?page=Payrolls'>X</a>" ?></h1>
-            <h1>Bonus Details</h1>
+            <h1>Allowance Details</h1>
             <div style="margin-right: 15px; margin-left: -100px; ">
-                <?php echo "<a  href='?page=Createbonus&mid=$m_id''><button style='width:100px;'>Create Bonus</button></a>" ?>
+                <?php echo "<a  href='?page=Createbonus&mid=$m_id''><button style='width:100px;'>Create</button></a>" ?>
             </div>
         </div>
         <?php if($query1T->num_rows>0) { ?>

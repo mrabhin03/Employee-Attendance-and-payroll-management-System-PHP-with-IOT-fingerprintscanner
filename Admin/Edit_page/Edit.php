@@ -5,6 +5,7 @@ include 'session_check.php';
     $query="SELECT * FROM employee_details WHERE Emp_id='$data_id'";
     $data=$con->query($query);
     $EMP = $data->fetch_assoc();
+
 ?>
 <div class="edit_div">
     <div class="data">
@@ -76,6 +77,14 @@ include 'session_check.php';
                     <td>
                         <input value="<?php echo $EMP['Emp_Photo'];?>" style="width:200px" type="file" name="photo"
                             id="photo">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="remove">Do you want to remove Existing photo?</label><input style="margin-left:20px; margin-top:-3px;" type="checkbox" name="doyou" value="1">
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
                 <tr class="footer_tr">

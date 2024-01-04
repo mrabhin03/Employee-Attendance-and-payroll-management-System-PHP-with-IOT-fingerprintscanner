@@ -123,7 +123,7 @@ include 'session_check.php';
                     <th>Medical allowance</th>
                     <th>Provident fund</th>
                     <th>Overtime total</th>
-                    <th>Bonus Salary</th>
+                    <th>Extra Allowance</th>
                     <th>Total Salary</th>
                     <th>Status</th>
                 </thead>

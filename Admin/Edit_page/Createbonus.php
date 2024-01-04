@@ -4,7 +4,7 @@ include '../common/connection.php'; ?>
 <div style="width:100%;height:92%; display:flex; align-items: center; justify-content: center;">
     <div class="bonusadd">
         <div class="head">
-            <h1>Create Bonus Details</h1>
+            <h1>Create Allowance Details</h1>
         </div>
         <div class="subbody1">
             <form method="post">
@@ -12,21 +12,21 @@ include '../common/connection.php'; ?>
                     <div class="form_div">
                         <div
                             style="margin-left:10px;height:100%; width:35%; display:flex; align-items: center; justify-content: center;">
-                            <div>Bonus Category</div>
+                            <div>Allowance Category</div>
                         </div>
                         <div
                             style="height:100%; width:65%; display:flex; align-items: center; justify-content: center;">
-                            <input placeholder="Enter the Bonus Category" style=" text-align:center;width:90%; border-radius:10px;" type="text" id="Bonuscat" name="Bonuscat" required >
+                            <input placeholder="Enter the Allowance Category" style=" text-align:center;width:90%; border-radius:10px;" type="text" id="Bonuscat" name="Bonuscat" required >
                         </div>
                     </div>
                     <div class="form_div">
                         <div
                             style="margin-left:10px;height:100%; width:35%; display:flex; align-items: center; justify-content: center;">
-                            <div>Bonus Amount</div>
+                            <div>Allowance Amount</div>
                         </div>
                         <div
                             style="height:100%; width:65%; display:flex; align-items: center; justify-content: center;">
-                            <input placeholder="Enter the Bonus Amount ₹" style="text-align:center;width:90%;border-radius:10px;" type="text" id="Bonusamo" name="Bonusamo" required >
+                            <input placeholder="Enter the Allowance Amount ₹" style="text-align:center;width:90%;border-radius:10px;" type="text" id="Bonusamo" name="Bonusamo" required >
                         </div>
                     </div>
                 </div>
