@@ -76,7 +76,7 @@
 
 .noti_sub > .noti_body
 {
-  background-color: rgba(99, 99, 99, 0.811);
+  background-color: rgba(255, 255, 255, 0.937);
   width: 100%;
   border-radius: 20px;
   height: 100%;
@@ -90,7 +90,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #72727296;
+  background-color: #d1d1d196;
+  color: black;
   border-bottom: 3px solid white;
 }
 .Bashboard > .data1 >.sample_data

@@ -206,10 +206,7 @@ body::before {
 {
   background-color: transparent;
 }
-.noti_body >table
-{
-  background-color: transparent;
-}
+
 .per_att_table > table > thead
 {
   color: white !important;
@@ -237,11 +234,6 @@ body::before {
   font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight: 400;
   border-spacing: 0;
-}
-.noti_body >table > thead
-{
-  background-color: #000000a5;
-  color: white;
 }
 .perAttendance_M > .Monthly_att >.Monthly_att_sub > table > thead,
 .per_Payrolls > .payrolls_details > .payrolls_details_sub > table > thead
@@ -319,8 +311,7 @@ body::before {
 .noti_body >table > tbody > tr
 {
   height: fit-content;
-  background-color: rgba(46, 46, 46, 0.556);
-  color: white;
+  color: rgb(0, 0, 0);
 }
 .Bashboard > .data1 > .employee_att > .att_sub_div1 > table > tbody > tr:nth-child(odd),
 .Employees > .data2 > .employee_detail > table >tbody >tr:nth-child(odd),
@@ -340,11 +331,11 @@ body::before {
 }
 .noti_body >table > tbody > tr:nth-child(odd)
 {
-  background-color: rgba(0, 0, 0, 0.596);
+  background-color: rgba(188, 188, 188, 0.596);
 }
 .newtable:nth-child(odd)
 {
-  color: rgb(255, 255, 255);
+  color: rgb(53, 53, 53);
 }
 .calendar > .cal_data > .cal_detail > table > tbody > tr
 {
@@ -364,7 +355,7 @@ body::before {
 }
 .newtable
 {
-  color: yellow;
+  color: rgb(0, 0, 0);
   height: 30px;
 }
 .Attendance_M > .head > form,
