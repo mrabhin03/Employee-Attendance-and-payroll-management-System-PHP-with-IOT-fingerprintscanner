@@ -21,14 +21,16 @@ while True:
     elif value == '#':
         flag = 0
         adp = data
-        sql = "SELECT log_status FROM emp_logs WHERE Rf_id=%s AND log_id=(SELECT MAX(log_id) FROM emp_logs WHERE Rf_id=%s)"  # Remove single quotes around %s
-        mycursor.execute(sql, (adp,adp))  # Pass adp as a tuple to execute()
-        result = mycursor.fetchone()[0]
-        
-        if result=="IN":
-            status="OUT"
+        sql = "SELECT log_status FROM emp_logs WHERE Rf_id=%s AND log_id=(SELECT MAX(log_id) FROM emp_logs WHERE Rf_id=%s)"
+        mycursor.execute(sql, (adp,adp))
+        result = mycursor.fetchone()
+
+        if result and result[0] == "IN":
+            status = "OUT"
+        elif result:
+            status = "IN"
         else:
-            status="IN"
+            status = "IN"
         sql = "INSERT INTO emp_logs (Rf_id,Log_status) VALUES (%s, %s)"
         val = (adp, status)
         mycursor.execute(sql, val)
