@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
 $monthco = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 if(isset($_POST['save_cal'])){
     $year = $_POST['year'];

@@ -1,4 +1,5 @@
 <?php
+include 'session_check.php';
     if(isset($_GET["id"]))
     {
         $_SESSION['detailid']=$_GET["id"];
