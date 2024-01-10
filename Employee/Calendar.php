@@ -3,7 +3,7 @@ include 'session_check.php';
   include '../common/connection.php';
   $month=array("","January","February","March","April","May","June","July","August","September","October","November","December");
   $monthco = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-  if(isset($_GET["date"]))
+  if(isset($_GET["date"]))//checking the date is set or not
   {
     $yearmo = $_GET["date"];
   }
@@ -19,7 +19,7 @@ include 'session_check.php';
     "Thursday" => 5,
     "Friday" => 6,
     "Saturday" => 7
-);
+); // the day number
   ?>
 <div class="calendar">
     <div class="head">
@@ -27,11 +27,11 @@ include 'session_check.php';
         <h2>Calendar Details</h2>
         <form method="post">
             <input style="border-radius:20px;" value="<?php
-            if(isset($_POST['month_date']))
+            if(isset($_POST['month_date']))//getting the date from the user
             {
                 $yearmo=$_POST['month_date'];
             }
-            list($Year,$month) = explode('-', $yearmo);
+            list($Year,$month) = explode('-', $yearmo); //separating the month and year from the date
             $mon_id=$Year.$month;
             echo $yearmo;
         ?>" type="month" onchange="this.form.submit()" name="month_date" required>
@@ -42,7 +42,7 @@ include 'session_check.php';
             <?php
           $cale="SELECT * FROM company_calender WHERE Month_id='$mon_id'";
           $query2 = $con->query($cale);
-          if($query2->num_rows==0)
+          if($query2->num_rows==0)//if the calender is not created, automatically created
           {
             $daysval=$monthco[intval($month)];
             $sql="INSERT INTO company_calender(Month_id,Year, Month, Working_day) VALUES ('$mon_id','$Year','$month','$daysval')";
@@ -61,7 +61,7 @@ include 'session_check.php';
                 <div
                     style="border-radius:20px; width: 400px; height: 100%; background-color: rgba(255, 255, 255, 0.852); display:flex; align-item:center; justify-content:space-around;">
                     <h1 id="holidate" style="font-size:20px;">Total number of holidays :
-                        <?php $holidata1=$monthco[intval($month)]-$datavalue['Working_day']; echo $monthco[intval($month)]-$datavalue['Working_day'] ?></h1>
+                        <?php $holidata1=$monthco[intval($month)]-$datavalue['Working_day']; echo $monthco[intval($month)]-$datavalue['Working_day'] //finding number of holidays ?></h1>
                 </div>
             </div>
             <table>
@@ -78,12 +78,12 @@ include 'session_check.php';
                     <tr>
                         <?php
                   $t1=7;
-                  if (($Year % 4 == 0 && $Year % 100 != 0) || ($Year % 400 == 0)) {
+                  if (($Year % 4 == 0 && $Year % 100 != 0) || ($Year % 400 == 0)) { //checking leap year
                     $monthco[2]=29;
                   }
                   $nedate = $yearmo."-01";
-                  $dayOfWeek = date("l", strtotime($nedate));
-                  $temp=$daysOfWeekarr[$dayOfWeek];
+                  $dayOfWeek = date("l", strtotime($nedate));//getting the dayofweek of the day 1 of the month
+                  $temp=$daysOfWeekarr[$dayOfWeek];//the day number
                   $i=0;
                     if($i==0)
                     {
@@ -93,13 +93,13 @@ include 'session_check.php';
                     while($i<$monthco[intval($month)]+$temp){
                       if($i<$temp)
                       {
-                        echo"<td></td>";
+                        echo"<td></td>";//adding empty feilds
                       }
                       else
                       {
                         $holi="SELECT * FROM holidays WHERE Month_id='$mon_id' AND day='$k'";
                         if($con->query($holi)->num_rows> 0)
-                        {
+                        { //holiday
                       ?>
                         <td>
                             <div id='<?php echo $countt; ?>' style="background-color:red; color:white;">
@@ -113,7 +113,7 @@ include 'session_check.php';
                         <?php
                         }
                         else
-                        {
+                        { //working day
                           ?>
                         <td>
                             <div id='<?php echo $countt; ?>'>
@@ -159,8 +159,8 @@ include 'session_check.php';
             <script>
             autoin3();
             autoin4();
-
-            function autoin3() {
+                  //animations
+            function autoin3() { //working days count animation
                 var j = 1;
                 var anotherH1Element = document.getElementById('worksdate');
 
@@ -175,7 +175,7 @@ include 'session_check.php';
                 updateAnotherValue2();
             }
 
-            function autoin4() {
+            function autoin4() {//holiday days count animation
                 var j = 1;
                 var anotherH1Element = document.getElementById('holidate');
 
@@ -191,7 +191,7 @@ include 'session_check.php';
             }
             trans();
 
-            function trans() {
+            function trans() { //calender animation
                 for (var i = 1; i < <?php echo $countt; ?>; i++) {
                     var row = document.getElementById(i);
                     row.style.opacity = "0";

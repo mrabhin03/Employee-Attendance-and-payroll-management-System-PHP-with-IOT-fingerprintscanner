@@ -4,6 +4,12 @@
     $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");
     $id=$_SESSION['Emp_id'];
     $year=date('Y');
+    $calend1="SELECT MAX(Month_id) as topdate, MIN(Month_id) as botdate FROM company_calender ";//getting the max and min from the compaany calender
+    $caldata=$con->query($calend1)->fetch_assoc();
+    $string1 = $caldata["topdate"];
+    $string2 = $caldata["botdate"];
+    $theupdate = substr($string1, 0, 4);
+    $thedowdate = substr($string2, 0, 4);
     ?>
     <div class="head">
         <div></div>
@@ -15,7 +21,7 @@
               {
                 $year=$_POST["date"];
               }
-                for($j= 2020;$j<2040;$j++)
+                for($j= $thedowdate;$j<=$theupdate;$j++)//print he years available
                 {
                   if($year==$j)
                   {
@@ -59,7 +65,7 @@
                     while($row = $query->fetch_assoc()){
                         $monthdata = substr($row['Month_id'], 4, 2);
                         $monthdata = intval($monthdata);
-                        if($row['Salary_basic']>0)
+                        if($row['Salary_basic']>0)//checking the salary
                         {
                             echo "<tr style='font-size:17px; opacity: 0; z-index:0;' id='$i'>";
                             $st="green";
@@ -105,6 +111,7 @@
             trans();
 
             function trans() {
+              //table abimation
                 for (var i = 1; i < <?php echo $count; ?>; i++) {
                   
                     var row = document.getElementById(i);

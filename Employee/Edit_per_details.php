@@ -5,6 +5,7 @@ include 'session_check.php';
     $query="SELECT * FROM employee_details WHERE Emp_id='$id'";
     $data=$con->query($query);
     $EMP = $data->fetch_assoc();
+    //edit employee details
 ?>
 <div class="edit_div">
     <div class="data">
@@ -78,13 +79,13 @@ include 'session_check.php';
         $id="P".$covalue.$id;
         $tsqw=$covalue.$temp_id;
         $tsqw=$tsqw*1000;
-        if(!empty($filename)){
+        if(!empty($filename)){ //photo transfer
             move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);
             $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address,Rf_id, Emp_Photo, Emp_status) VALUES ('$id','$fullname','$address','$tsqw','$filename','101')";
         }
         else
         {
-            if($doyou==1)
+            if($doyou==1) //photo removal
             {
                 $sqldata="INSERT INTO employee_details(Emp_id, Emp_name, Emp_Address,Rf_id, Emp_status) VALUES ('$id','$fullname','$address','$tsqw','101')";
             }

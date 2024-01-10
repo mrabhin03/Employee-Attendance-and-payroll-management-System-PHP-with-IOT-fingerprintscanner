@@ -2,7 +2,7 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$db = "miniproject";
+$db = "trackify_db";
 
 try {
     $con = new mysqli($hostname, $username, $password, $db);

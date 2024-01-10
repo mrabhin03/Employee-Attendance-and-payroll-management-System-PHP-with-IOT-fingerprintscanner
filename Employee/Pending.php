@@ -5,7 +5,7 @@ $id=$_SESSION['Emp_id'];
     $check="SELECT * FROM employee_details WHERE Emp_id='$id';";
     $data=$con->query($check);
     $empdata=$data->fetch_assoc();
-    if($empdata["Emp_status"] == 1)
+    if($empdata["Emp_status"] == 1)//checking the status of the employee
     {
       echo "<script>window.location.href = 'index.php';</script>";
     }

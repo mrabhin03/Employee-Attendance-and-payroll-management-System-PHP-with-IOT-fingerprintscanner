@@ -35,7 +35,7 @@
             <div class="change_footer">
                 <?php
             if (isset($_GET["wrongpassword"]) && $_GET["wrongpassword"] === "true") {
-                echo '<div id="passwordresult" style="color:red;">Wrong Password Please try again....</div>';
+                echo '<div id="passwordresult" style="color:red;">Wrong Password Please try again....</div>';//checking the password
             }
             if (isset($_GET["passwordchanged"]) && $_GET["passwordchanged"] === "true") {
                 echo '<div id="passwordresult" style="color: #00ff7b;">Passsword changed successfully.</div>';

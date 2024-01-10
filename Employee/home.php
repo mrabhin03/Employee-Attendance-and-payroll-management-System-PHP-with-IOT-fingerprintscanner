@@ -15,16 +15,16 @@
         <h3>Daily Attendance report </h3>
         <form method="post">
             <input style="border-radius:20px;" value="<?php
-            if(isset($_POST['month_date']))
+            if(isset($_POST['month_date']))//date from the user
             {
                 $date=$_POST['month_date'];
-                list($Year,$month) = explode('-', $date);
+                list($Year,$month) = explode('-', $date);//separating the year and month
                 $monthvalue=intval($month);
             }
             $monthid=$Year.$month;
             $currentmonth=$Year.'-'.$month;
             echo $Year."-".$month;
-            if (($Year % 4 == 0 && $Year % 100 != 0) || $Year % 400 == 0) {
+            if (($Year % 4 == 0 && $Year % 100 != 0) || $Year % 400 == 0) {//checking the leap year
               $monthdays[2]=29;
           }
           $topdate=  $monthdays[intval($month)];
@@ -35,6 +35,7 @@
     <div class="data1">
         <?php $sqldatacheck="SELECT * FROM daily_attendance WHERE Att_date LIKE '$currentmonth%' AND Emp_id='$id'"; 
         $calendercheck="SELECT * FROM company_calender WHERE Month_id='$monthid'";
+        //side box
         if((($con->query($sqldatacheck)->num_rows)>0)&&(($con->query($calendercheck)->num_rows)>0))
         {
         ?>
@@ -57,6 +58,7 @@
             <div class="box">
                 <div class="bodypart">
                     <?php
+                    //calculating the number of presents and absents
                         $EMPsql = "SELECT * FROM employee_details WHERE Emp_id='$id';";
                         $empquery = $con->query($EMPsql);
                         $row = $empquery->fetch_assoc();
@@ -100,7 +102,7 @@
         </div>
         <script>
         thespeed = 0;
-
+            //count animations
         function callassemble() {
             thespeed = 100 - <?php echo $percentage; ?>;
             autoin1();
@@ -210,13 +212,13 @@
                     <div class="bar11">
                         <table border='1'>
                             <tbody>
-                                <?php $total_days= $topdate; $temphr=10;
+                                <?php $total_days= $topdate; $temphr=10;//garph
                                 echo"<tr><td rowspan='11'><div style='transform: rotate(-90deg);'>Hours</div></td><td>$temphr</td></tr>";
                                 $temphr--;
                                 while($temphr>=0)
                                 {
 
-                                    echo"<tr><td>0$temphr</td></tr>";
+                                    echo"<tr><td>0$temphr</td></tr>";//side hours
                                     $temphr--;
                                 }
                                  ?>
@@ -229,7 +231,7 @@
                             <tbody>
                                 <tr>
                                     <?php $days=1;
-                                    echo "<script>let barheights = [];</script>";
+                                    echo "<script>let barheights = [];</script>";//to store the height of each bar for animations
                                     while($days<=$total_days)
                                     {
                                         if($days<10)
@@ -244,10 +246,10 @@
 
                                         $sqlbar="SELECT Working_hour FROM daily_attendance WHERE Emp_id='$id' AND Att_date='$checkdate'";
                                         $datahr=$con->query($sqlbar);
-                                        if($datahr->num_rows>0)
+                                        if($datahr->num_rows>0)//check holiday or not
                                         {
                                             $valueshr=$datahr->fetch_assoc();
-                                            if($valueshr['Working_hour']=='0')
+                                            if($valueshr['Working_hour']=='0')//check present or not
                                             {
                                                 $hourdata=5;
                                                 $colordata="red";
@@ -255,7 +257,7 @@
                                             else
                                             {
                                                 $hourdata=($valueshr['Working_hour']*10);
-                                                if($valueshr['Working_hour']==8)
+                                                if($valueshr['Working_hour']==8)//checking the worked overtime
                                                 {
                                                     $colordata='limegreen';
                                                     $sqlbarover="SELECT MAX(TIME(Time_date)) as time FROM `emp_logs` 
@@ -263,7 +265,7 @@
                                                     WHERE DATE(Time_date)='$checkdate' AND employee_details.Emp_id='$id' AND Log_status='OUT'";
                                                     $datahrover=$con->query($sqlbarover);
                                                     $rowch=$datahrover->fetch_assoc();
-                                                    if($rowch['time']!=NULL)
+                                                    if($rowch['time']!=NULL)//time calculation
                                                     {
                                                         $d1= new DateTime("19:00:00");
                                                         $d2= new DateTime($rowch['time']);
@@ -311,7 +313,7 @@
                         <script>
                         const commonBars = document.querySelectorAll('.commonbar');
                         const barBlur = document.querySelector('.barblur');
-
+                        //basic view animation
                         commonBars.forEach(commonBar => {
                             commonBar.addEventListener('mouseover', function() {
                                 barBlur.style.backdropFilter ='blur(3px)'; 
@@ -323,7 +325,7 @@
                         });
 
                         baranime();
-
+                        //bar animation
                         function baranime() {
                             for (var i = 1; i < barheights.length; i++) {
                                 setTimeout(function(i) {
@@ -350,7 +352,7 @@
                             <tbody>
                                 <tr>
                                     <?php $days=1;
-                                    while($days<=$total_days)
+                                    while($days<=$total_days)//graph x axis
                                     {
                                         if($days<10)
                                         {
@@ -415,9 +417,9 @@
                               AND DATE(emp_logs.Time_date) = '$currentdate'  
                               AND emp_logs.Log_status = 'IN'
                               AND daily_attendance.Att_date IS NOT NULL
-                            GROUP BY emp_logs.Rf_id;";
+                            GROUP BY emp_logs.Rf_id;";//query for fetch
                             $IN = $con->query($select1);
-                            if($IN->num_rows> 0)
+                            if($IN->num_rows> 0)//check present or not
                             {
                               $att=1;
                               while($INrow = $IN->fetch_assoc())
@@ -489,7 +491,7 @@
                 </table>
                 <script>
                 trans();
-
+                  //animation
                 function trans() {
                     for (var i = 1; i < <?php echo $count; ?>; i++) {
                         var row = document.getElementById('Home' + i);

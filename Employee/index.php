@@ -17,7 +17,7 @@
     $EMPsql = "SELECT * FROM employee_details WHERE Emp_id='$id';";
     $empquery = $con->query($EMPsql);
     $row = $empquery->fetch_assoc();
-    if($row["Emp_status"] == 3)
+    if($row["Emp_status"] == 3)//checking the status of the employee
     {
       echo "<script>window.location.href = 'Edit_detail.php';</script>";
     }
