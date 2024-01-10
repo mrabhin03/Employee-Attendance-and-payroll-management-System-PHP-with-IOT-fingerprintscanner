@@ -10,6 +10,7 @@
         </div>
         <?php
     include 'session_check.php';
+    //page to add new employee
     if(isset($_POST["add"]) )
     {
         echo " <script>const loading = document.querySelector('.loading');

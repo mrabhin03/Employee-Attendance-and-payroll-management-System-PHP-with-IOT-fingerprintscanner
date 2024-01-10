@@ -1,4 +1,5 @@
 <?php
+//controlling the working days and holidays
 include '../session_check.php';
 include '../../common/connection.php';
     $day=$_POST['k'];

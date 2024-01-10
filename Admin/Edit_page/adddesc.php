@@ -3,7 +3,7 @@
         <?php
 include 'session_check.php';
     include '../common/connection.php';
-
+    //page to add new designation
     $desig_max_sql = "SELECT MAX(Desc_id) AS max FROM employee_designation;";
     $desig_max = $con->query($desig_max_sql);
     $maxdata = $desig_max->fetch_assoc();

@@ -1,4 +1,5 @@
 <?php
+//page to view the details of the designation
 include 'session_check.php';
   include '../common/connection.php';
   ?>

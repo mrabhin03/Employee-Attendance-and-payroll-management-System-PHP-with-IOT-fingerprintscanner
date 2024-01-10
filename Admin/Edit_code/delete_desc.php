@@ -1,4 +1,5 @@
 <?php
+//deleting a designation
 include 'session_check.php';
 include '../common/connection.php';
     $data=$_GET['id'];

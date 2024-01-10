@@ -1,5 +1,6 @@
 <div class="addempin" style="height: 510px; margin-top: -110px;">
     <?php
+    //upade the designation details of an employee
     include 'session_check.php';
     $id=$_GET['id'];
     include '../common/connection.php';

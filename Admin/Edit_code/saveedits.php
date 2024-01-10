@@ -1,4 +1,5 @@
 <?php
+//creating the new designation
 include '../session_check.php';
 include '../../common/connection.php';
     $empid = $_POST['Username'];

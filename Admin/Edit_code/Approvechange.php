@@ -7,7 +7,7 @@ if ($position !== false) {
     $result = substr($uid, $position);
 }
 $theoption = substr($uid, 0, 1);
-if($theoption == 'R')
+if($theoption == 'R')//adding new employee details
 {
     if($option==1)
     {
@@ -35,7 +35,7 @@ if($theoption == 'R')
 }
 else
 {
-    if($option==1)
+    if($option==1)//updating the employee details
     {
         $newdatacheck="SELECT * FROM employee_details WHERE Emp_id='$uid'";
         $olddatacheck="SELECT * FROM employee_details WHERE Emp_id='$result'";

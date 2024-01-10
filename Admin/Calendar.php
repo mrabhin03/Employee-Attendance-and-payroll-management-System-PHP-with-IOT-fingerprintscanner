@@ -1,4 +1,5 @@
 <?php
+//Page to view calender details including holidays and working days
 include 'session_check.php';
   include '../common/connection.php';
   $month=array("","January","February","March","April","May","June","July","August","September","October","November","December");

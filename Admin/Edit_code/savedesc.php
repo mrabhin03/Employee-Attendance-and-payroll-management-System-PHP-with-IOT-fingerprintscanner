@@ -1,4 +1,5 @@
 <?php
+//creating a new designation
 include 'session_check.php';
                 include '../common/connection.php';
             	if(isset($_POST['save_desc'])){

@@ -1,5 +1,7 @@
 <div class="update_empin">
-    <?php include 'session_check.php';
+    <?php 
+    //page to view personal attendance details of an employee
+    include 'session_check.php';
         include '../common/connection.php';
         $year_month=date('Y-m');
         $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");

@@ -1,4 +1,5 @@
-<?php include 'session_check.php';?>
+<?php //dashboard shows the current days attendance
+ include 'session_check.php';?>
 <div class="thefulldiv">
     <div class="loading">
         <div align='center' class="sureq">

@@ -1,4 +1,6 @@
-<?php include '../session_check.php';
+<?php 
+//searching the designation
+include '../session_check.php';
 include '../../common/connection.php';
 $search = $_POST['input'];
                     $sql = "SELECT employee_details.*, designation_for_employee.*, employee_designation.* FROM employee_details 

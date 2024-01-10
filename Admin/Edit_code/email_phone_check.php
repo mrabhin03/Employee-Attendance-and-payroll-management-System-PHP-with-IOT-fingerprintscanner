@@ -1,4 +1,5 @@
 <?php
+//checking the mobile number and email already exist in the database
   include '../session_check.php';
   include '../../common/connection.php';
 if(isset($_POST['Mobile']))

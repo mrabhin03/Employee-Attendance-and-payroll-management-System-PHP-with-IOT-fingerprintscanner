@@ -1,4 +1,5 @@
 <?php
+//page to view the payroll details
 include 'session_check.php';
   include '../common/connection.php';
     $id=$_SESSION['detailid'];

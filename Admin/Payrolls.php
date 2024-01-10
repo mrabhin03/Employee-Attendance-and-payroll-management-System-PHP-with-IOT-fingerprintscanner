@@ -1,4 +1,5 @@
 <?php
+//page to view the payroll of all employee
 include 'session_check.php';
   include '../common/connection.php';
   if(isset($_SESSION['month_id'])){

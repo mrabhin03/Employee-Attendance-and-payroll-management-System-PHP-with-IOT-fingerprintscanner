@@ -1,4 +1,6 @@
-<?php $m_id=$_SESSION['m_id'];
+<?php 
+//page to creating the allowance for the employee
+$m_id=$_SESSION['m_id'];
 include 'session_check.php';
 include '../common/connection.php'; ?>
 <div style="width:100%;height:92%; display:flex; align-items: center; justify-content: center;">

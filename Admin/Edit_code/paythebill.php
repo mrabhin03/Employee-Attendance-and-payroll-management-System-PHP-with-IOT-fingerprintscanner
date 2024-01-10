@@ -1,4 +1,5 @@
 <?php
+//'Pay the bill' button request responds
 include 'session_check.php';
 include '../common/connection.php';
     $month_id=$_GET['id'];

@@ -1,4 +1,5 @@
 <?php
+//searching the designation
 include '../session_check.php';
 include '../../common/connection.php';
 $decsearch = $_POST['input'];

@@ -32,7 +32,7 @@ include 'session_check.php';
                         $letters2 .= $char;
                     }
 
-                    $password = $letters1[rand(0, 25)] . $letters2[rand(0, 25)] . $special[rand(0, count($special) - 1)] . $numbers[rand(0, 9)];
+                    $password = $letters1[rand(0, 25)] . $letters2[rand(0, 25)] . $special[rand(0, count($special) - 1)] . $numbers[rand(0, 9)];//random password generate
 
                     $remainingCharacters = $letters1 . $letters2 . implode('', $special) . $numbers;
                     $password .= substr(str_shuffle($remainingCharacters), 0, 6);
@@ -114,7 +114,7 @@ CEO,[Company Name]
 <p align='center'> © 2023 Trackify</p>
 </div>                   
 </body>
-</html>";
+</html>";//sending email
    
                     
                     $_SESSION['goback'] = 'location:../Admin/?page=Employees';

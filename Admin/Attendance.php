@@ -1,4 +1,5 @@
 <?php
+//page to view the daily attendance of all employee
 include 'session_check.php';
   include '../common/connection.php';
   $Year = date('Y');

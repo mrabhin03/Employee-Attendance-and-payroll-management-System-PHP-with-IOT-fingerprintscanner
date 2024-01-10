@@ -1,4 +1,5 @@
 <?php
+//page to view the monthly details of all employees
 include 'session_check.php';
   include '../common/connection.php';
   $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");

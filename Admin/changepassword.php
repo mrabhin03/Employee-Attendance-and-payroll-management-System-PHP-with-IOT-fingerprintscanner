@@ -1,4 +1,5 @@
 <?php include 'session_check.php';
+//page to reset the password of the admin
 ?>
 <div class="changepassword">
 <script src="changepassword/scriptforchange.js?v=<?php echo time()?>"></script>

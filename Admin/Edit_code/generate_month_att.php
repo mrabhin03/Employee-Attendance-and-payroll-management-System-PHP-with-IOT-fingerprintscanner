@@ -1,4 +1,5 @@
 <?php
+//generating the monthly attendance of all employee
 include 'session_check.php';
     if(isset($_GET["year"]))
     {
@@ -66,8 +67,8 @@ include 'session_check.php';
                 while($row = $data->fetch_assoc())
                 {
                     $hours1+=$row['Working_hour'];
-                    $d1= new DateTime("19:00:00");
-                    $d2= new DateTime($row['max_time']);
+                    $d1= new DateTime("19:00:00");//converting time for calculation
+                    $d2= new DateTime($row['max_time']);//converting time for calculation
                     if($d2>$d1)
                     {
                         $diffdata=$d1->diff($d2);

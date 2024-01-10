@@ -1,4 +1,5 @@
 <?php
+//page to view notifications such as employee details updation and register details
 include 'session_check.php';
 include '../common/connection.php';
 $no=101;

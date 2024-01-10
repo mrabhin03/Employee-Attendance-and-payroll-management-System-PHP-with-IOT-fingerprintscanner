@@ -61,7 +61,7 @@ while($logdate=$log_query->fetch_assoc())
     $dayva = intval(date('d', strtotime($currentdate)));
     $holidaysql="SELECT * FROM holidays WHERE Month_id='$monthid' AND day='$dayva'";
     $yesorno = $con->query($holidaysql)->num_rows;
-    if($yesorno> 0)
+    if($yesorno> 0) //checking holiday
     {
         
     }
@@ -70,7 +70,7 @@ while($logdate=$log_query->fetch_assoc())
                     $query2 = $con->query($cale);
                     if($query2->num_rows==0)
                     {
-                      if (($Yearnew % 4 == 0 && $Yearnew % 100 != 0) || ($Yearnew % 400 == 0)) {
+                      if (($Yearnew % 4 == 0 && $Yearnew % 100 != 0) || ($Yearnew % 400 == 0)) {//leap year check
                         $monthco[2]=29;
                       }
                       else {
@@ -104,7 +104,7 @@ while($logdate=$log_query->fetch_assoc())
             else {
                 $onestarttime=$INrow['Time_date'];
             }
-            $datetime1 = new DateTime($onestarttime);
+            $datetime1 = new DateTime($onestarttime);//converting time for calculation
             if(mysqli_num_rows($OUTquery)>0)
             {
                 if(mysqli_num_rows($INquery)> 1)
@@ -119,7 +119,7 @@ while($logdate=$log_query->fetch_assoc())
                     else {
                         $starttime=$firstin['inmin'];
                     }
-                    $firstinvalue = new DateTime($starttime);
+                    $firstinvalue = new DateTime($starttime);//converting time for calculation
                     $firstout=$con->query($doubleout1sql)->fetch_assoc();
                     if($firstout['outmin']>="13:00:00")
                     {
@@ -128,7 +128,7 @@ while($logdate=$log_query->fetch_assoc())
                     else {
                         $startintime=$firstout['outmin'];
                     }
-                    $firstoutvalue = new DateTime($startintime);
+                    $firstoutvalue = new DateTime($startintime);//converting time for calculation
                     $interval1 = $firstinvalue->diff($firstoutvalue);
                     $hours1 = $interval1->format('%h');
                     $doublein2sql="SELECT MAX(TIME(Time_date)) as inmax FROM emp_logs WHERE DATE(Time_date)='$currentdate' AND Rf_id='$emp_rf' AND Log_status='IN'";
@@ -142,7 +142,7 @@ while($logdate=$log_query->fetch_assoc())
                     else {
                         $endintime=$secoin['inmax'];
                     }
-                    $secinvalue = new DateTime($endintime);
+                    $secinvalue = new DateTime($endintime);//converting time for calculation
                     $secoinout=$con->query($doubleout2sql)->fetch_assoc();
                     if($secoinout['outmax']>="19:00:00")
                     {
@@ -152,7 +152,7 @@ while($logdate=$log_query->fetch_assoc())
                     else {
                         $endtime=$secoinout['outmax'];
                     }
-                    $secoutvalue = new DateTime($endtime);
+                    $secoutvalue = new DateTime($endtime);//converting time for calculation
                     $interval2 = $secinvalue->diff($secoutvalue);
                     $hours2 = $interval2->format('%h');
                     $hours=$hours1+$hours2;
@@ -168,7 +168,7 @@ while($logdate=$log_query->fetch_assoc())
                     else {
                         $oneendtime=$OUTrow['Time_date'];
                     }
-                    $datetime2 = new DateTime($oneendtime);
+                    $datetime2 = new DateTime($oneendtime);//converting time for calculation
                     $interval = $datetime1->diff($datetime2);
                     $hours = $interval->format('%h')-1;
                 }

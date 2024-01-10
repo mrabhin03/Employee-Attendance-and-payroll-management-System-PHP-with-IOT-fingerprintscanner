@@ -1,4 +1,5 @@
 <?php
+//deleting an allowance
 include 'session_check.php';
 include '../common/connection.php';
 $theid=$_GET['bid'];

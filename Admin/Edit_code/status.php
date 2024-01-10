@@ -1,4 +1,5 @@
 <?php
+//status controller of employee
 include '../session_check.php';
     include '../../common/connection.php';
     $id=$_GET['id'];

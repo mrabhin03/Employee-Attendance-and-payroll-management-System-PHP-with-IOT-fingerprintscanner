@@ -1,4 +1,5 @@
 <?php
+//To control the pages that the admin request to visit
 include 'session_check.php';
     if(isset($_GET["id"]))
     {

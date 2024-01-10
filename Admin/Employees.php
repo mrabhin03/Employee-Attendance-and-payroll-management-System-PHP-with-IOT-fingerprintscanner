@@ -1,4 +1,5 @@
 <?php
+//page to view all employees details
 include 'session_check.php';
   include '../common/connection.php';
   ?>

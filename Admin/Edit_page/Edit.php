@@ -1,4 +1,5 @@
 <?php
+//page to edit the employee personal details
 include 'session_check.php';
     include '../common/connection.php';
     $data_id=$_SESSION['detailid'];

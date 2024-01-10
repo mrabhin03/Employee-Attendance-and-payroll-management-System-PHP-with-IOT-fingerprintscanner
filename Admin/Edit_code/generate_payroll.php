@@ -1,4 +1,5 @@
 <?php
+//generating the monthly payroll of all employee
 include 'session_check.php';
     if(isset($_GET["mid"]))
     {

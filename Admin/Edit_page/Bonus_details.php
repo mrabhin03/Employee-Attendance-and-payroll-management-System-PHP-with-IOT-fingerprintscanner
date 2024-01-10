@@ -1,4 +1,5 @@
 <?php
+//page to view allowances available
 include 'session_check.php';
 include '../common/connection.php';
 $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");

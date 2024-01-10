@@ -1,5 +1,6 @@
 <div class="update_empin">
-    <?php include 'session_check.php';
+    <?php //page to view personal payroll details of an employee
+    include 'session_check.php';
         include '../common/connection.php';
         $year=date('Y');
         $monthar=array("","January","February","March","April","May","June","July","August","September","October","November","December");?>
