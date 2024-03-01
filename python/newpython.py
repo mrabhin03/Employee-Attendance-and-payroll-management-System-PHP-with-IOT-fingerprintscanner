@@ -5,7 +5,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   passwd="",
-  database="miniproject"
+  database="trackify_db"
 )
 mycursor = mydb.cursor()
 
