@@ -4464,7 +4464,7 @@ INSERT INTO `employee_details` (`Emp_id`, `Emp_Password`, `Emp_name`, `gender`, 
 ('E17', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Adharsh B', 'Male', 4, 'Pukave, Adoor, Kerala', '2004-12-10', '2022-11-15', 7958461789, 'AdharshB@gmail.com', 17, '', 1),
 ('E18', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Akhosh Sajeev', 'Male', 4, 'Elanthoor, kerala', '2003-08-22', '2023-01-01', 8301090818, 'akhoshsajeev@gmail.com', 18, '', 1),
 ('E2', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Devika D Nair', 'Female', 2, 'Emerald Heights, Kannur, Kerala', '1990-05-15', '2022-02-20', 9746851301, 'DevikaDNair@gmail.com', 2, '', 0),
-('E3', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Karishma Shaji', 'Female', 3, 'Poyyamukku, Pathanamthitta, Kerala', '2003-03-10', '2021-05-05', 7461849207, 'KarishmaShaji@gmail.com', 3, '', 1),
+('E3', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Charu', 'Female', 3, 'Poyyamukku, Pathanamthitta, Kerala', '2003-03-10', '2021-05-05', 7461849207, 'KarishmaShaji@gmail.com', 3, '', 1),
 ('E4', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Nandhu v nair ', 'Male', 2, 'Misty Meadows, Palakkad, Kerala', '1992-11-25', '2022-03-15', 9784617854, 'Nandhuvnair@gmail.com', 4, '', 1),
 ('E5', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Jayesh Nambiar', 'Male', 3, 'River Bank Road, Malappuram, Kerala', '1988-08-12', '2022-12-01', 8749251323, 'JayeshNambiar@gmail.com', 5, '', 1),
 ('E6', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Robin R', 'Male', 2, 'Hillside Avenue, Wayanad, Kerala', '1995-04-30', '2022-05-18', 7984879567, 'RobinR@gmail.com', 6, '', 1),
@@ -4472,7 +4472,7 @@ INSERT INTO `employee_details` (`Emp_id`, `Emp_Password`, `Emp_name`, `gender`, 
 ('E8', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Revathi R S', 'Female', 4, 'Sunrise Terrace, Idukki, Kerala', '1995-05-20', '2022-02-10', 9876543217, 'RevathiRS@gmail.com', 8, '', 1),
 ('E9', '$2y$10$fb9JKKQe7wNJkhISEnlVxOcgMjhx/jWrxN.jp/PMOX113tjl8PI7i', 'Anjali mohan ', 'Female', 5, ' Harmony Street, Kasaragod, Kerala', '1987-07-08', '2022-03-05', 7845196423, 'Anjalimohan@gmail.com', 9, '', 1),
 ('P0E1', '', 'Monisha Kumar', '', 0, 'Green Avenue, Kochi, Kerala', '0000-00-00', '0000-00-00', 0, '', 1000, '', 101),
-('P1E3', '', 'Karishma Shaji', '', 0, 'Poyyamukku, Kochi, Kerala', '0000-00-00', '0000-00-00', 0, '', 13000, '', 101),
+('P1E3', '', 'Charu', '', 0, 'Poyyamukku, Kochi, Kerala', '0000-00-00', '0000-00-00', 0, '', 13000, '', 101),
 ('P3E14', '', 'Priya V', '', 0, 'Vallana, Kidaganoor, Kerala', '0000-00-00', '0000-00-00', 0, '', 314000, '', 101);
 
 -- --------------------------------------------------------
